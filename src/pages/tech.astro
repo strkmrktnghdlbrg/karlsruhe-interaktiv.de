@@ -1,0 +1,78 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import SightCard from "../components/SightCard.astro";
+import NewsCard from "../components/NewsCard.astro";
+import { sightsByCategory } from "../data/sights";
+import { news } from "../data/news";
+import { features } from "../data/features";
+
+const techSights = sightsByCategory("tech-innovation");
+const sciSights = sightsByCategory("wissenschaft");
+const hubSights = [...new Map([...techSights, ...sciSights].map((s) => [s.slug, s])).values()];
+const techNews = features.news.enabled
+  ? news.filter((n) => n.category === "Tech" || n.category === "Wissenschaft")
+      .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+  : [];
+
+const institutions = [
+  { name: "KIT — Karlsruher Institut fuer Technologie", desc: "Eine der grossen Technischen Universitaeten Europas, kombiniert Universitaet und Helmholtz-Forschungszentrum. Rund 25.000 Studierende.", url: "https://www.kit.edu" },
+  { name: "FZI Forschungszentrum Informatik", desc: "Eines der fuehrenden Innovations- und Transfer-Institute fuer angewandte Informatik in Deutschland.", url: "https://www.fzi.de" },
+  { name: "CyberForum", desc: "Eines der groessten IT-Cluster Europas mit ueber 1.000 Mitgliedsunternehmen aus der TechnologieRegion Karlsruhe.", url: "https://www.cyberforum.de" },
+  { name: "ZKM Zentrum fuer Kunst und Medien", desc: "Weltweit einziges Museum, das sich systematisch der elektronischen und digitalen Kunst widmet.", url: "https://zkm.de" },
+  { name: "Fraunhofer IOSB", desc: "Fraunhofer-Institut fuer Optronik, Systemtechnik und Bildauswertung — KI, Bildverarbeitung, autonome Systeme.", url: "https://www.iosb.fraunhofer.de" },
+  { name: "Bundesverfassungsgericht", desc: "Hueter des Grundgesetzes — zunehmend praegend fuer digitale Grundrechte und Datenschutz in Deutschland.", url: "https://www.bundesverfassungsgericht.de" },
+];
+---
+
+<BaseLayout
+  title="Tech-Hub Karlsruhe"
+  description="Karlsruhe ist eines der wichtigsten Tech-Cluster Europas: KIT, FZI, CyberForum, ZKM und Fraunhofer. Der Tech-Hub der Faecherstadt."
+>
+  <section class="hero-faecher">
+    <div class="container-page py-20 sm:py-28">
+      <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "Tech-Hub"}]} />
+      <p class="eyebrow mb-4">Karlsruhes USP</p>
+      <h1 class="text-4xl sm:text-7xl font-medium tracking-tighter mb-6 leading-[0.95]" style="color: var(--color-text);">
+        Tech-Hub<br/><span style="color: var(--color-accent);">Karlsruhe</span>
+      </h1>
+      <p class="text-lg sm:text-xl max-w-2xl leading-relaxed" style="color: var(--color-text-body);">
+        Karlsruhe ist nicht nur Faecherstadt und Residenz des Rechts — es ist eines der dichtesten Tech-Cluster Europas. KIT, FZI, CyberForum, ZKM und Fraunhofer machen die Stadt zum Innovations-Magnet.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-page section">
+    <h2 class="text-3xl font-semibold mb-8" style="color: var(--color-text);">Institutionen & Cluster</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {institutions.map((i) => (
+        <a href={i.url} rel="nofollow noopener" target="_blank" class="card group block p-6">
+          <h3 class="text-lg font-semibold mb-2" style="color: var(--color-text);">{i.name}</h3>
+          <p class="text-sm leading-relaxed mb-3" style="color: var(--color-text-body);">{i.desc}</p>
+          <span class="link-accent text-sm">Website &rarr;</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {hubSights.length > 0 && (
+    <section class="container-page section border-t" style="border-color: var(--color-border);">
+      <h2 class="text-3xl font-semibold mb-8" style="color: var(--color-text);">Tech & Wissenschaft erleben</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {hubSights.map((s) => <SightCard sight={s} />)}
+      </div>
+    </section>
+  )}
+
+  {techNews.length > 0 && (
+    <section class="container-page section border-t" style="border-color: var(--color-border);">
+      <div class="flex items-end justify-between mb-8">
+        <h2 class="text-3xl font-semibold" style="color: var(--color-text);">Tech-News aus Karlsruhe</h2>
+        <a href="/news/" class="hidden sm:inline-flex link-accent text-sm">Alle News &rarr;</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {techNews.map((n) => <NewsCard item={n} />)}
+      </div>
+    </section>
+  )}
+</BaseLayout>

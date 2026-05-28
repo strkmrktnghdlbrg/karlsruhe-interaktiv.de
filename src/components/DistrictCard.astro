@@ -1,0 +1,38 @@
+---
+import ContentImage from "./ContentImage.astro";
+import type { District } from "../data/districts";
+import { sightsByDistrict } from "../data/sights";
+import { hotelsByDistrict } from "../data/hotels";
+import { restaurantsByDistrict } from "../data/restaurants";
+
+interface Props { district: District }
+const { district } = Astro.props;
+const sightCount = sightsByDistrict(district.slug).length;
+const hotelCount = hotelsByDistrict(district.slug).length;
+const restCount = restaurantsByDistrict(district.slug).length;
+---
+
+<a href={`/bezirke/${district.slug}/`} class="card group block">
+  <div class="aspect-[4/3] relative overflow-hidden">
+    <ContentImage
+      imgKey={district.imageKey}
+      fallbackHue={district.hue}
+      fallbackLabel={district.name}
+      imgClass="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+    />
+    <div class="absolute bottom-3 left-3 flex flex-wrap gap-1.5">
+      {district.characterTags.slice(0, 2).map((tag) => (
+        <span class="pill" style="background: rgba(8,9,10,0.85); backdrop-filter: blur(8px);">{tag}</span>
+      ))}
+    </div>
+  </div>
+  <div class="p-4">
+    <h3 class="text-lg font-semibold tracking-tight mb-2 transition-colors" style="color: var(--color-text);">{district.name}</h3>
+    <p class="text-sm leading-relaxed line-clamp-2 mb-3" style="color: var(--color-text-body);">{district.shortDesc}</p>
+    <div class="flex items-center gap-4 text-xs" style="color: var(--color-text-muted);">
+      <span><strong style="color: var(--color-text);">{sightCount}</strong> Sights</span>
+      <span><strong style="color: var(--color-text);">{hotelCount}</strong> Hotels</span>
+      <span><strong style="color: var(--color-text);">{restCount}</strong> Restaurants</span>
+    </div>
+  </div>
+</a>

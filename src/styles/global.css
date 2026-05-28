@@ -1,0 +1,279 @@
+@import "tailwindcss";
+
+/* ===================================================================
+   GLOBAL.CSS — Dark Base für karlsruhe-interaktiv.de
+   ===================================================================
+   Linear-Style Dark-Command-Center.
+   Zusätzliche Tokens in brand.css (Akzente, Hues, Fächer-Pattern).
+   =================================================================== */
+
+@theme {
+  /* Type-Scale (Linear-orientiert) */
+  --text-caption: 11px;
+  --text-body-sm: 13px;
+  --text-body: 14px;
+  --text-body-lg: 16px;
+  --text-heading-sm: 20px;
+  --text-heading: 24px;
+  --text-heading-lg: 32px;
+  --text-heading-xl: 48px;
+  --text-display: 72px;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background: var(--color-bg);
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-feature-settings: "cv01", "ss03";
+  letter-spacing: -0.011em;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  color: var(--color-text);
+  letter-spacing: -0.022em;
+  font-weight: 510;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+/* ===================================================================
+   COMPONENT UTILITIES
+   =================================================================== */
+
+@layer components {
+  .container-page {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section {
+    @apply py-14 sm:py-20;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-widest;
+    color: var(--color-accent);
+  }
+
+  /* === Buttons === */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-1.5 px-5 py-2.5
+           text-sm font-semibold transition-colors;
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    border-radius: var(--radius-button);
+  }
+  .btn-primary:hover {
+    background: var(--color-accent-hover);
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-1.5 px-5 py-2.5
+           text-sm font-semibold transition-colors bg-transparent border;
+    color: var(--color-text);
+    border-color: var(--color-border);
+    border-radius: var(--radius-button);
+  }
+  .btn-outline:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 text-sm
+           transition-colors;
+    color: var(--color-text-muted);
+    background: transparent;
+    border-radius: 2px;
+  }
+  .btn-ghost:hover {
+    color: var(--color-text);
+  }
+
+  /* === Pills / Badges === */
+  .pill {
+    @apply inline-flex items-center gap-1 px-2 py-0.5
+           text-xs font-medium border;
+    color: var(--color-text-body);
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    border-radius: var(--radius-badge);
+  }
+
+  .pill-accent {
+    @apply inline-flex items-center gap-1 px-2 py-0.5
+           text-xs font-semibold;
+    color: var(--color-accent);
+    background: var(--color-accent-tint);
+    border-radius: var(--radius-badge);
+  }
+
+  .pill-secondary {
+    @apply inline-flex items-center gap-1 px-2 py-0.5
+           text-xs font-semibold;
+    color: var(--color-secondary);
+    background: rgba(2, 184, 204, 0.12);
+    border-radius: var(--radius-badge);
+  }
+
+  /* === Cards === */
+  .card {
+    @apply overflow-hidden transition-all border;
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    border-radius: var(--radius-card);
+  }
+  .card:hover {
+    border-color: var(--color-accent);
+  }
+
+  .card-elevated {
+    @apply overflow-hidden transition-all border;
+    background: var(--color-surface-elevated);
+    border-color: var(--color-border);
+    border-radius: var(--radius-card);
+  }
+
+  .link-accent {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  .link-accent:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* === Prose (Legal / Artikel) === */
+  .legal-prose {
+    color: var(--color-text-body);
+    font-size: var(--text-body-lg);
+    line-height: 1.7;
+  }
+  .legal-prose h2 {
+    color: var(--color-text);
+    font-size: var(--text-heading);
+    font-weight: 510;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .legal-prose h3 {
+    color: var(--color-text);
+    font-size: var(--text-heading-sm);
+    font-weight: 510;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .legal-prose p {
+    margin-bottom: 1rem;
+  }
+  .legal-prose a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .legal-prose ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .legal-prose li {
+    margin-bottom: 0.35rem;
+  }
+
+  /* === Hero Fächer Pattern === */
+  .hero-faecher {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .hero-faecher::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--hero-faecher);
+    pointer-events: none;
+    z-index: -1;
+  }
+  .hero-faecher::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 100%,
+      rgba(228, 242, 34, 0.05),
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+/* ===================================================================
+   SR-ONLY
+   =================================================================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===================================================================
+   MOBILE MENU DRAWER (Pattern B)
+   =================================================================== */
+@media (max-width: 1023.98px) {
+  .mobile-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .mobile-menu-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-menu-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 70;
+    width: min(88vw, 380px);
+    height: 100vh;
+    height: 100dvh;
+    background: var(--color-surface);
+    border-left: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+    box-shadow: -16px 0 40px -20px rgba(0, 0, 0, 0.8);
+  }
+  .mobile-menu-panel.is-open {
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import NewsCard from "../../components/NewsCard.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { news } from "../../data/news";
+import { features } from "../../data/features";
+
+if (!features.news.enabled) return Astro.redirect("/", 302);
+const sorted = [...news].sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
+---
+
+<BaseLayout title="Karlsruhe-News" description="Aktuelle News aus Karlsruhe — Tech-Hub-Schwerpunkt: KIT, ZKM, CyberForum, Bundesverfassungsgericht.">
+  <div class="container-page py-12">
+    <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "News"}]} />
+    <header class="mb-12">
+      <p class="eyebrow mb-3">Tech &middot; Wissenschaft &middot; Kultur</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">Karlsruhe-News</h1>
+      <p class="text-lg max-w-3xl" style="color: var(--color-text-body);">
+        Kuratierte News mit Schwerpunkt auf Tech, KIT-Forschung, ZKM und Bundesverfassungsgericht. Kurze Zusammenfassungen mit Verweis zur Originalquelle.
+      </p>
+    </header>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {sorted.map((n) => <NewsCard item={n} />)}
+    </div>
+  </div>
+</BaseLayout>

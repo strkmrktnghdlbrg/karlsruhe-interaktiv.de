@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import ContentImage from "../../components/ContentImage.astro";
+import AttributionFooter from "../../components/AttributionFooter.astro";
+import { news, getNewsItem, recentNews } from "../../data/news";
+import NewsCard from "../../components/NewsCard.astro";
+import { features } from "../../data/features";
+
+export function getStaticPaths() {
+  return news.map((n) => ({ params: { slug: n.slug } }));
+}
+
+const { slug } = Astro.params;
+const item = getNewsItem(slug!);
+if (!item || !features.news.enabled) return Astro.redirect("/", 302);
+const date = new Date(item.publishedAt).toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" });
+const related = recentNews(4).filter((n) => n.slug !== item.slug).slice(0, 3);
+---
+
+<BaseLayout title={item.title} description={item.lead}>
+  <article class="container-page py-12 max-w-3xl">
+    <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "News", href: "/news/"}, {label: item.title}]} />
+
+    <p class="eyebrow mb-3">{item.category} &middot; {date}</p>
+    <h1 class="text-3xl sm:text-5xl font-medium tracking-tight mb-6 leading-tight" style="color: var(--color-text);">{item.title}</h1>
+    <p class="text-xl leading-relaxed mb-8" style="color: var(--color-text-body);">{item.lead}</p>
+
+    <div class="aspect-[16/9] overflow-hidden mb-10" style="border-radius: var(--radius-card);">
+      <ContentImage imgKey={item.imageKey} fallbackHue={item.imageHue} fallbackLabel={item.category} loading="eager" />
+    </div>
+
+    <div class="prose max-w-none">
+      <p class="text-lg leading-relaxed" style="color: var(--color-text-body);">{item.summary}</p>
+    </div>
+
+    <AttributionFooter sourceName={item.source.name} sourceUrl={item.source.url} sourceDate={item.source.publishedAt} />
+
+    {related.length > 0 && (
+      <section class="mt-12 pt-8 border-t" style="border-color: var(--color-border);">
+        <h2 class="text-2xl font-semibold mb-6" style="color: var(--color-text);">Weitere News</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {related.map((n) => <NewsCard item={n} />)}
+        </div>
+      </section>
+    )}
+  </article>
+</BaseLayout>

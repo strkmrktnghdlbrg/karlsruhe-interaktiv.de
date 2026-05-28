@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DistrictCard from "../../components/DistrictCard.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { districts } from "../../data/districts";
+---
+
+<BaseLayout title="Bezirke" description="Alle 14 Karlsruher Bezirke — von Innenstadt-West bis Neureut, mit Durlach und Oststadt prominent.">
+  <div class="container-page py-12">
+    <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "Bezirke"}]} />
+    <header class="mb-12">
+      <p class="eyebrow mb-3">{districts.length} Bezirke</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">Karlsruher Bezirke</h1>
+      <p class="text-lg max-w-3xl" style="color: var(--color-text-body);">
+        Vom Faecher-Ursprung am Schloss bis zum historischen Durlach am Turmberg, vom KIT-Umfeld in der Oststadt bis zum doerflichen Neureut — alle Karlsruher Bezirke im Ueberblick.
+      </p>
+    </header>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {districts.map((d) => <DistrictCard district={d} />)}
+    </div>
+  </div>
+</BaseLayout>

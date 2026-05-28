@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import ContentImage from "../../components/ContentImage.astro";
+import RelatedItems from "../../components/RelatedItems.astro";
+import { sights, getSight } from "../../data/sights";
+import { getDistrict } from "../../data/districts";
+import { getCategory } from "../../data/categories";
+import { city } from "../../data/city";
+
+export function getStaticPaths() {
+  return sights.map((s) => ({ params: { slug: s.slug } }));
+}
+
+const { slug } = Astro.params;
+const sight = getSight(slug!);
+if (!sight) return Astro.redirect("/404");
+const district = getDistrict(sight.district);
+const priceLabel = sight.priceFrom === null ? "Eintritt frei" : `ab ${sight.priceFrom} EUR`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  name: sight.name,
+  description: sight.shortDesc,
+  address: { "@type": "PostalAddress", addressLocality: city.name, addressCountry: city.countryCode },
+  geo: { "@type": "GeoCoordinates", latitude: sight.coordinates[0], longitude: sight.coordinates[1] },
+  ...(sight.openingHours && { openingHours: sight.openingHours }),
+  ...(sight.websiteUrl && { url: sight.websiteUrl }),
+};
+---
+
+<BaseLayout title={sight.name} description={sight.shortDesc}>
+  <article class="container-page py-12">
+    <Breadcrumbs items={[
+      { label: "Start", href: "/" },
+      { label: "Sehenswuerdigkeiten", href: "/sehenswuerdigkeiten/" },
+      { label: sight.name },
+    ]} />
+
+    <div class="grid lg:grid-cols-[2fr_1fr] gap-10 mb-12">
+      <div>
+        <p class="eyebrow mb-3">{sight.type}{district && ` · ${district.name}`}</p>
+        <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-6" style="color: var(--color-text);">{sight.name}</h1>
+        <p class="text-lg leading-relaxed mb-6" style="color: var(--color-text-body);">{sight.longDesc}</p>
+
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="pill-accent">{priceLabel}</span>
+          {sight.openingHours && <span class="pill">{sight.openingHours}</span>}
+          {sight.categories.map((c) => {
+            const cat = getCategory(c);
+            return cat ? <a href={`/kategorien/${cat.slug}/`} class="pill">{cat.name}</a> : null;
+          })}
+        </div>
+
+        {sight.websiteUrl && (
+          <a href={sight.websiteUrl} rel="nofollow noopener" target="_blank" class="btn-primary">
+            Offizielle Website &rarr;
+          </a>
+        )}
+      </div>
+
+      <aside class="aspect-[4/3] lg:aspect-auto lg:min-h-[320px] overflow-hidden" style="border-radius: var(--radius-card);">
+        <ContentImage
+          imgKey={sight.imageKey}
+          fallbackHue={sight.imageHue}
+          fallbackLabel={sight.name}
+          loading="eager"
+          showCredit
+          sizes="(min-width: 1024px) 33vw, 100vw"
+        />
+      </aside>
+    </div>
+
+    {district && (
+      <div class="my-12 p-6 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+        <p class="eyebrow mb-2">Im Bezirk</p>
+        <h2 class="text-xl font-semibold mb-2" style="color: var(--color-text);">{district.name}</h2>
+        <p class="text-sm mb-3" style="color: var(--color-text-body);">{district.shortDesc}</p>
+        <a href={`/bezirke/${district.slug}/`} class="link-accent text-sm">Bezirks-Hub ansehen &rarr;</a>
+      </div>
+    )}
+
+    <RelatedItems district={sight.district} excludeSlug={sight.slug} type="sights" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline></script>
+  </article>
+</BaseLayout>

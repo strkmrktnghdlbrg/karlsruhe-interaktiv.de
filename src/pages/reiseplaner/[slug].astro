@@ -1,0 +1,79 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import HueGradient from "../../components/HueGradient.astro";
+import { guides, getGuide } from "../../data/guides";
+import { getSight } from "../../data/sights";
+import { getHotel } from "../../data/hotels";
+import { getRestaurant } from "../../data/restaurants";
+import { getDistrict } from "../../data/districts";
+import { features } from "../../data/features";
+
+export function getStaticPaths() {
+  return guides.map((g) => ({ params: { slug: g.slug } }));
+}
+
+const { slug } = Astro.params;
+const guide = getGuide(slug!);
+if (!guide || !features.reiseplaner.enabled) return Astro.redirect("/", 302);
+---
+
+<BaseLayout title={guide.title} description={guide.shortDesc}>
+  <article class="container-page py-12 max-w-4xl">
+    <Breadcrumbs items={[
+      { label: "Start", href: "/" },
+      { label: "Reiseplaner", href: "/reiseplaner/" },
+      { label: guide.title },
+    ]} />
+
+    <header class="mb-12">
+      <p class="eyebrow mb-3">{guide.duration} Tag{guide.duration > 1 ? "e" : ""} &middot; {guide.audience}</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-6" style="color: var(--color-text);">{guide.title}</h1>
+      <p class="text-lg leading-relaxed mb-6" style="color: var(--color-text-body);">{guide.lead}</p>
+      {guide.bestSeason && <p class="text-sm" style="color: var(--color-text-muted);"><strong style="color: var(--color-text);">Beste Reisezeit:</strong> {guide.bestSeason}</p>}
+    </header>
+
+    <div class="aspect-[16/9] overflow-hidden mb-10" style="border-radius: var(--radius-card);">
+      <HueGradient hue={guide.imageHue} label={guide.title} />
+    </div>
+
+    {guide.days.map((day) => (
+      <section class="mb-12 pb-8 border-b" style="border-color: var(--color-border);">
+        <p class="eyebrow mb-3">Tag {day.number}</p>
+        <h2 class="text-3xl font-semibold mb-3" style="color: var(--color-text);">{day.title}</h2>
+        <p class="text-base mb-8" style="color: var(--color-text-body);">{day.intro}</p>
+
+        <ol class="space-y-6">
+          {day.slots.map((slot) => {
+            const refSight = slot.sightSlug ? getSight(slot.sightSlug) : null;
+            const refHotel = slot.hotelSlug ? getHotel(slot.hotelSlug) : null;
+            const refRest = slot.restaurantSlug ? getRestaurant(slot.restaurantSlug) : null;
+            const refDistrict = slot.districtSlug ? getDistrict(slot.districtSlug) : null;
+            return (
+              <li class="grid grid-cols-[100px_1fr] gap-4">
+                <div class="text-xs font-semibold uppercase tracking-wider pt-1" style="color: var(--color-accent);">
+                  {slot.time}
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold mb-2" style="color: var(--color-text);">{slot.title}</h3>
+                  <p class="text-sm leading-relaxed mb-3" style="color: var(--color-text-body);">{slot.description}</p>
+                  <div class="flex flex-wrap gap-2">
+                    {refSight && <a href={`/sehenswuerdigkeiten/${refSight.slug}/`} class="pill-accent">{refSight.name}</a>}
+                    {refRest && <a href={`/restaurants/${refRest.slug}/`} class="pill-accent">{refRest.name}</a>}
+                    {refHotel && <a href={`/hotels/${refHotel.slug}/`} class="pill-accent">{refHotel.name}</a>}
+                    {refDistrict && <a href={`/bezirke/${refDistrict.slug}/`} class="pill">{refDistrict.name}</a>}
+                  </div>
+                  {slot.tip && (
+                    <p class="text-xs mt-3 p-3 border" style="background: var(--color-surface); border-color: var(--color-border); color: var(--color-text-body); border-radius: var(--radius-card);">
+                      <strong style="color: var(--color-accent);">Tipp:</strong> {slot.tip}
+                    </p>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+      </section>
+    ))}
+  </article>
+</BaseLayout>

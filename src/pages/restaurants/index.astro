@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import RestaurantCard from "../../components/RestaurantCard.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { restaurants } from "../../data/restaurants";
+import { city } from "../../data/city";
+
+const sorted = [...restaurants].sort((a, b) => a.name.localeCompare(b.name, "de"));
+const cuisines = [...new Set(restaurants.map((r) => r.cuisine))].sort();
+---
+
+<BaseLayout title={`Restaurants in ${city.name}`} description="Restaurants in Karlsruhe: Badisch, Stern-Kueche, Italienisch, Asiatisch — geprueft, sortiert nach Bezirk und Kueche.">
+  <div class="container-page py-12">
+    <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "Restaurants"}]} />
+    <header class="mb-12">
+      <p class="eyebrow mb-3">{restaurants.length} Adressen</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">Restaurants in Karlsruhe</h1>
+      <p class="text-lg max-w-3xl mb-6" style="color: var(--color-text-body);">
+        Von der legendaeren Oberlaender Weinstube bis zum Stern-Restaurant Sein, von badischen Brauhaeusern bis zur Suedstadt-Pho-Adresse — Karlsruhes Gastronomie in einer Uebersicht.
+      </p>
+      <div class="flex flex-wrap gap-2">
+        {cuisines.map((c) => <span class="pill">{c}</span>)}
+      </div>
+    </header>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {sorted.map((r) => <RestaurantCard restaurant={r} />)}
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { legal } from "../data/legal";
+import { city } from "../data/city";
+---
+
+<BaseLayout title="AGB / Nutzungsbedingungen" noindex>
+  <div class="container-page py-12 max-w-3xl">
+    <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "AGB" }]} />
+    <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-8" style="color: var(--color-text);">Nutzungsbedingungen</h1>
+
+    <div class="legal-prose">
+      <h2>1. Geltungsbereich</h2>
+      <p>
+        Diese Nutzungsbedingungen gelten fuer die Nutzung des Stadtportals {city.name}-Interaktiv, betrieben von
+        {legal.companyName}. Mit dem Aufrufen der Website erklaerst du dich mit diesen Bedingungen einverstanden.
+      </p>
+
+      <h2>2. Leistungen</h2>
+      <p>
+        {city.name}-Interaktiv ist ein redaktionelles Informationsportal. Wir stellen Informationen zu
+        Sehenswuerdigkeiten, Hotels, Restaurants, Bezirken und Veranstaltungen bereit. Es besteht kein Anspruch auf
+        Vollstaendigkeit oder Aktualitaet. {legal.natureOfBusiness}
+      </p>
+
+      <h2>3. Affiliate-Links und Buchungen</h2>
+      <p>
+        Buchungen von Hotels, Touren oder Tickets erfolgen ausschliesslich beim jeweiligen Drittanbieter (z.B.
+        Booking.com, GetYourGuide). Es kommt kein Vertrag mit {city.name}-Interaktiv zustande. Es gelten die
+        Bedingungen des jeweiligen Anbieters.
+      </p>
+
+      <h2>4. Haftung</h2>
+      <p>
+        Wir haften nicht fuer Schaeden, die aus der Nutzung der bereitgestellten Informationen oder aus Buchungen
+        bei Drittanbietern entstehen. Fuer externe Links uebernehmen wir keine Haftung.
+      </p>
+
+      <h2>5. Urheberrecht</h2>
+      <p>
+        Alle Inhalte unterliegen dem Urheberrecht. Bilder werden, sofern nicht anders ausgewiesen, unter
+        Creative-Commons-Lizenzen von Wikimedia Commons verwendet und entsprechend gekennzeichnet.
+      </p>
+
+      <h2>6. Schlussbestimmungen</h2>
+      <p>
+        Es gilt deutsches Recht. Sollten einzelne Bestimmungen unwirksam sein, bleibt die Wirksamkeit der uebrigen
+        Bedingungen unberuehrt.
+      </p>
+
+      <p style="margin-top: 2rem; font-size: 0.875rem; color: var(--color-text-muted);">Stand: Mai 2026</p>
+    </div>
+  </div>
+</BaseLayout>

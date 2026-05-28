@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HotelCard from "../../components/HotelCard.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { hotels } from "../../data/hotels";
+import { city } from "../../data/city";
+const sorted = [...hotels].sort((a, b) => b.rating - a.rating);
+---
+
+<BaseLayout title={`Hotels in ${city.name}`} description={`Hotels in Karlsruhe — von Design-Boutiquen bis 5-Sterne. Innenstadt, Hauptbahnhof, Durlach.`}>
+  <div class="container-page py-12">
+    <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "Hotels"}]} />
+    <header class="mb-12">
+      <p class="eyebrow mb-3">{hotels.length} Haeuser</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">Hotels in Karlsruhe</h1>
+      <p class="text-lg max-w-3xl" style="color: var(--color-text-body);">
+        Vom Design-Hotel Santo bis zum Schlosshotel am Hauptbahnhof, vom Erbprinz Ettlingen bis zur Karlsburg-Naehe in Durlach — geprueft, sortiert nach Gaeste-Bewertung.
+      </p>
+    </header>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {sorted.map((h) => <HotelCard hotel={h} />)}
+    </div>
+  </div>
+</BaseLayout>

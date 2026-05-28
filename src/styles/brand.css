@@ -1,0 +1,116 @@
+/*
+ * karlsruhe-interaktiv.de — Brand Layer
+ * Design: Linear (Dark Command-Center)
+ * Quelle: https://styles.refero.design/style/90ce5883-bb24-4466-93f7-801cd617b0d1
+ * Stadt-Twist: Fächer-Geometrie (radiale Strahlen vom Schloss), KIT-Tech-Vibe, Neon-Lime-CTA rar
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400&display=swap");
+
+@theme {
+  /* === Akzent (Neon Lime — SINGLE FOCAL POINT pro Viewport!) === */
+  --color-accent: #e4f222;
+  --color-accent-hover: #c8d61a;
+  --color-accent-tint: rgba(228, 242, 34, 0.12);
+  --color-accent-contrast: #08090a;
+
+  /* === Sekundär-Akzente === */
+  --color-secondary: #02b8cc;     /* Cyan Spark — Info */
+  --color-decorative: #5e6ad2;    /* Aether Blue — Background */
+  --color-decorative-2: #6366f1;  /* Deep Violet */
+  --color-decorative-3: #8b5cf6;  /* Amethyst */
+
+  /* === Text (Dark Theme) === */
+  --color-text: #f7f8f8;          /* Porcelain */
+  --color-text-body: #d0d6e0;     /* Light Steel */
+  --color-text-muted: #8a8f98;    /* Storm Cloud */
+  --color-text-subtle: #62666d;   /* Fog Grey */
+
+  /* === Surfaces (Dark) === */
+  --color-bg: #08090a;             /* Pitch Black */
+  --color-surface: #0f1011;        /* Graphite */
+  --color-surface-elevated: #161718; /* Deep Slate */
+  --color-surface-input: #383b3f;  /* Gunmetal */
+  --color-border: #23252a;         /* Charcoal */
+  --color-border-subtle: #323334;  /* Muted Ash */
+
+  /* === Semantik === */
+  --color-success: #008d2c;
+  --color-emerald: #27a644;
+  --color-warning: #eb5757;
+
+  /* === Fonts === */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* === Radii === */
+  --radius-tag: 2px;
+  --radius-badge: 4px;
+  --radius-card: 6px;
+  --radius-input: 6px;
+  --radius-button: 6px;
+  --radius-pill: 9999px;
+
+  /* === Shadows (Layered Dark) === */
+  --shadow-sm: rgba(0, 0, 0, 0.4) 0px 2px 4px 0px;
+  --shadow-md: rgba(0, 0, 0, 0.2) 0px 0px 12px 0px inset;
+  --shadow-subtle: rgb(35, 37, 42) 0px 0px 0px 1px inset;
+  --shadow-xl: rgba(8, 9, 10, 0.6) 0px 4px 32px 0px;
+
+  /* === Bezirks-Hues (Karlsruhe Dark + Lime/Cyan/Violet) === */
+  --hue-1: linear-gradient(135deg, #1e1f24 0%, #5e6ad2 50%, #e4f222 100%);
+  --hue-2: linear-gradient(135deg, #0a1b1d 0%, #02b8cc 50%, #5eead4 100%);
+  --hue-3: linear-gradient(135deg, #1a1a1f 0%, #6366f1 50%, #8b5cf6 100%);
+  --hue-4: linear-gradient(135deg, #0f1a0f 0%, #008d2c 50%, #27a644 100%);
+  --hue-5: linear-gradient(135deg, #1a0e0e 0%, #7c2d12 50%, #ea580c 100%);
+
+  /* === Karlsruhe-Twist: Radialer Fächer-Gradient für Hero === */
+  --hero-faecher: conic-gradient(
+    from 250deg at 50% 100%,
+    transparent 0deg,
+    rgba(228, 242, 34, 0.08) 20deg,
+    transparent 40deg,
+    rgba(228, 242, 34, 0.06) 60deg,
+    transparent 80deg,
+    rgba(2, 184, 204, 0.08) 100deg,
+    transparent 120deg,
+    rgba(94, 106, 210, 0.08) 140deg,
+    transparent 360deg
+  );
+}
+
+@layer components {
+  .btn-primary {
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    border-radius: var(--radius-button);
+    padding: 12px 24px;
+    font-family: var(--font-sans);
+    font-weight: 590;
+    font-size: 15px;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-text);
+    padding: 0;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  .card-default {
+    background: var(--color-surface);
+    border-radius: var(--radius-card);
+    padding: 8px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .card-elevated {
+    background: var(--color-surface-elevated);
+    border-radius: 12px 12px 0 0;
+    padding: 24px 0;
+    box-shadow: var(--shadow-subtle);
+  }
+}

@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import ContentImage from "../../components/ContentImage.astro";
+import RelatedItems from "../../components/RelatedItems.astro";
+import { restaurants, getRestaurant } from "../../data/restaurants";
+import { getDistrict } from "../../data/districts";
+import { city } from "../../data/city";
+
+export function getStaticPaths() {
+  return restaurants.map((r) => ({ params: { slug: r.slug } }));
+}
+
+const { slug } = Astro.params;
+const restaurant = getRestaurant(slug!);
+if (!restaurant) return Astro.redirect("/404");
+const district = getDistrict(restaurant.district);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  name: restaurant.name,
+  description: restaurant.shortDesc,
+  servesCuisine: restaurant.cuisine,
+  priceRange: restaurant.priceLevel,
+  address: { "@type": "PostalAddress", addressLocality: city.name, addressCountry: city.countryCode },
+  ...(restaurant.openingHours && { openingHours: restaurant.openingHours }),
+  ...(restaurant.websiteUrl && { url: restaurant.websiteUrl }),
+  ...(restaurant.reservation !== undefined && { acceptsReservations: restaurant.reservation }),
+};
+---
+
+<BaseLayout title={restaurant.name} description={restaurant.shortDesc}>
+  <article class="container-page py-12">
+    <Breadcrumbs items={[
+      { label: "Start", href: "/" },
+      { label: "Restaurants", href: "/restaurants/" },
+      { label: restaurant.name },
+    ]} />
+
+    <div class="grid lg:grid-cols-[2fr_1fr] gap-10 mb-12">
+      <div>
+        <p class="eyebrow mb-3">{restaurant.cuisine} &middot; {restaurant.priceLevel}{district && ` · ${district.name}`}</p>
+        <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-6" style="color: var(--color-text);">{restaurant.name}</h1>
+        <p class="text-lg leading-relaxed mb-6" style="color: var(--color-text-body);">{restaurant.longDesc}</p>
+
+        <div class="flex flex-wrap gap-2 mb-6">
+          {restaurant.openingHours && <span class="pill">{restaurant.openingHours}</span>}
+          {restaurant.reservation && <span class="pill-accent">Reservierung empfohlen</span>}
+          {restaurant.reservation === false && <span class="pill">Walk-In</span>}
+        </div>
+
+        {restaurant.websiteUrl && (
+          <a href={restaurant.websiteUrl} rel="nofollow noopener" target="_blank" class="btn-primary">Website &rarr;</a>
+        )}
+      </div>
+
+      <aside class="aspect-[4/3] lg:aspect-auto lg:min-h-[320px] overflow-hidden" style="border-radius: var(--radius-card);">
+        <ContentImage imgKey={restaurant.imageKey} fallbackHue={restaurant.imageHue} fallbackLabel={restaurant.name} loading="eager" />
+      </aside>
+    </div>
+
+    <RelatedItems district={restaurant.district} excludeSlug={restaurant.slug} type="restaurants" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline></script>
+  </article>
+</BaseLayout>

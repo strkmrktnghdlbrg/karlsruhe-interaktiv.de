@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SightCard from "../../components/SightCard.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { sights } from "../../data/sights";
+import { city } from "../../data/city";
+const sorted = [...sights].sort((a, b) => a.name.localeCompare(b.name, "de"));
+---
+
+<BaseLayout title={`Sehenswuerdigkeiten in ${city.name}`} description={`Alle ${sights.length} Sehenswuerdigkeiten in Karlsruhe: Schloss, ZKM, Pyramide, Turmberg und mehr.`}>
+  <div class="container-page py-12">
+    <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "Sehenswuerdigkeiten"}]} />
+    <header class="mb-12">
+      <p class="eyebrow mb-3">{sights.length} Eintraege</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">Sehenswuerdigkeiten in Karlsruhe</h1>
+      <p class="text-lg max-w-3xl" style="color: var(--color-text-body);">
+        Vom barocken Schloss bis zum weltweit einzigartigen ZKM, vom Turmberg in Durlach bis zum Bundesverfassungsgericht — alle ikonischen Orte der Faecherstadt.
+      </p>
+    </header>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {sorted.map((s) => <SightCard sight={s} />)}
+    </div>
+  </div>
+</BaseLayout>

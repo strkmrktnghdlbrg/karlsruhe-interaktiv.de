@@ -1,0 +1,115 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SightCard from "../components/SightCard.astro";
+import HotelCard from "../components/HotelCard.astro";
+import DistrictCard from "../components/DistrictCard.astro";
+import NewsCard from "../components/NewsCard.astro";
+import { city } from "../data/city";
+import { sights } from "../data/sights";
+import { topHotels } from "../data/hotels";
+import { districts } from "../data/districts";
+import { recentNews } from "../data/news";
+import { features } from "../data/features";
+
+const featuredSights = sights.slice(0, 6);
+const featuredHotels = topHotels(4);
+const featuredDistricts = districts.slice(0, 6);
+const featuredNews = features.news.enabled ? recentNews(3) : [];
+---
+
+<BaseLayout title={city.name} description={city.description.long}>
+  <!-- HERO mit Faecher-Gradient -->
+  <section class="hero-faecher relative">
+    <div class="container-page py-24 sm:py-32 lg:py-40 text-center">
+      <p class="eyebrow mb-6">Stadtportal &middot; Faecherstadt &middot; Tech-Hub</p>
+      <h1 class="text-5xl sm:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.95] mb-6" style="color: var(--color-text);">
+        Karlsruhe<br/>
+        <span style="color: var(--color-text-muted);">interaktiv.</span>
+      </h1>
+      <p class="text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-10" style="color: var(--color-text-body);">
+        Schloss, ZKM, KIT, Bundesverfassungsgericht und Turmberg. Das Stadtportal fuer die Faecherstadt — Sehenswuerdigkeiten, Hotels, Bezirke und Tech-News.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/sehenswuerdigkeiten/" class="btn-primary">Sehenswuerdigkeiten entdecken</a>
+        <a href="/tech/" class="btn-outline">Tech-Hub Karlsruhe</a>
+      </div>
+
+      <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto">
+        <div class="text-center">
+          <p class="text-3xl font-medium" style="color: var(--color-accent);">{city.stats.sights}</p>
+          <p class="text-xs uppercase tracking-widest mt-1" style="color: var(--color-text-muted);">Sehenswuerdigkeiten</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl font-medium" style="color: var(--color-accent);">{city.stats.hotels}</p>
+          <p class="text-xs uppercase tracking-widest mt-1" style="color: var(--color-text-muted);">Hotels</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl font-medium" style="color: var(--color-accent);">{city.stats.restaurants}</p>
+          <p class="text-xs uppercase tracking-widest mt-1" style="color: var(--color-text-muted);">Restaurants</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl font-medium" style="color: var(--color-accent);">{city.stats.districts}</p>
+          <p class="text-xs uppercase tracking-widest mt-1" style="color: var(--color-text-muted);">Bezirke</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOP SIGHTS -->
+  <section class="container-page section">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <p class="eyebrow mb-2">Highlights</p>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight" style="color: var(--color-text);">Sehenswuerdigkeiten in Karlsruhe</h2>
+      </div>
+      <a href="/sehenswuerdigkeiten/" class="hidden sm:inline-flex link-accent text-sm">Alle ansehen &rarr;</a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {featuredSights.map((s) => <SightCard sight={s} />)}
+    </div>
+  </section>
+
+  <!-- BEZIRKE -->
+  <section class="container-page section">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <p class="eyebrow mb-2">Faecher entlang</p>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight" style="color: var(--color-text);">Karlsruher Bezirke</h2>
+      </div>
+      <a href="/bezirke/" class="hidden sm:inline-flex link-accent text-sm">Alle Bezirke &rarr;</a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {featuredDistricts.map((d) => <DistrictCard district={d} />)}
+    </div>
+  </section>
+
+  <!-- TOP HOTELS -->
+  <section class="container-page section">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <p class="eyebrow mb-2">Uebernachten</p>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight" style="color: var(--color-text);">Top-Hotels in Karlsruhe</h2>
+      </div>
+      <a href="/hotels/" class="hidden sm:inline-flex link-accent text-sm">Alle Hotels &rarr;</a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {featuredHotels.map((h) => <HotelCard hotel={h} />)}
+    </div>
+  </section>
+
+  <!-- NEWS / Tech-USP -->
+  {features.news.enabled && featuredNews.length > 0 && (
+    <section class="container-page section">
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <p class="eyebrow mb-2">Tech &middot; Wissenschaft &middot; Kultur</p>
+          <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight" style="color: var(--color-text);">Karlsruhe-News</h2>
+        </div>
+        <a href="/news/" class="hidden sm:inline-flex link-accent text-sm">Alle News &rarr;</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {featuredNews.map((n) => <NewsCard item={n} />)}
+      </div>
+    </section>
+  )}
+</BaseLayout>

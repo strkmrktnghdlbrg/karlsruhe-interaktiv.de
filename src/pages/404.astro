@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Seite nicht gefunden" noindex>
+  <div class="container-page py-28 max-w-2xl text-center">
+    <p class="eyebrow mb-3">404</p>
+    <h1 class="text-5xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">Verlaufen im Faecher</h1>
+    <p class="text-lg leading-relaxed mb-8" style="color: var(--color-text-body);">
+      Diese Seite gibt es nicht. Vielleicht hilft eine unserer Hauptseiten weiter.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="/" class="btn-primary">Zur Startseite &rarr;</a>
+      <a href="/sehenswuerdigkeiten/" class="btn-outline">Sehenswuerdigkeiten</a>
+    </div>
+  </div>
+</BaseLayout>
