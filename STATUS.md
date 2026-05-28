@@ -14,19 +14,22 @@
 - SEO: Schema.org (TouristAttraction, Hotel, Restaurant), Sitemap mit Filter, robots.txt, ads.txt
 - Build: npm run build => 119 Seiten, 0 Fehler
 
-## Offen (vor Go-Live / Phase 2)
-- Echte Wikimedia-Bilder (Step 8 — aktuell HueGradient-Fallback ueberall)
-- Stay22-lmaID nachtragen (src/data/affiliate.ts) + enabled=true
-- GTM-ID nachtragen (src/data/analytics.ts) + enabled=true
-- AdSense enabled=true (nach Approval)
-- GitHub-Repo + Cloudflare-Pages-Deploy
-- DEPLOYMENT-PLAN.md erstellen
+## Erledigt (Nachtrag)
+- 36 Wikimedia-Bilder (22 Sights + 14 Bezirke), 4:3 1600x1200, WebP via astro:assets, CC-Attribution in images.ts
+- Tracking-IDs verdrahtet + aktiviert
+- GitHub-Repo: github.com/strkmrktng/karlsruhe-interaktiv.de (privat, gepusht)
 
-## Tracking-IDs
-- AdSense: ca-pub-3946820918041547 (in ads.txt, disabled bis Live)
-- GYG Partner-ID: 1UPZQQB (aktiv)
-- Stay22 lmaID: noch zu setzen
-- GTM: noch zu setzen
+## Offen (vor Go-Live / Phase 2)
+- Cloudflare-Pages-Deploy (Repo verbinden, Custom Domain)
+- DEPLOYMENT-PLAN.md erstellen
+- Restaurant-/Hotel-Bilder bleiben HueGradient (kein Repo-Bild noetig)
+- Stay22-Map-Embed-ID optional nachtragen
+
+## Tracking-IDs (LIVE)
+- AdSense: ca-pub-7432388986384363 (ads.txt + enabled)
+- GTM: GTM-KXB7ZP9W (enabled)
+- Stay22 lmaID: 68793f7a3fef65b9bc1ce7b5 (enabled)
+- GYG Partner-ID: 1UPZQQB (enabled)
 
 ## Lokal testen
 ```
