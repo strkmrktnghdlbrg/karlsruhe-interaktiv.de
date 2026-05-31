@@ -19,6 +19,19 @@
 - Tracking-IDs verdrahtet + aktiviert
 - GitHub-Repo: github.com/strkmrktng/karlsruhe-interaktiv.de (privat, gepusht)
 
+## Stay22 Live-Hotels (Direct Travel API)
+- src/lib/stay22.ts: Build-Time-Fetch mit serieller Queue + Retry/Backoff (429-Handling) + In-Memory-Cache
+- Komponenten: Stay22TopHotels, Stay22NearbyHotels, Stay22HotelCard (Dark)
+- Eingebaut: Homepage, Hotels-Index, Sight-Detail (Naehe), Hotel-Detail (Bezirk), Bezirks-Hub
+- Event-Landingpages: /hotels-karlsruhe-<event>/ mit checkin/checkout -> echte Zeitraum-Preise
+  (das-fest, schlosslichtspiele, christkindlesmarkt, art-karlsruhe, brigande-feschd, stadtgeburtstag)
+- /events/ Uebersichtsseite, in Nav + Footer verlinkt
+- Buchungsfenster-Guard: Termine >2 Jahre (Stadtgeburtstag 2030) zeigen Hinweis statt API-Call
+- 126 Seiten, Build gruen ohne 429
+- API-Key: STAY22_API_KEY in .env (lokal, gitignored) + GitHub-Secret (CI)
+- Daily-Refresh: .github/workflows/refresh-hotels.yml (braucht CF_DEPLOY_HOOK nach CF-Setup)
+- WICHTIG fuer Deploy: STAY22_API_KEY auch im Cloudflare-Pages-Dashboard als Build-Env-Var setzen
+
 ## Offen (vor Go-Live / Phase 2)
 - Cloudflare-Pages-Deploy (Repo verbinden, Custom Domain)
 - DEPLOYMENT-PLAN.md erstellen

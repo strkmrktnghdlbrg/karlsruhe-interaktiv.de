@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import HotelCard from "../../components/HotelCard.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import Stay22TopHotels from "../../components/Stay22TopHotels.astro";
 import { hotels } from "../../data/hotels";
 import { city } from "../../data/city";
 const sorted = [...hotels].sort((a, b) => b.rating - a.rating);
@@ -17,8 +18,14 @@ const sorted = [...hotels].sort((a, b) => b.rating - a.rating);
         Vom Design-Hotel Santo bis zum Schlosshotel am Hauptbahnhof, vom Erbprinz Ettlingen bis zur Karlsburg-Naehe in Durlach — geprueft, sortiert nach Gaeste-Bewertung.
       </p>
     </header>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {sorted.map((h) => <HotelCard hotel={h} />)}
-    </div>
+
+    <Stay22TopHotels limit={8} />
+
+    <section class="mt-12 pt-8 border-t" style="border-color: var(--color-border);">
+      <h2 class="text-2xl font-semibold mb-6" style="color: var(--color-text);">Unsere redaktionelle Hotel-Auswahl</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {sorted.map((h) => <HotelCard hotel={h} />)}
+      </div>
+    </section>
   </div>
 </BaseLayout>

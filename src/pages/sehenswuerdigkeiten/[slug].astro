@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import ContentImage from "../../components/ContentImage.astro";
 import RelatedItems from "../../components/RelatedItems.astro";
+import Stay22NearbyHotels from "../../components/Stay22NearbyHotels.astro";
 import { sights, getSight } from "../../data/sights";
 import { getDistrict } from "../../data/districts";
 import { getCategory } from "../../data/categories";
@@ -80,6 +81,8 @@ const schema = {
         <a href={`/bezirke/${district.slug}/`} class="link-accent text-sm">Bezirks-Hub ansehen &rarr;</a>
       </div>
     )}
+
+    <Stay22NearbyHotels lat={sight.coordinates[0]} lng={sight.coordinates[1]} near={sight.name} limit={4} />
 
     <RelatedItems district={sight.district} excludeSlug={sight.slug} type="sights" />
 

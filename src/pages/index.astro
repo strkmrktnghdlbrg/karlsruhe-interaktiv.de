@@ -4,6 +4,7 @@ import SightCard from "../components/SightCard.astro";
 import HotelCard from "../components/HotelCard.astro";
 import DistrictCard from "../components/DistrictCard.astro";
 import NewsCard from "../components/NewsCard.astro";
+import Stay22TopHotels from "../components/Stay22TopHotels.astro";
 import { city } from "../data/city";
 import { sights } from "../data/sights";
 import { topHotels } from "../data/hotels";
@@ -83,16 +84,17 @@ const featuredNews = features.news.enabled ? recentNews(3) : [];
     </div>
   </section>
 
-  <!-- TOP HOTELS -->
+  <!-- TOP HOTELS (Live Stay22 + redaktionell) -->
   <section class="container-page section">
-    <div class="flex items-end justify-between mb-8">
+    <div class="flex items-end justify-between mb-2">
       <div>
         <p class="eyebrow mb-2">Uebernachten</p>
         <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight" style="color: var(--color-text);">Top-Hotels in Karlsruhe</h2>
       </div>
       <a href="/hotels/" class="hidden sm:inline-flex link-accent text-sm">Alle Hotels &rarr;</a>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    <Stay22TopHotels limit={4} title="" lead="Live von Booking.com — aktuelle Preise und Verfuegbarkeit, taeglich aktualisiert." />
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-4">
       {featuredHotels.map((h) => <HotelCard hotel={h} />)}
     </div>
   </section>

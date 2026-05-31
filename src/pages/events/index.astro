@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { events, isUpcoming } from "../../data/events";
+
+const sorted = [...events].sort((a, b) => new Date(a.checkin).getTime() - new Date(b.checkin).getTime());
+const fmtRange = (ci: string, co: string) => {
+  const a = new Date(ci).toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" });
+  const b = new Date(co).toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" });
+  return `${a} bis ${b}`;
+};
+---
+
+<BaseLayout
+  title="Events & Termine in Karlsruhe"
+  description="Karlsruher Events 2026: Das Fest, Schlosslichtspiele, Christkindlesmarkt, art Karlsruhe. Mit aktuellen Hotelpreisen fuer jeden Termin."
+>
+  <div class="container-page py-12">
+    <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "Events"}]} />
+    <header class="mb-12 max-w-3xl">
+      <p class="eyebrow mb-3">Termine mit Hotelpreisen</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">Events in Karlsruhe</h1>
+      <p class="text-lg" style="color: var(--color-text-body);">
+        Die wichtigsten Karlsruher Anlaesse — vom kostenlosen Open-Air-Festival Das Fest ueber die Schlosslichtspiele bis zur Kunstmesse art Karlsruhe. Zu jedem Termin zeigen wir aktuelle Hotelpreise fuer genau den Zeitraum.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {sorted.map((e) => {
+        const past = !isUpcoming(e);
+        return (
+          <a href={`/hotels-karlsruhe-${e.slug}/`} class="card group block p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="pill-accent">{e.eyebrow}</span>
+              {past && <span class="pill">vorbei</span>}
+            </div>
+            <h2 class="text-xl font-semibold mb-2" style="color: var(--color-text);">{e.title.replace("Hotels in Karlsruhe ", "").replace("zu ", "").replace("zum ", "").replace("zur ", "").replace("zu den ", "")}</h2>
+            <p class="text-sm leading-relaxed mb-4" style="color: var(--color-text-body);">{e.intro}</p>
+            <p class="text-xs mb-3" style="color: var(--color-text-muted);">{fmtRange(e.checkin, e.checkout)}</p>
+            <span class="link-accent text-sm">Hotels fuer diesen Termin &rarr;</span>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</BaseLayout>

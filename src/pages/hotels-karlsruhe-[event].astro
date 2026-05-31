@@ -1,0 +1,128 @@
+---
+/**
+ * Saison-/Event-Landing-Pages fuer Stay22-Hotels.
+ * URL: /hotels-karlsruhe-das-fest/, /hotels-karlsruhe-schlosslichtspiele/ etc.
+ * Uebergibt konkrete checkin/checkout-Daten an Stay22 -> echte Zeitraum-Preise.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Stay22HotelCard from "../components/Stay22HotelCard.astro";
+import { events, isUpcoming, type CityEvent } from "../data/events";
+import { searchAccommodations, isWithinBookingWindow, type Stay22Accommodation } from "../lib/stay22";
+import { affiliate } from "../data/affiliate";
+import { city } from "../data/city";
+
+export function getStaticPaths() {
+  return events.map((e) => ({ params: { event: e.slug }, props: { event: e } }));
+}
+
+interface Props { event: CityEvent }
+
+const { event } = Astro.props as Props;
+const upcoming = isUpcoming(event);
+const bookable = upcoming && isWithinBookingWindow(event.checkin);
+const lmaId = affiliate.stay22.lmaId;
+
+let hotels: Stay22Accommodation[] | null = null;
+if (bookable) {
+  try {
+    hotels = await searchAccommodations({
+      provider: "booking",
+      ...(event.lat && event.lng
+        ? { lat: event.lat, lng: event.lng, radius: event.radius ?? 2500 }
+        : { address: event.address }),
+      type: "hotel",
+      checkin: event.checkin,
+      checkout: event.checkout,
+      minguestrating: 7.5,
+      max: event.maxPricePerNight,
+      limit: event.limit ?? 12,
+      currency: "EUR",
+      lang: "de",
+      aid: lmaId,
+      campaign: lmaId,
+    });
+  } catch (err) {
+    console.error(`[Event ${event.slug}] Stay22-Fetch:`, err);
+  }
+}
+
+const visible = hotels && hotels.length > 0 ? hotels.slice(0, event.limit ?? 12) : [];
+const fmt = (d: string) => new Date(d).toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" });
+const checkinFmt = fmt(event.checkin);
+const checkoutFmt = fmt(event.checkout);
+const nights = Math.round((new Date(event.checkout).getTime() - new Date(event.checkin).getTime()) / 86400000);
+const otherEvents = events.filter((e) => e.slug !== event.slug && isUpcoming(e)).slice(0, 4);
+---
+
+<BaseLayout title={event.title} description={event.description}>
+  <div class="container-page py-10">
+    <Breadcrumbs items={[
+      { label: city.name, href: "/" },
+      { label: "Hotels", href: "/hotels/" },
+      { label: event.eyebrow },
+    ]} />
+
+    <div class="max-w-3xl mb-8">
+      <p class="eyebrow mb-2">{event.eyebrow}</p>
+      <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-4" style="color: var(--color-text);">{event.title}</h1>
+      <p class="text-lg leading-relaxed mb-4" style="color: var(--color-text-body);">{event.intro}</p>
+      <div class="flex flex-wrap items-center gap-3 text-sm">
+        <span class="pill">Anreise: {checkinFmt}</span>
+        <span class="pill">Abreise: {checkoutFmt}</span>
+        <span class="pill">{nights} {nights === 1 ? "Nacht" : "Naechte"}</span>
+      </div>
+    </div>
+
+    {!upcoming && (
+      <div class="card p-6 max-w-3xl mb-8">
+        <p class="text-sm" style="color: var(--color-text-body);">
+          Dieses Event liegt in der Vergangenheit. Sobald der Termin fuer die naechste Saison feststeht, aktualisieren wir die Preise hier.
+          Schau dir solange unseren <a href="/hotels/" class="link-accent font-semibold">Hotel-Index</a> an.
+        </p>
+      </div>
+    )}
+
+    {upcoming && !bookable && (
+      <div class="card p-6 max-w-3xl mb-8">
+        <p class="text-sm" style="color: var(--color-text-body);">
+          Der Termin steht bereits fest, liegt aber noch zu weit in der Zukunft fuer eine Hotelbuchung. Sobald der Zeitraum buchbar ist (etwa zwei Jahre vorher), zeigen wir hier aktuelle Preise. Schau dir solange unseren
+          <a href="/hotels/" class="link-accent font-semibold">Hotel-Index</a> an.
+        </p>
+      </div>
+    )}
+
+    {bookable && visible.length === 0 && (
+      <div class="card p-6 max-w-3xl mb-8">
+        <p class="text-sm" style="color: var(--color-text-body);">
+          Aktuell zeigt Stay22 keine verfuegbaren Hotels fuer diesen Zeitraum. Probier unseren
+          <a href="/hotels/" class="link-accent font-semibold">vollstaendigen Hotel-Index</a>.
+        </p>
+      </div>
+    )}
+
+    {bookable && visible.length > 0 && (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {visible.map((h) => <Stay22HotelCard hotel={h} priceMode="total" />)}
+      </div>
+    )}
+
+    {bookable && visible.length > 0 && (
+      <p class="text-[11px] mt-6 leading-relaxed max-w-3xl" style="color: var(--color-text-muted);">
+        * Preise und Verfuegbarkeit live via Stay22 -> Booking.com. Bei Buchung ueber diese Links erhalten wir eine Provision —
+        fuer dich entstehen keine Mehrkosten. Preise gelten fuer {checkinFmt} bis {checkoutFmt}, {nights} {nights === 1 ? "Nacht" : "Naechte"}.
+      </p>
+    )}
+
+    {otherEvents.length > 0 && (
+      <section class="mt-14 pt-8 border-t" style="border-color: var(--color-border);">
+        <h2 class="text-2xl font-semibold mb-5" style="color: var(--color-text);">Weitere Anlaesse in Karlsruhe</h2>
+        <div class="flex flex-wrap gap-3">
+          {otherEvents.map((e) => (
+            <a href={`/hotels-karlsruhe-${e.slug}/`} class="pill">{e.eyebrow}</a>
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+</BaseLayout>

@@ -4,6 +4,7 @@ import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import HueGradient from "../../components/HueGradient.astro";
 import BookingCTA from "../../components/BookingCTA.astro";
 import RelatedItems from "../../components/RelatedItems.astro";
+import Stay22NearbyHotels from "../../components/Stay22NearbyHotels.astro";
 import { hotels, getHotel } from "../../data/hotels";
 import { getDistrict } from "../../data/districts";
 import { city } from "../../data/city";
@@ -69,6 +70,16 @@ const schema = {
         <p class="text-sm mb-3" style="color: var(--color-text-body);">{district.shortDesc}</p>
         <a href={`/bezirke/${district.slug}/`} class="link-accent text-sm">Bezirks-Hub ansehen &rarr;</a>
       </div>
+    )}
+
+    {district && (
+      <Stay22NearbyHotels
+        lat={district.coordinates[0]}
+        lng={district.coordinates[1]}
+        near={district.name}
+        radius={2500}
+        limit={4}
+      />
     )}
 
     <RelatedItems district={hotel.district} excludeSlug={hotel.slug} type="hotels" />

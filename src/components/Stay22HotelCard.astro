@@ -1,0 +1,63 @@
+---
+/**
+ * Stay22 Live-Hotel-Card (Dark). Rendert ein einzelnes API-Hotel.
+ * priceMode: "perNight" (Default) oder "total" (Event-Pages mit Zeitraum).
+ */
+import type { Stay22Accommodation } from "../lib/stay22";
+
+interface Props {
+  hotel: Stay22Accommodation;
+  priceMode?: "perNight" | "total";
+  showDistance?: boolean;
+}
+
+const { hotel: h, priceMode = "perNight", showDistance = false } = Astro.props;
+const priceTotal = h.price?.formattedTotal;
+const pricePerNight = h.price?.formattedPerNight;
+const showPrice = priceMode === "total" ? (priceTotal ?? pricePerNight) : (pricePerNight ?? priceTotal);
+const priceSuffix = priceMode === "total"
+  ? (priceTotal ? " gesamt" : "")
+  : (pricePerNight ? " / Nacht" : "");
+---
+
+<a
+  href={h.link || "#"}
+  target="_blank"
+  rel="sponsored noopener nofollow"
+  class="card group block overflow-hidden"
+>
+  {h.image && (
+    <div class="aspect-[4/3] overflow-hidden" style="background: var(--color-surface-elevated);">
+      <img
+        src={h.image}
+        alt={h.name}
+        loading="lazy"
+        decoding="async"
+        referrerpolicy="no-referrer-when-downgrade"
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      />
+    </div>
+  )}
+  <div class="p-4">
+    <div class="flex items-center gap-2 mb-1.5">
+      {h.starRating && (
+        <span class="text-xs font-bold" style="color: var(--color-accent);">{"*".repeat(Math.round(h.starRating))}</span>
+      )}
+      {h.rating?.score && (
+        <span class="pill-accent text-[10px]">{h.rating.score.toFixed(1)} / 10</span>
+      )}
+    </div>
+    <h3 class="font-semibold text-sm leading-tight mb-1.5 line-clamp-2" style="color: var(--color-text);">{h.name}</h3>
+    {showDistance && h.distance !== undefined && (
+      <p class="text-[11px] mb-2" style="color: var(--color-text-muted);">{Math.round(h.distance)} m entfernt</p>
+    )}
+    {!showDistance && h.address?.areaName && (
+      <p class="text-[11px] mb-2" style="color: var(--color-text-muted);">{h.address.areaName}</p>
+    )}
+    {showPrice && (
+      <p class="text-sm font-semibold" style="color: var(--color-text);">
+        {showPrice}<span class="text-xs font-normal" style="color: var(--color-text-muted);">{priceSuffix}</span>
+      </p>
+    )}
+  </div>
+</a>
