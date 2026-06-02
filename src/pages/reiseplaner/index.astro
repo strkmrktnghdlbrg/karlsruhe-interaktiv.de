@@ -2,7 +2,9 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import HueGradient from "../../components/HueGradient.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { guides } from "../../data/guides";
+import { getGygPlacement } from "../../data/gyg";
 import { features } from "../../data/features";
 
 if (!features.reiseplaner.enabled) return Astro.redirect("/", 302);
@@ -32,5 +34,7 @@ if (!features.reiseplaner.enabled) return Astro.redirect("/", 302);
         </a>
       ))}
     </div>
+
+    <GetYourGuideWidget placement={getGygPlacement("page:guides-index")} />
   </div>
 </BaseLayout>

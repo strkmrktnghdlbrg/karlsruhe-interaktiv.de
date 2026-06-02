@@ -2,7 +2,9 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import DistrictCard from "../../components/DistrictCard.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { districts } from "../../data/districts";
+import { getGygPlacement } from "../../data/gyg";
 ---
 
 <BaseLayout title="Bezirke" description="Alle 14 Karlsruher Bezirke — von Innenstadt-West bis Neureut, mit Durlach und Oststadt prominent.">
@@ -18,5 +20,7 @@ import { districts } from "../../data/districts";
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {districts.map((d) => <DistrictCard district={d} />)}
     </div>
+
+    <GetYourGuideWidget placement={getGygPlacement("page:districts-index")} />
   </div>
 </BaseLayout>

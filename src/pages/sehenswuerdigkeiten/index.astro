@@ -2,7 +2,9 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SightCard from "../../components/SightCard.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { sights } from "../../data/sights";
+import { getGygPlacement } from "../../data/gyg";
 import { city } from "../../data/city";
 const sorted = [...sights].sort((a, b) => a.name.localeCompare(b.name, "de"));
 ---
@@ -20,5 +22,7 @@ const sorted = [...sights].sort((a, b) => a.name.localeCompare(b.name, "de"));
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {sorted.map((s) => <SightCard sight={s} />)}
     </div>
+
+    <GetYourGuideWidget placement={getGygPlacement("page:sights-index")} />
   </div>
 </BaseLayout>

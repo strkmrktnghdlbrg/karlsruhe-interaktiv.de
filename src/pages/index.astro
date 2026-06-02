@@ -5,7 +5,9 @@ import HotelCard from "../components/HotelCard.astro";
 import DistrictCard from "../components/DistrictCard.astro";
 import NewsCard from "../components/NewsCard.astro";
 import Stay22TopHotels from "../components/Stay22TopHotels.astro";
+import GetYourGuideWidget from "../components/GetYourGuideWidget.astro";
 import { city } from "../data/city";
+import { getGygPlacement } from "../data/gyg";
 import { sights } from "../data/sights";
 import { topHotels } from "../data/hotels";
 import { districts } from "../data/districts";
@@ -68,6 +70,11 @@ const featuredNews = features.news.enabled ? recentNews(3) : [];
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {featuredSights.map((s) => <SightCard sight={s} />)}
     </div>
+  </section>
+
+  <!-- GETYOURGUIDE TOUREN & TICKETS -->
+  <section class="container-page">
+    <GetYourGuideWidget placement={getGygPlacement("page:home")} />
   </section>
 
   <!-- BEZIRKE -->

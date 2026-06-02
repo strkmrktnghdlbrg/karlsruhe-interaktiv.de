@@ -4,9 +4,11 @@ import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import ContentImage from "../../components/ContentImage.astro";
 import RelatedItems from "../../components/RelatedItems.astro";
 import Stay22NearbyHotels from "../../components/Stay22NearbyHotels.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { sights, getSight } from "../../data/sights";
 import { getDistrict } from "../../data/districts";
 import { getCategory } from "../../data/categories";
+import { getGygPlacement } from "../../data/gyg";
 import { city } from "../../data/city";
 
 export function getStaticPaths() {
@@ -81,6 +83,8 @@ const schema = {
         <a href={`/bezirke/${district.slug}/`} class="link-accent text-sm">Bezirks-Hub ansehen &rarr;</a>
       </div>
     )}
+
+    <GetYourGuideWidget placement={getGygPlacement(`sight:${sight.slug}`)} />
 
     <Stay22NearbyHotels lat={sight.coordinates[0]} lng={sight.coordinates[1]} near={sight.name} limit={4} />
 

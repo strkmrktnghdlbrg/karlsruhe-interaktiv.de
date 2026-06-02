@@ -3,9 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import SightCard from "../../components/SightCard.astro";
 import RestaurantCard from "../../components/RestaurantCard.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { categories, getCategory } from "../../data/categories";
 import { sightsByCategory } from "../../data/sights";
 import { restaurantsByCategory } from "../../data/restaurants";
+import { getGygPlacement } from "../../data/gyg";
 
 export function getStaticPaths() {
   return categories
@@ -50,5 +52,7 @@ const cRest = restaurantsByCategory(cat.slug);
         </div>
       </section>
     )}
+
+    <GetYourGuideWidget placement={getGygPlacement(`category:${cat.slug}`)} />
   </div>
 </BaseLayout>

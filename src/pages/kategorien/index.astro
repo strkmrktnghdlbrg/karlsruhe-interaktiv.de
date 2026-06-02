@@ -1,9 +1,11 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { categories } from "../../data/categories";
 import { sightsByCategory } from "../../data/sights";
 import { restaurantsByCategory } from "../../data/restaurants";
+import { getGygPlacement } from "../../data/gyg";
 ---
 
 <BaseLayout title="Kategorien" description="Karlsruhe nach Kategorien: Tech, Kunst & Medien, Wissenschaft, Recht, Museen, Parks und mehr.">
@@ -32,5 +34,7 @@ import { restaurantsByCategory } from "../../data/restaurants";
         );
       })}
     </div>
+
+    <GetYourGuideWidget placement={getGygPlacement("page:categories-index")} />
   </div>
 </BaseLayout>

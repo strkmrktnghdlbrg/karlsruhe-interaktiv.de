@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { events, isUpcoming } from "../../data/events";
+import { getGygPlacement } from "../../data/gyg";
 
 const sorted = [...events].sort((a, b) => new Date(a.checkin).getTime() - new Date(b.checkin).getTime());
 const fmtRange = (ci: string, co: string) => {
@@ -42,5 +44,7 @@ const fmtRange = (ci: string, co: string) => {
         );
       })}
     </div>
+
+    <GetYourGuideWidget placement={getGygPlacement("page:events-index")} />
   </div>
 </BaseLayout>

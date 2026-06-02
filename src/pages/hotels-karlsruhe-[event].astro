@@ -7,6 +7,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import Stay22HotelCard from "../components/Stay22HotelCard.astro";
+import GetYourGuideWidget from "../components/GetYourGuideWidget.astro";
+import { getGygPlacement } from "../data/gyg";
 import { events, isUpcoming, type CityEvent } from "../data/events";
 import { searchAccommodations, isWithinBookingWindow, type Stay22Accommodation } from "../lib/stay22";
 import { affiliate } from "../data/affiliate";
@@ -113,6 +115,8 @@ const otherEvents = events.filter((e) => e.slug !== event.slug && isUpcoming(e))
         fuer dich entstehen keine Mehrkosten. Preise gelten fuer {checkinFmt} bis {checkoutFmt}, {nights} {nights === 1 ? "Nacht" : "Naechte"}.
       </p>
     )}
+
+    <GetYourGuideWidget placement={getGygPlacement(`event:${event.slug}`)} />
 
     {otherEvents.length > 0 && (
       <section class="mt-14 pt-8 border-t" style="border-color: var(--color-border);">
