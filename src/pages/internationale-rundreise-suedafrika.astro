@@ -1,0 +1,54 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { city } from "../data/city";
+
+const title = "Internationale Rundreise-Highlights aus Südafrika";
+const description =
+  "Südafrika-Rundreise: Kapstadt, Garden Route, Drakensberge und Kruger-Nationalpark – Highlights, Tiererlebnisse und praktische Tipps für die Reiseplanung.";
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="container-page py-12 max-w-3xl">
+    <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Rundreise Südafrika" }]} />
+    <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-8" style="color: var(--color-text);">
+      Internationale Rundreise-Highlights aus Südafrika
+    </h1>
+
+    <div class="legal-prose">
+      <p>
+        Südafrika bietet eine breite Palette von Erlebnissen, die es zu einem einzigartigen Ziel für internationale Reisende machen. Das Land liegt an der Südspitze Afrikas und verbindet vielfältige Landschaften mit kultureller und historischer Bedeutung. Es ist bekannt für seine lebendigen urbanen Zentren, Küsten, Berge und Tierreservate. Eine Rundreise durch Südafrika ermöglicht es Reisenden, viele Aspekte des Landes zu entdecken – einschließlich seiner Städte, Nationalparks und Naturattraktionen. Wer das volle Programm sucht, findet bei spezialisierten Anbietern passende <a href="https://www.djoser.de/rundreise-suedafrika/" rel="noopener">Südafrika Reisen</a>.
+      </p>
+
+      <h2>Kultur und Geschichte in urbanen Zentren erkunden</h2>
+      <p>
+        Die urbanen Zentren Südafrikas verbinden historische Bedeutung mit moderner Kultur und Gemeinschaftsleben. Kapstadt, oft als Mutterstadt bezeichnet, liegt am Fuße des Tafelbergs und verbindet Stadtleben mit natürlicher Umgebung. Die Victoria &amp; Alfred Waterfront bietet Geschäfte und Restaurants, während die Grand Parade ein historischer Platz ist, der mit Nelson Mandela und der Anti-Apartheid-Bewegung in Verbindung steht. Eine Fahrt mit der Seilbahn auf den Tafelberg ermöglicht weite Ausblicke auf die Stadt und Küste.
+      </p>
+
+      <h2>Abenteuer an der Küste</h2>
+      <p>
+        Die Lage Südafrikas entlang des Atlantischen und Indischen Ozeans bietet Küsten mit unterschiedlichen natürlichen Attraktionen und Aktivitätsmöglichkeiten. Die Garden Route erstreckt sich entlang des Indischen Ozeans von Mossel Bay bis Port Elizabeth und verbindet Strände, kleine Städte und Naturräume. Plettenberg Bay ermöglicht die Beobachtung von Walen und Delfinen. Der Tsitsikamma-Nationalpark bietet Wanderwege durch Küstenwälder und entlang von Klippen.
+      </p>
+
+      <h2>Berge und Wanderwege</h2>
+      <p>
+        Die Drakensberge im Osten des Landes erreichen Höhen von bis zu 3.000 Metern und enthalten Gebiete, die von der UNESCO für ihre natürlichen Merkmale anerkannt sind. Diese Region beherbergt Felsmalereien der San, einer der ältesten indigenen Gruppen im südlichen Afrika. Der Royal Natal Nationalpark bietet Wege zu Wahrzeichen wie dem Amphitheater und dem Cathedral Peak.
+      </p>
+
+      <h2>Tiererlebnisse</h2>
+      <p>
+        Südafrika bietet einige der vielfältigsten Tiererlebnisse weltweit. Der Kruger-Nationalpark erstreckt sich über fast 19.000 Quadratkilometer und beherbergt die Big Five: Elefanten, Löwen, Leoparden, Nashörner und Büffel. Besucher können auch Giraffen, Zebras, Antilopen, Geparden und Flusspferde beobachten.
+      </p>
+
+      <h2>Praktische Tipps für die Planung einer Südafrika-Rundreise</h2>
+      <p>
+        Das Land erlebt aufgrund seiner Größe und Lage unterschiedliche Klimazonen. Beim Packen sollten sowohl Küsten- als auch Binnenbedingungen berücksichtigt werden. Viele Outdoor-Aktivitäten sind in der Trockenzeit zugänglich, während die Regenzeit gelegentliche Niederschläge bringt.
+      </p>
+
+      <h2>Fazit</h2>
+      <p>
+        Eine Südafrika-Rundreise bietet die Möglichkeit, Städte, Küsten, Berge und Tierreservate in einer einzigen Reise zu erkunden. Sorgfältige Planung verbessert das Gesamterlebnis und ermöglicht ein umfassendes Verständnis der Attraktionen des Landes.
+      </p>
+    </div>
+  </article>
+</BaseLayout>
