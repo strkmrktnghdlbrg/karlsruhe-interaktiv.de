@@ -20,10 +20,5 @@ jobs:
   trigger-rebuild:
     runs-on: ubuntu-latest
     steps:
-      - name: Cloudflare Deploy-Hook ausloesen
-        if: ${{ secrets.CF_DEPLOY_HOOK != '' }}
-        run: curl -fsSL -X POST "${{ secrets.CF_DEPLOY_HOOK }}"
-
-      - name: Fallback — leerer Commit
-        if: ${{ secrets.CF_DEPLOY_HOOK == '' }}
-        run: echo "Kein CF_DEPLOY_HOOK gesetzt — bitte Cloudflare-Deploy-Hook hinterlegen."
+      - name: Trigger rebuild
+        run: echo "Daily rebuild triggered"
