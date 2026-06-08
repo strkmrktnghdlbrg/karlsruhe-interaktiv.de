@@ -55,6 +55,28 @@ const checkinFmt = fmt(event.checkin);
 const checkoutFmt = fmt(event.checkout);
 const nights = Math.round((new Date(event.checkout).getTime() - new Date(event.checkin).getTime()) / 86400000);
 const otherEvents = events.filter((e) => e.slug !== event.slug && isUpcoming(e)).slice(0, 4);
+
+const eventSchema = event.eventStart
+  ? {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      name: event.eyebrow,
+      description: event.intro,
+      startDate: event.eventStart,
+      ...(event.eventEnd && { endDate: event.eventEnd }),
+      eventStatus: "https://schema.org/EventScheduled",
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      url: `${city.domain}/hotels-karlsruhe-${event.slug}/`,
+      location: {
+        "@type": "Place",
+        name: event.address,
+        address: { "@type": "PostalAddress", addressLocality: city.name, addressCountry: city.countryCode },
+        ...(event.lat && event.lng && {
+          geo: { "@type": "GeoCoordinates", latitude: event.lat, longitude: event.lng },
+        }),
+      },
+    }
+  : null;
 ---
 
 <BaseLayout title={event.title} description={event.description}>
@@ -129,4 +151,6 @@ const otherEvents = events.filter((e) => e.slug !== event.slug && isUpcoming(e))
       </section>
     )}
   </div>
+
+  {eventSchema && <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} is:inline></script>}
 </BaseLayout>

@@ -16,6 +16,9 @@ export interface CityEvent {
   radius?: number;
   maxPricePerNight?: number;
   limit?: number;
+  /** Tatsaechliche Event-Daten (nicht das Hotel-Buchungsfenster) fuer Event-Schema. */
+  eventStart?: string;
+  eventEnd?: string;
 }
 
 export const events: CityEvent[] = [
@@ -35,6 +38,8 @@ export const events: CityEvent[] = [
     radius: 3000,
     maxPricePerNight: 400,
     limit: 12,
+    eventStart: "2026-07-24",
+    eventEnd: "2026-07-26",
   },
   {
     slug: "schlosslichtspiele",
@@ -52,6 +57,8 @@ export const events: CityEvent[] = [
     radius: 2000,
     maxPricePerNight: 350,
     limit: 12,
+    eventStart: "2026-08-06",
+    eventEnd: "2026-09-13",
   },
   {
     slug: "christkindlesmarkt",
@@ -69,6 +76,8 @@ export const events: CityEvent[] = [
     radius: 2000,
     maxPricePerNight: 350,
     limit: 12,
+    eventStart: "2026-11-26",
+    eventEnd: "2026-12-23",
   },
   {
     slug: "art-karlsruhe",
@@ -86,6 +95,8 @@ export const events: CityEvent[] = [
     radius: 5000,
     maxPricePerNight: 450,
     limit: 12,
+    eventStart: "2027-02-25",
+    eventEnd: "2027-02-28",
   },
   {
     slug: "brigande-feschd",
@@ -103,6 +114,8 @@ export const events: CityEvent[] = [
     radius: 2500,
     maxPricePerNight: 300,
     limit: 12,
+    eventStart: "2026-07-10",
+    eventEnd: "2026-07-12",
   },
   {
     slug: "stadtgeburtstag",
@@ -120,6 +133,8 @@ export const events: CityEvent[] = [
     radius: 2500,
     maxPricePerNight: 400,
     limit: 12,
+    eventStart: "2030-06-14",
+    eventEnd: "2030-06-16",
   },
 ];
 
