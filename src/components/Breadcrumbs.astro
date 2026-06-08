@@ -1,7 +1,20 @@
 ---
+import { city } from "../data/city";
+
 interface Crumb { label: string; href?: string }
 interface Props { items: Crumb[] }
 const { items } = Astro.props;
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: item.label,
+    ...(item.href && { item: `${city.domain}${item.href}` }),
+  })),
+};
 ---
 
 <nav aria-label="Breadcrumb" class="text-xs mb-6">
@@ -18,3 +31,4 @@ const { items } = Astro.props;
     ))}
   </ol>
 </nav>
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} is:inline></script>

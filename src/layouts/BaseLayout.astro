@@ -25,6 +25,29 @@ const {
 
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, city.domain).toString();
 const fullTitle = title === city.name ? `${city.name} — Stadtportal` : `${title} · ${city.name}-Interaktiv`;
+
+const siteName = `${city.name}-Interaktiv`;
+const siteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${city.domain}/#organization`,
+      name: siteName,
+      url: `${city.domain}/`,
+      logo: `${city.domain}/favicon.svg`,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${city.domain}/#website`,
+      name: siteName,
+      url: `${city.domain}/`,
+      description: city.description.short,
+      inLanguage: "de-DE",
+      publisher: { "@id": `${city.domain}/#organization` },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -46,6 +69,8 @@ const fullTitle = title === city.name ? `${city.name} — Stadtportal` : `${titl
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:locale" content="de_DE" />
     {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <script type="application/ld+json" set:html={JSON.stringify(siteSchema)} is:inline></script>
 
     {stay22Enabled && (
       <script is:inline set:html={
