@@ -1,6 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/sites/20a/9/9a9f6d1c7a/public_html/karlsruhe-interaktiv.de
+    - export DEPLOYPATH=/home/sites/20a/9/9a9f6d1c7a/public_html/karlsruhe-interaktiv.de/astro-site
     - /bin/mkdir -p $DEPLOYPATH
     - /bin/cp -r dist/. $DEPLOYPATH
