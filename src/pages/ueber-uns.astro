@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { city } from "../data/city";
+
+const title = "Über uns";
+const description = `Wie ${city.name}-Interaktiv entsteht: redaktioneller Anspruch, Auswahl der Inhalte, Quellen und Transparenz zu Affiliate-Links.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="container-page py-12 max-w-3xl">
+    <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Über uns" }]} />
+    <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-8" style="color: var(--color-text);">
+      Über {city.name}-Interaktiv
+    </h1>
+
+    <div class="legal-prose">
+      <p>
+        {city.name}-Interaktiv ist ein unabhängiges Stadtportal für die Fächerstadt. Wir bündeln an einem Ort,
+        was Besucher und Einheimische über {city.name} wirklich wissen wollen: Sehenswürdigkeiten, Hotels,
+        Restaurants, Bezirke, Veranstaltungen und die Tech-Szene rund um KIT, ZKM und CyberForum. Ziel ist ein
+        schneller, werblich klar gekennzeichneter Überblick statt unübersichtlicher Linklisten.
+      </p>
+
+      <h2>Unser redaktioneller Anspruch</h2>
+      <p>
+        Jede Sehenswürdigkeit, jedes Hotel und jedes Restaurant wird redaktionell ausgewählt und mit eigenem
+        einordnendem Text beschrieben — nicht automatisch aus Verzeichnissen zusammengezogen. Wir achten auf
+        nachvollziehbare Kriterien: Relevanz für {city.name}, Lage im jeweiligen Bezirk, Preis-Orientierung und
+        eine ehrliche Einschätzung, für wen sich ein Ort lohnt. Öffnungszeiten, Preisanker und ähnliche Angaben
+        prüfen wir nach bestem Wissen, können für ihre Aktualität aber keine Gewähr übernehmen — im Zweifel gilt
+        immer die offizielle Quelle des jeweiligen Anbieters.
+      </p>
+
+      <h2>Wie wir Inhalte auswählen</h2>
+      <p>
+        Die Auswahl folgt einem kuratierten Ansatz: Wir nehmen Orte auf, die {city.name} charakterisieren oder
+        für einen Aufenthalt praktisch relevant sind — vom Schloss über die Bezirke bis zu den großen Anlässen
+        wie Das Fest oder den Schlosslichtspielen. Die Reihenfolge und Hervorhebung von Einträgen richtet sich
+        nach redaktioneller Einschätzung, nicht nach bezahlter Platzierung.
+      </p>
+
+      <h2>Quellen und Bildmaterial</h2>
+      <p>
+        Bilder stammen, sofern nicht anders ausgewiesen, von Wikimedia Commons unter Creative-Commons-Lizenzen.
+        Der jeweilige Autor und die Lizenz werden unter jedem Bild ausgewiesen. Faktische Angaben recherchieren
+        wir aus öffentlich zugänglichen, möglichst offiziellen Quellen.
+      </p>
+
+      <h2>Transparenz bei Affiliate-Links</h2>
+      <p>
+        Dieses Portal finanziert sich unter anderem über Affiliate-Partnerschaften — insbesondere Stay22
+        (Hotel-Buchungen via Booking.com) und GetYourGuide (Touren und Tickets). Wenn du über einen solchen Link
+        buchst, erhalten wir eine Provision; für dich ändert sich am Preis nichts. Die redaktionelle Auswahl
+        erfolgt unabhängig von diesen Provisionen. Hinweise dazu findest du jeweils direkt an den entsprechenden
+        Buchungs-Widgets sowie im <a href="/datenschutz/">Datenschutz</a>.
+      </p>
+
+      <h2>Kontakt</h2>
+      <p>
+        Anbieter, verantwortliche Stelle und Kontaktmöglichkeiten findest du im <a href="/impressum/">Impressum</a>.
+        Hinweise auf Fehler, veraltete Angaben oder fehlende Orte nehmen wir dort gerne entgegen.
+      </p>
+    </div>
+  </div>
+</BaseLayout>
