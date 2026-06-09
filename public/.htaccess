@@ -6,6 +6,10 @@ ErrorDocument 404 /404.html
   RewriteEngine On
   RewriteBase /
 
+  # non-www → www
+  RewriteCond %{HTTP_HOST} !^www\.karlsruhe-interaktiv\.de$ [NC]
+  RewriteRule ^(.*)$ https://www.karlsruhe-interaktiv.de/$1 [L,R=301]
+
   # Serve pre-built HTML files directly
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
