@@ -54,7 +54,7 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ssh.gb.stackcp.com
-          username: top10-heidelberg.de
+          username: 9a9f6d1c7a
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /home/sites/20a/9/9a9f6d1c7a/public_html/karlsruhe-interaktiv.de/astro-site
