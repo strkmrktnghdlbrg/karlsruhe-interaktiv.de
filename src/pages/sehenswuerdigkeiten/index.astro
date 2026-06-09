@@ -6,10 +6,11 @@ import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { sights } from "../../data/sights";
 import { getGygPlacement } from "../../data/gyg";
 import { city } from "../../data/city";
+import { indexUrl } from "../../i18n/config";
 const sorted = [...sights].sort((a, b) => a.name.localeCompare(b.name, "de"));
 ---
 
-<BaseLayout title={`Sehenswuerdigkeiten in ${city.name}`} description={`Alle ${sights.length} Sehenswuerdigkeiten in Karlsruhe: Schloss, ZKM, Pyramide, Turmberg und mehr.`}>
+<BaseLayout title={`Sehenswuerdigkeiten in ${city.name}`} description={`Alle ${sights.length} Sehenswuerdigkeiten in Karlsruhe: Schloss, ZKM, Pyramide, Turmberg und mehr.`} alternateUrls={{ de: indexUrl("sights", "de"), en: indexUrl("sights", "en") }}>
   <div class="container-page py-12">
     <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "Sehenswuerdigkeiten"}]} />
     <header class="mb-12">

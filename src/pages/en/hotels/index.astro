@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import HotelCard from "../../../components/HotelCard.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import Stay22TopHotels from "../../../components/Stay22TopHotels.astro";
+import { hotels } from "../../../data/hotels";
+import { city } from "../../../data/city";
+import { homeUrl, indexUrl } from "../../../i18n/config";
+import { t, tf } from "../../../i18n/ui";
+
+const locale = "en" as const;
+const sorted = [...hotels].sort((a, b) => b.rating - a.rating);
+---
+
+<BaseLayout
+  title={`Hotels in ${city.name}`}
+  description={`Hotels in Karlsruhe — from design boutiques to 5-star. City centre, main station, Durlach.`}
+  locale={locale}
+  alternateUrls={{ de: indexUrl("hotels", "de"), en: indexUrl("hotels", "en") }}
+>
+  <div class="container-page py-12">
+    <Breadcrumbs items={[{label: t(locale, "nav.home"), href: homeUrl(locale)}, {label: t(locale, "nav.hotels")}]} locale={locale} />
+    <header class="mb-12">
+      <p class="eyebrow mb-3">{tf(locale, "hotels.count", { n: hotels.length })}</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">{t(locale, "hotels.heading")}</h1>
+      <p class="text-lg max-w-3xl" style="color: var(--color-text-body);">
+        {t(locale, "hotels.intro")}
+      </p>
+    </header>
+
+    <Stay22TopHotels limit={8} title={t(locale, "hotels.topLive.title")} lead={t(locale, "hotels.topLive.lead")} />
+
+    <section class="mt-12 pt-8 border-t" style="border-color: var(--color-border);">
+      <h2 class="text-2xl font-semibold mb-6" style="color: var(--color-text);">{t(locale, "hotels.editorial")}</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {sorted.map((h) => <HotelCard hotel={h} locale={locale} />)}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

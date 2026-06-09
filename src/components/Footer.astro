@@ -4,74 +4,116 @@ import { city } from "../data/city";
 import { districts } from "../data/districts";
 import { categories } from "../data/categories";
 import { features } from "../data/features";
+import { type Locale, indexUrl, detailUrl, homeUrl } from "../i18n/config";
+import { t, tf } from "../i18n/ui";
+import { districtsEn } from "../i18n/en/districts";
+import { categoriesEn } from "../i18n/en/categories";
 import logo from "../assets/branding/logo.svg";
 
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = "de" } = Astro.props;
+const isEn = locale === "en";
+
 const year = new Date().getFullYear();
+
+// EN-Override sicher aufloesen, sonst auf deutsche Basis zuruckfallen.
+function districtLink(slug: string) {
+  const en = districtsEn[slug];
+  const targetSlug = isEn ? en?.slug ?? slug : slug;
+  return detailUrl("districts", targetSlug, locale);
+}
+function districtName(slug: string, name: string) {
+  return isEn ? districtsEn[slug]?.name ?? name : name;
+}
+function categoryLink(slug: string) {
+  const en = categoriesEn[slug];
+  const targetSlug = isEn ? en?.slug ?? slug : slug;
+  return detailUrl("categories", targetSlug, locale);
+}
+function categoryName(slug: string, name: string) {
+  return isEn ? categoriesEn[slug]?.name ?? name : name;
+}
+
+const home = homeUrl(locale);
+const advertiseHref = `${locale === "de" ? "" : "/" + locale}/werben/`;
+const guidesHref = indexUrl("guides", locale);
+const allCategoriesHref = indexUrl("categories", locale);
+const eventsHref = indexUrl("events", locale);
+const aboutHref = indexUrl("about", locale);
+const newsHref = indexUrl("news", locale);
+const techHref = indexUrl("tech", locale);
+const imprintHref = indexUrl("imprint", locale);
+const privacyHref = indexUrl("privacy", locale);
+const termsHref = indexUrl("terms", locale);
+const brandDesc = isEn ? t(locale, "footer.brandDesc") : city.description.short;
 ---
 
 <footer class="mt-20 border-t" style="background: var(--color-surface); border-color: var(--color-border);">
   <div class="container-page py-14">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
       <div class="col-span-2 md:col-span-1">
-        <a href="/" class="inline-flex mb-4" style="color: var(--color-accent);" aria-label="Zur Startseite">
+        <a href={home} class="inline-flex mb-4" style="color: var(--color-accent);" aria-label={t(locale, "footer.homeAria")}>
           <Image src={logo} alt={`${city.name}-Interaktiv`} width={320} height={64} class="h-12 w-auto" />
         </a>
         <p class="text-sm leading-relaxed" style="color: var(--color-text-body);">
-          {city.description.short}
+          {brandDesc}
         </p>
       </div>
 
       <div>
-        <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-text);">Bezirke</h4>
+        <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-text);">{t(locale, "footer.districts")}</h4>
         <ul class="space-y-2">
           {districts.slice(0, 8).map((d) => (
             <li>
-              <a href={`/bezirke/${d.slug}/`} class="text-sm transition-colors" style="color: var(--color-text-muted);">{d.name}</a>
+              <a href={districtLink(d.slug)} class="text-sm transition-colors" style="color: var(--color-text-muted);">{districtName(d.slug, d.name)}</a>
             </li>
           ))}
         </ul>
       </div>
 
       <div>
-        <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-text);">Kategorien</h4>
+        <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-text);">{t(locale, "footer.categories")}</h4>
         <ul class="space-y-2">
           {categories.slice(0, 8).map((c) => (
             <li>
-              <a href={`/kategorien/${c.slug}/`} class="text-sm transition-colors" style="color: var(--color-text-muted);">{c.name}</a>
+              <a href={categoryLink(c.slug)} class="text-sm transition-colors" style="color: var(--color-text-muted);">{categoryName(c.slug, c.name)}</a>
             </li>
           ))}
         </ul>
       </div>
 
       <div>
-        <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-text);">Service</h4>
+        <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-text);">{t(locale, "footer.service")}</h4>
         <ul class="space-y-2">
           {features.werben.enabled && (
-            <li><a href="/werben/" class="text-sm" style="color: var(--color-text-muted);">Werben</a></li>
+            <li><a href={advertiseHref} class="text-sm" style="color: var(--color-text-muted);">{t(locale, "nav.advertise")}</a></li>
           )}
           {features.reiseplaner.enabled && (
-            <li><a href="/reiseplaner/" class="text-sm" style="color: var(--color-text-muted);">Reiseplaner</a></li>
+            <li><a href={guidesHref} class="text-sm" style="color: var(--color-text-muted);">{t(locale, "nav.guides")}</a></li>
           )}
-          <li><a href="/kategorien/" class="text-sm" style="color: var(--color-text-muted);">Alle Kategorien</a></li>
-          <li><a href="/events/" class="text-sm" style="color: var(--color-text-muted);">Events & Termine</a></li>
-          <li><a href="/ueber-uns/" class="text-sm" style="color: var(--color-text-muted);">Über uns</a></li>
+          <li><a href={allCategoriesHref} class="text-sm" style="color: var(--color-text-muted);">{t(locale, "footer.allCategories")}</a></li>
+          <li><a href={eventsHref} class="text-sm" style="color: var(--color-text-muted);">{t(locale, "footer.eventsDates")}</a></li>
+          <li><a href={aboutHref} class="text-sm" style="color: var(--color-text-muted);">{t(locale, "footer.about")}</a></li>
           {features.news.enabled && (
-            <li><a href="/news/" class="text-sm" style="color: var(--color-text-muted);">News</a></li>
+            <li><a href={newsHref} class="text-sm" style="color: var(--color-text-muted);">{t(locale, "nav.news")}</a></li>
           )}
-          <li><a href="/tech/" class="text-sm" style="color: var(--color-accent);">Tech-Hub</a></li>
+          <li><a href={techHref} class="text-sm" style="color: var(--color-accent);">{t(locale, "footer.techHub")}</a></li>
         </ul>
       </div>
     </div>
 
     <div class="mt-12 pt-6 border-t flex flex-col md:flex-row items-start md:items-center justify-between gap-4" style="border-color: var(--color-border);">
       <p class="text-xs" style="color: var(--color-text-muted);">
-        &copy; {year} {city.name}-Interaktiv. Inhalte unter Quellenangabe.
+        &copy; {tf(locale, "footer.copyright", { year, site: `${city.name}-Interaktiv` })}
       </p>
       <div class="flex items-center gap-5">
-        <a href="/ueber-uns/" class="text-xs" style="color: var(--color-text-muted);">Über uns</a>
-        <a href="/impressum/" class="text-xs" style="color: var(--color-text-muted);">Impressum</a>
-        <a href="/datenschutz/" class="text-xs" style="color: var(--color-text-muted);">Datenschutz</a>
-        <a href="/agb/" class="text-xs" style="color: var(--color-text-muted);">AGB</a>
+        <a href={aboutHref} class="text-xs" style="color: var(--color-text-muted);">{t(locale, "footer.about")}</a>
+        <a href={imprintHref} class="text-xs" style="color: var(--color-text-muted);">{t(locale, "nav.imprint")}</a>
+        <a href={privacyHref} class="text-xs" style="color: var(--color-text-muted);">{t(locale, "nav.privacy")}</a>
+        <a href={termsHref} class="text-xs" style="color: var(--color-text-muted);">{t(locale, "nav.terms")}</a>
       </div>
     </div>
   </div>

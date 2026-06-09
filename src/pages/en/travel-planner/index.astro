@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import HueGradient from "../../../components/HueGradient.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import { guides } from "../../../data/guides";
+import { guidesEn } from "../../../i18n/en/guides";
+import { getGygPlacement } from "../../../data/gyg";
+import { features } from "../../../data/features";
+import { t, tf } from "../../../i18n/ui";
+import { homeUrl, indexUrl, detailUrl } from "../../../i18n/config";
+
+if (!features.reiseplaner.enabled) return Astro.redirect("/en/", 302);
+---
+
+<BaseLayout
+  title={t("en", "guides.indexTitle")}
+  description={t("en", "guides.indexDesc")}
+  locale="en"
+  alternateUrls={{ de: indexUrl("guides", "de"), en: indexUrl("guides", "en") }}
+>
+  <div class="container-page py-12">
+    <Breadcrumbs locale="en" items={[{label: t("en", "nav.home"), href: homeUrl("en")}, {label: t("en", "guides.indexTitle")}]} />
+    <header class="mb-12">
+      <p class="eyebrow mb-3">{tf("en", "guides.routes", { n: guides.length })}</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">{t("en", "guides.heading")}</h1>
+      <p class="text-lg max-w-3xl" style="color: var(--color-text-body);">
+        {t("en", "guides.intro")}
+      </p>
+    </header>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {guides.map((g) => {
+        const en = guidesEn[g.slug];
+        return (
+          <a href={detailUrl("guides", en.slug, "en")} class="card group block">
+            <div class="aspect-[4/3] overflow-hidden">
+              <HueGradient hue={g.imageHue} label={en.title} />
+            </div>
+            <div class="p-5">
+              <p class="text-xs font-semibold mb-2" style="color: var(--color-accent);">{g.duration} {g.duration > 1 ? "days" : "day"} &middot; {en.audience}</p>
+              <h3 class="text-xl font-semibold mb-2" style="color: var(--color-text);">{en.title}</h3>
+              <p class="text-sm leading-relaxed" style="color: var(--color-text-body);">{en.shortDesc}</p>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+
+    <GetYourGuideWidget placement={getGygPlacement("page:guides-index")} />
+  </div>
+</BaseLayout>

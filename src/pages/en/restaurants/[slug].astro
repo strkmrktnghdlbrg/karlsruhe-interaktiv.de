@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import ContentImage from "../../../components/ContentImage.astro";
+import RelatedItems from "../../../components/RelatedItems.astro";
+import { restaurants } from "../../../data/restaurants";
+import { restaurantsEn } from "../../../i18n/en/restaurants";
+import { districtsEn } from "../../../i18n/en/districts";
+import { getDistrict } from "../../../data/districts";
+import { city } from "../../../data/city";
+import { detailUrl, homeUrl, indexUrl } from "../../../i18n/config";
+import { t } from "../../../i18n/ui";
+
+const locale = "en" as const;
+
+export function getStaticPaths() {
+  return restaurants.map((r) => ({
+    params: { slug: restaurantsEn[r.slug].slug },
+    props: { restaurant: r, en: restaurantsEn[r.slug] },
+  }));
+}
+
+const { restaurant, en } = Astro.props;
+const district = getDistrict(restaurant.district);
+const districtName = districtsEn[restaurant.district]?.name ?? district?.name ?? restaurant.district;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  name: en.name,
+  description: en.shortDesc,
+  servesCuisine: en.cuisine,
+  priceRange: restaurant.priceLevel,
+  address: { "@type": "PostalAddress", addressLocality: city.name, addressCountry: city.countryCode },
+  ...(en.openingHours && { openingHours: en.openingHours }),
+  ...(restaurant.websiteUrl && { url: restaurant.websiteUrl }),
+  ...(restaurant.reservation !== undefined && { acceptsReservations: restaurant.reservation }),
+};
+---
+
+<BaseLayout
+  title={en.name}
+  description={en.shortDesc}
+  locale={locale}
+  alternateUrls={{
+    de: detailUrl("restaurants", restaurant.slug, "de"),
+    en: detailUrl("restaurants", en.slug, "en"),
+  }}
+>
+  <article class="container-page py-12">
+    <Breadcrumbs
+      locale={locale}
+      items={[
+        { label: t(locale, "nav.home"), href: homeUrl(locale) },
+        { label: t(locale, "nav.restaurants"), href: indexUrl("restaurants", locale) },
+        { label: en.name },
+      ]}
+    />
+
+    <div class="grid lg:grid-cols-[2fr_1fr] gap-10 mb-12">
+      <div>
+        <p class="eyebrow mb-3">{en.cuisine} &middot; {restaurant.priceLevel}{district && ` · ${districtName}`}</p>
+        <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-6" style="color: var(--color-text);">{en.name}</h1>
+        <p class="text-lg leading-relaxed mb-6" style="color: var(--color-text-body);">{en.longDesc}</p>
+
+        <div class="flex flex-wrap gap-2 mb-6">
+          {en.openingHours && <span class="pill">{en.openingHours}</span>}
+          {restaurant.reservation && <span class="pill-accent">{t(locale, "detail.reservationRecommended")}</span>}
+          {restaurant.reservation === false && <span class="pill">{t(locale, "detail.walkIn")}</span>}
+        </div>
+
+        {restaurant.websiteUrl && (
+          <a href={restaurant.websiteUrl} rel="nofollow noopener" target="_blank" class="btn-primary">{t(locale, "detail.website")}</a>
+        )}
+      </div>
+
+      <aside class="aspect-[4/3] lg:aspect-auto lg:min-h-[320px] overflow-hidden" style="border-radius: var(--radius-card);">
+        <ContentImage imgKey={restaurant.imageKey} fallbackHue={restaurant.imageHue} fallbackLabel={en.name} loading="eager" />
+      </aside>
+    </div>
+
+    <RelatedItems district={restaurant.district} excludeSlug={restaurant.slug} type="restaurants" locale={locale} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline></script>
+  </article>
+</BaseLayout>

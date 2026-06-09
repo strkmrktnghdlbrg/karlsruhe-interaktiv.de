@@ -5,6 +5,8 @@ import HueGradient from "../../components/HueGradient.astro";
 import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { getGygPlacement } from "../../data/gyg";
 import { guides, getGuide } from "../../data/guides";
+import { guidesEn } from "../../i18n/en/guides";
+import { detailUrl } from "../../i18n/config";
 import { getSight } from "../../data/sights";
 import { getHotel } from "../../data/hotels";
 import { getRestaurant } from "../../data/restaurants";
@@ -18,9 +20,10 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const guide = getGuide(slug!);
 if (!guide || !features.reiseplaner.enabled) return Astro.redirect("/", 302);
+const en = guidesEn[guide.slug];
 ---
 
-<BaseLayout title={guide.title} description={guide.shortDesc}>
+<BaseLayout title={guide.title} description={guide.shortDesc} alternateUrls={{ de: detailUrl("guides", guide.slug, "de"), en: detailUrl("guides", en.slug, "en") }}>
   <article class="container-page py-12 max-w-4xl">
     <Breadcrumbs items={[
       { label: "Start", href: "/" },

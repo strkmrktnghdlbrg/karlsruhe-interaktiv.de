@@ -1,41 +1,52 @@
 ---
 import ContentImage from "./ContentImage.astro";
 import type { NewsItem } from "../data/news";
+import type { Locale } from "../i18n/config";
+import { detailUrl } from "../i18n/config";
+import { tf } from "../i18n/ui";
+import { newsEn } from "../i18n/en/news";
 
-interface Props { item: NewsItem; variant?: "default" | "compact" }
-const { item, variant = "default" } = Astro.props;
-const date = new Date(item.publishedAt).toLocaleDateString("de-DE", { day: "2-digit", month: "short" });
+interface Props { item: NewsItem; variant?: "default" | "compact"; locale?: Locale }
+const { item, variant = "default", locale = "de" } = Astro.props;
+const date = new Date(item.publishedAt).toLocaleDateString(locale === "en" ? "en-US" : "de-DE", { day: "2-digit", month: "short" });
+
+const en = locale === "en" ? newsEn[item.slug] : undefined;
+const href = locale === "en" ? detailUrl("news", en!.slug, "en") : `/news/${item.slug}/`;
+const title = en?.title ?? item.title;
+const lead = en?.lead ?? item.lead;
+const category = en?.category ?? item.category;
+const sourceLabel = tf(locale, "news.source", { name: item.source.name });
 ---
 
 {variant === "default" ? (
-  <a href={`/news/${item.slug}/`} class="card group block">
+  <a href={href} class="card group block">
     <div class="aspect-[4/3] relative overflow-hidden">
       <ContentImage
         imgKey={item.imageKey}
         fallbackHue={item.imageHue}
-        fallbackLabel={item.category}
+        fallbackLabel={category}
         imgClass="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
       />
       <div class="absolute top-3 left-3">
-        <span class="pill" style="background: rgba(8,9,10,0.85); backdrop-filter: blur(8px);">{item.category}</span>
+        <span class="pill" style="background: rgba(8,9,10,0.85); backdrop-filter: blur(8px);">{category}</span>
       </div>
     </div>
     <div class="p-4">
       <div class="flex items-center gap-2 mb-2 text-xs" style="color: var(--color-text-muted);">
-        <time datetime={item.publishedAt}>{date}</time><span>&middot;</span><span>Quelle: {item.source.name}</span>
+        <time datetime={item.publishedAt}>{date}</time><span>&middot;</span><span>{sourceLabel}</span>
       </div>
-      <h3 class="text-base font-semibold leading-snug mb-2 line-clamp-2" style="color: var(--color-text);">{item.title}</h3>
-      <p class="text-sm leading-relaxed line-clamp-2" style="color: var(--color-text-body);">{item.lead}</p>
+      <h3 class="text-base font-semibold leading-snug mb-2 line-clamp-2" style="color: var(--color-text);">{title}</h3>
+      <p class="text-sm leading-relaxed line-clamp-2" style="color: var(--color-text-body);">{lead}</p>
     </div>
   </a>
 ) : (
-  <a href={`/news/${item.slug}/`} class="flex gap-3 group">
+  <a href={href} class="flex gap-3 group">
     <div class="shrink-0 w-20 h-20 overflow-hidden" style="border-radius: var(--radius-card);">
       <ContentImage imgKey={item.imageKey} fallbackHue={item.imageHue} imgClass="w-full h-full object-cover" />
     </div>
     <div class="flex-1 min-w-0">
-      <p class="text-[11px] font-semibold mb-1" style="color: var(--color-accent);">{item.category} &middot; {date}</p>
-      <h4 class="text-sm font-semibold leading-snug line-clamp-2" style="color: var(--color-text);">{item.title}</h4>
+      <p class="text-[11px] font-semibold mb-1" style="color: var(--color-accent);">{category} &middot; {date}</p>
+      <h4 class="text-sm font-semibold leading-snug line-clamp-2" style="color: var(--color-text);">{title}</h4>
     </div>
   </a>
 )}

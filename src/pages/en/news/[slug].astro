@@ -1,0 +1,79 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import ContentImage from "../../../components/ContentImage.astro";
+import NewsCard from "../../../components/NewsCard.astro";
+import { news, recentNews } from "../../../data/news";
+import { newsEn } from "../../../i18n/en/news";
+import { features } from "../../../data/features";
+import { detailUrl, homeUrl, indexUrl } from "../../../i18n/config";
+import { t, tf } from "../../../i18n/ui";
+
+const locale = "en" as const;
+
+export function getStaticPaths() {
+  return news.map((n) => ({
+    params: { slug: newsEn[n.slug].slug },
+    props: { item: n, en: newsEn[n.slug] },
+  }));
+}
+
+const { item, en } = Astro.props;
+if (!features.news.enabled) return Astro.redirect("/en/", 302);
+
+const date = new Date(item.publishedAt).toLocaleDateString("en-US", { day: "2-digit", month: "long", year: "numeric" });
+const sourceDate = new Date(item.source.publishedAt).toLocaleDateString("en-US", { day: "2-digit", month: "long", year: "numeric" });
+const related = recentNews(4).filter((n) => n.slug !== item.slug).slice(0, 3);
+---
+
+<BaseLayout
+  title={en.title}
+  description={en.lead}
+  locale={locale}
+  alternateUrls={{
+    de: detailUrl("news", item.slug, "de"),
+    en: detailUrl("news", en.slug, "en"),
+  }}
+>
+  <article class="container-page py-12 max-w-3xl">
+    <Breadcrumbs
+      locale={locale}
+      items={[
+        { label: t(locale, "nav.home"), href: homeUrl(locale) },
+        { label: t(locale, "nav.news"), href: indexUrl("news", locale) },
+        { label: en.title },
+      ]}
+    />
+
+    <p class="eyebrow mb-3">{en.category} &middot; {date}</p>
+    <h1 class="text-3xl sm:text-5xl font-medium tracking-tight mb-6 leading-tight" style="color: var(--color-text);">{en.title}</h1>
+    <p class="text-xl leading-relaxed mb-8" style="color: var(--color-text-body);">{en.lead}</p>
+
+    <div class="aspect-[16/9] overflow-hidden mb-10" style="border-radius: var(--radius-card);">
+      <ContentImage imgKey={item.imageKey} fallbackHue={item.imageHue} fallbackLabel={en.category} loading="eager" />
+    </div>
+
+    <div class="prose max-w-none">
+      <p class="text-lg leading-relaxed" style="color: var(--color-text-body);">{en.summary}</p>
+    </div>
+
+    <div class="p-5 sm:p-6 my-8 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+      <p class="eyebrow mb-3">{t(locale, "news.attributionEyebrow")}</p>
+      <p class="text-sm leading-relaxed mb-4" style="color: var(--color-text-body);">
+        {tf(locale, "news.attributionText", { name: en.source.name, date: sourceDate })}
+      </p>
+      <a href={item.source.url} rel="nofollow noopener" target="_blank" class="btn-primary">
+        {tf(locale, "news.attributionLink", { name: en.source.name })}
+      </a>
+    </div>
+
+    {related.length > 0 && (
+      <section class="mt-12 pt-8 border-t" style="border-color: var(--color-border);">
+        <h2 class="text-2xl font-semibold mb-6" style="color: var(--color-text);">{t(locale, "news.related")}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {related.map((n) => <NewsCard item={n} locale={locale} />)}
+        </div>
+      </section>
+    )}
+  </article>
+</BaseLayout>

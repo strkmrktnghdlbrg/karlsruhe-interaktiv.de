@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { legal } from "../../data/legal";
+import { city } from "../../data/city";
+import { t, tf } from "../../i18n/ui";
+import { homeUrl, indexUrl } from "../../i18n/config";
+---
+
+<BaseLayout
+  title={t("en", "imprint.title")}
+  description={t("en", "imprint.metaDescription")}
+  noindex
+  locale="en"
+  alternateUrls={{ de: indexUrl("imprint", "de"), en: indexUrl("imprint", "en") }}
+>
+  <div class="container-page py-12 max-w-3xl">
+    <Breadcrumbs locale="en" items={[{ label: city.name, href: homeUrl("en") }, { label: t("en", "imprint.title") }]} />
+    <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-8" style="color: var(--color-text);">{t("en", "imprint.heading")}</h1>
+
+    <div class="legal-prose">
+      <h2>{t("en", "imprint.infoHeading")}</h2>
+      <p>
+        {legal.companyName}<br />
+        {legal.registeredOffice.street}<br />
+        {legal.registeredOffice.city} {legal.registeredOffice.postcode}<br />
+        {legal.registeredOffice.country}
+      </p>
+
+      <h2>{t("en", "imprint.contactHeading")}</h2>
+      <p>{t("en", "imprint.emailLabel")} <a href={`mailto:${legal.email}`}>{legal.email}</a></p>
+      <p style="font-size: 0.9rem; color: var(--color-text-muted);">{legal.natureOfBusiness}</p>
+
+      <h2>{t("en", "imprint.responsibleHeading")}</h2>
+      <p>
+        {legal.companyName}<br />
+        {legal.registeredOffice.street}<br />
+        {legal.registeredOffice.city} {legal.registeredOffice.postcode}, {legal.registeredOffice.country}
+      </p>
+
+      <h2>{t("en", "imprint.odrHeading")}</h2>
+      <p set:html={tf("en", "imprint.odrBody", {
+        link: `<a href="https://ec.europa.eu/consumers/odr/" rel="noopener" target="_blank">https://ec.europa.eu/consumers/odr/</a>`,
+      })} />
+
+      <h2>{t("en", "imprint.liabilityContentHeading")}</h2>
+      <p>{t("en", "imprint.liabilityContentBody")}</p>
+
+      <h2>{t("en", "imprint.liabilityLinksHeading")}</h2>
+      <p>{t("en", "imprint.liabilityLinksBody")}</p>
+
+      <h2>{t("en", "imprint.copyrightHeading")}</h2>
+      <p>{tf("en", "imprint.copyrightBody", { site: city.name })}</p>
+
+      <h2>{t("en", "imprint.affiliateHeading")}</h2>
+      <p>{t("en", "imprint.affiliateBody")}</p>
+
+      <p style="margin-top: 2rem; font-size: 0.875rem; color: var(--color-text-muted);">{t("en", "imprint.lastUpdated")}</p>
+    </div>
+  </div>
+</BaseLayout>

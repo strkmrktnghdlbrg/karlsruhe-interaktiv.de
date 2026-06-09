@@ -5,10 +5,11 @@ import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Stay22TopHotels from "../../components/Stay22TopHotels.astro";
 import { hotels } from "../../data/hotels";
 import { city } from "../../data/city";
+import { indexUrl } from "../../i18n/config";
 const sorted = [...hotels].sort((a, b) => b.rating - a.rating);
 ---
 
-<BaseLayout title={`Hotels in ${city.name}`} description={`Hotels in Karlsruhe — von Design-Boutiquen bis 5-Sterne. Innenstadt, Hauptbahnhof, Durlach.`}>
+<BaseLayout title={`Hotels in ${city.name}`} description={`Hotels in Karlsruhe — von Design-Boutiquen bis 5-Sterne. Innenstadt, Hauptbahnhof, Durlach.`} alternateUrls={{ de: indexUrl("hotels", "de"), en: indexUrl("hotels", "en") }}>
   <div class="container-page py-12">
     <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "Hotels"}]} />
     <header class="mb-12">

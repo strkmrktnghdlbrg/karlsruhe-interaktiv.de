@@ -4,12 +4,13 @@ import RestaurantCard from "../../components/RestaurantCard.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import { restaurants } from "../../data/restaurants";
 import { city } from "../../data/city";
+import { indexUrl } from "../../i18n/config";
 
 const sorted = [...restaurants].sort((a, b) => a.name.localeCompare(b.name, "de"));
 const cuisines = [...new Set(restaurants.map((r) => r.cuisine))].sort();
 ---
 
-<BaseLayout title={`Restaurants in ${city.name}`} description="Restaurants in Karlsruhe: Badisch, Stern-Kueche, Italienisch, Asiatisch — geprueft, sortiert nach Bezirk und Kueche.">
+<BaseLayout title={`Restaurants in ${city.name}`} description="Restaurants in Karlsruhe: Badisch, Stern-Kueche, Italienisch, Asiatisch — geprueft, sortiert nach Bezirk und Kueche." alternateUrls={{ de: indexUrl("restaurants", "de"), en: indexUrl("restaurants", "en") }}>
   <div class="container-page py-12">
     <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "Restaurants"}]} />
     <header class="mb-12">

@@ -5,9 +5,11 @@ import SightCard from "../../components/SightCard.astro";
 import RestaurantCard from "../../components/RestaurantCard.astro";
 import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { categories, getCategory } from "../../data/categories";
+import { categoriesEn } from "../../i18n/en/categories";
 import { sightsByCategory } from "../../data/sights";
 import { restaurantsByCategory } from "../../data/restaurants";
 import { getGygPlacement } from "../../data/gyg";
+import { detailUrl } from "../../i18n/config";
 
 export function getStaticPaths() {
   return categories
@@ -20,9 +22,10 @@ const cat = getCategory(slug!);
 if (!cat) return Astro.redirect("/404");
 const cSights = sightsByCategory(cat.slug);
 const cRest = restaurantsByCategory(cat.slug);
+const catEn = categoriesEn[cat.slug];
 ---
 
-<BaseLayout title={cat.name} description={`${cat.name} in Karlsruhe: ${cat.shortDesc}`}>
+<BaseLayout title={cat.name} description={`${cat.name} in Karlsruhe: ${cat.shortDesc}`} alternateUrls={{ de: `/kategorien/${cat.slug}/`, en: detailUrl("categories", catEn.slug, "en") }}>
   <div class="container-page py-12">
     <Breadcrumbs items={[
       {label: "Start", href: "/"},

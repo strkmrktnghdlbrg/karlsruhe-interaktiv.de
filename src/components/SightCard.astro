@@ -2,34 +2,50 @@
 import ContentImage from "./ContentImage.astro";
 import type { Sight } from "../data/sights";
 import { getDistrict } from "../data/districts";
+import type { Locale } from "../i18n/config";
+import { detailUrl } from "../i18n/config";
+import { t } from "../i18n/ui";
+import { sightsEn } from "../i18n/en/sights";
+import { districtsEn } from "../i18n/en/districts";
 
-interface Props { sight: Sight }
-const { sight } = Astro.props;
+interface Props { sight: Sight; locale?: Locale }
+const { sight, locale = "de" } = Astro.props;
 const district = getDistrict(sight.district);
-const priceLabel = sight.priceFrom === null ? "Eintritt frei" : `ab ${sight.priceFrom} EUR`;
+
+const en = locale === "en" ? sightsEn[sight.slug] : undefined;
+const href = locale === "en" ? detailUrl("sights", en!.slug, "en") : `/sehenswuerdigkeiten/${sight.slug}/`;
+const name = en?.name ?? sight.name;
+const typeLabel = en?.type ?? sight.type;
+const shortDesc = en?.shortDesc ?? sight.shortDesc;
+const districtName = locale === "en" ? (districtsEn[sight.district]?.name ?? district?.name ?? sight.district) : (district?.name ?? sight.district);
+
+const priceLabel = sight.priceFrom === null
+  ? (locale === "en" ? t("en", "detail.freeEntry") : "Eintritt frei")
+  : (locale === "en" ? `from ${sight.priceFrom} EUR` : `ab ${sight.priceFrom} EUR`);
+const freeBadge = locale === "en" ? "Free" : "Gratis";
 ---
 
-<a href={`/sehenswuerdigkeiten/${sight.slug}/`} class="card group block">
+<a href={href} class="card group block">
   <div class="aspect-[4/3] relative overflow-hidden">
     <ContentImage
       imgKey={sight.imageKey}
       fallbackHue={sight.imageHue}
-      fallbackLabel={sight.name}
+      fallbackLabel={name}
       imgClass="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
     />
     <div class="absolute top-3 left-3">
-      <span class="pill" style="background: rgba(8,9,10,0.85); backdrop-filter: blur(8px);">{sight.type}</span>
+      <span class="pill" style="background: rgba(8,9,10,0.85); backdrop-filter: blur(8px);">{typeLabel}</span>
     </div>
     {sight.priceFrom === null && (
-      <div class="absolute top-3 right-3"><span class="pill-accent">Gratis</span></div>
+      <div class="absolute top-3 right-3"><span class="pill-accent">{freeBadge}</span></div>
     )}
   </div>
   <div class="p-3">
-    <p class="text-xs font-semibold mb-1" style="color: var(--color-text-muted);">{district?.name ?? sight.district}</p>
+    <p class="text-xs font-semibold mb-1" style="color: var(--color-text-muted);">{districtName}</p>
     <h3 class="text-base font-semibold tracking-tight leading-tight mb-2 transition-colors" style="color: var(--color-text);">
-      {sight.name}
+      {name}
     </h3>
-    <p class="text-xs leading-relaxed mb-2 line-clamp-2" style="color: var(--color-text-body);">{sight.shortDesc}</p>
+    <p class="text-xs leading-relaxed mb-2 line-clamp-2" style="color: var(--color-text-body);">{shortDesc}</p>
     <p class="text-xs font-semibold" style="color: var(--color-accent);">{priceLabel}</p>
   </div>
 </a>

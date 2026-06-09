@@ -3,9 +3,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import { legal } from "../data/legal";
 import { city } from "../data/city";
+import { indexUrl } from "../i18n/config";
 ---
 
-<BaseLayout title="Impressum" description="Impressum und Anbieterkennzeichnung gemaess Paragraph 5 TMG." noindex>
+<BaseLayout title="Impressum" description="Impressum und Anbieterkennzeichnung gemaess Paragraph 5 TMG." noindex alternateUrls={{ de: indexUrl("imprint", "de"), en: indexUrl("imprint", "en") }}>
   <div class="container-page py-12 max-w-3xl">
     <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Impressum" }]} />
     <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-8" style="color: var(--color-text);">Impressum</h1>

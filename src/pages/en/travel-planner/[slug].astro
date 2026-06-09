@@ -1,0 +1,99 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import HueGradient from "../../../components/HueGradient.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import { getGygPlacement } from "../../../data/gyg";
+import { guides } from "../../../data/guides";
+import { guidesEn } from "../../../i18n/en/guides";
+import { sightsEn } from "../../../i18n/en/sights";
+import { hotelsEn } from "../../../i18n/en/hotels";
+import { restaurantsEn } from "../../../i18n/en/restaurants";
+import { districtsEn } from "../../../i18n/en/districts";
+import { features } from "../../../data/features";
+import { t, tf } from "../../../i18n/ui";
+import { homeUrl, indexUrl, detailUrl } from "../../../i18n/config";
+
+export function getStaticPaths() {
+  return guides.map((g) => ({
+    params: { slug: guidesEn[g.slug].slug },
+    props: { guide: g, en: guidesEn[g.slug] },
+  }));
+}
+
+const { guide, en } = Astro.props;
+if (!features.reiseplaner.enabled) return Astro.redirect("/en/", 302);
+
+const enDayBySlug = new Map(en.days.map((d) => [d.number, d]));
+---
+
+<BaseLayout
+  title={en.title}
+  description={en.shortDesc}
+  locale="en"
+  alternateUrls={{ de: detailUrl("guides", guide.slug, "de"), en: detailUrl("guides", en.slug, "en") }}
+>
+  <article class="container-page py-12 max-w-4xl">
+    <Breadcrumbs locale="en" items={[
+      { label: t("en", "nav.home"), href: homeUrl("en") },
+      { label: t("en", "guides.indexTitle"), href: indexUrl("guides", "en") },
+      { label: en.title },
+    ]} />
+
+    <header class="mb-12">
+      <p class="eyebrow mb-3">{guide.duration} {guide.duration > 1 ? "days" : "day"} &middot; {en.audience}</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-6" style="color: var(--color-text);">{en.title}</h1>
+      <p class="text-lg leading-relaxed mb-6" style="color: var(--color-text-body);">{en.lead}</p>
+      {en.bestSeason && <p class="text-sm" style="color: var(--color-text-muted);"><strong style="color: var(--color-text);">{t("en", "guides.bestSeason")}</strong> {en.bestSeason}</p>}
+    </header>
+
+    <div class="aspect-[16/9] overflow-hidden mb-10" style="border-radius: var(--radius-card);">
+      <HueGradient hue={guide.imageHue} label={en.title} />
+    </div>
+
+    {guide.days.map((day) => {
+      const enDay = enDayBySlug.get(day.number)!;
+      return (
+        <section class="mb-12 pb-8 border-b" style="border-color: var(--color-border);">
+          <p class="eyebrow mb-3">{tf("en", "guides.day", { n: day.number })}</p>
+          <h2 class="text-3xl font-semibold mb-3" style="color: var(--color-text);">{enDay.title}</h2>
+          <p class="text-base mb-8" style="color: var(--color-text-body);">{enDay.intro}</p>
+
+          <ol class="space-y-6">
+            {day.slots.map((slot, i) => {
+              const enSlot = enDay.slots[i];
+              const refSight = slot.sightSlug ? sightsEn[slot.sightSlug] : null;
+              const refHotel = slot.hotelSlug ? hotelsEn[slot.hotelSlug] : null;
+              const refRest = slot.restaurantSlug ? restaurantsEn[slot.restaurantSlug] : null;
+              const refDistrict = slot.districtSlug ? districtsEn[slot.districtSlug] : null;
+              return (
+                <li class="grid grid-cols-[100px_1fr] gap-4">
+                  <div class="text-xs font-semibold uppercase tracking-wider pt-1" style="color: var(--color-accent);">
+                    {enSlot.time}
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold mb-2" style="color: var(--color-text);">{enSlot.title}</h3>
+                    <p class="text-sm leading-relaxed mb-3" style="color: var(--color-text-body);">{enSlot.description}</p>
+                    <div class="flex flex-wrap gap-2">
+                      {refSight && <a href={detailUrl("sights", refSight.slug, "en")} class="pill-accent">{refSight.name}</a>}
+                      {refRest && <a href={detailUrl("restaurants", refRest.slug, "en")} class="pill-accent">{refRest.name}</a>}
+                      {refHotel && <a href={detailUrl("hotels", refHotel.slug, "en")} class="pill-accent">{refHotel.name}</a>}
+                      {refDistrict && <a href={detailUrl("districts", refDistrict.slug, "en")} class="pill">{refDistrict.name}</a>}
+                    </div>
+                    {enSlot.tip && (
+                      <p class="text-xs mt-3 p-3 border" style="background: var(--color-surface); border-color: var(--color-border); color: var(--color-text-body); border-radius: var(--radius-card);">
+                        <strong style="color: var(--color-accent);">{t("en", "guides.tip")}</strong> {enSlot.tip}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        </section>
+      );
+    })}
+
+    <GetYourGuideWidget placement={getGygPlacement(`guide:${guide.slug}`)} />
+  </article>
+</BaseLayout>

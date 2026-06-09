@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import SightCard from "../../../components/SightCard.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import { sights } from "../../../data/sights";
+import { sightsEn } from "../../../i18n/en/sights";
+import { getGygPlacement } from "../../../data/gyg";
+import { city } from "../../../data/city";
+import { t, tf } from "../../../i18n/ui";
+import { indexUrl, homeUrl } from "../../../i18n/config";
+
+const sorted = [...sights].sort((a, b) =>
+  sightsEn[a.slug].name.localeCompare(sightsEn[b.slug].name, "en")
+);
+---
+
+<BaseLayout
+  title={`Attractions in ${city.name}`}
+  description={`All ${sights.length} attractions in Karlsruhe: the palace, ZKM, the pyramid, the Turmberg and more.`}
+  locale="en"
+  alternateUrls={{ de: indexUrl("sights", "de"), en: indexUrl("sights", "en") }}
+>
+  <div class="container-page py-12">
+    <Breadcrumbs locale="en" items={[{label: t("en", "nav.home"), href: homeUrl("en")}, {label: t("en", "nav.sights")}]} />
+    <header class="mb-12">
+      <p class="eyebrow mb-3">{tf("en", "sights.entries", { n: sights.length })}</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">{t("en", "sights.heading")}</h1>
+      <p class="text-lg max-w-3xl" style="color: var(--color-text-body);">
+        {t("en", "sights.intro")}
+      </p>
+    </header>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {sorted.map((s) => <SightCard sight={s} locale="en" />)}
+    </div>
+
+    <GetYourGuideWidget placement={getGygPlacement("page:sights-index")} />
+  </div>
+</BaseLayout>

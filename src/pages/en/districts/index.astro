@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import DistrictCard from "../../../components/DistrictCard.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import { districts } from "../../../data/districts";
+import { getGygPlacement } from "../../../data/gyg";
+import { homeUrl } from "../../../i18n/config";
+import { t, tf } from "../../../i18n/ui";
+
+const locale = "en";
+---
+
+<BaseLayout
+  title={t(locale, "districts.heading")}
+  description={t(locale, "districts.intro")}
+  locale={locale}
+  alternateUrls={{ de: "/bezirke/", en: "/en/districts/" }}
+>
+  <div class="container-page py-12">
+    <Breadcrumbs
+      locale={locale}
+      items={[{ label: t(locale, "nav.home"), href: homeUrl(locale) }, { label: t(locale, "nav.districts") }]}
+    />
+    <header class="mb-12">
+      <p class="eyebrow mb-3">{tf(locale, "districts.count", { n: districts.length })}</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">{t(locale, "districts.heading")}</h1>
+      <p class="text-lg max-w-3xl" style="color: var(--color-text-body);">
+        {t(locale, "districts.intro")}
+      </p>
+    </header>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {districts.map((d) => <DistrictCard district={d} locale={locale} />)}
+    </div>
+
+    <GetYourGuideWidget placement={getGygPlacement("page:districts-index")} />
+  </div>
+</BaseLayout>

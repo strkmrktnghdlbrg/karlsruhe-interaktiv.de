@@ -12,6 +12,8 @@ import { sightsByDistrict } from "../../data/sights";
 import { topHotelsByDistrict } from "../../data/hotels";
 import { restaurantsByDistrict } from "../../data/restaurants";
 import { getGygPlacement } from "../../data/gyg";
+import { districtsEn } from "../../i18n/en/districts";
+import { detailUrl } from "../../i18n/config";
 
 export function getStaticPaths() {
   return districts.map((d) => ({ params: { slug: d.slug } }));
@@ -24,9 +26,14 @@ if (!district) return Astro.redirect("/404");
 const sightItems = sightsByDistrict(district.slug);
 const hotelItems = topHotelsByDistrict(district.slug, 8);
 const restItems = restaurantsByDistrict(district.slug).slice(0, 8);
+
+const alternateUrls = {
+  de: `/bezirke/${district.slug}/`,
+  en: detailUrl("districts", districtsEn[district.slug].slug, "en"),
+};
 ---
 
-<BaseLayout title={district.name} description={district.shortDesc}>
+<BaseLayout title={district.name} description={district.shortDesc} alternateUrls={alternateUrls}>
   <div class="container-page py-12">
     <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "Bezirke", href: "/bezirke/"}, {label: district.name}]} />
 

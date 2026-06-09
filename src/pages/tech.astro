@@ -6,6 +6,7 @@ import NewsCard from "../components/NewsCard.astro";
 import { sightsByCategory } from "../data/sights";
 import { news } from "../data/news";
 import { features } from "../data/features";
+import { indexUrl } from "../i18n/config";
 
 const techSights = sightsByCategory("tech-innovation");
 const sciSights = sightsByCategory("wissenschaft");
@@ -28,6 +29,7 @@ const institutions = [
 <BaseLayout
   title="Tech-Hub Karlsruhe"
   description="Karlsruhe ist eines der wichtigsten Tech-Cluster Europas: KIT, FZI, CyberForum, ZKM und Fraunhofer. Der Tech-Hub der Faecherstadt."
+  alternateUrls={{ de: indexUrl("tech", "de"), en: indexUrl("tech", "en") }}
 >
   <section class="hero-faecher">
     <div class="container-page py-20 sm:py-28">

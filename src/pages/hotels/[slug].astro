@@ -8,6 +8,8 @@ import Stay22NearbyHotels from "../../components/Stay22NearbyHotels.astro";
 import { hotels, getHotel } from "../../data/hotels";
 import { getDistrict } from "../../data/districts";
 import { city } from "../../data/city";
+import { hotelsEn } from "../../i18n/en/hotels";
+import { detailUrl } from "../../i18n/config";
 
 export function getStaticPaths() {
   return hotels.map((h) => ({ params: { slug: h.slug } }));
@@ -31,7 +33,7 @@ const schema = {
 };
 ---
 
-<BaseLayout title={hotel.name} description={hotel.shortDesc}>
+<BaseLayout title={hotel.name} description={hotel.shortDesc} alternateUrls={{ de: detailUrl("hotels", hotel.slug, "de"), en: detailUrl("hotels", hotelsEn[hotel.slug].slug, "en") }}>
   <article class="container-page py-12">
     <Breadcrumbs items={[
       { label: "Start", href: "/" },

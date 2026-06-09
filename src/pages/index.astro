@@ -20,7 +20,7 @@ const featuredDistricts = districts.slice(0, 6);
 const featuredNews = features.news.enabled ? recentNews(3) : [];
 ---
 
-<BaseLayout title={city.name} description={city.description.long}>
+<BaseLayout title={city.name} description={city.description.long} alternateUrls={{ de: "/", en: "/en/" }}>
   <!-- HERO mit Faecher-Gradient -->
   <section class="hero-faecher relative">
     <div class="container-page py-24 sm:py-32 lg:py-40 text-center">

@@ -2,12 +2,13 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import { city } from "../data/city";
+import { indexUrl } from "../i18n/config";
 
 const title = "Über uns";
 const description = `Wie ${city.name}-Interaktiv entsteht: redaktioneller Anspruch, Auswahl der Inhalte, Quellen und Transparenz zu Affiliate-Links.`;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} alternateUrls={{ de: indexUrl("about", "de"), en: indexUrl("about", "en") }}>
   <div class="container-page py-12 max-w-3xl">
     <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Über uns" }]} />
     <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-8" style="color: var(--color-text);">

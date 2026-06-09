@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import RestaurantCard from "../../../components/RestaurantCard.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import { restaurants } from "../../../data/restaurants";
+import { restaurantsEn } from "../../../i18n/en/restaurants";
+import { city } from "../../../data/city";
+import { homeUrl, indexUrl } from "../../../i18n/config";
+import { t, tf } from "../../../i18n/ui";
+
+const locale = "en" as const;
+
+const sorted = [...restaurants].sort((a, b) => {
+  const an = restaurantsEn[a.slug]?.name ?? a.name;
+  const bn = restaurantsEn[b.slug]?.name ?? b.name;
+  return an.localeCompare(bn, "en");
+});
+const cuisines = [...new Set(restaurants.map((r) => restaurantsEn[r.slug]?.cuisine ?? r.cuisine))].sort();
+---
+
+<BaseLayout
+  title={`Restaurants in ${city.name}`}
+  description={t(locale, "restaurants.metaDescription")}
+  locale={locale}
+  alternateUrls={{ de: indexUrl("restaurants", "de"), en: indexUrl("restaurants", "en") }}
+>
+  <div class="container-page py-12">
+    <Breadcrumbs
+      locale={locale}
+      items={[{ label: t(locale, "nav.home"), href: homeUrl(locale) }, { label: t(locale, "nav.restaurants") }]}
+    />
+    <header class="mb-12">
+      <p class="eyebrow mb-3">{tf(locale, "restaurants.count", { n: restaurants.length })}</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">{t(locale, "restaurants.heading")}</h1>
+      <p class="text-lg max-w-3xl mb-6" style="color: var(--color-text-body);">
+        {t(locale, "restaurants.listLead")}
+      </p>
+      <div class="flex flex-wrap gap-2">
+        {cuisines.map((c) => <span class="pill">{c}</span>)}
+      </div>
+    </header>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {sorted.map((r) => <RestaurantCard restaurant={r} locale={locale} />)}
+    </div>
+  </div>
+</BaseLayout>

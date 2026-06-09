@@ -13,6 +13,7 @@ import { events, isUpcoming, type CityEvent } from "../data/events";
 import { searchAccommodations, isWithinBookingWindow, type Stay22Accommodation } from "../lib/stay22";
 import { affiliate } from "../data/affiliate";
 import { city } from "../data/city";
+import { eventsEn } from "../i18n/en/events";
 
 export function getStaticPaths() {
   return events.map((e) => ({ params: { event: e.slug }, props: { event: e } }));
@@ -79,7 +80,11 @@ const eventSchema = event.eventStart
   : null;
 ---
 
-<BaseLayout title={event.title} description={event.description}>
+<BaseLayout
+  title={event.title}
+  description={event.description}
+  alternateUrls={{ de: `/hotels-karlsruhe-${event.slug}/`, en: `/en/hotels-karlsruhe-${eventsEn[event.slug].slug}/` }}
+>
   <div class="container-page py-10">
     <Breadcrumbs items={[
       { label: city.name, href: "/" },

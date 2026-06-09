@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { legal } from "../../data/legal";
+import { city } from "../../data/city";
+import { t, tf } from "../../i18n/ui";
+import { homeUrl, indexUrl } from "../../i18n/config";
+---
+
+<BaseLayout
+  title={t("en", "privacy.title")}
+  description={tf("en", "privacy.metaDescription", { site: city.name })}
+  noindex
+  locale="en"
+  alternateUrls={{ de: indexUrl("privacy", "de"), en: indexUrl("privacy", "en") }}
+>
+  <div class="container-page py-12 max-w-3xl">
+    <Breadcrumbs locale="en" items={[{ label: city.name, href: homeUrl("en") }, { label: t("en", "nav.privacy") }]} />
+    <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-8" style="color: var(--color-text);">{t("en", "privacy.heading")}</h1>
+
+    <div class="legal-prose">
+      <h2>{t("en", "privacy.controllerHeading")}</h2>
+      <p>{t("en", "privacy.controllerIntro")}</p>
+      <p>
+        <strong>{legal.companyName}</strong><br />
+        {legal.registeredOffice.street}<br />
+        {legal.registeredOffice.city} {legal.registeredOffice.postcode}<br />
+        {legal.registeredOffice.country}<br />
+        {t("en", "privacy.emailLabel")} <a href={`mailto:${legal.email}`}>{legal.email}</a>
+      </p>
+
+      <h2>{t("en", "privacy.generalHeading")}</h2>
+      <p>{t("en", "privacy.generalBody")}</p>
+
+      <h2>{t("en", "privacy.gtmHeading")}</h2>
+      <p>{t("en", "privacy.gtmBody")}</p>
+
+      <h2>{t("en", "privacy.adsenseHeading")}</h2>
+      <p set:html={tf("en", "privacy.adsenseBody", {
+        link: `<a href="https://policies.google.com/privacy" rel="nofollow noopener" target="_blank">${t("en", "privacy.googlePrivacyLinkLabel")}</a>`,
+      })} />
+
+      <h2>{t("en", "privacy.affiliateHeading")}</h2>
+      <p>{t("en", "privacy.affiliateBody")}</p>
+      <ul>
+        <li><a href="https://www.stay22.com/legal/privacy" rel="nofollow noopener" target="_blank">{t("en", "privacy.affiliateStay22")}</a></li>
+        <li><a href="https://www.getyourguide.com/de-de/datenschutz/" rel="nofollow noopener" target="_blank">{t("en", "privacy.affiliateGyg")}</a></li>
+        <li><a href="https://www.booking.com/content/privacy.html" rel="nofollow noopener" target="_blank">{t("en", "privacy.affiliateBooking")}</a></li>
+      </ul>
+
+      <h2>{t("en", "privacy.cookiesHeading")}</h2>
+      <p>{t("en", "privacy.cookiesBody")}</p>
+
+      <h2>{t("en", "privacy.rightsHeading")}</h2>
+      <ul>
+        <li>{t("en", "privacy.rightsAccess")}</li>
+        <li>{t("en", "privacy.rightsRectification")}</li>
+        <li>{t("en", "privacy.rightsErasure")}</li>
+        <li>{t("en", "privacy.rightsRestriction")}</li>
+        <li>{t("en", "privacy.rightsPortability")}</li>
+        <li>{t("en", "privacy.rightsObjection")}</li>
+        <li>{t("en", "privacy.rightsWithdraw")}</li>
+      </ul>
+      <p set:html={tf("en", "privacy.rightsContact", {
+        email: `<a href="mailto:${legal.email}">${legal.email}</a>`,
+      })} />
+
+      <h2>{t("en", "privacy.lastUpdatedHeading")}</h2>
+      <p>{t("en", "privacy.lastUpdatedBody")}</p>
+    </div>
+  </div>
+</BaseLayout>

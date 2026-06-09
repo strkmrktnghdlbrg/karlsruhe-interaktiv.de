@@ -1,0 +1,165 @@
+---
+/**
+ * Englische Saison-/Event-Landing-Pages fuer Stay22-Hotels.
+ * URL: /en/hotels-karlsruhe-das-fest/ etc. (Slug bleibt nah am Original).
+ * Spiegelt das deutsche Template; Texte/locale auf Englisch, Fetch-Logik 1:1.
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import Stay22HotelCard from "../../components/Stay22HotelCard.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
+import { getGygPlacement } from "../../data/gyg";
+import { events, isUpcoming, type CityEvent } from "../../data/events";
+import { eventsEn, type EventEn } from "../../i18n/en/events";
+import { searchAccommodations, isWithinBookingWindow, type Stay22Accommodation } from "../../lib/stay22";
+import { affiliate } from "../../data/affiliate";
+import { city } from "../../data/city";
+import { t, tf } from "../../i18n/ui";
+import { homeUrl, indexUrl } from "../../i18n/config";
+
+export function getStaticPaths() {
+  return events.map((e) => ({ params: { event: eventsEn[e.slug].slug }, props: { event: e, en: eventsEn[e.slug] } }));
+}
+
+interface Props { event: CityEvent; en: EventEn }
+
+const { event, en } = Astro.props as Props;
+const upcoming = isUpcoming(event);
+const bookable = upcoming && isWithinBookingWindow(event.checkin);
+const lmaId = affiliate.stay22.lmaId;
+
+let hotels: Stay22Accommodation[] | null = null;
+if (bookable) {
+  try {
+    hotels = await searchAccommodations({
+      provider: "booking",
+      ...(event.lat && event.lng
+        ? { lat: event.lat, lng: event.lng, radius: event.radius ?? 2500 }
+        : { address: event.address }),
+      type: "hotel",
+      checkin: event.checkin,
+      checkout: event.checkout,
+      minguestrating: 7.5,
+      max: event.maxPricePerNight,
+      limit: event.limit ?? 12,
+      currency: "EUR",
+      lang: "de",
+      aid: lmaId,
+      campaign: lmaId,
+    });
+  } catch (err) {
+    console.error(`[Event ${event.slug}] Stay22-Fetch:`, err);
+  }
+}
+
+const visible = hotels && hotels.length > 0 ? hotels.slice(0, event.limit ?? 12) : [];
+const fmt = (d: string) => new Date(d).toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" });
+const checkinFmt = fmt(event.checkin);
+const checkoutFmt = fmt(event.checkout);
+const nights = Math.round((new Date(event.checkout).getTime() - new Date(event.checkin).getTime()) / 86400000);
+const nightsLabel = nights === 1 ? tf("en", "events.night", { n: nights }) : tf("en", "events.nights", { n: nights });
+const otherEvents = events.filter((e) => e.slug !== event.slug && isUpcoming(e)).slice(0, 4);
+
+const hotelsHref = indexUrl("hotels", "en");
+const dePath = `/hotels-karlsruhe-${event.slug}/`;
+const enPath = `/en/hotels-karlsruhe-${en.slug}/`;
+
+const eventSchema = event.eventStart
+  ? {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      name: en.eyebrow,
+      description: en.intro,
+      startDate: event.eventStart,
+      ...(event.eventEnd && { endDate: event.eventEnd }),
+      eventStatus: "https://schema.org/EventScheduled",
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      url: `${city.domain}${enPath}`,
+      location: {
+        "@type": "Place",
+        name: en.address,
+        address: { "@type": "PostalAddress", addressLocality: city.name, addressCountry: city.countryCode },
+        ...(event.lat && event.lng && {
+          geo: { "@type": "GeoCoordinates", latitude: event.lat, longitude: event.lng },
+        }),
+      },
+    }
+  : null;
+---
+
+<BaseLayout
+  title={en.title}
+  description={en.description}
+  locale="en"
+  alternateUrls={{ de: dePath, en: enPath }}
+>
+  <div class="container-page py-10">
+    <Breadcrumbs locale="en" items={[
+      { label: city.name, href: homeUrl("en") },
+      { label: t("en", "nav.hotels"), href: hotelsHref },
+      { label: en.eyebrow },
+    ]} />
+
+    <div class="max-w-3xl mb-8">
+      <p class="eyebrow mb-2">{en.eyebrow}</p>
+      <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-4" style="color: var(--color-text);">{en.title}</h1>
+      <p class="text-lg leading-relaxed mb-4" style="color: var(--color-text-body);">{en.intro}</p>
+      <div class="flex flex-wrap items-center gap-3 text-sm">
+        <span class="pill">{tf("en", "events.checkin", { date: checkinFmt })}</span>
+        <span class="pill">{tf("en", "events.checkout", { date: checkoutFmt })}</span>
+        <span class="pill">{nightsLabel}</span>
+      </div>
+    </div>
+
+    {!upcoming && (
+      <div class="card p-6 max-w-3xl mb-8">
+        <p class="text-sm" style="color: var(--color-text-body);" set:html={
+          tf("en", "events.pastNotice", { link: `<a href="${hotelsHref}" class="link-accent font-semibold">${t("en", "events.hotelIndexLink")}</a>` })
+        }></p>
+      </div>
+    )}
+
+    {upcoming && !bookable && (
+      <div class="card p-6 max-w-3xl mb-8">
+        <p class="text-sm" style="color: var(--color-text-body);" set:html={
+          tf("en", "events.notBookableNotice", { link: `<a href="${hotelsHref}" class="link-accent font-semibold">${t("en", "events.hotelIndexLink")}</a>` })
+        }></p>
+      </div>
+    )}
+
+    {bookable && visible.length === 0 && (
+      <div class="card p-6 max-w-3xl mb-8">
+        <p class="text-sm" style="color: var(--color-text-body);" set:html={
+          tf("en", "events.noHotelsNotice", { link: `<a href="${hotelsHref}" class="link-accent font-semibold">${t("en", "events.fullHotelIndexLink")}</a>` })
+        }></p>
+      </div>
+    )}
+
+    {bookable && visible.length > 0 && (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {visible.map((h) => <Stay22HotelCard hotel={h} priceMode="total" />)}
+      </div>
+    )}
+
+    {bookable && visible.length > 0 && (
+      <p class="text-[11px] mt-6 leading-relaxed max-w-3xl" style="color: var(--color-text-muted);">
+        {tf("en", "events.priceNote", { from: checkinFmt, to: checkoutFmt, nights: nightsLabel })}
+      </p>
+    )}
+
+    <GetYourGuideWidget placement={getGygPlacement(`event:${event.slug}`)} />
+
+    {otherEvents.length > 0 && (
+      <section class="mt-14 pt-8 border-t" style="border-color: var(--color-border);">
+        <h2 class="text-2xl font-semibold mb-5" style="color: var(--color-text);">{t("en", "events.otherHeading")}</h2>
+        <div class="flex flex-wrap gap-3">
+          {otherEvents.map((e) => (
+            <a href={`/en/hotels-karlsruhe-${eventsEn[e.slug].slug}/`} class="pill">{eventsEn[e.slug].eyebrow}</a>
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+
+  {eventSchema && <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} is:inline></script>}
+</BaseLayout>

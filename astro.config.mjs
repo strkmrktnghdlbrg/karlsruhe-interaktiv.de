@@ -5,6 +5,11 @@ import tailwind from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://karlsruhe-interaktiv.de",
   output: "static",
+  i18n: {
+    defaultLocale: "de",
+    locales: ["de", "en"],
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [
     sitemap({
       filter: (page) =>
@@ -13,7 +18,11 @@ export default defineConfig({
         !page.includes("/agb") &&
         !page.includes("/404") &&
         !page.includes("/werben") &&
-        !page.includes("/news/"),
+        !page.includes("/news/") &&
+        !page.includes("/en/imprint") &&
+        !page.includes("/en/privacy") &&
+        !page.includes("/en/terms") &&
+        !page.includes("/en/news/"),
     }),
   ],
   vite: {

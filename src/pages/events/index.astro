@@ -4,6 +4,7 @@ import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { events, isUpcoming } from "../../data/events";
 import { getGygPlacement } from "../../data/gyg";
+import { indexUrl } from "../../i18n/config";
 
 const sorted = [...events].sort((a, b) => new Date(a.checkin).getTime() - new Date(b.checkin).getTime());
 const fmtRange = (ci: string, co: string) => {
@@ -16,6 +17,7 @@ const fmtRange = (ci: string, co: string) => {
 <BaseLayout
   title="Events & Termine in Karlsruhe"
   description="Karlsruher Events 2026: Das Fest, Schlosslichtspiele, Christkindlesmarkt, art Karlsruhe. Mit aktuellen Hotelpreisen fuer jeden Termin."
+  alternateUrls={{ de: indexUrl("events", "de"), en: indexUrl("events", "en") }}
 >
   <div class="container-page py-12">
     <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "Events"}]} />

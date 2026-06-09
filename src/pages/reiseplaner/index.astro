@@ -6,11 +6,12 @@ import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { guides } from "../../data/guides";
 import { getGygPlacement } from "../../data/gyg";
 import { features } from "../../data/features";
+import { indexUrl } from "../../i18n/config";
 
 if (!features.reiseplaner.enabled) return Astro.redirect("/", 302);
 ---
 
-<BaseLayout title="Reiseplaner" description="Reise-Guides fuer Karlsruhe: 3 Tage, mit Kindern, bei Regen — Tag-fuer-Tag-Routen mit Hotel- und Restaurant-Empfehlungen.">
+<BaseLayout title="Reiseplaner" description="Reise-Guides fuer Karlsruhe: 3 Tage, mit Kindern, bei Regen — Tag-fuer-Tag-Routen mit Hotel- und Restaurant-Empfehlungen." alternateUrls={{ de: indexUrl("guides", "de"), en: indexUrl("guides", "en") }}>
   <div class="container-page py-12">
     <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "Reiseplaner"}]} />
     <header class="mb-12">

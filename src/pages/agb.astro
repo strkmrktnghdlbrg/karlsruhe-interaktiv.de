@@ -3,9 +3,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import { legal } from "../data/legal";
 import { city } from "../data/city";
+import { indexUrl } from "../i18n/config";
 ---
 
-<BaseLayout title="AGB / Nutzungsbedingungen" noindex>
+<BaseLayout title="AGB / Nutzungsbedingungen" noindex alternateUrls={{ de: indexUrl("terms", "de"), en: indexUrl("terms", "en") }}>
   <div class="container-page py-12 max-w-3xl">
     <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "AGB" }]} />
     <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-8" style="color: var(--color-text);">Nutzungsbedingungen</h1>

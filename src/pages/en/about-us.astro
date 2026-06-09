@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { city } from "../../data/city";
+import { t, tf } from "../../i18n/ui";
+import { homeUrl, indexUrl } from "../../i18n/config";
+
+const title = t("en", "about.title");
+const description = tf("en", "about.metaDescription", { site: city.name });
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  locale="en"
+  alternateUrls={{ de: indexUrl("about", "de"), en: indexUrl("about", "en") }}
+>
+  <div class="container-page py-12 max-w-3xl">
+    <Breadcrumbs locale="en" items={[{ label: city.name, href: homeUrl("en") }, { label: t("en", "about.title") }]} />
+    <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-8" style="color: var(--color-text);">
+      {tf("en", "about.heading", { site: city.name })}
+    </h1>
+
+    <div class="legal-prose">
+      <p>{tf("en", "about.lead", { site: city.name })}</p>
+
+      <h2>{t("en", "about.standardsHeading")}</h2>
+      <p>{tf("en", "about.standardsBody", { site: city.name })}</p>
+
+      <h2>{t("en", "about.selectionHeading")}</h2>
+      <p>{tf("en", "about.selectionBody", { site: city.name })}</p>
+
+      <h2>{t("en", "about.sourcesHeading")}</h2>
+      <p>{t("en", "about.sourcesBody")}</p>
+
+      <h2>{t("en", "about.affiliateHeading")}</h2>
+      <p set:html={tf("en", "about.affiliateBody", {
+        link: `<a href="${indexUrl("privacy", "en")}">${t("en", "about.privacyLinkLabel")}</a>`,
+      })} />
+
+      <h2>{t("en", "about.contactHeading")}</h2>
+      <p set:html={tf("en", "about.contactBody", {
+        link: `<a href="${indexUrl("imprint", "en")}">${t("en", "about.imprintLinkLabel")}</a>`,
+      })} />
+    </div>
+  </div>
+</BaseLayout>

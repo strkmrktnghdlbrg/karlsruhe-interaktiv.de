@@ -1,0 +1,111 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import HueGradient from "../../../components/HueGradient.astro";
+import SightCard from "../../../components/SightCard.astro";
+import HotelCard from "../../../components/HotelCard.astro";
+import RestaurantCard from "../../../components/RestaurantCard.astro";
+import Stay22NearbyHotels from "../../../components/Stay22NearbyHotels.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import { districts } from "../../../data/districts";
+import type { District } from "../../../data/districts";
+import { sightsByDistrict } from "../../../data/sights";
+import { topHotelsByDistrict } from "../../../data/hotels";
+import { restaurantsByDistrict } from "../../../data/restaurants";
+import { getGygPlacement } from "../../../data/gyg";
+import { districtsEn, type DistrictEn } from "../../../i18n/en/districts";
+import { detailUrl, homeUrl, indexUrl } from "../../../i18n/config";
+import { t, tf } from "../../../i18n/ui";
+
+export function getStaticPaths() {
+  return districts.map((d) => ({
+    params: { slug: districtsEn[d.slug].slug },
+    props: { district: d, en: districtsEn[d.slug] },
+  }));
+}
+
+interface Props {
+  district: District;
+  en: DistrictEn;
+}
+
+const { district, en } = Astro.props;
+const locale = "en";
+
+const name = en.name;
+const sightItems = sightsByDistrict(district.slug);
+const hotelItems = topHotelsByDistrict(district.slug, 8);
+const restItems = restaurantsByDistrict(district.slug).slice(0, 8);
+---
+
+<BaseLayout
+  title={name}
+  description={en.shortDesc}
+  locale={locale}
+  alternateUrls={{
+    de: `/bezirke/${district.slug}/`,
+    en: detailUrl("districts", en.slug, "en"),
+  }}
+>
+  <div class="container-page py-12">
+    <Breadcrumbs
+      locale={locale}
+      items={[
+        { label: t(locale, "nav.home"), href: homeUrl(locale) },
+        { label: t(locale, "nav.districts"), href: indexUrl("districts", locale) },
+        { label: name },
+      ]}
+    />
+
+    <header class="grid lg:grid-cols-[2fr_1fr] gap-10 mb-12">
+      <div>
+        <p class="eyebrow mb-3">{t(locale, "detail.district")}</p>
+        <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-6" style="color: var(--color-text);">{name}</h1>
+        <p class="text-lg leading-relaxed mb-6" style="color: var(--color-text-body);">{en.longDesc}</p>
+        <div class="flex flex-wrap gap-2">
+          {en.characterTags.map((tag) => <span class="pill">{tag}</span>)}
+        </div>
+      </div>
+      <div class="aspect-[4/3] overflow-hidden" style="border-radius: var(--radius-card);">
+        <HueGradient hue={district.hue} label={name} />
+      </div>
+    </header>
+
+    {sightItems.length > 0 && (
+      <section class="section">
+        <h2 class="text-3xl font-semibold mb-6" style="color: var(--color-text);">{tf(locale, "detail.sightsIn", { name })}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {sightItems.map((s) => <SightCard sight={s} locale={locale} />)}
+        </div>
+      </section>
+    )}
+
+    {hotelItems.length > 0 && (
+      <section class="section border-t" style="border-color: var(--color-border);">
+        <h2 class="text-3xl font-semibold mb-6" style="color: var(--color-text);">{tf(locale, "detail.hotelsIn", { name })}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {hotelItems.map((h) => <HotelCard hotel={h} locale={locale} />)}
+        </div>
+      </section>
+    )}
+
+    {restItems.length > 0 && (
+      <section class="section border-t" style="border-color: var(--color-border);">
+        <h2 class="text-3xl font-semibold mb-6" style="color: var(--color-text);">{tf(locale, "detail.restaurantsIn", { name })}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {restItems.map((r) => <RestaurantCard restaurant={r} locale={locale} />)}
+        </div>
+      </section>
+    )}
+
+    <GetYourGuideWidget placement={getGygPlacement(`district:${district.slug}`)} />
+
+    <Stay22NearbyHotels
+      lat={district.coordinates[0]}
+      lng={district.coordinates[1]}
+      near={name}
+      radius={2500}
+      limit={4}
+    />
+  </div>
+</BaseLayout>

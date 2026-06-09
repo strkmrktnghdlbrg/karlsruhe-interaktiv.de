@@ -1,0 +1,82 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import SightCard from "../../components/SightCard.astro";
+import NewsCard from "../../components/NewsCard.astro";
+import { sightsByCategory } from "../../data/sights";
+import { news } from "../../data/news";
+import { features } from "../../data/features";
+import { t } from "../../i18n/ui";
+import { homeUrl, indexUrl } from "../../i18n/config";
+
+const techSights = sightsByCategory("tech-innovation");
+const sciSights = sightsByCategory("wissenschaft");
+const hubSights = [...new Map([...techSights, ...sciSights].map((s) => [s.slug, s])).values()];
+const techNews = features.news.enabled
+  ? news.filter((n) => n.category === "Tech" || n.category === "Wissenschaft")
+      .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+  : [];
+
+const institutions = [
+  { name: "KIT — Karlsruhe Institute of Technology", desc: "One of Europe's major technical universities, combining a university and a Helmholtz research centre. Around 25,000 students.", url: "https://www.kit.edu" },
+  { name: "FZI Research Center for Information Technology", desc: "One of the leading innovation and transfer institutes for applied computer science in Germany.", url: "https://www.fzi.de" },
+  { name: "CyberForum", desc: "One of the largest IT clusters in Europe, with over 1,000 member companies from the Karlsruhe technology region.", url: "https://www.cyberforum.de" },
+  { name: "ZKM Center for Art and Media", desc: "The world's only museum devoted systematically to electronic and digital art.", url: "https://zkm.de" },
+  { name: "Fraunhofer IOSB", desc: "Fraunhofer Institute of Optronics, System Technologies and Image Exploitation — AI, image processing and autonomous systems.", url: "https://www.iosb.fraunhofer.de" },
+  { name: "Federal Constitutional Court", desc: "Guardian of the Basic Law — increasingly shaping digital fundamental rights and data protection in Germany.", url: "https://www.bundesverfassungsgericht.de" },
+];
+---
+
+<BaseLayout
+  title={t("en", "tech.metaTitle")}
+  description={t("en", "tech.metaDescription")}
+  locale="en"
+  alternateUrls={{ de: indexUrl("tech", "de"), en: indexUrl("tech", "en") }}
+>
+  <section class="hero-faecher">
+    <div class="container-page py-20 sm:py-28">
+      <Breadcrumbs locale="en" items={[{label: t("en", "nav.home"), href: homeUrl("en")}, {label: t("en", "tech.breadcrumb")}]} />
+      <p class="eyebrow mb-4">{t("en", "tech.eyebrow")}</p>
+      <h1 class="text-4xl sm:text-7xl font-medium tracking-tighter mb-6 leading-[0.95]" style="color: var(--color-text);">
+        Tech Hub<br/><span style="color: var(--color-accent);">Karlsruhe</span>
+      </h1>
+      <p class="text-lg sm:text-xl max-w-2xl leading-relaxed" style="color: var(--color-text-body);">
+        {t("en", "tech.heroLead")}
+      </p>
+    </div>
+  </section>
+
+  <section class="container-page section">
+    <h2 class="text-3xl font-semibold mb-8" style="color: var(--color-text);">{t("en", "tech.institutionsHeading")}</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {institutions.map((i) => (
+        <a href={i.url} rel="nofollow noopener" target="_blank" class="card group block p-6">
+          <h3 class="text-lg font-semibold mb-2" style="color: var(--color-text);">{i.name}</h3>
+          <p class="text-sm leading-relaxed mb-3" style="color: var(--color-text-body);">{i.desc}</p>
+          <span class="link-accent text-sm">{t("en", "tech.website")}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {hubSights.length > 0 && (
+    <section class="container-page section border-t" style="border-color: var(--color-border);">
+      <h2 class="text-3xl font-semibold mb-8" style="color: var(--color-text);">{t("en", "tech.experienceHeading")}</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {hubSights.map((s) => <SightCard sight={s} locale="en" />)}
+      </div>
+    </section>
+  )}
+
+  {techNews.length > 0 && (
+    <section class="container-page section border-t" style="border-color: var(--color-border);">
+      <div class="flex items-end justify-between mb-8">
+        <h2 class="text-3xl font-semibold" style="color: var(--color-text);">{t("en", "tech.newsHeading")}</h2>
+        <a href={indexUrl("news", "en")} class="hidden sm:inline-flex link-accent text-sm">{t("en", "tech.allNews")}</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {techNews.map((n) => <NewsCard item={n} locale="en" />)}
+      </div>
+    </section>
+  )}
+</BaseLayout>

@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import SightCard from "../../../components/SightCard.astro";
+import RestaurantCard from "../../../components/RestaurantCard.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import { categories } from "../../../data/categories";
+import { categoriesEn } from "../../../i18n/en/categories";
+import { sightsByCategory } from "../../../data/sights";
+import { restaurantsByCategory } from "../../../data/restaurants";
+import { getGygPlacement } from "../../../data/gyg";
+import { homeUrl, indexUrl, detailUrl } from "../../../i18n/config";
+import { t, tf } from "../../../i18n/ui";
+
+export function getStaticPaths() {
+  return categories
+    .filter((c) => sightsByCategory(c.slug).length > 0 || restaurantsByCategory(c.slug).length > 0)
+    .map((c) => ({ params: { slug: categoriesEn[c.slug].slug }, props: { cat: c, en: categoriesEn[c.slug] } }));
+}
+
+const { cat, en } = Astro.props;
+const locale = "en";
+const cSights = sightsByCategory(cat.slug);
+const cRest = restaurantsByCategory(cat.slug);
+---
+
+<BaseLayout
+  title={en.name}
+  description={tf(locale, "categories.metaDescription", { name: en.name, desc: en.shortDesc })}
+  locale={locale}
+  alternateUrls={{ de: `/kategorien/${cat.slug}/`, en: detailUrl("categories", en.slug, locale) }}
+>
+  <div class="container-page py-12">
+    <Breadcrumbs locale={locale} items={[
+      {label: t(locale, "nav.home"), href: homeUrl(locale)},
+      {label: t(locale, "categories.indexTitle"), href: indexUrl("categories", locale)},
+      {label: en.name},
+    ]} />
+    <header class="mb-12">
+      <p class="eyebrow mb-3">{t(locale, "categories.eyebrow")}</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">{tf(locale, "categories.detailHeading", { name: en.name })}</h1>
+      <p class="text-lg max-w-3xl" style="color: var(--color-text-body);">{en.shortDesc}</p>
+    </header>
+
+    {cSights.length > 0 && (
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold mb-6" style="color: var(--color-text);">{t(locale, "categories.sightsHeading")}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {cSights.map((s) => <SightCard sight={s} locale={locale} />)}
+        </div>
+      </section>
+    )}
+
+    {cRest.length > 0 && (
+      <section>
+        <h2 class="text-2xl font-semibold mb-6" style="color: var(--color-text);">{t(locale, "categories.restaurantsHeading")}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {cRest.map((r) => <RestaurantCard restaurant={r} locale={locale} />)}
+        </div>
+      </section>
+    )}
+
+    <GetYourGuideWidget placement={getGygPlacement(`category:${cat.slug}`)} />
+  </div>
+</BaseLayout>

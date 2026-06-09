@@ -6,6 +6,8 @@ import RelatedItems from "../../components/RelatedItems.astro";
 import Stay22NearbyHotels from "../../components/Stay22NearbyHotels.astro";
 import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { sights, getSight } from "../../data/sights";
+import { sightsEn } from "../../i18n/en/sights";
+import { detailUrl } from "../../i18n/config";
 import { getDistrict } from "../../data/districts";
 import { getCategory } from "../../data/categories";
 import { getGygPlacement } from "../../data/gyg";
@@ -33,7 +35,7 @@ const schema = {
 };
 ---
 
-<BaseLayout title={sight.name} description={sight.shortDesc}>
+<BaseLayout title={sight.name} description={sight.shortDesc} alternateUrls={{ de: `/sehenswuerdigkeiten/${sight.slug}/`, en: detailUrl("sights", sightsEn[sight.slug].slug, "en") }}>
   <article class="container-page py-12">
     <Breadcrumbs items={[
       { label: "Start", href: "/" },

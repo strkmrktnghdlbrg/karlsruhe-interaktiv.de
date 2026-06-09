@@ -6,6 +6,8 @@ import AttributionFooter from "../../components/AttributionFooter.astro";
 import { news, getNewsItem, recentNews } from "../../data/news";
 import NewsCard from "../../components/NewsCard.astro";
 import { features } from "../../data/features";
+import { detailUrl } from "../../i18n/config";
+import { newsEn } from "../../i18n/en/news";
 
 export function getStaticPaths() {
   return news.map((n) => ({ params: { slug: n.slug } }));
@@ -18,7 +20,7 @@ const date = new Date(item.publishedAt).toLocaleDateString("de-DE", { day: "2-di
 const related = recentNews(4).filter((n) => n.slug !== item.slug).slice(0, 3);
 ---
 
-<BaseLayout title={item.title} description={item.lead}>
+<BaseLayout title={item.title} description={item.lead} alternateUrls={{ de: detailUrl("news", item.slug, "de"), en: detailUrl("news", newsEn[item.slug].slug, "en") }}>
   <article class="container-page py-12 max-w-3xl">
     <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "News", href: "/news/"}, {label: item.title}]} />
 

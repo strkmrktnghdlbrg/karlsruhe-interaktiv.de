@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import { categories } from "../../../data/categories";
+import { categoriesEn } from "../../../i18n/en/categories";
+import { sightsByCategory } from "../../../data/sights";
+import { restaurantsByCategory } from "../../../data/restaurants";
+import { getGygPlacement } from "../../../data/gyg";
+import { homeUrl, detailUrl } from "../../../i18n/config";
+import { t, tf } from "../../../i18n/ui";
+
+const locale = "en";
+---
+
+<BaseLayout
+  title={t(locale, "categories.indexTitle")}
+  description={t(locale, "categories.indexDescription")}
+  locale={locale}
+  alternateUrls={{ de: "/kategorien/", en: "/en/categories/" }}
+>
+  <div class="container-page py-12">
+    <Breadcrumbs locale={locale} items={[{label: t(locale, "nav.home"), href: homeUrl(locale)}, {label: t(locale, "categories.indexTitle")}]} />
+    <header class="mb-12">
+      <p class="eyebrow mb-3">{tf(locale, "categories.count", { n: categories.length })}</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">{t(locale, "categories.heading")}</h1>
+      <p class="text-lg max-w-3xl" style="color: var(--color-text-body);">
+        {t(locale, "categories.intro")}
+      </p>
+    </header>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {categories.map((c) => {
+        const en = categoriesEn[c.slug];
+        const sCount = sightsByCategory(c.slug).length;
+        const rCount = restaurantsByCategory(c.slug).length;
+        return (
+          <a href={detailUrl("categories", en.slug, locale)} class="card group block p-6">
+            <h3 class="text-xl font-semibold mb-2" style="color: var(--color-text);">{en.name}</h3>
+            <p class="text-sm mb-4" style="color: var(--color-text-body);">{en.shortDesc}</p>
+            <div class="flex gap-3 text-xs" style="color: var(--color-text-muted);">
+              <span><strong style="color: var(--color-text);">{sCount}</strong> {t(locale, "categories.cardSights")}</span>
+              <span><strong style="color: var(--color-text);">{rCount}</strong> {t(locale, "categories.cardRestaurants")}</span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+
+    <GetYourGuideWidget placement={getGygPlacement("page:categories-index")} />
+  </div>
+</BaseLayout>

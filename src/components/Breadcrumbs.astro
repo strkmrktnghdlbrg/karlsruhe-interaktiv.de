@@ -1,8 +1,9 @@
 ---
 import { city } from "../data/city";
+import type { Locale } from "../i18n/config";
 
 interface Crumb { label: string; href?: string }
-interface Props { items: Crumb[] }
+interface Props { items: Crumb[]; locale?: Locale }
 const { items } = Astro.props;
 
 const breadcrumbSchema = {

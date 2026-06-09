@@ -1,0 +1,131 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SightCard from "../../components/SightCard.astro";
+import HotelCard from "../../components/HotelCard.astro";
+import DistrictCard from "../../components/DistrictCard.astro";
+import NewsCard from "../../components/NewsCard.astro";
+import Stay22TopHotels from "../../components/Stay22TopHotels.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
+import { city } from "../../data/city";
+import { getGygPlacement } from "../../data/gyg";
+import { sights } from "../../data/sights";
+import { topHotels } from "../../data/hotels";
+import { districts } from "../../data/districts";
+import { recentNews } from "../../data/news";
+import { features } from "../../data/features";
+import { t } from "../../i18n/ui";
+import { indexUrl } from "../../i18n/config";
+
+const featuredSights = sights.slice(0, 6);
+const featuredHotels = topHotels(4);
+const featuredDistricts = districts.slice(0, 6);
+const featuredNews = features.news.enabled ? recentNews(3) : [];
+---
+
+<BaseLayout
+  title={city.name}
+  description={city.description.long}
+  locale="en"
+  alternateUrls={{ de: "/", en: "/en/" }}
+>
+  <!-- HERO with fan gradient -->
+  <section class="hero-faecher relative">
+    <div class="container-page py-24 sm:py-32 lg:py-40 text-center">
+      <p class="eyebrow mb-6">{t("en", "home.eyebrow")}</p>
+      <h1 class="text-5xl sm:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.95] mb-6" style="color: var(--color-text);">
+        Karlsruhe<br/>
+        <span style="color: var(--color-text-muted);">interactive.</span>
+      </h1>
+      <p class="text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-10" style="color: var(--color-text-body);">
+        {t("en", "home.heroTagline")}
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href={indexUrl("sights", "en")} class="btn-primary">{t("en", "home.ctaSights")}</a>
+        <a href={indexUrl("tech", "en")} class="btn-outline">{t("en", "home.ctaTech")}</a>
+      </div>
+
+      <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto">
+        <div class="text-center">
+          <p class="text-3xl font-medium" style="color: var(--color-accent);">{city.stats.sights}</p>
+          <p class="text-xs uppercase tracking-widest mt-1" style="color: var(--color-text-muted);">{t("en", "home.statSights")}</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl font-medium" style="color: var(--color-accent);">{city.stats.hotels}</p>
+          <p class="text-xs uppercase tracking-widest mt-1" style="color: var(--color-text-muted);">{t("en", "home.statHotels")}</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl font-medium" style="color: var(--color-accent);">{city.stats.restaurants}</p>
+          <p class="text-xs uppercase tracking-widest mt-1" style="color: var(--color-text-muted);">{t("en", "home.statRestaurants")}</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl font-medium" style="color: var(--color-accent);">{city.stats.districts}</p>
+          <p class="text-xs uppercase tracking-widest mt-1" style="color: var(--color-text-muted);">{t("en", "home.statDistricts")}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOP SIGHTS -->
+  <section class="container-page section">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <p class="eyebrow mb-2">{t("en", "home.highlights")}</p>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight" style="color: var(--color-text);">{t("en", "home.sightsHeading")}</h2>
+      </div>
+      <a href={indexUrl("sights", "en")} class="hidden sm:inline-flex link-accent text-sm">{t("en", "home.seeAll")}</a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {featuredSights.map((s) => <SightCard sight={s} locale="en" />)}
+    </div>
+  </section>
+
+  <!-- GETYOURGUIDE TOURS & TICKETS -->
+  <section class="container-page">
+    <GetYourGuideWidget placement={getGygPlacement("page:home")} />
+  </section>
+
+  <!-- DISTRICTS -->
+  <section class="container-page section">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <p class="eyebrow mb-2">{t("en", "home.faecherEyebrow")}</p>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight" style="color: var(--color-text);">{t("en", "home.districtsHeading")}</h2>
+      </div>
+      <a href={indexUrl("districts", "en")} class="hidden sm:inline-flex link-accent text-sm">{t("en", "home.allDistricts")}</a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {featuredDistricts.map((d) => <DistrictCard district={d} locale="en" />)}
+    </div>
+  </section>
+
+  <!-- TOP HOTELS (Live Stay22 + editorial) -->
+  <section class="container-page section">
+    <div class="flex items-end justify-between mb-2">
+      <div>
+        <p class="eyebrow mb-2">{t("en", "home.stayEyebrow")}</p>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight" style="color: var(--color-text);">{t("en", "home.hotelsHeading")}</h2>
+      </div>
+      <a href={indexUrl("hotels", "en")} class="hidden sm:inline-flex link-accent text-sm">{t("en", "home.allHotels")}</a>
+    </div>
+    <Stay22TopHotels limit={4} title="" lead={t("en", "home.hotelsLead")} />
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-4">
+      {featuredHotels.map((h) => <HotelCard hotel={h} locale="en" />)}
+    </div>
+  </section>
+
+  <!-- NEWS / Tech USP -->
+  {features.news.enabled && featuredNews.length > 0 && (
+    <section class="container-page section">
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <p class="eyebrow mb-2">{t("en", "home.newsEyebrow")}</p>
+          <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight" style="color: var(--color-text);">{t("en", "home.newsHeading")}</h2>
+        </div>
+        <a href={indexUrl("news", "en")} class="hidden sm:inline-flex link-accent text-sm">{t("en", "home.allNews")}</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {featuredNews.map((n) => <NewsCard item={n} locale="en" />)}
+      </div>
+    </section>
+  )}
+</BaseLayout>
