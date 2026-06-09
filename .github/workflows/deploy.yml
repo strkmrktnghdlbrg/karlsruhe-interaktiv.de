@@ -56,8 +56,4 @@ jobs:
           host: ssh.gb.stackcp.com
           username: top10-heidelberg.de
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /home/sites/20a/9/9a9f6d1c7a/public_html/karlsruhe-interaktiv.de/astro-site
-            git fetch origin main
-            git checkout main
-            git pull origin main
+          script: "cd /home/sites/20a/9/9a9f6d1c7a/public_html/karlsruhe-interaktiv.de/astro-site && git fetch origin main && git checkout main && git pull origin main"
