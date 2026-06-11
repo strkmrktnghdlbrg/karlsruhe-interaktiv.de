@@ -1,0 +1,115 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { branchen, getBranche } from "../data/branchen";
+import { city } from "../data/city";
+
+export function getStaticPaths() {
+  return branchen.map((b) => ({ params: { branche: b.slug } }));
+}
+
+const { branche } = Astro.params;
+const item = getBranche(branche!);
+if (!item) return Astro.redirect("/404");
+
+// Vorschlaege fuer interne Verlinkung (andere Branchen, alphabetisch nahe)
+const others = branchen.filter((b) => b.slug !== item.slug);
+const related = others.slice(0, 12);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: item.title,
+  description: item.description,
+  url: `${city.domain}/${item.slug}/`,
+  isPartOf: { "@id": `${city.domain}/#website` },
+  about: { "@type": "City", name: city.name },
+};
+---
+
+<BaseLayout title={item.title} description={item.description}>
+  <article class="container-page py-12">
+    <Breadcrumbs items={[
+      { label: "Start", href: "/" },
+      { label: "Branchenbuch", href: "/branchenbuch/" },
+      { label: item.label },
+    ]} />
+
+    <header class="mb-10 max-w-3xl">
+      <p class="eyebrow mb-3">Branchenbuch &middot; {city.name}</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">{item.title}</h1>
+      <p class="text-lg leading-relaxed" style="color: var(--color-text-body);">{item.description}</p>
+    </header>
+
+    <div class="branchen-prose max-w-3xl" set:html={item.bodyHtml} />
+
+    <p class="mt-10 text-xs max-w-3xl" style="color: var(--color-text-subtle);">
+      Hinweis: Die Anbieterangaben (Adressen, Kontaktdaten, Leistungen) stammen aus
+      unserer redaktionellen Recherche und werden ohne Gewaehr bereitgestellt.
+      Bitte pruefe Details direkt beim jeweiligen Anbieter.
+    </p>
+
+    <section class="mt-14 pt-10 border-t" style="border-color: var(--color-border);">
+      <h2 class="text-sm font-bold uppercase tracking-widest mb-5" style="color: var(--color-text);">Weitere Branchen in Karlsruhe</h2>
+      <div class="flex flex-wrap gap-2">
+        {related.map((b) => (
+          <a href={`/${b.slug}/`} class="pill">{b.label}</a>
+        ))}
+        <a href="/branchenbuch/" class="pill-accent">Alle Branchen &rarr;</a>
+      </div>
+    </section>
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline></script>
+  </article>
+</BaseLayout>
+
+<style>
+  .branchen-prose :global(h2) {
+    font-size: 1.6rem;
+    line-height: 1.25;
+    font-weight: 600;
+    margin: 2.4rem 0 0.9rem;
+    color: var(--color-text);
+    scroll-margin-top: 5rem;
+  }
+  .branchen-prose :global(h3) {
+    font-size: 1.18rem;
+    font-weight: 600;
+    margin: 1.7rem 0 0.6rem;
+    color: var(--color-text);
+  }
+  .branchen-prose :global(h4) {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 1.3rem 0 0.5rem;
+    color: var(--color-text);
+  }
+  .branchen-prose :global(p) {
+    margin: 0.9rem 0;
+    line-height: 1.75;
+    color: var(--color-text-body);
+  }
+  .branchen-prose :global(ul),
+  .branchen-prose :global(ol) {
+    margin: 0.9rem 0;
+    padding-left: 1.4rem;
+    color: var(--color-text-body);
+    line-height: 1.7;
+  }
+  .branchen-prose :global(ul) { list-style: disc; }
+  .branchen-prose :global(ol) { list-style: decimal; }
+  .branchen-prose :global(li) { margin: 0.35rem 0; }
+  .branchen-prose :global(strong) { color: var(--color-text); font-weight: 600; }
+  .branchen-prose :global(a) {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .branchen-prose :global(blockquote) {
+    margin: 1.4rem 0;
+    padding: 0.4rem 0 0.4rem 1.1rem;
+    border-left: 3px solid var(--color-accent);
+    color: var(--color-text);
+    font-style: italic;
+  }
+</style>

@@ -95,6 +95,9 @@ const brandDesc = isEn ? t(locale, "footer.brandDesc") : city.description.short;
             <li><a href={guidesHref} class="text-sm" style="color: var(--color-text-muted);">{t(locale, "nav.guides")}</a></li>
           )}
           <li><a href={allCategoriesHref} class="text-sm" style="color: var(--color-text-muted);">{t(locale, "footer.allCategories")}</a></li>
+          {!isEn && (
+            <li><a href="/branchenbuch/" class="text-sm" style="color: var(--color-text-muted);">Branchenbuch</a></li>
+          )}
           <li><a href={eventsHref} class="text-sm" style="color: var(--color-text-muted);">{t(locale, "footer.eventsDates")}</a></li>
           <li><a href={aboutHref} class="text-sm" style="color: var(--color-text-muted);">{t(locale, "footer.about")}</a></li>
           {features.news.enabled && (

@@ -10,6 +10,46 @@ ErrorDocument 404 /404.html
   RewriteCond %{HTTP_HOST} !^www\.karlsruhe-interaktiv\.de$ [NC]
   RewriteRule ^(.*)$ https://www.karlsruhe-interaktiv.de/$1 [L,R=301]
 
+  # ===================================================================
+  # 301-Weiterleitungen alter WordPress-URLs (Migration -> Astro)
+  # Erhaelt Rankings/Backlinks und beseitigt 404-Fehler (GA4).
+  # ===================================================================
+
+  # --- Stadt-/Tourismus-Content auf das jeweilige neue Pendant ---
+  RewriteRule ^schloss/?$ /sehenswuerdigkeiten/karlsruher-schloss/ [R=301,L]
+  RewriteRule ^universitaet-kit/?$ /sehenswuerdigkeiten/kit-campus-sued/ [R=301,L]
+  RewriteRule ^bundesgerichtshof/?$ /sehenswuerdigkeiten/bundesverfassungsgericht/ [R=301,L]
+  RewriteRule ^hoftheater/?$ /sehenswuerdigkeiten/badisches-staatstheater/ [R=301,L]
+  RewriteRule ^majolika-kunsthandwerk/?$ /sehenswuerdigkeiten/majolika-manufaktur/ [R=301,L]
+  RewriteRule ^kunstszene/?$ /kategorien/kunst-medien/ [R=301,L]
+  RewriteRule ^(museen|badische-landesbibliothek|badische-landesmuseum)/?$ /kategorien/museen/ [R=301,L]
+  RewriteRule ^faecherstadt/?$ / [R=301,L]
+  RewriteRule ^ein-tag-in-karlsruhe-die-besten-aktivitaeten-fuer-einen-unvergesslichen-aufenthalt/?$ /reiseplaner/ [R=301,L]
+  RewriteRule ^hotels-karlsruhe/?$ /hotels/ [R=301,L]
+  RewriteRule ^hotels/hotels-in-karlsruhe[^/]*/?$ /hotels/ [R=301,L]
+
+  # --- Geschichts-Artikel -> Kategorie "Historisches" ---
+  RewriteRule ^(wichtige-historische-ereignisse|architektur|denkmaeler|18-jahrhundert|20-jahrhundert|industrialisierung|industriegeschichte|industrielle-revolution-19-jahrhundert|weimarer-republik|badische-revolution-1848-49|gruendung|beruehmte-persoenlichkeiten|juedisches-leben|archaeologische-funde|staedtebauliche-soziale-entwicklung|historische-feste-und-braeuche|historische-stadtfuehrungen|karlsruhes-beitrag-zur-deutschen-einigung-im-19-jahrhundert)/?$ /kategorien/historische-architektur/ [R=301,L]
+
+  # --- Alte Blog-/Ratgeber-Artikel -> passende neue Branchenseite ---
+  RewriteRule ^die-top-10-immobilienmakler-in-karlsruhe-expertenliste-2023/?$ /immobilienmakler-karlsruhe/ [R=301,L]
+  RewriteRule ^(hochzeitsfotograf-karlsruhe-vergleich-preise|so-findest-du-den-passenden-hochzeitsfotograf-fuer-dich-in-karlsruhe)/?$ /fotografen-karlsruhe/ [R=301,L]
+  RewriteRule ^(die-ideale-werbeagentur|werbeagentur-beratung)/?$ /marketingagenturen-karlsruhe/ [R=301,L]
+  RewriteRule ^seo-agenturen-in-karlsruhe(/.*)?$ /marketingagenturen-karlsruhe/ [R=301,L]
+
+  # --- WordPress-Duplikat-Slugs (-2) -> kanonische Branchenseite ---
+  RewriteRule ^anlageberater-karlsruhe-2/?$ /anlageberater-karlsruhe/ [R=301,L]
+  RewriteRule ^bestatter-karlsruhe-2/?$ /bestatter-karlsruhe/ [R=301,L]
+  RewriteRule ^energieberater-karlsruhe-2/?$ /energieberater-karlsruhe/ [R=301,L]
+  RewriteRule ^gebaudereiniger-karlsruhe-2/?$ /gebaudereiniger-karlsruhe/ [R=301,L]
+  RewriteRule ^spediteure-karlsruhe-2/?$ /spediteure-karlsruhe/ [R=301,L]
+
+  # --- WordPress-Taxonomie-Archive (spezifische zuerst, dann generisch) ---
+  RewriteRule ^thema/inka-online(/.*)?$ /events/ [R=301,L]
+  RewriteRule ^thema/leben-in-karlsruhe(/.*)?$ /bezirke/ [R=301,L]
+  RewriteRule ^category/ / [R=301,L]
+  RewriteRule ^thema/ / [R=301,L]
+
   # Serve pre-built HTML files directly
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

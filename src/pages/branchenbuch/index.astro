@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { branchen } from "../../data/branchen";
+import { city } from "../../data/city";
+
+const sorted = [...branchen].sort((a, b) => a.label.localeCompare(b.label, "de"));
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: `Branchenbuch ${city.name}`,
+  description: `Anbieter und Dienstleister in ${city.name}: ${branchen.length} Branchen mit Adressen und Profilen.`,
+  url: `${city.domain}/branchenbuch/`,
+};
+---
+
+<BaseLayout
+  title={`Branchenbuch ${city.name}`}
+  description={`Das Karlsruher Branchenbuch: ${branchen.length} Branchen von Notaren ueber Handwerker bis IT-Dienstleister — mit Anbieterprofilen, Adressen und Kontaktwegen.`}
+>
+  <div class="container-page py-12">
+    <Breadcrumbs items={[{ label: "Start", href: "/" }, { label: "Branchenbuch" }]} />
+
+    <header class="mb-12 max-w-3xl">
+      <p class="eyebrow mb-3">{branchen.length} Branchen</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">
+        Branchenbuch Karlsruhe
+      </h1>
+      <p class="text-lg leading-relaxed" style="color: var(--color-text-body);">
+        Vom Notar ueber den Handwerker bis zur Marketingagentur: Hier findest du
+        empfehlenswerte Anbieter und Dienstleister aus Karlsruhe und Umgebung —
+        redaktionell zusammengestellt, mit Adressen, Leistungen und Kontaktwegen.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      {sorted.map((b) => (
+        <a href={`/${b.slug}/`} class="card p-5 flex items-center justify-between gap-3 group">
+          <span class="font-medium" style="color: var(--color-text);">{b.label}</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--color-text-muted);">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </a>
+      ))}
+    </div>
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline></script>
+  </div>
+</BaseLayout>

@@ -1,17 +1,110 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { sights } from "../data/sights";
+import { districts } from "../data/districts";
+import { categories } from "../data/categories";
+import { branchen } from "../data/branchen";
+import { city } from "../data/city";
+
+const mainLinks = [
+  { href: "/", label: "Startseite", desc: "Alles auf einen Blick" },
+  { href: "/sehenswuerdigkeiten/", label: "Sehenswuerdigkeiten", desc: `${sights.length} ikonische Orte` },
+  { href: "/hotels/", label: "Hotels", desc: "Zentral uebernachten" },
+  { href: "/restaurants/", label: "Restaurants", desc: "Essen & Trinken" },
+  { href: "/bezirke/", label: "Bezirke", desc: `${districts.length} Stadtteile` },
+  { href: "/events/", label: "Events", desc: "Was ist los?" },
+  { href: "/reiseplaner/", label: "Reiseplaner", desc: "Touren & Tipps" },
+  { href: "/branchenbuch/", label: "Branchenbuch", desc: `${branchen.length} Branchen` },
+];
+
+const topSights = [...sights].sort((a, b) => a.name.localeCompare(b.name, "de"));
+const sortedBranchen = [...branchen].sort((a, b) => a.label.localeCompare(b.label, "de"));
+const branchenSample = sortedBranchen.slice(0, 18);
 ---
 
 <BaseLayout title="Seite nicht gefunden" noindex>
-  <div class="container-page py-28 max-w-2xl text-center">
-    <p class="eyebrow mb-3">404</p>
-    <h1 class="text-5xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">Verlaufen im Faecher</h1>
-    <p class="text-lg leading-relaxed mb-8" style="color: var(--color-text-body);">
-      Diese Seite gibt es nicht. Vielleicht hilft eine unserer Hauptseiten weiter.
-    </p>
-    <div class="flex flex-wrap justify-center gap-3">
-      <a href="/" class="btn-primary">Zur Startseite &rarr;</a>
-      <a href="/sehenswuerdigkeiten/" class="btn-outline">Sehenswuerdigkeiten</a>
+  <div class="container-page py-16 sm:py-20">
+    <!-- Hero -->
+    <div class="max-w-2xl mb-14">
+      <p class="eyebrow mb-3">404</p>
+      <h1 class="text-5xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">
+        Verlaufen im Faecher
+      </h1>
+      <p class="text-lg leading-relaxed mb-8" style="color: var(--color-text-body);">
+        Diese Seite gibt es nicht (mehr). Macht nichts &mdash; {city.name} hat genug zu
+        entdecken. Hier geht es weiter:
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/" class="btn-primary">Zur Startseite &rarr;</a>
+        <a href="/sehenswuerdigkeiten/" class="btn-outline">Sehenswuerdigkeiten</a>
+        <a href="/branchenbuch/" class="btn-outline">Branchenbuch</a>
+      </div>
     </div>
+
+    <!-- Hauptbereiche -->
+    <section class="mb-14">
+      <h2 class="text-sm font-bold uppercase tracking-widest mb-5" style="color: var(--color-text);">Hauptbereiche</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+        {mainLinks.map((l) => (
+          <a href={l.href} class="card p-5 group">
+            <span class="block font-medium mb-1" style="color: var(--color-text);">{l.label}</span>
+            <span class="block text-sm" style="color: var(--color-text-muted);">{l.desc}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Sehenswuerdigkeiten -->
+    <section class="mb-12">
+      <div class="flex items-baseline justify-between gap-4 mb-4">
+        <h2 class="text-sm font-bold uppercase tracking-widest" style="color: var(--color-text);">Beliebte Sehenswuerdigkeiten</h2>
+        <a href="/sehenswuerdigkeiten/" class="link-accent text-sm shrink-0">Alle &rarr;</a>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        {topSights.map((s) => (
+          <a href={`/sehenswuerdigkeiten/${s.slug}/`} class="pill">{s.name}</a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Kategorien -->
+    <section class="mb-12">
+      <div class="flex items-baseline justify-between gap-4 mb-4">
+        <h2 class="text-sm font-bold uppercase tracking-widest" style="color: var(--color-text);">Kategorien</h2>
+        <a href="/kategorien/" class="link-accent text-sm shrink-0">Alle &rarr;</a>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        {categories.map((c) => (
+          <a href={`/kategorien/${c.slug}/`} class="pill">{c.name}</a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Bezirke -->
+    <section class="mb-12">
+      <div class="flex items-baseline justify-between gap-4 mb-4">
+        <h2 class="text-sm font-bold uppercase tracking-widest" style="color: var(--color-text);">Bezirke</h2>
+        <a href="/bezirke/" class="link-accent text-sm shrink-0">Alle &rarr;</a>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        {districts.map((d) => (
+          <a href={`/bezirke/${d.slug}/`} class="pill">{d.name}</a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Branchenbuch -->
+    <section class="mb-4">
+      <div class="flex items-baseline justify-between gap-4 mb-4">
+        <h2 class="text-sm font-bold uppercase tracking-widest" style="color: var(--color-text);">Branchenbuch</h2>
+        <a href="/branchenbuch/" class="link-accent text-sm shrink-0">Alle {branchen.length} Branchen &rarr;</a>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        {branchenSample.map((b) => (
+          <a href={`/${b.slug}/`} class="pill">{b.label}</a>
+        ))}
+        <a href="/branchenbuch/" class="pill-accent">mehr &hellip;</a>
+      </div>
+    </section>
   </div>
 </BaseLayout>
