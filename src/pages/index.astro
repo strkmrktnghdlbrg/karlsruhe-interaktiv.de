@@ -37,6 +37,27 @@ const featuredNews = features.news.enabled ? recentNews(3) : [];
         <a href="/tech/" class="btn-outline">Tech-Hub Karlsruhe</a>
       </div>
 
+      <form
+        role="search"
+        action="/suche/"
+        method="get"
+        class="mt-10 flex items-center gap-2 max-w-xl mx-auto"
+      >
+        <label for="hero-search" class="sr-only">Suche auf Karlsruhe-Interaktiv</label>
+        <input
+          id="hero-search"
+          type="search"
+          name="q"
+          autocomplete="off"
+          placeholder="Schloss, ZKM, KIT, Brauhaus, Innenstadt, …"
+          class="flex-1 border px-5 py-3 text-base focus:outline-none transition-colors text-left"
+          style="background: var(--color-surface); border-color: var(--color-border); color: var(--color-text); border-radius: var(--radius-input);"
+          onfocus="this.style.borderColor='var(--color-accent)'"
+          onblur="this.style.borderColor='var(--color-border)'"
+        />
+        <button type="submit" class="btn-primary shrink-0">Suchen</button>
+      </form>
+
       <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto">
         <div class="text-center">
           <p class="text-3xl font-medium" style="color: var(--color-accent);">{city.stats.sights}</p>

@@ -1,0 +1,165 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { city } from "../data/city";
+---
+
+<BaseLayout
+  title="Suche"
+  description={`Durchsuche Sehenswuerdigkeiten, Hotels, Restaurants, Bezirke, Reiseplaner und News auf ${city.name}-Interaktiv.`}
+  noindex
+>
+  <div class="container-page py-12">
+    <Breadcrumbs items={[{ label: "Start", href: "/" }, { label: "Suche" }]} />
+
+    <div class="max-w-3xl mb-10">
+      <p class="eyebrow mb-3">Suche</p>
+      <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-5" style="color: var(--color-text);">
+        Was suchst du in {city.name}?
+      </h1>
+      <form id="search-form" role="search" action="/suche/" method="get" class="relative mb-3">
+        <label for="search-input" class="sr-only">Suchbegriff</label>
+        <input
+          id="search-input"
+          type="search"
+          name="q"
+          autocomplete="off"
+          autocapitalize="none"
+          spellcheck="false"
+          placeholder="Schloss, ZKM, KIT, Brauhaus, Innenstadt, …"
+          class="w-full border px-5 py-4 text-lg focus:outline-none transition-colors"
+          style="background: var(--color-surface); border-color: var(--color-border); color: var(--color-text); border-radius: var(--radius-input);"
+          onfocus="this.style.borderColor='var(--color-accent)'"
+          onblur="this.style.borderColor='var(--color-border)'"
+        />
+      </form>
+      <p id="search-meta" class="text-sm" style="color: var(--color-text-muted);">
+        Lade Suchindex …
+      </p>
+    </div>
+
+    <ul id="search-results" class="grid grid-cols-1 md:grid-cols-2 gap-5"></ul>
+
+    <template id="result-card-template">
+      <li>
+        <a class="card group block p-5 h-full" data-result-link>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="pill-accent" data-result-type></span>
+            <span class="text-xs" style="color: var(--color-text-muted);" data-result-district></span>
+          </div>
+          <h3
+            class="text-lg font-semibold tracking-tight mb-2 transition-colors"
+            style="color: var(--color-text);"
+            data-result-title
+          ></h3>
+          <p class="text-sm leading-relaxed" style="color: var(--color-text-body);" data-result-lead></p>
+        </a>
+      </li>
+    </template>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var input = document.getElementById("search-input");
+      var form = document.getElementById("search-form");
+      var results = document.getElementById("search-results");
+      var meta = document.getElementById("search-meta");
+      var tpl = document.getElementById("result-card-template");
+      if (!input || !form || !results || !meta || !tpl) return;
+
+      var index = null;
+
+      function norm(s) {
+        return (s || "")
+          .toLowerCase()
+          .replace(/ä/g, "ae")
+          .replace(/ö/g, "oe")
+          .replace(/ü/g, "ue")
+          .replace(/ß/g, "ss")
+          .replace(/[^a-z0-9\s-]/g, " ")
+          .replace(/\s+/g, " ")
+          .trim();
+      }
+
+      function score(entry, tokens) {
+        var s = 0;
+        var titleN = norm(entry.title);
+        for (var i = 0; i < tokens.length; i++) {
+          var t = tokens[i];
+          if (!t) continue;
+          if (titleN.indexOf(t) !== -1) s += 50;
+          if (entry.keywords.indexOf(t) !== -1) s += 10;
+          if (titleN.indexOf(t) === 0) s += 30;
+        }
+        return s;
+      }
+
+      function render(query) {
+        var q = (query || "").trim();
+        results.innerHTML = "";
+        if (!index) {
+          meta.textContent = "Suchindex wird noch geladen …";
+          return;
+        }
+        if (q.length < 2) {
+          meta.textContent = "Tippe mindestens 2 Zeichen, um zu suchen.";
+          return;
+        }
+        var tokens = norm(q).split(" ").filter(Boolean);
+        var ranked = index
+          .map(function (e) { return { e: e, s: score(e, tokens) }; })
+          .filter(function (r) { return r.s > 0; })
+          .sort(function (a, b) { return b.s - a.s; })
+          .slice(0, 40);
+        if (ranked.length === 0) {
+          meta.textContent = "Keine Treffer fuer „" + q + "“. Probier es mit einem anderen Stichwort.";
+          return;
+        }
+        meta.textContent = ranked.length + " Treffer fuer „" + q + "“";
+        var frag = document.createDocumentFragment();
+        for (var j = 0; j < ranked.length; j++) {
+          var e = ranked[j].e;
+          var node = tpl.content.cloneNode(true);
+          var link = node.querySelector("[data-result-link]");
+          link.setAttribute("href", e.url);
+          link.addEventListener("mouseenter", function () { this.querySelector("[data-result-title]").style.color = "var(--color-accent)"; });
+          link.addEventListener("mouseleave", function () { this.querySelector("[data-result-title]").style.color = "var(--color-text)"; });
+          node.querySelector("[data-result-type]").textContent = e.type;
+          var dEl = node.querySelector("[data-result-district]");
+          dEl.textContent = e.district ? "· " + e.district : "";
+          node.querySelector("[data-result-title]").textContent = e.title;
+          node.querySelector("[data-result-lead]").textContent = e.lead;
+          frag.appendChild(node);
+        }
+        results.appendChild(frag);
+      }
+
+      var pending;
+      function debouncedRender() {
+        clearTimeout(pending);
+        pending = setTimeout(function () { render(input.value); }, 120);
+      }
+
+      form.addEventListener("submit", function (ev) {
+        ev.preventDefault();
+        render(input.value);
+      });
+      input.addEventListener("input", debouncedRender);
+
+      var urlQ = new URLSearchParams(window.location.search).get("q");
+      if (urlQ) input.value = urlQ;
+      input.focus();
+
+      fetch("/search-index.json")
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          index = data;
+          meta.textContent = "Bereit — " + data.length + " Eintraege im Index.";
+          if (input.value) render(input.value);
+        })
+        .catch(function () {
+          meta.textContent = "Suchindex konnte nicht geladen werden.";
+        });
+    })();
+  </script>
+</BaseLayout>
