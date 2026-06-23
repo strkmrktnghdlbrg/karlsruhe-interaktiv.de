@@ -99,6 +99,9 @@ const brandDesc = isEn ? t(locale, "footer.brandDesc") : city.description.short;
             <li><a href="/branchenbuch/" class="text-sm" style="color: var(--color-text-muted);">Branchenbuch</a></li>
           )}
           <li><a href={eventsHref} class="text-sm" style="color: var(--color-text-muted);">{t(locale, "footer.eventsDates")}</a></li>
+          {!isEn && (
+            <li><a href="/stadtrallye-karlsruhe/" class="text-sm" style="color: var(--color-text-muted);">Stadtrallye Karlsruhe</a></li>
+          )}
           <li><a href={aboutHref} class="text-sm" style="color: var(--color-text-muted);">{t(locale, "footer.about")}</a></li>
           {features.news.enabled && (
             <li><a href={newsHref} class="text-sm" style="color: var(--color-text-muted);">{t(locale, "nav.news")}</a></li>

@@ -1,0 +1,274 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+
+const affiliateUrl = "https://www.digistore24.com/redir/433660/webmagics/karlsruhe-interaktiv";
+
+const faqs = [
+  {
+    q: "Brauche ich eine App?",
+    a: "Nein. Die Stadtrallye läuft direkt im Browser deines Smartphones. Du musst nichts installieren und kannst sofort loslegen.",
+  },
+  {
+    q: "Wie lange dauert die Tour?",
+    a: "Plane ungefähr 2 bis 3 Stunden ein. Da ihr selbst das Tempo bestimmt, könnt ihr jederzeit eine Pause im Café oder am Schloss einlegen.",
+  },
+  {
+    q: "Wann kann ich starten?",
+    a: "Wann immer du willst. Es gibt keinen festen Termin und keine Gruppengröße, an die du gebunden bist. Du startest spontan, sobald es dir passt.",
+  },
+  {
+    q: "Für wie viele Personen ist die Rallye geeignet?",
+    a: "Vom Pärchen über die Familie bis zur größeren Gruppe ist alles möglich. Viele spielen sie als Freundesrunde, beim Teamevent oder beim Junggesellenabschied.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Selbstgeführte Stadtrallye Karlsruhe"
+  description="Selbstgeführte Stadtrallye durch Karlsruhe: Rätsel-Schnitzeljagd per Smartphone, ohne App und ohne Termin. Sofort spielbar, jederzeit pausierbar - ideal für Freunde, Familie, Teamevents und JGA."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline />
+
+  <section class="hero-faecher border-b" style="border-color: var(--color-border);">
+    <div class="container-page py-16 sm:py-24">
+      <Breadcrumbs items={[{ label: "Start", href: "/" }, { label: "Stadtrallye Karlsruhe" }]} />
+      <p class="eyebrow mb-4">Erlebnis · Karlsruhe entdecken</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tighter mb-6 leading-[0.97]" style="color: var(--color-text);">
+        Selbstgeführte<br /><span style="color: var(--color-accent);">Stadtrallye Karlsruhe</span>
+      </h1>
+      <p class="text-lg sm:text-xl max-w-2xl leading-relaxed" style="color: var(--color-text-body);">
+        Entdecke die Fächerstadt auf eigene Faust: Eine Rätsel-Schnitzeljagd per Smartphone führt dich quer durch Karlsruhe - ohne App, ohne festen Termin und ganz im eigenen Tempo.
+      </p>
+    </div>
+  </section>
+
+  <article class="container-page section">
+    <div class="max-w-3xl mx-auto">
+      <div class="legal-prose">
+        <p>
+          Du möchtest Karlsruhe einmal anders erleben als bei einer klassischen Stadtführung? Bei einer selbstgeführten Stadtrallye wirst du selbst zum Entdecker. Statt einem Guide hinterherzulaufen, löst du unterwegs kleine Rätsel, sammelst Hinweise und lernst die Stadt dabei ganz nebenbei kennen. Das Prinzip dahinter nennt sich Hint-Caching: Aufgaben und Tipps werden Schritt für Schritt freigeschaltet, sobald du am richtigen Ort angekommen bist.
+        </p>
+      </div>
+
+      <!-- ============ PRODUKT-KARTE (prominent) ============ -->
+      <aside class="product-card my-12">
+        <p class="product-eyebrow">Empfehlung · Erlebnis</p>
+        <h3 class="product-title">Selbstgeführte Stadtrallye Karlsruhe</h3>
+        <p class="product-desc">
+          Die digitale Schnitzeljagd für eigene Wege durch Karlsruhe. Du bekommst Zugang zu einer Rätsel-Tour, die dich zu schönen Orten der Stadt führt - spielbar mit jedem Smartphone, einmalig für <strong>29 Euro</strong>.
+        </p>
+        <ul class="product-bullets">
+          <li>Keine App, kein Termin - sofort spielbar</li>
+          <li>Rätsel-Schnitzeljagd an Karlsruhes schönsten Orten</li>
+          <li>Ca. 2-3 Stunden, jederzeit pausierbar</li>
+          <li>Ideal für Freunde, Familie, Teamevents &amp; JGA</li>
+        </ul>
+        <a
+          href={affiliateUrl}
+          rel="sponsored noopener"
+          target="_blank"
+          class="product-cta"
+        >
+          Stadtrallye Karlsruhe starten &rarr;
+        </a>
+        <p class="product-disclosure">
+          Werbe-Link · Anbieter Hint-Caching, Abwicklung über Digistore24
+        </p>
+      </aside>
+
+      <div class="legal-prose">
+        <h2>Was ist eine selbstgeführte Stadtrallye?</h2>
+        <p>
+          Eine selbstgeführte Stadtrallye ist eine Mischung aus Stadtspaziergang, Schnitzeljagd und Rätselspiel. Du erhältst eine Route mit mehreren Stationen quer durch Karlsruhe. An jeder Station wartet eine kleine Aufgabe oder ein Rätsel auf dich, dessen Lösung dich zur nächsten Station führt. So spielst du dich von Hinweis zu Hinweis durch die Stadt und siehst dabei Ecken, an denen du sonst vielleicht achtlos vorbeigegangen wärst.
+        </p>
+        <p>
+          Anders als bei einer geführten Tour bestimmst du selbst, wann und wie schnell es weitergeht. Es gibt keinen Treffpunkt zu einer bestimmten Uhrzeit und keine Gruppe, an die du dich halten musst. Genau das macht den Reiz aus: Du kombinierst das Sightseeing mit einem kleinen Wettbewerb innerhalb deiner Gruppe.
+        </p>
+
+        <h2>So funktioniert es</h2>
+        <p>
+          Nach dem Kauf bekommst du Zugang zur Rallye und öffnest sie einfach im Browser deines Smartphones. Eine App musst du nicht herunterladen. Du startest, sobald es dir passt, und folgst den Hinweisen von Station zu Station. Jede gelöste Aufgabe schaltet den nächsten Schritt frei.
+        </p>
+        <p>
+          Die Tour führt dich vorbei an sehenswerten Punkten der Stadt. Wer mag, verbindet die Rallye mit einem Besuch beim <a href="/sehenswuerdigkeiten/karlsruher-schloss/" class="link-accent">Karlsruher Schloss</a> oder einem Zwischenstopp an der <a href="/sehenswuerdigkeiten/marktplatz-pyramide/" class="link-accent">Marktpyramide</a>. Eine Übersicht weiterer Stationen für deinen Bummel findest du in unseren <a href="/sehenswuerdigkeiten/" class="link-accent">Sehenswürdigkeiten von Karlsruhe</a>. Plane für die gesamte Strecke etwa 2 bis 3 Stunden ein - inklusive Pausen, denn pausieren kannst du jederzeit.
+        </p>
+
+        <h2>Für wen ist die Stadtrallye geeignet?</h2>
+        <p>
+          Die Rallye eignet sich für nahezu jede Gelegenheit, bei der man gemeinsam etwas erleben möchte:
+        </p>
+        <ul>
+          <li><strong>Freundesgruppen</strong>, die einen aktiven Nachmittag suchen statt nur im Café zu sitzen.</li>
+          <li><strong>Familien mit Kindern</strong>, denn die Rätsel sorgen für Abwechslung und Motivation beim Laufen.</li>
+          <li><strong>Teamevents und Firmenausflüge</strong>, bei denen das gemeinsame Knobeln den Zusammenhalt stärkt.</li>
+          <li><strong>Junggesellenabschiede (JGA)</strong>, die eine unterhaltsame und planbare Programmidee brauchen.</li>
+          <li><strong>Touristen und Neu-Karlsruher</strong>, die die Stadt spielerisch kennenlernen wollen.</li>
+        </ul>
+        <p>
+          Wer danach noch Lust auf mehr Stadt hat, stöbert am besten in unseren <a href="/bezirke/" class="link-accent">Karlsruher Stadtteilen</a> und entdeckt dort die Viertel abseits der Innenstadt.
+        </p>
+
+        <h2>Tipps für die Tour</h2>
+        <ul>
+          <li>Starte bei gutem Wetter, denn ein großer Teil der Rallye spielt sich im Freien ab.</li>
+          <li>Lade dein Smartphone vorher auf und nimm bei Bedarf eine Powerbank mit.</li>
+          <li>Bequeme Schuhe lohnen sich, da ihr einige Wege zu Fuß zurücklegt.</li>
+          <li>Plant feste Pausen ein - die Tour lässt sich jederzeit anhalten und später fortsetzen.</li>
+          <li>In größeren Gruppen kann es Spaß machen, in zwei Teams gegeneinander anzutreten.</li>
+        </ul>
+      </div>
+
+      <!-- ============ SLIMME ERINNERUNG (Ende) ============ -->
+      <aside class="product-reminder my-12">
+        <div>
+          <p class="product-eyebrow">Empfehlung · Erlebnis</p>
+          <p class="product-reminder-text">
+            Bereit für die Schnitzeljagd? Die selbstgeführte Stadtrallye Karlsruhe ist einmalig für <strong>29 Euro</strong> sofort spielbar - ohne App, ohne Termin.
+          </p>
+        </div>
+        <a
+          href={affiliateUrl}
+          rel="sponsored noopener"
+          target="_blank"
+          class="product-cta product-cta--slim"
+        >
+          Stadtrallye Karlsruhe starten &rarr;
+        </a>
+      </aside>
+
+      <div class="legal-prose">
+        <h2>Häufige Fragen</h2>
+        {faqs.map((f) => (
+          <div class="mb-5">
+            <h3>{f.q}</h3>
+            <p>{f.a}</p>
+          </div>
+        ))}
+        <p class="text-sm" style="color: var(--color-text-muted); margin-top: 1.5rem;">
+          Werbe-Link · Anbieter Hint-Caching, Abwicklung über Digistore24. Preise und Verfügbarkeit können sich beim Anbieter ändern.
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  /* === Produkt-Karte: Dark-Theme === */
+  .product-card {
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-accent);
+    border-radius: var(--radius-card);
+    padding: 2rem;
+    box-shadow: var(--shadow-xl);
+  }
+  .product-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-accent);
+    margin: 0 0 0.5rem;
+  }
+  .product-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 0.75rem;
+    line-height: 1.2;
+  }
+  .product-desc {
+    color: var(--color-text-body);
+    line-height: 1.6;
+    margin: 0 0 1.25rem;
+  }
+  .product-desc strong {
+    color: var(--color-text);
+  }
+  .product-bullets {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    display: grid;
+    gap: 0.6rem;
+  }
+  .product-bullets li {
+    position: relative;
+    padding-left: 1.75rem;
+    color: var(--color-text-body);
+    line-height: 1.5;
+  }
+  .product-bullets li::before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+  .product-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.9rem 1.75rem;
+    border-radius: var(--radius-button);
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+  .product-cta:hover {
+    background: var(--color-accent-hover);
+  }
+  .product-cta--slim {
+    flex-shrink: 0;
+    font-size: 0.95rem;
+    padding: 0.8rem 1.5rem;
+  }
+  .product-disclosure {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin: 0.9rem 0 0;
+  }
+
+  /* === Slimme Erinnerung === */
+  .product-reminder {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: flex-start;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 1.5rem 1.75rem;
+  }
+  .product-reminder-text {
+    color: var(--color-text-body);
+    line-height: 1.55;
+    margin: 0.4rem 0 0;
+  }
+  .product-reminder-text strong {
+    color: var(--color-text);
+  }
+  @media (min-width: 640px) {
+    .product-reminder {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+</style>
