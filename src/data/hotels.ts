@@ -12,6 +12,7 @@ export type Hotel = {
   imageHue: number;
   bookingUrl: string;
   amenities: string[];
+  categories: string[];
 };
 
 export const hotels: Hotel[] = [
@@ -32,6 +33,7 @@ export const hotels: Hotel[] = [
     imageHue: 1,
     bookingUrl: "https://www.booking.com/hotel/de/schlosshotel-karlsruhe.de.html",
     amenities: ["Hauptbahnhof", "Restaurant", "Bar", "Klassisch"],
+    categories: ["historische-architektur", "wahrzeichen"],
   },
   {
     slug: "hotel-santo",
@@ -49,6 +51,7 @@ export const hotels: Hotel[] = [
     imageHue: 3,
     bookingUrl: "https://www.booking.com/hotel/de/hotel-santo-karlsruhe.de.html",
     amenities: ["Design", "Restaurant", "Kongresszentrum", "Boutique"],
+    categories: ["kunst-medien", "tech-innovation"],
   },
   {
     slug: "novum-hotel-imperial",
@@ -65,6 +68,7 @@ export const hotels: Hotel[] = [
     imageHue: 2,
     bookingUrl: "https://www.booking.com/hotel/de/novum-hotel-imperial-karlsruhe.de.html",
     amenities: ["Zentral", "Kaiserstrasse", "Fruehstueck"],
+    categories: ["shopping", "wahrzeichen"],
   },
   {
     slug: "achat-hotel-city",
@@ -81,6 +85,7 @@ export const hotels: Hotel[] = [
     imageHue: 4,
     bookingUrl: "https://www.booking.com/hotel/de/achat-comfort-karlsruhe-city.de.html",
     amenities: ["Business", "Zentral", "Parkhaus"],
+    categories: ["tech-innovation"],
   },
   {
     slug: "hotel-am-markt",
@@ -97,6 +102,7 @@ export const hotels: Hotel[] = [
     imageHue: 5,
     bookingUrl: "https://www.booking.com/hotel/de/hotel-am-markt-karlsruhe.de.html",
     amenities: ["Marktplatz", "Familiengefuehrt", "Boutique"],
+    categories: ["wahrzeichen", "familie"],
   },
   {
     slug: "hotel-kuebler",
@@ -113,6 +119,7 @@ export const hotels: Hotel[] = [
     imageHue: 1,
     bookingUrl: "https://www.booking.com/hotel/de/kuebler.de.html",
     amenities: ["Traditionell", "Restaurant", "Bar"],
+    categories: ["historische-architektur", "nightlife"],
   },
   {
     slug: "premier-inn-karlsruhe-city",
@@ -129,6 +136,7 @@ export const hotels: Hotel[] = [
     imageHue: 3,
     bookingUrl: "https://www.booking.com/hotel/de/premier-inn-karlsruhe-city.de.html",
     amenities: ["Budget", "Modern", "Zentral"],
+    categories: ["shopping", "wahrzeichen"],
   },
   {
     slug: "holiday-inn-karlsruhe",
@@ -145,6 +153,7 @@ export const hotels: Hotel[] = [
     imageHue: 4,
     bookingUrl: "https://www.booking.com/hotel/de/holiday-inn-karlsruhe.de.html",
     amenities: ["Fitness", "Sauna", "Restaurant"],
+    categories: ["tech-innovation", "wissenschaft"],
   },
   {
     slug: "hotel-eden",
@@ -161,6 +170,7 @@ export const hotels: Hotel[] = [
     imageHue: 2,
     bookingUrl: "https://www.booking.com/hotel/de/hotel-eden-karlsruhe.de.html",
     amenities: ["Familiengefuehrt", "Ruhig", "Zentral"],
+    categories: ["familie", "parks"],
   },
   {
     slug: "bb-hotel-karlsruhe",
@@ -177,6 +187,7 @@ export const hotels: Hotel[] = [
     imageHue: 5,
     bookingUrl: "https://www.booking.com/hotel/de/b-b-karlsruhe.de.html",
     amenities: ["Budget", "24h Check-In"],
+    categories: ["shopping"],
   },
 
   // === HAUPTBAHNHOF / SUEDSTADT-RAND ===
@@ -195,6 +206,7 @@ export const hotels: Hotel[] = [
     imageHue: 1,
     bookingUrl: "https://www.booking.com/hotel/de/ibis-karlsruhe-hauptbahnhof.de.html",
     amenities: ["Hauptbahnhof", "Budget", "Modern"],
+    categories: ["parks", "familie"],
   },
   {
     slug: "hotel-berliner-hof",
@@ -211,6 +223,7 @@ export const hotels: Hotel[] = [
     imageHue: 3,
     bookingUrl: "https://www.booking.com/hotel/de/berliner-hof-karlsruhe.de.html",
     amenities: ["Garten", "Restaurant", "Familiengefuehrt"],
+    categories: ["familie", "nightlife"],
   },
 
   // === DURLACH ===
@@ -230,6 +243,7 @@ export const hotels: Hotel[] = [
     imageHue: 4,
     bookingUrl: "https://www.booking.com/hotel/de/blaue-reiter.de.html",
     amenities: ["Kunst", "Restaurant", "Durlach"],
+    categories: ["kunst-medien", "historische-architektur"],
   },
 
   // === RAND / MESSE ===
@@ -248,6 +262,7 @@ export const hotels: Hotel[] = [
     imageHue: 2,
     bookingUrl: "https://www.booking.com/hotel/de/rio-karlsruhe.de.html",
     amenities: ["Garten", "Pool", "Messe-Naehe"],
+    categories: ["parks", "familie"],
   },
   {
     slug: "best-western-queens-hotel",
@@ -264,6 +279,7 @@ export const hotels: Hotel[] = [
     imageHue: 5,
     bookingUrl: "https://www.booking.com/hotel/de/best-western-queens.de.html",
     amenities: ["Fitness", "Sauna", "Tagungen"],
+    categories: ["tech-innovation", "wissenschaft"],
   },
 
   // === STERNEKOECHE-HOTEL VOR DEN TOREN ===
@@ -283,6 +299,7 @@ export const hotels: Hotel[] = [
     imageHue: 1,
     bookingUrl: "https://www.booking.com/hotel/de/erbprinz.de.html",
     amenities: ["Sternerestaurant", "Spa", "Gehoben"],
+    categories: ["historische-architektur", "parks"],
   },
 
   // === RAND-WEST ===
@@ -301,6 +318,7 @@ export const hotels: Hotel[] = [
     imageHue: 4,
     bookingUrl: "https://www.booking.com/hotel/de/ramada-karlsruhe.de.html",
     amenities: ["Parken frei", "Restaurant"],
+    categories: ["nightlife", "shopping"],
   },
 ];
 
@@ -311,3 +329,5 @@ export const topHotelsByDistrict = (district: string, limit = 5) =>
   hotelsByDistrict(district).sort((a, b) => b.rating - a.rating).slice(0, limit);
 export const topHotels = (limit = 6) =>
   [...hotels].sort((a, b) => b.rating - a.rating).slice(0, limit);
+export const hotelsByCategory = (category: string) =>
+  hotels.filter((h) => h.categories.includes(category));

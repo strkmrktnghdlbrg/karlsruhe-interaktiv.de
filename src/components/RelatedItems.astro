@@ -31,8 +31,11 @@ const heading = title ?? (
        type === "hotels" ? t(locale, "related.hotels") :
        t(locale, "related.restaurants"))
 );
+
+const activeItems = type === "sights" ? sightItems : type === "hotels" ? hotelItems : restItems;
 ---
 
+{activeItems.length > 0 && (
 <section class="py-12 border-t" style="border-color: var(--color-border);">
   <h2 class="text-2xl font-semibold tracking-tight mb-6" style="color: var(--color-text);">{heading}</h2>
   <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -41,3 +44,4 @@ const heading = title ?? (
     {type === "restaurants" && restItems.map((r) => <RestaurantCard restaurant={r} locale={locale} />)}
   </div>
 </section>
+)}

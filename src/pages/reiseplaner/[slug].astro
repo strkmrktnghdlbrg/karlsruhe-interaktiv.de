@@ -82,5 +82,23 @@ const en = guidesEn[guide.slug];
     ))}
 
     <GetYourGuideWidget placement={getGygPlacement(`guide:${guide.slug}`)} />
+
+    {(() => {
+      const otherGuides = guides.filter((g) => g.slug !== guide.slug);
+      return otherGuides.length > 0 ? (
+        <section class="mt-12 pt-8 border-t" style="border-color: var(--color-border);">
+          <h2 class="text-2xl font-semibold mb-6" style="color: var(--color-text);">Andere Reiseplaner-Routen</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {otherGuides.map((g) => (
+              <a href={`/reiseplaner/${g.slug}/`} class="block p-5 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+                <p class="eyebrow mb-2">{g.duration} Tag{g.duration > 1 ? "e" : ""} &middot; {g.audience}</p>
+                <h3 class="text-base font-semibold mb-2" style="color: var(--color-text);">{g.title}</h3>
+                <p class="text-sm leading-relaxed" style="color: var(--color-text-body);">{g.shortDesc}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+      ) : null;
+    })()}
   </article>
 </BaseLayout>

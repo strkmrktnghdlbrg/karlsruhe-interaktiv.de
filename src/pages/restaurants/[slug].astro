@@ -62,7 +62,17 @@ const schema = {
       </aside>
     </div>
 
+    {district && (
+      <div class="my-12 p-6 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+        <p class="eyebrow mb-2">Bezirk</p>
+        <h2 class="text-xl font-semibold mb-2" style="color: var(--color-text);">{district.name}</h2>
+        <p class="text-sm mb-3" style="color: var(--color-text-body);">{district.shortDesc}</p>
+        <a href={`/bezirke/${district.slug}/`} class="link-accent text-sm">Bezirks-Hub ansehen &rarr;</a>
+      </div>
+    )}
+
     <RelatedItems district={restaurant.district} excludeSlug={restaurant.slug} type="restaurants" />
+    <RelatedItems district={restaurant.district} type="sights" title="Sehenswuerdigkeiten im Bezirk" />
 
     <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline></script>
   </article>

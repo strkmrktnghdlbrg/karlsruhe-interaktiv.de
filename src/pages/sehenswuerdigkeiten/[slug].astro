@@ -91,6 +91,8 @@ const schema = {
     <Stay22NearbyHotels lat={sight.coordinates[0]} lng={sight.coordinates[1]} near={sight.name} limit={4} />
 
     <RelatedItems district={sight.district} excludeSlug={sight.slug} type="sights" />
+    <RelatedItems district={sight.district} type="hotels" title="Hotels im Bezirk" />
+    <RelatedItems district={sight.district} type="restaurants" title="Restaurants im Bezirk" />
 
     <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline></script>
   </article>

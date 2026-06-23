@@ -8,12 +8,14 @@ import { categories, getCategory } from "../../data/categories";
 import { categoriesEn } from "../../i18n/en/categories";
 import { sightsByCategory } from "../../data/sights";
 import { restaurantsByCategory } from "../../data/restaurants";
+import { hotelsByCategory } from "../../data/hotels";
+import HotelCard from "../../components/HotelCard.astro";
 import { getGygPlacement } from "../../data/gyg";
 import { detailUrl } from "../../i18n/config";
 
 export function getStaticPaths() {
   return categories
-    .filter((c) => sightsByCategory(c.slug).length > 0 || restaurantsByCategory(c.slug).length > 0)
+    .filter((c) => sightsByCategory(c.slug).length > 0 || restaurantsByCategory(c.slug).length > 0 || hotelsByCategory(c.slug).length > 0)
     .map((c) => ({ params: { slug: c.slug } }));
 }
 
@@ -22,6 +24,7 @@ const cat = getCategory(slug!);
 if (!cat) return Astro.redirect("/404");
 const cSights = sightsByCategory(cat.slug);
 const cRest = restaurantsByCategory(cat.slug);
+const cHotels = hotelsByCategory(cat.slug);
 const catEn = categoriesEn[cat.slug];
 ---
 
@@ -43,6 +46,15 @@ const catEn = categoriesEn[cat.slug];
         <h2 class="text-2xl font-semibold mb-6" style="color: var(--color-text);">Sehenswuerdigkeiten</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {cSights.map((s) => <SightCard sight={s} />)}
+        </div>
+      </section>
+    )}
+
+    {cHotels.length > 0 && (
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold mb-6" style="color: var(--color-text);">Hotels</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {cHotels.map((h) => <HotelCard hotel={h} />)}
         </div>
       </section>
     )}
