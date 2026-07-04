@@ -1,0 +1,185 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "Parken in Karlsruhe: Parkhäuser, Tarife & P+R 2026";
+const description = "Parken in Karlsruhe leicht gemacht: alle zentralen Parkhäuser in der Innenstadt mit Lage, Plätzen und Tarifen, dazu Parkzonen, Park & Ride und Spartipps.";
+const faqLd = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Was kostet Parken in Karlsruhe?","acceptedAnswer":{"@type":"Answer","text":"In den zentralen Parkhäusern kostet eine Stunde meist ca. 1,50 bis 2,50 Euro. Die Tageshöchstsätze reichen je nach Haus von ca. 7,50 Euro im Parkhaus Kronenplatz bis ca. 25 Euro im Parkhaus Passagehof. Am Straßenrand gilt gebührenpflichtiges Parken mit Parkschein oder Handyparken."}},{"@type":"Question","name":"Wo kann man in Karlsruhe kostenlos parken?","acceptedAnswer":{"@type":"Answer","text":"Kostenlos parkt man am zuverlässigsten auf den Park-and-Ride-Plätzen an den Stadtbahn-Haltestellen am Stadtrand, etwa in Durlach, Rheinstetten, Ettlingen oder Wörth. In der Innenstadt selbst ist kostenloses Parken praktisch nicht möglich."}},{"@type":"Question","name":"Wo parkt man in der Innenstadt günstig?","acceptedAnswer":{"@type":"Answer","text":"Am günstigsten ist das Parkhaus Kronenplatz mit ca. 1 Euro pro Stunde und einem Tagesmax von ca. 7,50 Euro. Auch die Tiefgarage Schlossplatz und die Garage am Staatstheater sind mit einem Tagesmax um ca. 10 bis 12 Euro preiswert."}},{"@type":"Question","name":"Gibt es Park & Ride in Karlsruhe?","acceptedAnswer":{"@type":"Answer","text":"Ja. An mehreren Stadtbahn- und S-Bahn-Haltestellen am Stadtrand und im Umland gibt es Park-and-Ride-Plätze, unter anderem in Durlach, Rheinstetten, Ettlingen und Wörth. Die Nutzung ist in der Regel kostenlos, von dort fährt man mit Stadtbahn oder S-Bahn bequem ins Zentrum."}},{"@type":"Question","name":"Wie funktioniert Bewohnerparken in Karlsruhe?","acceptedAnswer":{"@type":"Answer","text":"Einen Bewohnerparkausweis bekommt nur, wer seinen Hauptwohnsitz in einer ausgewiesenen Bewohnerparkzone hat, dafür fällt eine Jahresgebühr an. Solche Zonen gibt es unter anderem in Teilen der Oststadt, Innenstadt-West und -Ost, Südweststadt und Durlach. Der Ausweis gilt jeweils nur für die eigene Zone."}}]};
+const itemListLd = {"@context":"https://schema.org","@type":"ItemList","name":"Parkhäuser in Karlsruhe","itemListElement":[{"@type":"ListItem","position":1,"name":"Parkhaus Ettlinger Tor"},{"@type":"ListItem","position":2,"name":"Tiefgarage Schlossplatz"},{"@type":"ListItem","position":3,"name":"Parkhaus Kronenplatz"},{"@type":"ListItem","position":4,"name":"Tiefgarage Marktplatz"},{"@type":"ListItem","position":5,"name":"Tiefgarage Postgalerie"},{"@type":"ListItem","position":6,"name":"Parkhaus Passagehof"},{"@type":"ListItem","position":7,"name":"Parkhaus Herrenstraße / Zirkel"},{"@type":"ListItem","position":8,"name":"Tiefgarage am Staatstheater"},{"@type":"ListItem","position":9,"name":"IHK-Tiefgarage"},{"@type":"ListItem","position":10,"name":"Parkhaus Kongresszentrum"}]};
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(itemListLd)} />
+  <div class="pf-wrap">
+    <div class="pf-surface">
+      <h1>Parken in Karlsruhe: Parkhäuser, Tarife und Tipps</h1>
+      <p class="pf-lead">Karlsruhe bietet im Zentrum rund 21 Parkhäuser und Tiefgaragen mit zusammen über 6.000 Stellplätzen, viele davon direkt an Kaiserstraße, Marktplatz, Ettlinger Tor und Schloss. Das städtische Parkleitsystem zeigt die aktuelle Belegung in Echtzeit an. Wer flexibel ist, spart mit Park &amp; Ride am Stadtrand oder mit einem der günstigeren Parkhäuser am Rand der Innenstadt deutlich. Diese Übersicht fasst Lage, ungefähre Platzzahl und Tarife der wichtigsten Häuser zusammen, dazu Parkzonen, Bewohnerparken und die besten Spartipps.</p>
+
+      <h2>Das Wichtigste in Kürze</h2>
+      <ul>
+        <li>Rund 21 Parkhäuser mit über 6.000 Stellplätzen im Zentrum, Belegung in Echtzeit über das städtische Parkleitsystem.</li>
+        <li>Stundentarife liegen meist bei ca. 1,50 bis 2,50 Euro, Tageshöchstsätze je nach Haus zwischen ca. 7,50 und 25 Euro.</li>
+        <li>Am günstigsten parkt man im Parkhaus Kronenplatz (ca. 1 Euro/Stunde, Tagesmax ca. 7,50 Euro).</li>
+        <li>Park &amp; Ride an den Stadtbahn-Haltestellen am Stadtrand ist in der Regel kostenlos und spart die teure Innenstadt.</li>
+        <li>Bewohnerparkzonen gibt es unter anderem in Oststadt, Innenstadt-West und -Ost, Südweststadt sowie Durlach.</li>
+      </ul>
+
+      <h2>Parkhäuser und Tiefgaragen in Karlsruhe im Überblick</h2>
+      <p>Die folgende Auswahl zeigt zentrale Parkhäuser und Tiefgaragen in Karlsruhe mit Lage, ungefährer Stellplatzzahl und Tarif. Preise und Öffnungszeiten können sich ändern, prüfen Sie im Zweifel kurz die Website des Betreibers.</p>
+      <ul class="ph-list">
+        <li class="ph">
+          <span class="ph-name">Parkhaus Ettlinger Tor</span>
+          <span class="ph-lage">Kriegsstraße 122 / Lammstraße 21, direkt am Einkaufszentrum Ettlinger Tor</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 843 &middot; <strong>Tarif:</strong> ca. 1,50 Euro erste Stunde, dann ca. 2 Euro/h, Tagesmax ca. 16 Euro</span>
+          <span class="ph-hint">Zentralstes Haus mit direktem Zugang zum Shoppingcenter, oft stark ausgelastet.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">Tiefgarage Schlossplatz</span>
+          <span class="ph-lage">unter dem Schlossplatz, über Tunnel erreichbar, Nähe Schloss und ZKM-Achse</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 912 &middot; <strong>Tarif:</strong> ca. 2 Euro/h, Tagesmax ca. 10 Euro</span>
+          <span class="ph-hint">Größtes Haus, ideal für Schloss, Botanischer Garten und Museen, günstiger Tagessatz.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">Parkhaus Kronenplatz</span>
+          <span class="ph-lage">Fritz-Erler-Straße / Markgrafenstraße, Nähe Kaiserstraße Ost</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 629 &middot; <strong>Tarif:</strong> ca. 1 Euro/h, Tagesmax ca. 7,50 Euro</span>
+          <span class="ph-hint">Günstigstes zentrales Parkhaus, sehr gutes Preis-Leistungs-Verhältnis.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">Tiefgarage Marktplatz</span>
+          <span class="ph-lage">Kreuzstraße 13a, direkt unter dem Marktplatz / Pyramide</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 327 &middot; <strong>Tarif:</strong> ca. 2 Euro/h, Tagesmax ca. 15 Euro</span>
+          <span class="ph-hint">Zentrale Lage für Rathaus, Kaiserstraße und Fußgängerzone.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">Tiefgarage Postgalerie</span>
+          <span class="ph-lage">Amalienstraße, Zentrum-West nahe Europaplatz</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 273 &middot; <strong>Tarif:</strong> ca. 2 Euro/h, Tagesmax ca. 18 Euro</span>
+          <span class="ph-hint">Von APCOA betrieben, direkter Zugang zur Postgalerie und Kaiserstraße West.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">Parkhaus Passagehof</span>
+          <span class="ph-lage">Passagehof 11, mitten in der Innenstadt nahe Kaiserstraße</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 392 &middot; <strong>Tarif:</strong> ca. 2,50 Euro/h, Tagesmax ca. 25 Euro</span>
+          <span class="ph-hint">Sehr zentral, aber teuerster Stundentarif der Innenstadt.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">Parkhaus Herrenstraße / Zirkel</span>
+          <span class="ph-lage">Herrenstraße 9, Nähe Marktplatz und Fußgängerzone</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 400 &middot; <strong>Tarif:</strong> ca. 2 Euro erste Stunde, dann ca. 1,50 Euro/h, Tagesmax ca. 15 Euro</span>
+          <span class="ph-hint">Ruhige Lage, günstiger ab der zweiten Stunde.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">Tiefgarage am Staatstheater</span>
+          <span class="ph-lage">Ettlinger Straße, Zentrum-Süd am Badischen Staatstheater</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 418 &middot; <strong>Tarif:</strong> ca. 1,70 Euro/h, Tagesmax ca. 12 Euro</span>
+          <span class="ph-hint">Praktisch für Theaterbesuche und den Südteil der Innenstadt.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">IHK-Tiefgarage</span>
+          <span class="ph-lage">Erbprinzenstraße 4, Zentrum-Süd nahe Ettlinger Tor</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 175 &middot; <strong>Tarif:</strong> ca. 1,50 Euro erste Stunde, dann ca. 2 Euro/h, Tagesmax ca. 20 Euro</span>
+          <span class="ph-hint">Günstiger Einstieg für Kurzparker, kompaktes Haus.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">Parkhaus Kongresszentrum</span>
+          <span class="ph-lage">Hermann-Billing-Straße 1 / Beiertheimer Allee 9, am Kongresszentrum und Festplatz</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 990 (PH1 und PH2) &middot; <strong>Tarif:</strong> ca. 2 Euro/h, Tagesmax je nach Veranstaltung, ab ca. 12 Euro</span>
+          <span class="ph-hint">Ideal für Messe, Konzerte und Events, außerhalb von Veranstaltungen oft frei.</span>
+        </li>
+      </ul>
+
+      <h2>Parkzonen und Bewohnerparken in Karlsruhe</h2>
+      <p>Am Straßenrand in der Innenstadt gilt fast überall gebührenpflichtiges Parken mit Parkschein oder per Handyparken. In vielen zentrumsnahen Wohnvierteln ist tagsüber Mischparken eingerichtet, das heißt Anwohner mit Ausweis und Besucher gegen Parkschein teilen sich die Plätze. Die Höchstparkdauer und Gebühren sind an den Automaten ausgeschildert. Bewohnerparkzonen gibt es unter anderem in Teilen der Oststadt, Innenstadt-West und -Ost, Südweststadt und Durlach.</p>
+
+      <h2>Kostenlos und günstig parken in Karlsruhe</h2>
+      <p>Kostenlos parken ist in der Innenstadt kaum möglich. Gute kostenlose Alternativen sind die Park-and-Ride-Plätze an den Stadtbahn-Haltestellen am Stadtrand sowie einige P+R-Anlagen in den Umlandgemeinden wie Rheinstetten, Ettlingen oder Wörth. In reinen Wohnstraßen außerhalb der bewirtschafteten Zonen, etwa in weiter außen liegenden Stadtteilen, findet man teils gebührenfreie Stellplätze, dann aber mit längerem Fußweg oder Umstieg auf Bahn und Tram.</p>
+
+      <h2>Park and Ride in Karlsruhe</h2>
+      <p>Wer dem Verkehr und den Parkgebühren in der Innenstadt entgehen möchte, parkt am Stadtrand und fährt mit Bus oder Bahn ins Zentrum. Diese Park-and-Ride-Anlagen sind praktisch:</p>
+      <ul>
+        <li><strong>P+R Bahnhof Durlach:</strong> S-Bahn und Stadtbahn Richtung Innenstadt, Halt Durlach Bahnhof. Beliebter Umstiegspunkt im Osten, meist kostenlos, morgens früh voll.</li>
+        <li><strong>P+R Rheinstetten:</strong> Stadtbahnlinie S2 Richtung Karlsruhe Innenstadt. Großer Platz nahe der Messe, gut für Veranstaltungen, in der Regel kostenlos.</li>
+        <li><strong>P+R Ettlingen West / Albgaubad:</strong> Stadtbahnlinien S1 und S11 Richtung Karlsruhe Marktplatz. Südlich der Stadt gelegen, kostenlose Nutzung, direkte Bahnverbindung ins Zentrum.</li>
+        <li><strong>P+R Wörth:</strong> Stadtbahnlinie S5 / S52 über die Rheinbrücke ins Karlsruher Zentrum. Praktisch aus Richtung Pfalz, spart die Innenstadtmaut und Parkgebühren.</li>
+      </ul>
+
+      <h2>Tipps fürs Parken in Karlsruhe</h2>
+      <ul>
+        <li>Vor der Anfahrt das städtische Parkleitsystem prüfen, es zeigt freie Plätze pro Parkhaus in Echtzeit.</li>
+        <li>Für längere Aufenthalte lohnt sich das Tagesticket, besonders in Häusern mit niedrigem Tagesmax wie Kronenplatz oder Schlossplatz.</li>
+        <li>Wer nur shoppen will, parkt oft günstiger im Parkhaus Kronenplatz oder in der IHK-Tiefgarage als direkt am Ettlinger Tor.</li>
+        <li>Bei Messe, Konzert oder Event am Wochenende Park &amp; Ride nutzen und mit Stadtbahn ins Zentrum fahren.</li>
+        <li>Handyparking-Apps sparen am Straßenrand Kleingeld und man zahlt nur die tatsächliche Parkzeit.</li>
+        <li>An den Adventssamstagen ist Park &amp; Ride in Karlsruhe traditionell kostenlos, ideal fürs Weihnachtsshopping.</li>
+      </ul>
+
+      <div class="pf-cta-box">
+        <div class="pf-cta-head">
+          <span class="pf-badge">RABATT AUTOMATISCH</span>
+          <span class="pf-air">Baden-Airpark &middot; Shuttle inklusive</span>
+        </div>
+        <div class="pf-cta-title">Sie fliegen ab Baden-Airpark? Parkplatz vorab sichern</div>
+        <p class="pf-cta-text">Wer nicht in der Stadt parkt, sondern in den Urlaub startet, spart am Flughafen mit einem vorab gebuchten Stellplatz deutlich gegenüber dem Terminaltarif. Freie Plätze für Ihren Reisezeitraum vergleichen, fester Preis, Shuttle inklusive. Der Rabatt ist im Link hinterlegt und wird bei der Abfrage automatisch angewendet, ganz ohne Gutscheincode. Passende Adressen mit Parkplatz finden Sie in unserer <a href="/hotels/">Hotelübersicht für Karlsruhe</a>.</p>
+        <span class="pf-cta"><a href="/r/parken-fliegen/" rel="sponsored nofollow" target="_blank">Preise &amp; freie Plätze prüfen &rarr;</a></span>
+        <p class="pf-cta-note">* Affiliate-Link. Sie buchen zum selben Preis, wir erhalten eine kleine Provision.</p>
+      </div>
+
+      <h2>Häufige Fragen zum Parken in Karlsruhe</h2>
+      <div class="faq-item">
+        <h3>Was kostet Parken in Karlsruhe?</h3>
+        <p>In den zentralen Parkhäusern kostet eine Stunde meist ca. 1,50 bis 2,50 Euro. Die Tageshöchstsätze reichen je nach Haus von ca. 7,50 Euro im Parkhaus Kronenplatz bis ca. 25 Euro im Parkhaus Passagehof. Am Straßenrand gilt gebührenpflichtiges Parken mit Parkschein oder Handyparken.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Wo kann man in Karlsruhe kostenlos parken?</h3>
+        <p>Kostenlos parkt man am zuverlässigsten auf den Park-and-Ride-Plätzen an den Stadtbahn-Haltestellen am Stadtrand, etwa in Durlach, Rheinstetten, Ettlingen oder Wörth. In der Innenstadt selbst ist kostenloses Parken praktisch nicht möglich.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Wo parkt man in der Innenstadt günstig?</h3>
+        <p>Am günstigsten ist das Parkhaus Kronenplatz mit ca. 1 Euro pro Stunde und einem Tagesmax von ca. 7,50 Euro. Auch die Tiefgarage Schlossplatz und die Garage am Staatstheater sind mit einem Tagesmax um ca. 10 bis 12 Euro preiswert.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Gibt es Park &amp; Ride in Karlsruhe?</h3>
+        <p>Ja. An mehreren Stadtbahn- und S-Bahn-Haltestellen am Stadtrand und im Umland gibt es Park-and-Ride-Plätze, unter anderem in Durlach, Rheinstetten, Ettlingen und Wörth. Die Nutzung ist in der Regel kostenlos, von dort fährt man mit Stadtbahn oder S-Bahn bequem ins Zentrum.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Wie funktioniert Bewohnerparken in Karlsruhe?</h3>
+        <p>Einen Bewohnerparkausweis bekommt nur, wer seinen Hauptwohnsitz in einer ausgewiesenen Bewohnerparkzone hat, dafür fällt eine Jahresgebühr an. Solche Zonen gibt es unter anderem in Teilen der Oststadt, Innenstadt-West und -Ost, Südweststadt und Durlach. Der Ausweis gilt jeweils nur für die eigene Zone.</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .pf-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1rem 3rem; }
+  .pf-surface {
+    background: #ffffff; color: #33313f; border-radius: 16px;
+    padding: clamp(20px, 4vw, 40px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 30px rgba(0,0,0,0.05);
+    font-size: 16.5px; line-height: 1.7;
+  }
+  .pf-surface h1 { color: #20233a; font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.5px; margin: 0 0 1rem; }
+  .pf-surface .pf-lead { font-size: 1.12rem; color: #4a4858; margin: 0 0 1.6rem; }
+  .pf-surface h2 { color: #20233a; font-size: 1.55rem; font-weight: 800; line-height: 1.25; letter-spacing: -0.3px; margin: 2.2rem 0 0.8rem; }
+  .pf-surface h3 { color: #20233a; font-size: 1.2rem; font-weight: 700; line-height: 1.3; margin: 1.5rem 0 0.5rem; }
+  .pf-surface p { margin: 0 0 1.05rem; }
+  .pf-surface ul, .pf-surface ol { margin: 0 0 1.15rem; padding-left: 1.4rem; }
+  .pf-surface li { margin-bottom: 0.5rem; }
+  .pf-surface strong { color: #20233a; font-weight: 700; }
+  .pf-surface a { color: #365DA3; text-decoration: underline; text-underline-offset: 3px; }
+  .pf-surface .ph-list { list-style: none; padding-left: 0; }
+  .pf-surface .ph { display: block; border: 1px solid #e6e6ef; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; background: #fafafd; }
+  .pf-surface .ph-name { display: block; font-weight: 800; color: #20233a; font-size: 1.05rem; }
+  .pf-surface .ph-lage { display: block; color: #4a4858; margin-top: 2px; }
+  .pf-surface .ph-meta { display: block; color: #33313f; margin-top: 6px; font-size: 0.97rem; }
+  .pf-surface .ph-hint { display: block; color: #6b7280; margin-top: 4px; font-size: 0.94rem; }
+  .pf-cta-box { background: linear-gradient(135deg,#365DA3 0%, #24406f 100%); color:#fff; border-radius:16px; padding:26px 28px; margin: 30px 0; box-shadow:0 10px 28px rgba(54,93,163,0.28); }
+  .pf-cta-head { display:flex; flex-wrap:wrap; gap:6px 14px; align-items:baseline; }
+  .pf-badge { background:#FFA830; color:#020304; font-size:11px; font-weight:800; padding:4px 12px; border-radius:20px; letter-spacing:0.5px; }
+  .pf-air { font-size:13px; opacity:0.9; }
+  .pf-cta-title { font-size:22px; font-weight:800; margin:14px 0 6px; line-height:1.25; color:#fff; }
+  .pf-cta-text { margin:0 0 18px; font-size:15.5px; opacity:0.97; color:#fff; }
+  .pf-cta a { display:inline-block; background:#FFA830; color:#020304; padding:14px 30px; border-radius:10px; font-weight:800; text-decoration:none; font-size:15.5px; }
+  .pf-cta-note { margin:14px 0 0; font-size:12px; opacity:0.8; color:#fff; }
+  .pf-surface .faq-item { border-top: 1px solid #e6e6ef; padding-top: 1.1rem; margin-top: 1.1rem; }
+  .pf-surface .faq-item h3 { margin-top: 0; font-size: 18px; }
+</style>
