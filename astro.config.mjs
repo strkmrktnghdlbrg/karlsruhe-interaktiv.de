@@ -3,7 +3,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@tailwindcss/vite";
 
 export default defineConfig({
-  site: "https://karlsruhe-interaktiv.de",
+  site: "https://www.karlsruhe-interaktiv.de",
   output: "static",
   i18n: {
     defaultLocale: "de",

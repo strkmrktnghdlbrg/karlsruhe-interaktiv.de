@@ -4,4 +4,4 @@ Disallow: /impressum
 Disallow: /datenschutz
 Disallow: /agb
 
-Sitemap: https://karlsruhe-interaktiv.de/sitemap-index.xml
+Sitemap: https://www.karlsruhe-interaktiv.de/sitemap-index.xml

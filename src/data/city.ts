@@ -8,7 +8,7 @@ export const city = {
   coordinates: [49.0094, 8.4044] as [number, number],
   languages: ["de"] as const,
   defaultLocale: "de",
-  domain: "https://karlsruhe-interaktiv.de",
+  domain: "https://www.karlsruhe-interaktiv.de",
   description: {
     short:
       "Karlsruhe interaktiv. Faecherstadt, KIT, ZKM und Bundesverfassungsgericht. Sehenswuerdigkeiten, Hotels, Bezirke, Tech-News auf einem Portal.",
