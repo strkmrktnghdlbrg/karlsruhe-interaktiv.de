@@ -1,0 +1,191 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { city } from "../data/city";
+
+const stadt = city.name; // "Karlsruhe"
+
+type Bezug = "lebt aktuell" | "geboren" | "aufgewachsen" | "hat lange gelebt" | "eng verbunden";
+interface Person {
+  name: string;
+  kategorie: string;
+  bezug: Bezug;
+  fakt: string;
+}
+
+const personen: Person[] = [
+  { name: "Oliver Kahn", kategorie: "Sport", bezug: "geboren", fakt: "Der Welttorhüter und langjährige Bayern-Kapitän wurde 1969 in Karlsruhe geboren und begann seine Karriere beim Karlsruher SC." },
+  { name: "Mehmet Scholl", kategorie: "Sport", bezug: "geboren", fakt: "Der frühere Bayern-Profi und spätere ARD-Fußballkommentator wurde 1970 in Karlsruhe geboren." },
+  { name: "Oliver Bierhoff", kategorie: "Sport", bezug: "geboren", fakt: "Der Europameister-Torschütze von 1996 und spätere DFB-Manager wurde 1968 in Karlsruhe geboren." },
+  { name: "Regina Halmich", kategorie: "Sport", bezug: "geboren", fakt: "Die über ein Jahrzehnt ungeschlagene Box-Weltmeisterin wurde 1976 in Karlsruhe geboren." },
+  { name: "Maren Ade", kategorie: "Film", bezug: "geboren", fakt: "Die Regisseurin des oscarnominierten Films Toni Erdmann wurde 1976 in Karlsruhe geboren." },
+  { name: "Nino de Angelo", kategorie: "Musik", bezug: "geboren", fakt: "Der Schlagersänger mit dem Nummer-eins-Hit Jenseits von Eden wurde 1963 in Karlsruhe geboren." },
+  { name: "Karl Drais", kategorie: "Wissenschaft", bezug: "geboren", fakt: "Der Erfinder des Zweirads und Vorläufers des Fahrrads wurde 1785 in Karlsruhe geboren." },
+  { name: "Richard Willstätter", kategorie: "Wissenschaft", bezug: "geboren", fakt: "Der Chemie-Nobelpreisträger von 1915 wurde 1872 in Karlsruhe geboren." },
+  { name: "Heinrich Hertz", kategorie: "Wissenschaft", bezug: "eng verbunden", fakt: "Der Physiker wies 1886 an der Technischen Hochschule Karlsruhe erstmals elektromagnetische Wellen nach, nach ihm ist die Einheit Hertz benannt." },
+  { name: "Max Himmelheber", kategorie: "Wissenschaft", bezug: "geboren", fakt: "Der Ingenieur und Erfinder der Spanplatte wurde 1904 in Karlsruhe geboren." },
+  { name: "Carl Benz", kategorie: "Wirtschaft", bezug: "geboren", fakt: "Der Automobilpionier und Erbauer des ersten Motorwagens wurde 1844 in Karlsruhe (Mühlburg) geboren." },
+  { name: "Johann Peter Hebel", kategorie: "Literatur", bezug: "hat lange gelebt", fakt: "Der bekannte alemannische Dichter wirkte lange in Karlsruhe, wo er als Prälat der badischen Landeskirche tätig war." },
+  { name: "Karl Wilhelm von Baden-Durlach", kategorie: "Politik", bezug: "eng verbunden", fakt: "Der Markgraf gründete 1715 die Stadt Karlsruhe und legte den berühmten fächerförmigen Grundriss rund um sein Schloss an." },
+  { name: "Ludwig Marum", kategorie: "Politik", bezug: "hat lange gelebt", fakt: "Der SPD-Politiker und Widerstandskämpfer wirkte lange in Karlsruhe, wo heute ein Platz an ihn erinnert." },
+];
+
+const faq = [
+  { frage: "Welche Fußballstars kommen aus Karlsruhe?", antwort: "Aus Karlsruhe stammen die Fußball-Idole Oliver Kahn, Mehmet Scholl und Oliver Bierhoff. Kahn begann seine Torwart-Karriere beim Karlsruher SC." },
+  { frage: "Welche Erfinder wurden in Karlsruhe geboren?", antwort: "In Karlsruhe geboren wurden Karl Drais, der Erfinder des Fahrrad-Vorläufers, sowie der Automobilpionier Carl Benz und der Spanplatten-Erfinder Max Himmelheber." },
+  { frage: "Gibt es Nobelpreisträger aus Karlsruhe?", antwort: "Ja, der Chemiker Richard Willstätter, der 1915 den Nobelpreis erhielt, wurde 1872 in Karlsruhe geboren." },
+  { frage: "Welche Sportlerinnen sind mit Karlsruhe verbunden?", antwort: "Die langjährige Box-Weltmeisterin Regina Halmich wurde 1976 in Karlsruhe geboren und blieb über zehn Jahre ungeschlagen." },
+];
+
+// Reihenfolge der Kategorien
+const kategorien = [...new Set(personen.map((p) => p.kategorie))];
+
+const bezugLabel: Record<Bezug, string> = {
+  "lebt aktuell": `lebt in ${stadt}`,
+  geboren: `geboren in ${stadt}`,
+  aufgewachsen: `aufgewachsen in ${stadt}`,
+  "hat lange gelebt": `lange in ${stadt} gelebt`,
+  "eng verbunden": `eng mit ${stadt} verbunden`,
+};
+
+const h1 = `Welche Promis leben in ${stadt}?`;
+// SEO-Title wird an BaseLayout via title-Prop uebergeben (dieses Portal hat keinen seoTitle-Prop)
+const seoTitle = `Welche Promis leben in ${stadt}? Bekannte Persönlichkeiten`;
+const description = `Welche Promis kommen aus Karlsruhe? Von Oliver Kahn über Regina Halmich bis Carl Benz - bekannte Persönlichkeiten mit Bezug zur Fächerstadt im Überblick.`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      headline: h1,
+      description,
+      inLanguage: "de-DE",
+      about: { "@type": "Place", name: stadt },
+      mainEntityOfPage: new URL(Astro.url.pathname, city.domain).toString(),
+    },
+    {
+      "@type": "ItemList",
+      name: `Bekannte Persönlichkeiten aus ${stadt}`,
+      itemListElement: personen.map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        item: { "@type": "Person", name: p.name, description: p.fakt },
+      })),
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: faq.map((f) => ({
+        "@type": "Question",
+        name: f.frage,
+        acceptedAnswer: { "@type": "Answer", text: f.antwort },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout title={seoTitle} description={description}>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+
+  <div class="promis-wrap">
+    <Breadcrumbs items={[{ label: stadt, href: "/" }, { label: `Promis in ${stadt}` }]} />
+
+    <div class="promis-surface">
+      <p class="eyebrow">Bekannte Persönlichkeiten</p>
+      <h1>{h1}</h1>
+      <p class="lead">
+        {stadt} hat weit mehr hervorgebracht als Bundesverfassungsgericht und Technologie: Aus der Fächerstadt stammen Fußball-Idole wie Oliver Kahn, die Boxerin Regina Halmich und der Fahrrad-Erfinder Karl Drais. Ob Sport, Wissenschaft, Film oder Musik, hier ein Überblick über bekannte Persönlichkeiten, die in {stadt} geboren wurden oder eng mit der Stadt verbunden sind.
+      </p>
+      <p class="hinweis">
+        Hinweis: Die folgende Übersicht umfasst Persönlichkeiten, die in {stadt} geboren oder aufgewachsen sind, lange hier gelebt haben oder eng mit der Stadt verbunden sind. Jeder Eintrag ist entsprechend gekennzeichnet.
+      </p>
+
+      {kategorien.map((kat) => (
+        <div class="kategorie-block">
+          <h2>{kat}</h2>
+          <ul class="person-list">
+            {personen.filter((p) => p.kategorie === kat).map((p) => (
+              <li class="person-card">
+                <div class="person-head">
+                  <span class="person-name">{p.name}</span>
+                  <span class="bezug-badge">{bezugLabel[p.bezug]}</span>
+                </div>
+                <p class="person-fakt">{p.fakt}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <div class="faq-block">
+        <h2>Häufige Fragen zu Promis aus {stadt}</h2>
+        {faq.map((f) => (
+          <details class="faq-item">
+            <summary>{f.frage}</summary>
+            <p>{f.antwort}</p>
+          </details>
+        ))}
+      </div>
+
+      <div class="mehr-block">
+        <h2>Mehr über {stadt}</h2>
+        <ul class="mehr-links">
+          <li><a href="/sehenswuerdigkeiten/">Sehenswürdigkeiten in {stadt}</a></li>
+          <li><a href="/">Startseite {stadt}-Interaktiv</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .promis-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1rem 3rem; }
+  .promis-surface {
+    background: var(--color-surface, #ffffff);
+    color: var(--color-text-body, #33313f);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: clamp(20px, 4vw, 40px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 30px rgba(0,0,0,0.05);
+    font-size: 16.5px; line-height: 1.7;
+  }
+  .promis-surface .eyebrow {
+    text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem;
+    font-weight: 700; color: var(--color-accent); margin: 0 0 0.6rem;
+  }
+  .promis-surface h1 {
+    color: var(--color-text); font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 800; line-height: 1.15; letter-spacing: -0.5px; margin: 0 0 1rem;
+  }
+  .promis-surface .lead { font-size: 1.12rem; color: var(--color-text-body); margin: 0 0 1.2rem; }
+  .promis-surface .hinweis { font-size: 0.9rem; color: var(--color-text-muted); margin: 0 0 2rem; }
+  .promis-surface h2 {
+    color: var(--color-text); font-size: 1.55rem; font-weight: 800;
+    line-height: 1.25; letter-spacing: -0.3px; margin: 2.2rem 0 1rem;
+  }
+  .promis-surface .kategorie-block { margin-bottom: 1.5rem; }
+  .promis-surface .person-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.9rem; }
+  .promis-surface .person-card {
+    border: 1px solid var(--color-border); border-radius: 12px;
+    padding: 1.1rem 1.2rem; background: var(--color-surface, #ffffff);
+  }
+  .promis-surface .person-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.7rem; margin-bottom: 0.5rem; }
+  .promis-surface .person-name { font-size: 1.1rem; font-weight: 700; color: var(--color-text); }
+  .promis-surface .bezug-badge {
+    font-size: 0.72rem; font-weight: 600; padding: 0.25rem 0.6rem;
+    border-radius: 999px; background: var(--color-accent-tint); color: var(--color-accent);
+  }
+  .promis-surface .person-fakt { margin: 0; color: var(--color-text-body); line-height: 1.6; }
+  .promis-surface .faq-block { margin-top: 3rem; }
+  .promis-surface .faq-item {
+    border-top: 1px solid var(--color-border); padding: 1.1rem 0;
+  }
+  .promis-surface .faq-item summary {
+    font-weight: 700; color: var(--color-text); cursor: pointer; list-style: revert;
+  }
+  .promis-surface .faq-item p { margin: 0.7rem 0 0; color: var(--color-text-body); }
+  .promis-surface .mehr-block { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border); }
+  .promis-surface .mehr-links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 1rem; }
+  .promis-surface .mehr-links a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; font-weight: 600; }
+</style>
