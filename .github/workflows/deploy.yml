@@ -1,4 +1,4 @@
-name: Build & Deploy to cPanel
+name: Deploy to Cloudflare Pages
 
 on:
   push:
@@ -13,90 +13,35 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
+      deployments: write
     timeout-minutes: 20
-
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Setup Node 22
-        uses: actions/setup-node@v5
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: "22"
-          cache: "npm"
+          node-version: 22
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Astro site
+      - name: Build
         run: npm run build
         env:
           NODE_ENV: production
-          # Stay22 Direct Travel API — ohne diesen Key werden Live-Hotels
-          # beim Build still uebersprungen (graceful degradation).
           STAY22_API_KEY: ${{ secrets.STAY22_API_KEY }}
 
-      - name: Build report
-        run: |
-          echo "Built files: $(find dist -type f | wc -l)"
-          echo "Total size: $(du -sh dist | cut -f1)"
-
-      - name: Commit dist/ to main
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          git add -f dist/
-          if git diff --staged --quiet; then
-            echo "Keine dist/-Aenderungen — ueberspringe Commit."
-          else
-            git commit -m "build: $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
-          fi
-
-          # Auf den aktuellen Remote-Stand neu aufsetzen. -X theirs laesst bei
-          # dist/-Konflikten IMMER den frischen Build gewinnen — dadurch sind auch
-          # Re-Runs (alter Checkout-SHA vs. bereits gepushter Build) konfliktfrei.
-          git fetch origin main
-          git rebase -X theirs origin/main
-          git push origin HEAD:main
-
-      - name: Deploy via SSH (mit Retry gegen transiente Gateway-Drops)
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        run: |
-          mkdir -p ~/.ssh
-          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-
-          deploy() {
-            ssh -i "$HOME/.ssh/deploy_key" \
-              -o StrictHostKeyChecking=accept-new \
-              -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
-              -o ConnectTimeout=20 \
-              -p 22 top10-heidelberg.de@ssh.gb.stackcp.com \
-              'cd /home/sites/20a/9/9a9f6d1c7a/public_html/karlsruhe-interaktiv.de/astro-site && git fetch origin main && git checkout main && git pull origin main'
-          }
-
-          n=0
-          max=5
-          until [ "$n" -ge "$max" ]; do
-            if deploy; then
-              echo "Deploy erfolgreich bei Versuch $((n + 1))."
-              exit 0
-            fi
-            n=$((n + 1))
-            if [ "$n" -lt "$max" ]; then
-              wait_s=$((n * 15))
-              echo "Deploy-Versuch $n fehlgeschlagen (vermutlich transienter SSH-Gateway-Drop). Neuer Versuch in ${wait_s}s..."
-              sleep "$wait_s"
-            fi
-          done
-
-          echo "Deploy nach $max Versuchen fehlgeschlagen."
-          exit 1
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy dist --project-name=karlsruhe-interaktiv-de --branch=main
