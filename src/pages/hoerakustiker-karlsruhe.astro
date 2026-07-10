@@ -1,0 +1,156 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "Hörgeräte in Karlsruhe: Hörakustiker im Überblick";
+const description = "Wer in Karlsruhe einen Hörakustiker sucht, findet hier 11 Fachgeschäfte mit Kontaktdaten sowie Antworten zu Kosten und Zuschüssen.";
+const faqLd = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Wie viele Hörakustiker gibt es in Karlsruhe?","acceptedAnswer":{"@type":"Answer","text":"Das Verzeichnis von hoer-gut.com führt für Karlsruhe aktuell 11 Fachgeschäfte für Hörakustik, von der Ketten-Filiale bis zum inhabergeführten Betrieb. Bei Hoer Gut finden Sie alle 11 Hörakustiker in Karlsruhe mit eigenen Detailseiten."}},{"@type":"Question","name":"Was kostet ein Hörtest beim Hörakustiker?","acceptedAnswer":{"@type":"Answer","text":"In aller Regel nichts: Die Fachgeschäfte in Karlsruhe bieten den Hörtest als kostenlosen Service an. Eingeplant werden sollten 20 bis 30 Minuten, gemessen werden Tongehör und Sprachverstehen, und das Ergebnis wird direkt im Anschluss erklärt."}},{"@type":"Question","name":"Brauche ich ein Rezept vom HNO-Arzt?","acceptedAnswer":{"@type":"Answer","text":"Nur wenn die Krankenkasse mitzahlen soll: Dann führt der Weg zuerst zum HNO-Arzt, der die Hörminderung feststellt und die Versorgung verordnet. Mit dieser Verordnung rechnet der Hörakustiker den Festbetrag direkt mit der Kasse ab. Ein privater Kauf ohne Rezept ist ebenfalls möglich, verschenkt aber den Zuschuss."}},{"@type":"Question","name":"Wie lange dauert die Anpassung eines Hörgeräts?","acceptedAnswer":{"@type":"Answer","text":"Eine gute Anpassung braucht mehrere Termine: Hörtest, Erstberatung, dann ein bis zwei Wochen Probetragen pro Gerät mit anschließender Feinjustierung. Insgesamt sollte man 4 bis 8 Wochen einplanen, bis das Hörgerät wirklich passt."}}]};
+const itemListLd = {"@context":"https://schema.org","@type":"ItemList","name":"Hörakustiker in Karlsruhe","itemListElement":[{"@type":"ListItem","position":1,"name":"Haus des Hörens Anke Bünting- Walter GmbH"},{"@type":"ListItem","position":2,"name":"Hörgeräte Iffland GmbH & Co. KG"},{"@type":"ListItem","position":3,"name":"Hörgeräte Seifert GmbH"},{"@type":"ListItem","position":4,"name":"Hörsysteme Kaspar GmbH"},{"@type":"ListItem","position":5,"name":"Hörwelt digital"},{"@type":"ListItem","position":6,"name":"Hörzentrum Hofmann"},{"@type":"ListItem","position":7,"name":"mona&lisa"},{"@type":"ListItem","position":8,"name":"Hörgeräte Seifert GmbH"},{"@type":"ListItem","position":9,"name":"GEERS Hörakustik AG & Co.KG"},{"@type":"ListItem","position":10,"name":"Hans Meißburger GmbH"},{"@type":"ListItem","position":11,"name":"Hörgeräte GEERS AG & Co.KG"}]};
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(itemListLd)} />
+  <div class="ha-wrap">
+    <div class="ha-surface">
+      <h1>Hörakustiker in Karlsruhe: Die wichtigsten Adressen im Überblick</h1>
+      <p class="ha-lead">Gutes Hören ist Lebensqualität, und der Weg dorthin beginnt beim Hörakustiker um die Ecke. In Karlsruhe verteilen sich 11 Fachgeschäfte über die Stadt. Hier finden Sie die Adressen im Überblick sowie Antworten auf die Fragen, die vor dem ersten Termin am häufigsten gestellt werden.</p>
+
+      <h2>Das Wichtigste in Kürze</h2>
+      <ul>
+        <li>In Karlsruhe gibt es aktuell 11 Hörakustiker-Fachgeschäfte, von der Ketten-Filiale bis zum unabhängigen Meisterbetrieb.</li>
+        <li>Der Hörtest beim Akustiker ist in der Regel kostenlos und dauert etwa 20 bis 30 Minuten.</li>
+        <li>Gesetzliche Kassen zahlen mit HNO-Verordnung einen Festbetrag von ca. 700 Euro pro Hörgerät, die Zuzahlung beträgt 10 Euro.</li>
+        <li>Jedes Fachgeschäft muss mindestens ein zuzahlungsfreies Hörgerät anbieten; Anspruch auf Neuversorgung besteht in der Regel alle 6 Jahre.</li>
+      </ul>
+
+      <h2>Hörakustiker in Karlsruhe im Überblick</h2>
+      <p>Die folgende Liste führt alle 11 Fachgeschäfte in Karlsruhe mit Adresse und Kontakt auf. Öffnungszeiten ändern sich gelegentlich, ein kurzer Anruf vor dem Besuch lohnt sich.</p>
+      <ul class="ha-list">
+        <li class="ha">
+          <span class="ha-name">1. Haus des Hörens Anke Bünting- Walter GmbH</span>
+          <span class="ha-lage">Kaiserstr. 190, 76133 Karlsruhe</span>
+          <span class="ha-meta"><strong>Telefon:</strong> 0721/9204643</span>
+          <span class="ha-hint">Fragen zu Reparatur und Nachjustierung beantwortet das Team vor Ort.</span>
+        </li>
+        <li class="ha">
+          <span class="ha-name">2. Hörgeräte Iffland GmbH &amp; Co. KG</span>
+          <span class="ha-lage">Kaiserstr. 68, 76133 Karlsruhe</span>
+          <span class="ha-meta"><strong>Telefon:</strong> 0721/388500</span>
+          <span class="ha-hint">Als iffland.hören.-Standort profitiert das Geschäft vom Netz der Kette, etwa bei Ersatzteilen und Service.</span>
+        </li>
+        <li class="ha">
+          <span class="ha-name">3. Hörgeräte Seifert GmbH</span>
+          <span class="ha-lage">Kaiserallee 7, 76133 Karlsruhe</span>
+          <span class="ha-meta"><strong>Telefon:</strong> 0721/848780</span>
+          <span class="ha-hint">Als Hörgeräte Seifert-Standort profitiert das Geschäft vom Netz der Kette, etwa bei Ersatzteilen und Service.</span>
+        </li>
+        <li class="ha">
+          <span class="ha-name">4. Hörsysteme Kaspar GmbH</span>
+          <span class="ha-lage">Herrenstr. 14, 76133 Karlsruhe</span>
+          
+          <span class="ha-hint">Ein kurzer Anruf vorab erspart Wartezeit im Geschäft.</span>
+        </li>
+        <li class="ha">
+          <span class="ha-name">5. Hörwelt digital</span>
+          <span class="ha-lage">Kaiserstr. 169, 76133 Karlsruhe</span>
+          <span class="ha-meta"><strong>Telefon:</strong> 0721/1606836</span>
+          <span class="ha-hint">Fragen zu Reparatur und Nachjustierung beantwortet das Team vor Ort.</span>
+        </li>
+        <li class="ha">
+          <span class="ha-name">6. Hörzentrum Hofmann</span>
+          <span class="ha-lage">Amalienstr. 5, 76133 Karlsruhe</span>
+          <span class="ha-meta"><strong>Telefon:</strong> 0721/1805790</span>
+          <span class="ha-hint">Ein kurzer Anruf vorab erspart Wartezeit im Geschäft.</span>
+        </li>
+        <li class="ha">
+          <span class="ha-name">7. mona&amp;lisa</span>
+          <span class="ha-lage">Adlerstraße 27a, 76133 Karlsruhe</span>
+          <span class="ha-meta"><strong>Telefon:</strong> 0721/35467626</span>
+          <span class="ha-hint">Fragen zu Reparatur und Nachjustierung beantwortet das Team vor Ort.</span>
+        </li>
+        <li class="ha">
+          <span class="ha-name">8. Hörgeräte Seifert GmbH</span>
+          <span class="ha-lage">Bärenweg 31, 76149 Karlsruhe</span>
+          <span class="ha-meta"><strong>Telefon:</strong> 0721/6281987</span>
+          <span class="ha-hint">Als Hörgeräte Seifert-Standort profitiert das Geschäft vom Netz der Kette, etwa bei Ersatzteilen und Service.</span>
+        </li>
+        <li class="ha">
+          <span class="ha-name">9. GEERS Hörakustik AG &amp; Co.KG</span>
+          <span class="ha-lage">Pfinztalstr. 6, 76227 Karlsruhe</span>
+          <span class="ha-meta"><strong>Telefon:</strong> 0721/4538541</span>
+          <span class="ha-hint">Als GEERS-Standort profitiert das Geschäft vom Netz der Kette, etwa bei Ersatzteilen und Service.</span>
+        </li>
+        <li class="ha">
+          <span class="ha-name">10. Hans Meißburger GmbH</span>
+          <span class="ha-lage">Pfinztalstr. 38, 76227 Karlsruhe</span>
+          <span class="ha-meta"><strong>Telefon:</strong> 0721/943943</span>
+          <span class="ha-hint">Ein kurzer Anruf vorab erspart Wartezeit im Geschäft.</span>
+        </li>
+        <li class="ha">
+          <span class="ha-name">11. Hörgeräte GEERS AG &amp; Co.KG</span>
+          <span class="ha-lage">Pfinztalstr. 6, 76227 Karlsruhe</span>
+          <span class="ha-meta"><strong>Telefon:</strong> 0721/4538541</span>
+          <span class="ha-hint">Als GEERS-Standort profitiert das Geschäft vom Netz der Kette, etwa bei Ersatzteilen und Service.</span>
+        </li>
+      </ul>
+
+
+      <div class="ha-box">
+        <div class="ha-box-title">Noch mehr Details zu jedem Fachgeschäft</div>
+        <p class="ha-box-text">Als Quelle diente das <a href="https://hoer-gut.com/hoergeraeteakustiker/karlsruhe/">Branchenverzeichnis Hoer Gut</a> mit über 3.000 Fachgeschäften in ganz Deutschland. Zu jedem Eintrag gibt es dort Adresse, Telefonnummer und, wo vorhanden, Website und E-Mail.</p>
+      </div>
+      <h2>So finden Sie den passenden Hörakustiker</h2>
+      <p>Wichtiger als die Marke im Schaufenster ist die Betreuung: Ein guter Hörakustiker nimmt sich für den ersten Hörtest Zeit, erklärt das Ergebnis verständlich und lässt Sie mehrere Geräte im Alltag probetragen, ohne zu drängen. Achten Sie außerdem auf kurze Wege, denn nach dem Kauf stehen regelmäßige Feinjustierungen, Reinigungen und kleine Reparaturen an. Wer dafür jedes Mal quer durch Karlsruhe fahren muss, schiebt diese Termine erfahrungsgemäß auf.</p>
+
+      <h2>Hörgeräte-Kosten: Das übernimmt die Krankenkasse</h2>
+      <p>Die gesetzlichen Krankenkassen zahlen für ein Hörgerät einen Festbetrag von rund 700 Euro je Ohr, sofern ein HNO-Arzt die Hörminderung festgestellt und ein Rezept ausgestellt hat. Zuzahlungsfreie Geräte, bei denen nur die gesetzlichen 10 Euro fällig werden, muss jedes Fachgeschäft im Sortiment haben, und diese Basisgeräte sind technisch deutlich besser als ihr Ruf. Höherwertige Modelle mit Zusatzfunktionen kosten je nach Ausstattung ca. 1.000 bis 2.500 Euro pro Ohr abzüglich Festbetrag. Eine Neuversorgung ist üblicherweise alle 6 Jahre möglich, bei deutlicher Hörverschlechterung auch früher.</p>
+
+      <h2>Häufig gestellte Fragen</h2>
+      <div class="faq-item">
+        <h3>Wie viele Hörakustiker gibt es in Karlsruhe?</h3>
+        <p>Das Verzeichnis von hoer-gut.com führt für Karlsruhe aktuell 11 Fachgeschäfte für Hörakustik, von der Ketten-Filiale bis zum inhabergeführten Betrieb. Bei Hoer Gut finden Sie <a href="https://hoer-gut.com/hoergeraeteakustiker/karlsruhe/">alle 11 Hörakustiker in Karlsruhe</a> mit eigenen Detailseiten.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Was kostet ein Hörtest beim Hörakustiker?</h3>
+        <p>In aller Regel nichts: Die Fachgeschäfte in Karlsruhe bieten den Hörtest als kostenlosen Service an. Eingeplant werden sollten 20 bis 30 Minuten, gemessen werden Tongehör und Sprachverstehen, und das Ergebnis wird direkt im Anschluss erklärt.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Brauche ich ein Rezept vom HNO-Arzt?</h3>
+        <p>Nur wenn die Krankenkasse mitzahlen soll: Dann führt der Weg zuerst zum HNO-Arzt, der die Hörminderung feststellt und die Versorgung verordnet. Mit dieser Verordnung rechnet der Hörakustiker den Festbetrag direkt mit der Kasse ab. Ein privater Kauf ohne Rezept ist ebenfalls möglich, verschenkt aber den Zuschuss.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Wie lange dauert die Anpassung eines Hörgeräts?</h3>
+        <p>Eine gute Anpassung braucht mehrere Termine: Hörtest, Erstberatung, dann ein bis zwei Wochen Probetragen pro Gerät mit anschließender Feinjustierung. Insgesamt sollte man 4 bis 8 Wochen einplanen, bis das Hörgerät wirklich passt.</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .ha-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1rem 3rem; }
+  .ha-surface {
+    background: #ffffff; color: #33313f; border-radius: 16px;
+    padding: clamp(20px, 4vw, 40px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 30px rgba(0,0,0,0.05);
+    font-size: 16.5px; line-height: 1.7;
+  }
+  .ha-surface h1 { color: #20233a; font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.5px; margin: 0 0 1rem; }
+  .ha-surface .ha-lead { font-size: 1.12rem; color: #4a4858; margin: 0 0 1.6rem; }
+  .ha-surface h2 { color: #20233a; font-size: 1.55rem; font-weight: 800; line-height: 1.25; letter-spacing: -0.3px; margin: 2.2rem 0 0.8rem; }
+  .ha-surface h3 { color: #20233a; font-size: 1.2rem; font-weight: 700; line-height: 1.3; margin: 1.5rem 0 0.5rem; }
+  .ha-surface p { margin: 0 0 1.05rem; }
+  .ha-surface ul, .ha-surface ol { margin: 0 0 1.15rem; padding-left: 1.4rem; }
+  .ha-surface li { margin-bottom: 0.5rem; }
+  .ha-surface strong { color: #20233a; font-weight: 700; }
+  .ha-surface a { color: #365DA3; text-decoration: underline; text-underline-offset: 3px; }
+  .ha-surface .ha-list { list-style: none; padding-left: 0; }
+  .ha-surface .ha { display: block; border: 1px solid #e6e6ef; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; background: #fafafd; }
+  .ha-surface .ha-name { display: block; font-weight: 800; color: #20233a; font-size: 1.05rem; }
+  .ha-surface .ha-lage { display: block; color: #4a4858; margin-top: 2px; }
+  .ha-surface .ha-meta { display: block; color: #33313f; margin-top: 6px; font-size: 0.97rem; }
+  .ha-surface .ha-hint { display: block; color: #6b7280; margin-top: 4px; font-size: 0.94rem; }
+  .ha-box { background: #f4f6fb; border: 1px solid #dde3f0; border-radius: 14px; padding: 22px 24px; margin: 28px 0; }
+  .ha-box-title { font-size: 19px; font-weight: 800; color: #20233a; margin-bottom: 6px; }
+  .ha-box-text { margin: 0; }
+  .ha-surface .faq-item { border-top: 1px solid #e6e6ef; padding-top: 1.1rem; margin-top: 1.1rem; }
+  .ha-surface .faq-item h3 { margin-top: 0; font-size: 18px; }
+</style>
