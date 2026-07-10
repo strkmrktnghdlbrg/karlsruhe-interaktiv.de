@@ -24,7 +24,7 @@ export const eventsEn: Record<string, EventEn> = {
     intro:
       "Das Fest on the Mount Klotz is one of the largest open-air festivals in south-west Germany. Hotels in the city centre book up early for the festival weekend.",
     description:
-      "Hotels in Karlsruhe for Das Fest 2026 — live prices for the biggest regional open-air festival on the Mount Klotz.",
+      "Hotels in Karlsruhe for Das Fest 2026 - live prices for the biggest regional open-air festival on the Mount Klotz.",
     address: "Karlsruhe, Germany",
   },
   "schlosslichtspiele": {
@@ -32,9 +32,9 @@ export const eventsEn: Record<string, EventEn> = {
     title: "Hotels in Karlsruhe for the Schlosslichtspiele",
     eyebrow: "Schlosslichtspiele 2026",
     intro:
-      "Every summer evening the Schlosslichtspiele light up the palace facade with projections. It is one of Germany's most spectacular open-air art events — and admission is free.",
+      "Every summer evening the Schlosslichtspiele light up the palace facade with projections. It is one of Germany's most spectacular open-air art events - and admission is free.",
     description:
-      "Hotels in Karlsruhe for the Schlosslichtspiele 2026 — live prices for the open-air art event at the palace.",
+      "Hotels in Karlsruhe for the Schlosslichtspiele 2026 - live prices for the open-air art event at the palace.",
     address: "Karlsruhe Palace, Germany",
   },
   "christkindlesmarkt": {
@@ -44,7 +44,7 @@ export const eventsEn: Record<string, EventEn> = {
     intro:
       "Karlsruhe's Christkindlesmarkt on Marktplatz and Friedrichsplatz is one of the loveliest Christmas markets in southern Germany. Spend an Advent night right in the centre.",
     description:
-      "Hotels in Karlsruhe for the Christmas Market 2026 — live prices for the Advent season on Marktplatz and Friedrichsplatz.",
+      "Hotels in Karlsruhe for the Christmas Market 2026 - live prices for the Advent season on Marktplatz and Friedrichsplatz.",
     address: "Karlsruhe Marktplatz, Germany",
   },
   "art-karlsruhe": {
@@ -54,7 +54,7 @@ export const eventsEn: Record<string, EventEn> = {
     intro:
       "art Karlsruhe is one of Germany's most important art fairs. More than 200 galleries present classic modern, contemporary art and editions across the exhibition halls.",
     description:
-      "Hotels in Karlsruhe for art Karlsruhe 2027 — live prices and availability for the art fair at the end of February.",
+      "Hotels in Karlsruhe for art Karlsruhe 2027 - live prices and availability for the art fair at the end of February.",
     address: "Messe Karlsruhe, Rheinstetten",
   },
   "brigande-feschd": {
@@ -64,7 +64,7 @@ export const eventsEn: Record<string, EventEn> = {
     intro:
       "The Brigande-Feschd is Durlach's biggest street festival. Three days of live music, Baden specialities and a buzzing city-festival atmosphere in the historic old town.",
     description:
-      "Hotels in Karlsruhe-Durlach for the Brigande-Feschd 2026 — live prices for Durlach's largest street festival.",
+      "Hotels in Karlsruhe-Durlach for the Brigande-Feschd 2026 - live prices for Durlach's largest street festival.",
     address: "Karlsruhe-Durlach, Germany",
   },
   "stadtgeburtstag": {
@@ -74,7 +74,7 @@ export const eventsEn: Record<string, EventEn> = {
     intro:
       "Every five years Karlsruhe celebrates its founding anniversary with a grand stage festival on Schlossplatz. The fan-shaped city was founded back in 1715.",
     description:
-      "Hotels in Karlsruhe for the City Anniversary — live prices for the grand stage festival at the palace and Marktplatz.",
+      "Hotels in Karlsruhe for the City Anniversary - live prices for the grand stage festival at the palace and Marktplatz.",
     address: "Karlsruhe city centre, Germany",
   },
 };

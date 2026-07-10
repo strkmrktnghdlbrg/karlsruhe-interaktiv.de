@@ -224,7 +224,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     shortDesc:
       "A front-cooking Italian on Europaplatz. Pasta and pizza prepared fresh to order.",
     longDesc:
-      "Vapiano on Europaplatz is Karlsruhe's casual Italian with a front-cooking concept. Pasta and pizza are prepared in front of guests, no reservation needed — a favourite for a quick lunch.",
+      "Vapiano on Europaplatz is Karlsruhe's casual Italian with a front-cooking concept. Pasta and pizza are prepared in front of guests, no reservation needed - a favourite for a quick lunch.",
     openingHours: "Mon–Sun 11am–11pm",
   },
   "losteria-karlsruhe": {

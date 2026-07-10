@@ -144,7 +144,7 @@ export const sightsEn: Record<string, SightEn> = {
     name: "KIT South Campus",
     type: "Modern",
     shortDesc:
-      "The Karlsruhe Institute of Technology — one of Europe's major technical universities with around 25,000 students.",
+      "The Karlsruhe Institute of Technology - one of Europe's major technical universities with around 25,000 students.",
     longDesc:
       "The South Campus of KIT, formerly the University of Karlsruhe (TH), is one of the most tradition-rich technology university sites in Europe. Today it is part of the Helmholtz Association as a combined university and research centre. Historic buildings such as the main lecture hall and the Mathematics Library are well worth a stroll.",
   },
@@ -164,7 +164,7 @@ export const sightsEn: Record<string, SightEn> = {
     shortDesc:
       "Karlsruhe's local mountain, home to Germany's oldest observation tower and the historic Turmbergbahn funicular.",
     longDesc:
-      "The Turmberg is Karlsruhe's classic vantage point. The square keep of the former castle is the oldest observation tower in Germany. It can be reached on foot or by the historic Turmbergbahn — Germany's oldest funicular still in operation (1888). On a clear day the view reaches all the way to the Palatinate Forest.",
+      "The Turmberg is Karlsruhe's classic vantage point. The square keep of the former castle is the oldest observation tower in Germany. It can be reached on foot or by the historic Turmbergbahn - Germany's oldest funicular still in operation (1888). On a clear day the view reaches all the way to the Palatinate Forest.",
   },
   "karlsburg": {
     slug: "karlsburg-durlach",
@@ -219,7 +219,7 @@ export const sightsEn: Record<string, SightEn> = {
     shortDesc:
       "A large forest area north of the city with hiking trails, game enclosures and picnic spots.",
     longDesc:
-      "The Hardtwald is Karlsruhe's most important local recreation area — a continuous pine forest stretching north of the city as far as Eggenstein-Leopoldshafen. Hiking trails, game enclosures, fitness trails and, in summer, popular picnic spots.",
+      "The Hardtwald is Karlsruhe's most important local recreation area - a continuous pine forest stretching north of the city as far as Eggenstein-Leopoldshafen. Hiking trails, game enclosures, fitness trails and, in summer, popular picnic spots.",
   },
   "majolika-manufaktur": {
     slug: "majolika-ceramics-manufactory",
@@ -237,7 +237,7 @@ export const sightsEn: Record<string, SightEn> = {
     shortDesc:
       "A private museum on Karlsruhe's transport history. Trams, railways, model railways and Karl Drais's running machine.",
     longDesc:
-      "The Transport Museum Karlsruhe is a private museum on transport history, focusing on the Karlsruhe tram, the city's famous Karlsruhe Model (the tram-train hybrid) and Karl Drais, inventor of the running machine — born in Karlsruhe.",
+      "The Transport Museum Karlsruhe is a private museum on transport history, focusing on the Karlsruhe tram, the city's famous Karlsruhe Model (the tram-train hybrid) and Karl Drais, inventor of the running machine - born in Karlsruhe.",
     openingHours: "Sat–Sun 2pm–6pm",
   },
   "rheinhafen": {

@@ -9,7 +9,7 @@ export const categoriesEn: Record<string, { slug: string; name: string; shortDes
   "tech-innovation": {
     slug: "tech-innovation",
     name: "Tech & Innovation",
-    shortDesc: "KIT, FZI, CyberForum — Karlsruhe's tech DNA",
+    shortDesc: "KIT, FZI, CyberForum - Karlsruhe's tech DNA",
   },
   "kunst-medien": {
     slug: "art-media",

@@ -89,7 +89,7 @@ export const districts: District[] = [
     shortDesc:
       "Historischer Markgrafen-Vorort mit Karlsburg, Altstadt und dem Turmberg ueber der Stadt.",
     longDesc:
-      "Durlach ist Karlsruhes aelteste Stadt — gegruendet vor Karlsruhe selbst, war es bis 1715 Residenz der Markgrafen von Baden. Karlsburg, Altstadt, Pfinzgaumuseum, Mehlwaage und die Turmberg-Bahn machen Durlach zum touristischen Highlight ausserhalb des Zentrums.",
+      "Durlach ist Karlsruhes aelteste Stadt - gegruendet vor Karlsruhe selbst, war es bis 1715 Residenz der Markgrafen von Baden. Karlsburg, Altstadt, Pfinzgaumuseum, Mehlwaage und die Turmberg-Bahn machen Durlach zum touristischen Highlight ausserhalb des Zentrums.",
     hue: 1,
     coordinates: [48.9989, 8.4747],
     characterTags: ["Historisch", "Markgrafen", "Aussicht"],
@@ -125,7 +125,7 @@ export const districts: District[] = [
     shortDesc:
       "Suedwestlich am Rheinhafen, mit Industriekultur und Naturschutzgebiet Burgau.",
     longDesc:
-      "Daxlanden liegt am Rhein und beherbergt einen Teil des Karlsruher Rheinhafens — eines der groessten Binnenhaefen Deutschlands. Das Naturschutzgebiet Burgau bietet Naherholung am Wasser.",
+      "Daxlanden liegt am Rhein und beherbergt einen Teil des Karlsruher Rheinhafens - eines der groessten Binnenhaefen Deutschlands. Das Naturschutzgebiet Burgau bietet Naherholung am Wasser.",
     hue: 5,
     coordinates: [49.0019, 8.3192],
     characterTags: ["Rhein", "Industrie", "Natur"],

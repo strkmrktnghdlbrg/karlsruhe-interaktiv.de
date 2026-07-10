@@ -6,7 +6,7 @@ export type Category = {
 };
 
 export const categories: Category[] = [
-  { slug: "tech-innovation", name: "Tech & Innovation", shortDesc: "KIT, FZI, CyberForum — Karlsruhes Tech-DNA", icon: "chip" },
+  { slug: "tech-innovation", name: "Tech & Innovation", shortDesc: "KIT, FZI, CyberForum - Karlsruhes Tech-DNA", icon: "chip" },
   { slug: "kunst-medien", name: "Kunst & Medien", shortDesc: "ZKM, Kunsthalle, Medienkunst weltweit", icon: "palette" },
   { slug: "wissenschaft", name: "Wissenschaft", shortDesc: "KIT, Forschungszentren, Universitaeten", icon: "atom" },
   { slug: "wahrzeichen", name: "Wahrzeichen", shortDesc: "Schloss, Pyramide, Turmberg & Co", icon: "landmark" },

@@ -51,12 +51,12 @@ export const guides: Guide[] = [
       "Drei Tage genuegen, um Karlsruhe wirklich kennenzulernen. Wir verbinden die ikonische Faecher-Architektur rund um Schloss und Pyramide mit dem weltweit einzigartigen ZKM, dem historischen Durlach mit Turmberg-Bahn und der Karlsruher Tech-Atmosphaere im KIT-Umfeld. Eingebaut: badische Brauhaus-Klassiker, Stern-Restaurant Sein und ein Spaziergang im Hardtwald.",
     duration: 3,
     audience: "Erstbesucher",
-    bestSeason: "April bis Oktober — Schlosslichtspiele im August/September als Bonus",
+    bestSeason: "April bis Oktober - Schlosslichtspiele im August/September als Bonus",
     imageHue: 1,
     days: [
       {
         number: 1,
-        title: "Tag 1 — Faecherstadt vom Zentrum aus",
+        title: "Tag 1 - Faecherstadt vom Zentrum aus",
         intro:
           "Der erste Tag gehoert dem Faecher-Ursprung: Schloss, Marktplatz, klassizistische Innenstadt. Wir starten im Schloss, gehen die Strahlen-Strassen nach Sueden und enden in einem badischen Klassiker.",
         slots: [
@@ -114,7 +114,7 @@ export const guides: Guide[] = [
       },
       {
         number: 2,
-        title: "Tag 2 — ZKM, KIT und Suedstadt",
+        title: "Tag 2 - ZKM, KIT und Suedstadt",
         intro:
           "Der zweite Tag steht im Zeichen von Kunst, Medien und Tech. Das ZKM als weltweit einzigartiges Museum, anschliessend KIT-Atmosphaere und am Abend Suedstadt-Lebendigkeit.",
         slots: [
@@ -123,7 +123,7 @@ export const guides: Guide[] = [
             type: "morgens",
             title: "ZKM Zentrum fuer Kunst und Medien",
             description:
-              "Das ZKM ist weltweit das einzige Museum, das sich systematisch der elektronischen und digitalen Kunst widmet. Medienmuseum, Museum fuer Neue Kunst, interaktive Installationen — drei Stunden Minimum.",
+              "Das ZKM ist weltweit das einzige Museum, das sich systematisch der elektronischen und digitalen Kunst widmet. Medienmuseum, Museum fuer Neue Kunst, interaktive Installationen - drei Stunden Minimum.",
             sightSlug: "zkm",
             tip: "Mittwoch Eintritt frei. Sonst Kombi-Ticket fuer alle ZKM-Bereiche kaufen.",
           },
@@ -172,7 +172,7 @@ export const guides: Guide[] = [
       },
       {
         number: 3,
-        title: "Tag 3 — Durlach, Turmberg und Hardtwald",
+        title: "Tag 3 - Durlach, Turmberg und Hardtwald",
         intro:
           "Der dritte Tag fuehrt aus dem Zentrum hinaus. Vormittags Durlach mit Karlsburg und Turmbergbahn, am Nachmittag der Hardtwald als gruene Lunge der Stadt.",
         slots: [
@@ -181,7 +181,7 @@ export const guides: Guide[] = [
             type: "morgens",
             title: "Durlacher Altstadt und Karlsburg",
             description:
-              "Durlach ist Karlsruhes aelteste Stadt — bis 1715 Residenz der Markgrafen. Karlsburg, Mehlwaage, Pfinzgaumuseum. Mit der S-Bahn 20 Minuten vom Zentrum.",
+              "Durlach ist Karlsruhes aelteste Stadt - bis 1715 Residenz der Markgrafen. Karlsburg, Mehlwaage, Pfinzgaumuseum. Mit der S-Bahn 20 Minuten vom Zentrum.",
             sightSlug: "karlsburg",
             districtSlug: "durlach",
           },
@@ -226,7 +226,7 @@ export const guides: Guide[] = [
     slug: "karlsruhe-mit-kindern",
     title: "Karlsruhe mit Kindern",
     shortDesc:
-      "Familien-Tag in Karlsruhe: Zoo, Naturkundemuseum, Turmbergbahn und Schlossgarten — alles kurze Wege.",
+      "Familien-Tag in Karlsruhe: Zoo, Naturkundemuseum, Turmbergbahn und Schlossgarten - alles kurze Wege.",
     lead:
       "Karlsruhe ist eine ueberraschend familienfreundliche Stadt. Zoo direkt am Hauptbahnhof, Naturkundemuseum mit lebenden Tieren, Turmbergbahn fuer Eisenbahn-Fans und gemuetliche Brauhaus-Kueche. Ein Tag reicht, um die Familien-Highlights zu schaffen.",
     duration: 1,
@@ -291,7 +291,7 @@ export const guides: Guide[] = [
     shortDesc:
       "Indoor-Tag in Karlsruhe: ZKM, Kunsthalle, Naturkundemuseum, Schloss-Landesmuseum, Cafes und Brauhaus.",
     lead:
-      "Karlsruhe hat einige der besten Indoor-Museen Deutschlands — perfekt fuer Regentage. ZKM, Staatliche Kunsthalle, Badisches Landesmuseum im Schloss und das Naturkundemuseum sind alle bei jedem Wetter sehenswert.",
+      "Karlsruhe hat einige der besten Indoor-Museen Deutschlands - perfekt fuer Regentage. ZKM, Staatliche Kunsthalle, Badisches Landesmuseum im Schloss und das Naturkundemuseum sind alle bei jedem Wetter sehenswert.",
     duration: 1,
     audience: "Schlechtwetter",
     imageHue: 3,
@@ -300,14 +300,14 @@ export const guides: Guide[] = [
         number: 1,
         title: "Museen, Cafes und Brauhaus",
         intro:
-          "Vier Top-Museen an einem Tag — geht knapp, aber wir setzen Prioritaeten und planen Pausen mit ein.",
+          "Vier Top-Museen an einem Tag - geht knapp, aber wir setzen Prioritaeten und planen Pausen mit ein.",
         slots: [
           {
             time: "10:00 - 12:30",
             type: "morgens",
             title: "ZKM Zentrum fuer Kunst und Medien",
             description:
-              "Pflichttermin. Interaktive Installationen, Medienkunst, immersive Erlebnisse — bei Regen erst recht die richtige Welt.",
+              "Pflichttermin. Interaktive Installationen, Medienkunst, immersive Erlebnisse - bei Regen erst recht die richtige Welt.",
             sightSlug: "zkm",
           },
           {
@@ -315,7 +315,7 @@ export const guides: Guide[] = [
             type: "mittagessen",
             title: "Suppdiwupp",
             description:
-              "Suppen-Lokal mit wechselnder Karte. Warme Suppen, Curries, Eintoepfe — wettertauglich.",
+              "Suppen-Lokal mit wechselnder Karte. Warme Suppen, Curries, Eintoepfe - wettertauglich.",
             restaurantSlug: "suppdiwupp",
           },
           {
@@ -339,7 +339,7 @@ export const guides: Guide[] = [
             type: "abendessen",
             title: "Badisch Brauhaus",
             description:
-              "Klassisches Brauhaus mit hauseigener Brauerei. Schaeufele, Maultaschen, Hausbier — ideale Regen-Therapie.",
+              "Klassisches Brauhaus mit hauseigener Brauerei. Schaeufele, Maultaschen, Hausbier - ideale Regen-Therapie.",
             restaurantSlug: "badisch-brauhaus",
           },
         ],

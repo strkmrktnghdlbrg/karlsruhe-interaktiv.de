@@ -75,7 +75,7 @@ export const districtsEn: Record<string, DistrictEn> = {
     shortDesc:
       "A historic margravial town with the Karlsburg, an old town and the Turmberg rising above the city.",
     longDesc:
-      "Durlach is Karlsruhe's oldest town — founded before Karlsruhe itself, it was the residence of the Margraves of Baden until 1715. The Karlsburg, the old town, the Pfinzgau Museum, the Mehlwaage and the Turmberg funicular make Durlach a tourist highlight beyond the city centre.",
+      "Durlach is Karlsruhe's oldest town - founded before Karlsruhe itself, it was the residence of the Margraves of Baden until 1715. The Karlsburg, the old town, the Pfinzgau Museum, the Mehlwaage and the Turmberg funicular make Durlach a tourist highlight beyond the city centre.",
     characterTags: ["Historic", "Margraves", "Views"],
   },
   oststadt: {
@@ -102,7 +102,7 @@ export const districtsEn: Record<string, DistrictEn> = {
     shortDesc:
       "To the south-west by the Rhine harbour, with industrial heritage and the Burgau nature reserve.",
     longDesc:
-      "Daxlanden lies on the Rhine and is home to part of Karlsruhe's Rhine harbour — one of the largest inland ports in Germany. The Burgau nature reserve offers waterside recreation.",
+      "Daxlanden lies on the Rhine and is home to part of Karlsruhe's Rhine harbour - one of the largest inland ports in Germany. The Burgau nature reserve offers waterside recreation.",
     characterTags: ["Rhine", "Industry", "Nature"],
   },
   knielingen: {

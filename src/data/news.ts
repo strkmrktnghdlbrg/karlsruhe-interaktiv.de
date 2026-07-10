@@ -39,7 +39,7 @@ export const news: NewsItem[] = [
     lead:
       "Die neue Wechselausstellung am ZKM zeigt 30 internationale Positionen zu generativer KI in Kunst und Wissenschaft.",
     summary:
-      "Das Zentrum fuer Kunst und Medien Karlsruhe eroeffnet am 14. Juni die neue Wechselausstellung 'Generative Welten'. 30 internationale Kuenstlerinnen und Kuenstler zeigen Arbeiten zu generativer KI — von KI-Architektur bis zu interaktiven Klang-Welten. Mit dabei sind Refik Anadol, Anna Ridler und das Karlsruher Atelier ZKM Labor. Eintritt frei am Eroeffnungswochenende.",
+      "Das Zentrum fuer Kunst und Medien Karlsruhe eroeffnet am 14. Juni die neue Wechselausstellung 'Generative Welten'. 30 internationale Kuenstlerinnen und Kuenstler zeigen Arbeiten zu generativer KI - von KI-Architektur bis zu interaktiven Klang-Welten. Mit dabei sind Refik Anadol, Anna Ridler und das Karlsruher Atelier ZKM Labor. Eintritt frei am Eroeffnungswochenende.",
     district: "suedweststadt",
     category: "Kultur",
     publishedAt: "2026-05-20T11:00:00+02:00",
@@ -69,11 +69,11 @@ export const news: NewsItem[] = [
   },
   {
     slug: "schlosslichtspiele-programm-2026",
-    title: "Schlosslichtspiele 2026: Programm steht — vom 13. August bis 14. September",
+    title: "Schlosslichtspiele 2026: Programm steht - vom 13. August bis 14. September",
     lead:
       "Karlsruhes Open-Air-Projection-Mapping-Festival am Schloss laeuft 2026 mit zwoelf Show-Premieren und internationalen Beitraegen.",
     summary:
-      "Die Schlosslichtspiele projizieren auch 2026 wieder jeden Abend kostenlos auf die Schlossfassade. Vom 13. August bis 14. September erwartet das Publikum zwoelf Premieren — darunter Beitraege aus Japan, Polen und Brasilien. Highlight ist die Eroeffnungsshow von Maxin10sity 'Genesis 2.0'. Eintritt frei, Beginn jeweils nach Einbruch der Dunkelheit.",
+      "Die Schlosslichtspiele projizieren auch 2026 wieder jeden Abend kostenlos auf die Schlossfassade. Vom 13. August bis 14. September erwartet das Publikum zwoelf Premieren - darunter Beitraege aus Japan, Polen und Brasilien. Highlight ist die Eroeffnungsshow von Maxin10sity 'Genesis 2.0'. Eintritt frei, Beginn jeweils nach Einbruch der Dunkelheit.",
     district: "innenstadt-west",
     category: "Kultur",
     publishedAt: "2026-05-15T10:00:00+02:00",
@@ -90,7 +90,7 @@ export const news: NewsItem[] = [
     lead:
       "Der Erste Senat hat in einem viel beachteten Urteil die Datenuebermittlung an US-Cloudanbieter eingeschraenkt.",
     summary:
-      "Das Bundesverfassungsgericht Karlsruhe hat in einem viel beachteten Urteil entschieden, dass die Datenuebermittlung deutscher Behoerden an US-Cloudanbieter strengere Voraussetzungen erfuellen muss. Der Erste Senat sah in der bisherigen Praxis einen Verstoss gegen das Grundrecht auf informationelle Selbstbestimmung. Datenschuetzer begruessen das Urteil — die Behoerden mussten innerhalb von 18 Monaten ihre Cloud-Strategien anpassen.",
+      "Das Bundesverfassungsgericht Karlsruhe hat in einem viel beachteten Urteil entschieden, dass die Datenuebermittlung deutscher Behoerden an US-Cloudanbieter strengere Voraussetzungen erfuellen muss. Der Erste Senat sah in der bisherigen Praxis einen Verstoss gegen das Grundrecht auf informationelle Selbstbestimmung. Datenschuetzer begruessen das Urteil - die Behoerden mussten innerhalb von 18 Monaten ihre Cloud-Strategien anpassen.",
     district: "innenstadt-west",
     category: "Recht",
     publishedAt: "2026-05-12T16:00:00+02:00",
@@ -103,7 +103,7 @@ export const news: NewsItem[] = [
   },
   {
     slug: "das-fest-2026-line-up",
-    title: "Das Fest 2026: Headliner steht fest — Deichkind und K.I.Z.",
+    title: "Das Fest 2026: Headliner steht fest - Deichkind und K.I.Z.",
     lead:
       "Das Fest auf dem Mount Klotz hat das Line-Up fuer 2026 veroeffentlicht. Deichkind und K.I.Z. headlinen am Wochenende vom 23.-26. Juli.",
     summary:
@@ -124,7 +124,7 @@ export const news: NewsItem[] = [
     lead:
       "Der Karlsruher Verkehrsverbund baut die Tram-Bahn-Linie S2 bis 2029 weiter. 1,8 Kilometer Neutrasse Richtung Sueden.",
     summary:
-      "Der Karlsruher Verkehrsverbund hat die Erweiterung der Stadtbahnlinie S2 nach Wolfartsweier beschlossen. Bis 2029 entstehen 1,8 Kilometer Neutrasse mit vier neuen Haltestellen. Investitionsvolumen: 78 Millionen Euro. Das Karlsruher Modell — Stadtbahn-Tram-Hybrid — bleibt damit Vorbild fuer den OePNV-Ausbau in mittleren Grossstaedten.",
+      "Der Karlsruher Verkehrsverbund hat die Erweiterung der Stadtbahnlinie S2 nach Wolfartsweier beschlossen. Bis 2029 entstehen 1,8 Kilometer Neutrasse mit vier neuen Haltestellen. Investitionsvolumen: 78 Millionen Euro. Das Karlsruher Modell - Stadtbahn-Tram-Hybrid - bleibt damit Vorbild fuer den OePNV-Ausbau in mittleren Grossstaedten.",
     district: "durlach",
     category: "Verkehr",
     publishedAt: "2026-05-08T09:00:00+02:00",

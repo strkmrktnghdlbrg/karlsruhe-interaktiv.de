@@ -11,14 +11,14 @@ import { indexUrl } from "../../i18n/config";
 if (!features.reiseplaner.enabled) return Astro.redirect("/", 302);
 ---
 
-<BaseLayout title="Reiseplaner" description="Reise-Guides fuer Karlsruhe: 3 Tage, mit Kindern, bei Regen — Tag-fuer-Tag-Routen mit Hotel- und Restaurant-Empfehlungen." alternateUrls={{ de: indexUrl("guides", "de"), en: indexUrl("guides", "en") }}>
+<BaseLayout title="Reiseplaner" description="Reise-Guides fuer Karlsruhe: 3 Tage, mit Kindern, bei Regen - Tag-fuer-Tag-Routen mit Hotel- und Restaurant-Empfehlungen." alternateUrls={{ de: indexUrl("guides", "de"), en: indexUrl("guides", "en") }}>
   <div class="container-page py-12">
     <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "Reiseplaner"}]} />
     <header class="mb-12">
       <p class="eyebrow mb-3">{guides.length} Routen</p>
       <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">Karlsruhe-Reiseplaner</h1>
       <p class="text-lg max-w-3xl" style="color: var(--color-text-body);">
-        Fertige Tagesplaene fuer Karlsruhe — Erstbesucher, Familien, Regen. Jeder Plan verweist auf konkrete Sehenswuerdigkeiten, Restaurants und Hotels.
+        Fertige Tagesplaene fuer Karlsruhe - Erstbesucher, Familien, Regen. Jeder Plan verweist auf konkrete Sehenswuerdigkeiten, Restaurants und Hotels.
       </p>
     </header>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

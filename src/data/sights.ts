@@ -236,7 +236,7 @@ export const sights: Sight[] = [
     type: "Modern",
     priceFrom: null,
     shortDesc:
-      "Karlsruher Institut fuer Technologie — eine der grossen Technischen Universitaeten Europas, ca. 25.000 Studierende.",
+      "Karlsruher Institut fuer Technologie - eine der grossen Technischen Universitaeten Europas, ca. 25.000 Studierende.",
     longDesc:
       "Der Campus Sued des KIT, ehemals Universitaet Karlsruhe (TH), ist eines der traditionsreichsten Technik-Universitaetsgelaende Europas. Heute Teil der Helmholtz-Gemeinschaft als kombinierte Universitaet + Forschungszentrum. Historische Bauten wie das Audimax und die Mathematische Bibliothek lohnen einen Spaziergang.",
     imageHue: 3,
@@ -272,7 +272,7 @@ export const sights: Sight[] = [
     shortDesc:
       "Karlsruhes Hausberg mit dem aeltesten Aussichtsturm Deutschlands und der historischen Turmbergbahn-Standseilbahn.",
     longDesc:
-      "Der Turmberg ist Karlsruhes klassischer Aussichtspunkt. Der quadratische Bergfried der ehemaligen Burg ist der aelteste Aussichtsturm Deutschlands. Erreichbar zu Fuss oder mit der historischen Turmbergbahn — Deutschlands aeltester noch betriebener Standseilbahn (1888). Bei klarer Sicht reicht der Blick bis zum Pfaelzerwald.",
+      "Der Turmberg ist Karlsruhes klassischer Aussichtspunkt. Der quadratische Bergfried der ehemaligen Burg ist der aelteste Aussichtsturm Deutschlands. Erreichbar zu Fuss oder mit der historischen Turmbergbahn - Deutschlands aeltester noch betriebener Standseilbahn (1888). Bei klarer Sicht reicht der Blick bis zum Pfaelzerwald.",
     imageHue: 1,
     categories: ["wahrzeichen", "familie", "parks"],
     coordinates: [48.9947, 8.5083],
@@ -367,7 +367,7 @@ export const sights: Sight[] = [
     shortDesc:
       "Grosses Waldgebiet noerdlich der Stadt mit Wanderwegen, Wildgehegen und Picknick-Plaetzen.",
     longDesc:
-      "Der Hardtwald ist Karlsruhes wichtigstes Naherholungsgebiet — ein zusammenhaengender Kiefernwald, der sich noerdlich der Stadt bis Eggenstein-Leopoldshafen erstreckt. Wanderwege, Wildgehege, Trimm-dich-Pfade und im Sommer beliebte Picknick-Plaetze.",
+      "Der Hardtwald ist Karlsruhes wichtigstes Naherholungsgebiet - ein zusammenhaengender Kiefernwald, der sich noerdlich der Stadt bis Eggenstein-Leopoldshafen erstreckt. Wanderwege, Wildgehege, Trimm-dich-Pfade und im Sommer beliebte Picknick-Plaetze.",
     imageHue: 4,
     categories: ["parks", "familie"],
     coordinates: [49.0322, 8.4144],
@@ -398,7 +398,7 @@ export const sights: Sight[] = [
     shortDesc:
       "Privatmuseum zur Verkehrsgeschichte Karlsruhes. Trambahn, Eisenbahn, Modellbahn, Karl-Drais-Laufrad.",
     longDesc:
-      "Das Verkehrsmuseum Karlsruhe ist ein Privatmuseum zur Verkehrsgeschichte mit Schwerpunkt auf der Karlsruher Strassenbahn, dem stadtbekannten Karlsruher Modell (Tram-Bahn-Hybrid) und Karl Drais, dem Erfinder des Laufrads — geboren in Karlsruhe.",
+      "Das Verkehrsmuseum Karlsruhe ist ein Privatmuseum zur Verkehrsgeschichte mit Schwerpunkt auf der Karlsruher Strassenbahn, dem stadtbekannten Karlsruher Modell (Tram-Bahn-Hybrid) und Karl Drais, dem Erfinder des Laufrads - geboren in Karlsruhe.",
     imageHue: 5,
     categories: ["museen", "familie"],
     coordinates: [48.9967, 8.4144],

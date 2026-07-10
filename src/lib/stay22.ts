@@ -141,7 +141,7 @@ export async function searchAccommodations(
 ): Promise<Stay22Accommodation[] | null> {
   const apiKey = getApiKey();
   if (!apiKey) {
-    console.warn("[stay22] STAY22_API_KEY fehlt — Live-Hotels werden uebersprungen.");
+    console.warn("[stay22] STAY22_API_KEY fehlt - Live-Hotels werden uebersprungen.");
     return null;
   }
 
@@ -189,7 +189,7 @@ export async function searchAccommodations(
             await sleep((waitS + 1) * 1000);
             continue;
           }
-          console.error(`[stay22] 429 nach ${MAX_RETRIES} Retries — aufgegeben.`);
+          console.error(`[stay22] 429 nach ${MAX_RETRIES} Retries - aufgegeben.`);
           return null;
         }
 

@@ -41,11 +41,11 @@ export const guidesEn: Record<string, GuideEn> = {
     lead:
       "Three days are enough to really get to know Karlsruhe. We combine the iconic fan-shaped architecture around the palace and the pyramid with the globally unique ZKM, historic Durlach with its funicular railway and Karlsruhe's tech atmosphere around KIT. Built in along the way: Baden brewpub classics, the Michelin-starred Sein and a stroll through the Hardtwald forest.",
     audience: "First-time visitors",
-    bestSeason: "April to October — the Schlosslichtspiele projection show in August/September as a bonus",
+    bestSeason: "April to October - the Schlosslichtspiele projection show in August/September as a bonus",
     days: [
       {
         number: 1,
-        title: "Day 1 — The fan-shaped city from its centre",
+        title: "Day 1 - The fan-shaped city from its centre",
         intro:
           "The first day belongs to the origin of the fan: the palace, the market square and the neoclassical city centre. We start at the palace, walk the radial streets southward and finish at a Baden classic.",
         slots: [
@@ -97,7 +97,7 @@ export const guidesEn: Record<string, GuideEn> = {
       },
       {
         number: 2,
-        title: "Day 2 — ZKM, KIT and the Suedstadt",
+        title: "Day 2 - ZKM, KIT and the Suedstadt",
         intro:
           "The second day is all about art, media and tech. The ZKM as a museum unique in the world, followed by the KIT atmosphere and the lively Suedstadt in the evening.",
         slots: [
@@ -106,7 +106,7 @@ export const guidesEn: Record<string, GuideEn> = {
             type: "morgens",
             title: "ZKM Center for Art and Media",
             description:
-              "The ZKM is the only museum in the world that systematically devotes itself to electronic and digital art. The Media Museum, the Museum of Contemporary Art, interactive installations — allow three hours minimum.",
+              "The ZKM is the only museum in the world that systematically devotes itself to electronic and digital art. The Media Museum, the Museum of Contemporary Art, interactive installations - allow three hours minimum.",
             tip: "Admission is free on Wednesdays. Otherwise buy the combined ticket for all ZKM areas.",
           },
           {
@@ -148,7 +148,7 @@ export const guidesEn: Record<string, GuideEn> = {
       },
       {
         number: 3,
-        title: "Day 3 — Durlach, the Turmberg and the Hardtwald",
+        title: "Day 3 - Durlach, the Turmberg and the Hardtwald",
         intro:
           "The third day leads out of the centre. In the morning, Durlach with the Karlsburg and the funicular railway; in the afternoon, the Hardtwald as the city's green lung.",
         slots: [
@@ -157,7 +157,7 @@ export const guidesEn: Record<string, GuideEn> = {
             type: "morgens",
             title: "Durlach old town and the Karlsburg",
             description:
-              "Durlach is Karlsruhe's oldest town — the residence of the margraves until 1715. The Karlsburg, the Mehlwaage and the Pfinzgau Museum. Just 20 minutes from the centre by suburban train.",
+              "Durlach is Karlsruhe's oldest town - the residence of the margraves until 1715. The Karlsburg, the Mehlwaage and the Pfinzgau Museum. Just 20 minutes from the centre by suburban train.",
           },
           {
             time: "11:30 - 13:00",
@@ -196,7 +196,7 @@ export const guidesEn: Record<string, GuideEn> = {
     slug: "karlsruhe-with-kids",
     title: "Karlsruhe with Kids",
     shortDesc:
-      "A family day in Karlsruhe: the zoo, the Natural History Museum, the Turmberg railway and the palace gardens — all within short distances.",
+      "A family day in Karlsruhe: the zoo, the Natural History Museum, the Turmberg railway and the palace gardens - all within short distances.",
     lead:
       "Karlsruhe is a surprisingly family-friendly city. The zoo right by the main station, the Natural History Museum with live animals, the Turmberg railway for train fans and cosy brewpub fare. One day is enough to take in the family highlights.",
     audience: "Families",
@@ -254,28 +254,28 @@ export const guidesEn: Record<string, GuideEn> = {
     shortDesc:
       "An indoor day in Karlsruhe: the ZKM, the Art Gallery, the Natural History Museum, the palace museum, cafes and a brewpub.",
     lead:
-      "Karlsruhe has some of the best indoor museums in Germany — perfect for rainy days. The ZKM, the State Art Gallery, the Baden State Museum in the palace and the Natural History Museum are all worth seeing in any weather.",
+      "Karlsruhe has some of the best indoor museums in Germany - perfect for rainy days. The ZKM, the State Art Gallery, the Baden State Museum in the palace and the Natural History Museum are all worth seeing in any weather.",
     audience: "Bad weather",
     days: [
       {
         number: 1,
         title: "Museums, cafes and a brewpub",
         intro:
-          "Four top museums in a single day — it's tight, but we set priorities and build in breaks.",
+          "Four top museums in a single day - it's tight, but we set priorities and build in breaks.",
         slots: [
           {
             time: "10:00 - 12:30",
             type: "morgens",
             title: "ZKM Center for Art and Media",
             description:
-              "A must. Interactive installations, media art, immersive experiences — exactly the right world to be in when it's raining.",
+              "A must. Interactive installations, media art, immersive experiences - exactly the right world to be in when it's raining.",
           },
           {
             time: "13:00 - 14:00",
             type: "mittagessen",
             title: "Suppdiwupp",
             description:
-              "A soup spot with a changing menu. Hot soups, curries and stews — all-weather food.",
+              "A soup spot with a changing menu. Hot soups, curries and stews - all-weather food.",
           },
           {
             time: "14:30 - 16:00",
@@ -296,7 +296,7 @@ export const guidesEn: Record<string, GuideEn> = {
             type: "abendessen",
             title: "Badisch Brauhaus",
             description:
-              "A classic brewpub with its own brewery. Schaeufele, Maultaschen and house beer — the ideal rainy-day therapy.",
+              "A classic brewpub with its own brewery. Schaeufele, Maultaschen and house beer - the ideal rainy-day therapy.",
           },
         ],
       },

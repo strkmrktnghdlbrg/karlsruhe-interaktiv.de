@@ -32,7 +32,7 @@ export const newsEn: Record<string, NewsEn> = {
     lead:
       "The new temporary exhibition at the ZKM presents 30 international positions on generative AI in art and science.",
     summary:
-      "The ZKM Center for Art and Media Karlsruhe opens its new temporary exhibition 'Generative Worlds' on 14 June. Thirty international artists present works on generative AI — from AI architecture to interactive sound worlds. Among the contributors are Refik Anadol, Anna Ridler and the Karlsruhe studio ZKM Labor. Admission is free during the opening weekend.",
+      "The ZKM Center for Art and Media Karlsruhe opens its new temporary exhibition 'Generative Worlds' on 14 June. Thirty international artists present works on generative AI - from AI architecture to interactive sound worlds. Among the contributors are Refik Anadol, Anna Ridler and the Karlsruhe studio ZKM Labor. Admission is free during the opening weekend.",
     category: "Culture",
     source: { name: "BNN Badische Neueste Nachrichten" },
   },
@@ -48,11 +48,11 @@ export const newsEn: Record<string, NewsEn> = {
   },
   "schlosslichtspiele-programm-2026": {
     slug: "schlosslichtspiele-programme-2026",
-    title: "Schlosslichtspiele 2026: line-up confirmed — 13 August to 14 September",
+    title: "Schlosslichtspiele 2026: line-up confirmed - 13 August to 14 September",
     lead:
       "Karlsruhe's open-air projection-mapping festival at the palace returns in 2026 with twelve show premieres and international contributions.",
     summary:
-      "The Schlosslichtspiele will once again be projected onto the palace facade free of charge every evening in 2026. From 13 August to 14 September, audiences can look forward to twelve premieres — including contributions from Japan, Poland and Brazil. The highlight is the opening show by Maxin10sity, 'Genesis 2.0'. Admission is free, with each show starting after dark.",
+      "The Schlosslichtspiele will once again be projected onto the palace facade free of charge every evening in 2026. From 13 August to 14 September, audiences can look forward to twelve premieres - including contributions from Japan, Poland and Brazil. The highlight is the opening show by Maxin10sity, 'Genesis 2.0'. Admission is free, with each show starting after dark.",
     category: "Culture",
     source: { name: "City of Karlsruhe" },
   },
@@ -62,13 +62,13 @@ export const newsEn: Record<string, NewsEn> = {
     lead:
       "In a closely watched judgment, the First Senate has placed limits on the transfer of data to US cloud providers.",
     summary:
-      "The Federal Constitutional Court in Karlsruhe has ruled in a closely watched judgment that the transfer of data by German public authorities to US cloud providers must meet stricter requirements. The First Senate found that the previous practice breached the fundamental right to informational self-determination. Data protection advocates welcomed the ruling — the authorities had to adapt their cloud strategies within 18 months.",
+      "The Federal Constitutional Court in Karlsruhe has ruled in a closely watched judgment that the transfer of data by German public authorities to US cloud providers must meet stricter requirements. The First Senate found that the previous practice breached the fundamental right to informational self-determination. Data protection advocates welcomed the ruling - the authorities had to adapt their cloud strategies within 18 months.",
     category: "Law",
     source: { name: "Federal Constitutional Court" },
   },
   "das-fest-2026-line-up": {
     slug: "das-fest-2026-line-up",
-    title: "Das Fest 2026: headliners confirmed — Deichkind and K.I.Z.",
+    title: "Das Fest 2026: headliners confirmed - Deichkind and K.I.Z.",
     lead:
       "Das Fest on Mount Klotz has revealed its 2026 line-up. Deichkind and K.I.Z. headline the weekend of 23–26 July.",
     summary:
@@ -82,7 +82,7 @@ export const newsEn: Record<string, NewsEn> = {
     lead:
       "The Karlsruhe Transport Authority is extending tram-train line S2 by 2029. A new 1.8-kilometre stretch heading south.",
     summary:
-      "The Karlsruhe Transport Authority has approved the extension of light-rail line S2 to Wolfartsweier. By 2029, a new 1.8-kilometre stretch with four new stops will be built, at an investment of 78 million euros. The Karlsruhe Model — its tram-train hybrid — thus remains a blueprint for public transport expansion in mid-sized cities.",
+      "The Karlsruhe Transport Authority has approved the extension of light-rail line S2 to Wolfartsweier. By 2029, a new 1.8-kilometre stretch with four new stops will be built, at an investment of 78 million euros. The Karlsruhe Model - its tram-train hybrid - thus remains a blueprint for public transport expansion in mid-sized cities.",
     category: "Transport",
     source: { name: "KVV Press Release" },
   },
