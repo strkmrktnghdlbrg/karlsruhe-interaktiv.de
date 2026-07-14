@@ -76,7 +76,7 @@ const schema = {
         <div class="aspect-[4/3] overflow-hidden" style="border-radius: var(--radius-card);">
           <HueGradient hue={hotel.imageHue} label={en.name} />
         </div>
-        <BookingCTA hotel={hotel} />
+        <BookingCTA hotel={hotel} locale={locale} />
       </aside>
     </div>
 
@@ -96,6 +96,7 @@ const schema = {
         near={districtName}
         radius={2500}
         limit={4}
+        locale={locale}
       />
     )}
 

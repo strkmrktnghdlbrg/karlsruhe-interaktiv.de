@@ -76,7 +76,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     shortDesc:
       "A bistro-style star in a relaxed setting. Seasonal Mediterranean cuisine at an elevated level.",
     longDesc:
-      "Erasmus is Karlsruhe's bistro-style star: refined, seasonal Mediterranean cooking in a relaxed atmosphere. A changing daily menu, less formal than Sein, and a favourite for an indulgent lunch.",
+      "Erasmus is Karlsruhe's bistro-style star: refined, seasonal Mediterranean cooking in a relaxed atmosphere. A changing daily menu, less formal than Sein, and a favorite for an indulgent lunch.",
     openingHours: "Tue–Sat 12pm–2pm + 6:30pm–10pm",
   },
   "restaurant-anders": {
@@ -96,7 +96,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     shortDesc:
       "Modern, seasonal cuisine in the former boiler house of the old slaughterhouse. Industrial-chic ambience.",
     longDesc:
-      "The Kesselhaus is located in the restored old slaughterhouse quarter of the Suedstadt. Modern, seasonal cuisine in an industrial-chic setting of exposed concrete and steel beams. A favourite among young Karlsruhe food lovers.",
+      "The Kesselhaus is located in the restored old slaughterhouse quarter of the Suedstadt. Modern, seasonal cuisine in an industrial-chic setting of exposed concrete and steel beams. A favorite among young Karlsruhe food lovers.",
     openingHours: "Tue–Sat 6pm–11pm",
   },
 
@@ -108,7 +108,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     shortDesc:
       "A classic Italian restaurant with wood-fired pizza and handmade pasta dishes.",
     longDesc:
-      "Ristorante Lehners is Karlsruhe's classic Italian, with wood-fired pizza, homemade pasta and friendly service. A favourite for family meals and cosy evenings with friends.",
+      "Ristorante Lehners is Karlsruhe's classic Italian, with wood-fired pizza, homemade pasta and friendly service. A favorite for family meals and cosy evenings with friends.",
     openingHours: "Mon–Sun 11:30am–11pm",
   },
   "la-forchetta": {
@@ -138,7 +138,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     shortDesc:
       "A family-run Italian in the Suedstadt with a large menu and a relaxed atmosphere.",
     longDesc:
-      "Tre Sorelle is a classic Suedstadt Italian with a large menu, friendly service and a relaxed atmosphere. A favourite among regulars from the neighbourhood.",
+      "Tre Sorelle is a classic Suedstadt Italian with a large menu, friendly service and a relaxed atmosphere. A favorite among regulars from the neighborhood.",
     openingHours: "Mon–Sun 12pm–11pm",
   },
 
@@ -160,7 +160,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     shortDesc:
       "A lively sushi restaurant with a conveyor belt and a large menu. Popular for lunch and with families.",
     longDesc:
-      "Hanami is Karlsruhe's liveliest sushi restaurant. A sushi conveyor belt, a large menu of Japanese and Asian classics and fair prices. A favourite for lunch and with families.",
+      "Hanami is Karlsruhe's liveliest sushi restaurant. A sushi conveyor belt, a large menu of Japanese and Asian classics and fair prices. A favorite for lunch and with families.",
     openingHours: "Mon–Sun 11:30am–10:30pm",
   },
   "pho-sai-gon": {
@@ -178,7 +178,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     name: "Thai-Express",
     cuisine: "Thai",
     shortDesc:
-      "Authentic Thai street food in the middle of the city centre. Fast, good and affordable.",
+      "Authentic Thai street food in the middle of the city center. Fast, good and affordable.",
     longDesc:
       "Thai-Express serves authentic Thai street food. Wok dishes, curries and soups, freshly prepared and inexpensive. A popular spot for a quick lunch break.",
     openingHours: "Mon–Sat 11am–9pm",
@@ -192,7 +192,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     shortDesc:
       "Mediterranean-Turkish cuisine with mezze platters and grilled fish. A lively atmosphere.",
     longDesc:
-      "Mezzo Mezzo offers Mediterranean-Turkish cuisine with superb mezze platters, grilled fish and lamb. A lively atmosphere and a favourite for groups.",
+      "Mezzo Mezzo offers Mediterranean-Turkish cuisine with superb mezze platters, grilled fish and lamb. A lively atmosphere and a favorite for groups.",
     openingHours: "Tue–Sun 6pm–11pm",
   },
   "kebap-house": {
@@ -224,7 +224,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     shortDesc:
       "A front-cooking Italian on Europaplatz. Pasta and pizza prepared fresh to order.",
     longDesc:
-      "Vapiano on Europaplatz is Karlsruhe's casual Italian with a front-cooking concept. Pasta and pizza are prepared in front of guests, no reservation needed - a favourite for a quick lunch.",
+      "Vapiano on Europaplatz is Karlsruhe's casual Italian with a front-cooking concept. Pasta and pizza are prepared in front of guests, no reservation needed - a favorite for a quick lunch.",
     openingHours: "Mon–Sun 11am–11pm",
   },
   "losteria-karlsruhe": {
@@ -232,9 +232,9 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     name: "L'Osteria Karlsruhe",
     cuisine: "Italian",
     shortDesc:
-      "The XXL-pizza chain in Karlsruhe's city centre. Family-friendly and affordable.",
+      "The XXL-pizza chain in Karlsruhe's city center. Family-friendly and affordable.",
     longDesc:
-      "L'Osteria Karlsruhe is known for its oversized pizzas, a full 30 cm across, alongside solid Italian pasta. Family-friendly and a favourite for groups.",
+      "L'Osteria Karlsruhe is known for its oversized pizzas, a full 30 cm across, alongside solid Italian pasta. Family-friendly and a favorite for groups.",
     openingHours: "Mon–Sun 11:30am–11pm",
   },
   "hans-im-glueck": {
@@ -244,7 +244,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     shortDesc:
       "A burger chain with a Nordic birch-wood interior. A fairy-tale atmosphere and solid burgers.",
     longDesc:
-      "Hans im Glueck on Europaplatz serves its distinctive fairy-tale burgers in a Nordic birch-wood setting. Vegetarian options, a good burger selection and a favourite among students.",
+      "Hans im Glueck on Europaplatz serves its distinctive fairy-tale burgers in a Nordic birch-wood setting. Vegetarian options, a good burger selection and a favorite among students.",
     openingHours: "Mon–Sun 11:30am–11pm",
   },
   "cafe-kreuzberg": {
@@ -264,7 +264,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     shortDesc:
       "A classic cafe with a breakfast menu, bistro lunch and a cosy atmosphere.",
     longDesc:
-      "Cafe Bleu offers a classic cafe atmosphere with a long breakfast menu, bistro lunch and cakes. A favourite for weekend brunch.",
+      "Cafe Bleu offers a classic cafe atmosphere with a long breakfast menu, bistro lunch and cakes. A favorite for weekend brunch.",
     openingHours: "Mon–Sun 8am–11pm",
   },
 
@@ -276,7 +276,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     shortDesc:
       "A vegetarian-vegan restaurant with a changing menu and seasonal ingredients.",
     longDesc:
-      "The Goldene Krone is Karlsruhe's pioneering address for vegetarian-vegan cuisine. A changing menu, seasonal ingredients and a regional, organic focus. A favourite among young Suedstadt residents.",
+      "The Goldene Krone is Karlsruhe's pioneering address for vegetarian-vegan cuisine. A changing menu, seasonal ingredients and a regional, organic focus. A favorite among young Suedstadt residents.",
     openingHours: "Tue–Sun 12pm–10pm",
   },
   "suppdiwupp": {
@@ -284,7 +284,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     name: "Suppdiwupp",
     cuisine: "Vegetarian",
     shortDesc:
-      "A soup spot in the city centre. Daily-changing soups, curries and stews.",
+      "A soup spot in the city center. Daily-changing soups, curries and stews.",
     longDesc:
       "Suppdiwupp is Karlsruhe's soup classic. Daily-changing soups, curries and stews that go against the grain of the big restaurant kitchens. Fast, good and vegan- and vegetarian-friendly.",
     openingHours: "Mon–Sat 11am–3pm",
@@ -296,7 +296,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     shortDesc:
       "A bistro with a creative lunch menu, organic ingredients and a vegetarian-vegan focus.",
     longDesc:
-      "Eigelb is a modern bistro with a creative lunch menu, organic ingredients and a focus on vegetarian and vegan options. A favourite for lunch.",
+      "Eigelb is a modern bistro with a creative lunch menu, organic ingredients and a focus on vegetarian and vegan options. A favorite for lunch.",
     openingHours: "Mon–Fri 11:30am–3pm, Sat 10am–3pm",
   },
 

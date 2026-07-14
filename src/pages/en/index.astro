@@ -81,7 +81,7 @@ const featuredNews = features.news.enabled ? recentNews(3) : [];
 
   <!-- GETYOURGUIDE TOURS & TICKETS -->
   <section class="container-page">
-    <GetYourGuideWidget placement={getGygPlacement("page:home")} />
+    <GetYourGuideWidget placement={getGygPlacement("page:home")} locale="en" />
   </section>
 
   <!-- DISTRICTS -->
@@ -107,7 +107,7 @@ const featuredNews = features.news.enabled ? recentNews(3) : [];
       </div>
       <a href={indexUrl("hotels", "en")} class="hidden sm:inline-flex link-accent text-sm">{t("en", "home.allHotels")}</a>
     </div>
-    <Stay22TopHotels limit={4} title="" lead={t("en", "home.hotelsLead")} />
+    <Stay22TopHotels limit={4} title="" lead={t("en", "home.hotelsLead")} locale="en" />
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-4">
       {featuredHotels.map((h) => <HotelCard hotel={h} locale="en" />)}
     </div>

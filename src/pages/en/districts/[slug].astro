@@ -98,7 +98,7 @@ const restItems = restaurantsByDistrict(district.slug).slice(0, 8);
       </section>
     )}
 
-    <GetYourGuideWidget placement={getGygPlacement(`district:${district.slug}`)} />
+    <GetYourGuideWidget placement={getGygPlacement(`district:${district.slug}`)} locale="en" />
 
     <Stay22NearbyHotels
       lat={district.coordinates[0]}
@@ -106,6 +106,7 @@ const restItems = restaurantsByDistrict(district.slug).slice(0, 8);
       near={name}
       radius={2500}
       limit={4}
+      locale={locale}
     />
   </div>
 </BaseLayout>

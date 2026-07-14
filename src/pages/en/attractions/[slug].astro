@@ -99,9 +99,9 @@ const schema = {
       </div>
     )}
 
-    <GetYourGuideWidget placement={getGygPlacement(`sight:${sight.slug}`)} />
+    <GetYourGuideWidget placement={getGygPlacement(`sight:${sight.slug}`)} locale="en" />
 
-    <Stay22NearbyHotels lat={sight.coordinates[0]} lng={sight.coordinates[1]} near={en.name} limit={4} />
+    <Stay22NearbyHotels lat={sight.coordinates[0]} lng={sight.coordinates[1]} near={en.name} limit={4} locale={locale} />
 
     <RelatedItems district={sight.district} excludeSlug={sight.slug} type="sights" locale={locale} />
 

@@ -23,7 +23,7 @@ export const sightsEn: Record<string, SightEn> = {
     shortDesc:
       "Baroque residential palace of the Margraves of Baden. The geometric heart of the fan-shaped city and Karlsruhe's defining landmark.",
     longDesc:
-      "Karlsruhe Palace was built from 1715 by Margrave Karl Wilhelm as his residence and the geometric centre of the new fan-shaped city. From the 42-metre-high palace tower, 32 streets and avenues radiate outward to the south. Today the palace houses the Baden State Museum with extensive archaeological and cultural-history collections.",
+      "Karlsruhe Palace was built from 1715 by Margrave Karl Wilhelm as his residence and the geometric center of the new fan-shaped city. From the 42-meter-high palace tower, 32 streets and avenues radiate outward to the south. Today the palace houses the Baden State Museum with extensive archaeological and cultural-history collections.",
     openingHours: "Tue–Sun 10am–6pm",
   },
   "schlossgarten": {
@@ -69,9 +69,9 @@ export const sightsEn: Record<string, SightEn> = {
     name: "St Stephen's Church",
     type: "Church",
     shortDesc:
-      "A neoclassical rotunda by Friedrich Weinbrenner, modelled on the Pantheon in Rome.",
+      "A neoclassical rotunda by Friedrich Weinbrenner, modeled on the Pantheon in Rome.",
     longDesc:
-      "St Stephen's is the principal Catholic church of Karlsruhe, built between 1808 and 1814 by Friedrich Weinbrenner as a grand neoclassical rotunda modelled on the Pantheon in Rome. Heavily damaged during the war, it was rebuilt in a simplified form.",
+      "St Stephen's is the principal Catholic church of Karlsruhe, built between 1808 and 1814 by Friedrich Weinbrenner as a grand neoclassical rotunda modeled on the Pantheon in Rome. Heavily damaged during the war, it was rebuilt in a simplified form.",
   },
   "stadtkirche": {
     slug: "protestant-city-church",
@@ -104,12 +104,12 @@ export const sightsEn: Record<string, SightEn> = {
   },
   "badisches-staatstheater": {
     slug: "baden-state-theatre",
-    name: "Baden State Theatre",
+    name: "Baden State Theater",
     type: "Modern",
     shortDesc:
-      "A three-division house with opera, drama and ballet on Hermann-Levi-Platz. One of the leading theatres in southern Germany.",
+      "A three-division house with opera, drama and ballet on Hermann-Levi-Platz. One of the leading theaters in southern Germany.",
     longDesc:
-      "The Baden State Theatre is a three-division house with opera, drama and ballet. Founded in 1717 as a court theatre, it occupies a modern building on Hermann-Levi-Platz today. It offers international guest performances and the Junges Staatstheater for children and young people.",
+      "The Baden State Theater is a three-division house with opera, drama and ballet. Founded in 1717 as a court theater, it occupies a modern building on Hermann-Levi-Platz today. It offers international guest performances and the Junges Staatstheater for children and young people.",
   },
   "karlsruher-zoo": {
     slug: "karlsruhe-zoo",
@@ -118,7 +118,7 @@ export const sightsEn: Record<string, SightEn> = {
     shortDesc:
       "A zoo right by the main station, merged with the city garden. One of the most beautiful zoo grounds in Germany.",
     longDesc:
-      "Karlsruhe Zoo has merged with the neighbouring city garden into one of the most beautiful zoo-and-park complexes in Germany. Located right by the main station, it is home to around 4,000 animals across 240 species. Gondoletta boat rides on the city garden lake are a classic part of the Karlsruhe family programme.",
+      "Karlsruhe Zoo has merged with the neighboring city garden into one of the most beautiful zoo-and-park complexes in Germany. Located right by the main station, it is home to around 4,000 animals across 240 species. Gondoletta boat rides on the city garden lake are a classic part of the Karlsruhe family program.",
     openingHours: "Year-round, summer 8am–6pm",
   },
   "stadtgarten": {
@@ -146,7 +146,7 @@ export const sightsEn: Record<string, SightEn> = {
     shortDesc:
       "The Karlsruhe Institute of Technology - one of Europe's major technical universities with around 25,000 students.",
     longDesc:
-      "The South Campus of KIT, formerly the University of Karlsruhe (TH), is one of the most tradition-rich technology university sites in Europe. Today it is part of the Helmholtz Association as a combined university and research centre. Historic buildings such as the main lecture hall and the Mathematics Library are well worth a stroll.",
+      "The South Campus of KIT, formerly the University of Karlsruhe (TH), is one of the most tradition-rich technology university sites in Europe. Today it is part of the Helmholtz Association as a combined university and research center. Historic buildings such as the main lecture hall and the Mathematics Library are well worth a stroll.",
   },
   "schloss-gottesaue": {
     slug: "gottesaue-palace",
@@ -199,9 +199,9 @@ export const sightsEn: Record<string, SightEn> = {
     name: "Tollhaus",
     type: "Modern",
     shortDesc:
-      "A cultural centre on the old slaughterhouse site. Concerts, theatre and the Zeltival festival in summer.",
+      "A cultural center on the old slaughterhouse site. Concerts, theater and the Zeltival festival in summer.",
     longDesc:
-      "The Tollhaus is Karlsruhe's most important socio-cultural centre, housed in the Old Slaughterhouse. It offers concerts, readings, cabaret and the annual Zeltival festival in summer with international world music.",
+      "The Tollhaus is Karlsruhe's most important socio-cultural center, housed in the Old Slaughterhouse. It offers concerts, readings, cabaret and the annual Zeltival festival in summer with international world music.",
   },
   "substage": {
     slug: "substage",

@@ -11,6 +11,7 @@
  *   <GetYourGuideWidget q="Karlsruhe" title="Erlebnisse in Karlsruhe" />
  */
 import { affiliate, gygEnabled } from "../data/affiliate";
+import { city } from "../data/city";
 import type { GygPlacement } from "../data/gyg";
 
 interface Props {
@@ -20,15 +21,23 @@ interface Props {
   lead?: string;
   count?: number;
   cmp?: string;
+  locale?: "de" | "en";
 }
 
-const { placement, q, title, lead, count, cmp } = Astro.props;
+const { placement, q, title, lead, count, cmp, locale = "de" } = Astro.props;
+const en = locale === "en";
 
 const query = placement?.query ?? q;
-const heading = placement?.title ?? title;
-const sub = placement?.lead ?? lead;
+// Auf EN werden die deutschen Platzierungs-Texte durch englische ersetzt.
+const heading = en
+  ? (title ?? `Tours & tickets in ${city.name}`)
+  : (placement?.title ?? title);
+const sub = en
+  ? (lead ?? `Book guided tours, skip-the-line tickets and experiences in and around ${city.name} through GetYourGuide.`)
+  : (placement?.lead ?? lead);
 const items = placement?.count ?? count ?? 4;
 const campaign = cmp ?? placement?.key ?? "kr-portal";
+const gygLocaleCode = en ? "en-US" : affiliate.getYourGuide.locale;
 
 // Bei expliziter Platzierung entscheidet deren show-Flag, sonst reicht eine Query.
 const render = gygEnabled && !!query && (placement ? placement.show : true);
@@ -37,7 +46,7 @@ const render = gygEnabled && !!query && (placement ? placement.show : true);
 {render && (
   <section class="my-12 pt-8 border-t" style="border-color: var(--color-border);">
     <div class="mb-6 max-w-3xl">
-      <p class="eyebrow mb-2">Touren &amp; Tickets &middot; GetYourGuide</p>
+      <p class="eyebrow mb-2">{en ? "Tours & Tickets" : "Touren & Tickets"} &middot; GetYourGuide</p>
       {heading && (
         <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mb-2" style="color: var(--color-text);">{heading}</h2>
       )}
@@ -49,7 +58,7 @@ const render = gygEnabled && !!query && (placement ? placement.show : true);
     <div
       data-gyg-widget="activities"
       data-gyg-partner-id={affiliate.getYourGuide.partnerId}
-      data-gyg-locale-code={affiliate.getYourGuide.locale}
+      data-gyg-locale-code={gygLocaleCode}
       data-gyg-currency="EUR"
       data-gyg-number-of-items={String(items)}
       data-gyg-q={query}
@@ -57,7 +66,9 @@ const render = gygEnabled && !!query && (placement ? placement.show : true);
     ></div>
 
     <p class="text-[11px] mt-4 leading-relaxed" style="color: var(--color-text-muted);">
-      * Affiliate &mdash; Buchung laeuft ueber GetYourGuide. Bei Buchung ueber diese Links erhalten wir eine Provision, fuer dich entstehen keine Mehrkosten.
+      {en
+        ? "* Affiliate - booking is handled by GetYourGuide. If you book through these links we earn a commission, at no extra cost to you."
+        : "* Affiliate — Buchung laeuft ueber GetYourGuide. Bei Buchung ueber diese Links erhalten wir eine Provision, fuer dich entstehen keine Mehrkosten."}
     </p>
   </section>
 )}

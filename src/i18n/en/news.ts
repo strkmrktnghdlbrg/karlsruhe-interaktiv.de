@@ -22,7 +22,7 @@ export const newsEn: Record<string, NewsEn> = {
     lead:
       "Researchers at the Karlsruhe Institute of Technology have, for the first time, demonstrated an ion-based quantum chip with more than 100 error-corrected qubits.",
     summary:
-      "A team at the KIT Institute for Quantum Materials and Technologies has published a major step towards practical quantum computers. Working with the Karlsruhe Research Centre, the group ran an ion-based chip with more than 100 error-corrected qubits in stable operation for the first time. The work is due to appear in Nature Quantum Computing later this month. With it, Karlsruhe once again positions itself as one of Europe's most important quantum hubs.",
+      "A team at the KIT Institute for Quantum Materials and Technologies has published a major step towards practical quantum computers. Working with the Karlsruhe Research Center, the group ran an ion-based chip with more than 100 error-corrected qubits in stable operation for the first time. The work is due to appear in Nature Quantum Computing later this month. With it, Karlsruhe once again positions itself as one of Europe's most important quantum hubs.",
     category: "Tech",
     source: { name: "KIT Press Release" },
   },
@@ -80,9 +80,9 @@ export const newsEn: Record<string, NewsEn> = {
     slug: "kvv-light-rail-extension-wolfartsweier",
     title: "KVV approves light-rail extension to Wolfartsweier",
     lead:
-      "The Karlsruhe Transport Authority is extending tram-train line S2 by 2029. A new 1.8-kilometre stretch heading south.",
+      "The Karlsruhe Transport Authority is extending tram-train line S2 by 2029. A new 1.8-kilometer stretch heading south.",
     summary:
-      "The Karlsruhe Transport Authority has approved the extension of light-rail line S2 to Wolfartsweier. By 2029, a new 1.8-kilometre stretch with four new stops will be built, at an investment of 78 million euros. The Karlsruhe Model - its tram-train hybrid - thus remains a blueprint for public transport expansion in mid-sized cities.",
+      "The Karlsruhe Transport Authority has approved the extension of light-rail line S2 to Wolfartsweier. By 2029, a new 1.8-kilometer stretch with four new stops will be built, at an investment of 78 million euros. The Karlsruhe Model - its tram-train hybrid - thus remains a blueprint for public transport expansion in mid-sized cities.",
     category: "Transport",
     source: { name: "KVV Press Release" },
   },
@@ -98,11 +98,11 @@ export const newsEn: Record<string, NewsEn> = {
   },
   "tollhaus-zeltival-line-up": {
     slug: "tollhaus-zeltival-line-up",
-    title: "Zeltival 2026 at the Tollhaus: world-music programme confirmed",
+    title: "Zeltival 2026 at the Tollhaus: world-music program confirmed",
     lead:
       "The Zeltival, Karlsruhe's summer world-music festival in the Tollhaus courtyard, opens on 12 July with Tinariwen.",
     summary:
-      "The Karlsruhe Tollhaus has announced the programme for Zeltival 2026. Seven weeks of world music in the courtyard of the former slaughterhouse open with the desert-blues band Tinariwen from Mali. Further acts include Lila Downs, Asaf Avidan, Mariza and the Karlsruhe-based Pochontas Orchestra.",
+      "The Karlsruhe Tollhaus has announced the program for Zeltival 2026. Seven weeks of world music in the courtyard of the former slaughterhouse open with the desert-blues band Tinariwen from Mali. Further acts include Lila Downs, Asaf Avidan, Mariza and the Karlsruhe-based Pochontas Orchestra.",
     category: "Culture",
     source: { name: "Tollhaus" },
   },

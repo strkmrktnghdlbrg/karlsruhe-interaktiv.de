@@ -45,16 +45,16 @@ export const guidesEn: Record<string, GuideEn> = {
     days: [
       {
         number: 1,
-        title: "Day 1 - The fan-shaped city from its centre",
+        title: "Day 1 - The fan-shaped city from its center",
         intro:
-          "The first day belongs to the origin of the fan: the palace, the market square and the neoclassical city centre. We start at the palace, walk the radial streets southward and finish at a Baden classic.",
+          "The first day belongs to the origin of the fan: the palace, the market square and the neoclassical city center. We start at the palace, walk the radial streets southward and finish at a Baden classic.",
         slots: [
           {
             time: "10:00 - 12:30",
             type: "morgens",
             title: "Karlsruhe Palace and the Baden State Museum",
             description:
-              "The baroque palace is the geometric centre of the city. Climb the palace tower, explore the Baden State Museum with its archaeological collections, then take a stroll through the palace gardens.",
+              "The baroque palace is the geometric center of the city. Climb the palace tower, explore the Baden State Museum with its archaeological collections, then take a stroll through the palace gardens.",
             tip: "The palace tower is included in the museum ticket.",
           },
           {
@@ -91,7 +91,7 @@ export const guidesEn: Record<string, GuideEn> = {
             type: "uebernachten",
             title: "Hotel Santo Karlsruhe",
             description:
-              "A design hotel with minimalist architecture, right by the convention centre. A good base for everything in the city centre.",
+              "A design hotel with minimalist architecture, right by the convention center. A good base for everything in the city center.",
           },
         ],
       },
@@ -150,14 +150,14 @@ export const guidesEn: Record<string, GuideEn> = {
         number: 3,
         title: "Day 3 - Durlach, the Turmberg and the Hardtwald",
         intro:
-          "The third day leads out of the centre. In the morning, Durlach with the Karlsburg and the funicular railway; in the afternoon, the Hardtwald as the city's green lung.",
+          "The third day leads out of the center. In the morning, Durlach with the Karlsburg and the funicular railway; in the afternoon, the Hardtwald as the city's green lung.",
         slots: [
           {
             time: "9:30 - 11:00",
             type: "morgens",
             title: "Durlach old town and the Karlsburg",
             description:
-              "Durlach is Karlsruhe's oldest town - the residence of the margraves until 1715. The Karlsburg, the Mehlwaage and the Pfinzgau Museum. Just 20 minutes from the centre by suburban train.",
+              "Durlach is Karlsruhe's oldest town - the residence of the margraves until 1715. The Karlsburg, the Mehlwaage and the Pfinzgau Museum. Just 20 minutes from the center by suburban train.",
           },
           {
             time: "11:30 - 13:00",

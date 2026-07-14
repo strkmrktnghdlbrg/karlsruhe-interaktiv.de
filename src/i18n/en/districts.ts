@@ -17,29 +17,29 @@ export type DistrictEn = {
 export const districtsEn: Record<string, DistrictEn> = {
   "innenstadt-west": {
     slug: "city-center-west",
-    name: "City Centre West",
+    name: "City Center West",
     shortDesc:
       "Schlossplatz, market square and the western pedestrian zone. Karlsruhe's baroque heart and the origin of the fan layout.",
     longDesc:
-      "City Centre West is where Karlsruhe's fan begins. From Karlsruhe Palace, the city's 32 radiating streets fan out to the south. This is home to the market square, the Pyramid, St Stephen's Church, the Staatliche Kunsthalle art museum and the Botanical Garden.",
+      "City Center West is where Karlsruhe's fan begins. From Karlsruhe Palace, the city's 32 radiating streets fan out to the south. This is home to the market square, the Pyramid, St Stephen's Church, the Staatliche Kunsthalle art museum and the Botanical Garden.",
     characterTags: ["Baroque", "Fan layout", "Palace"],
   },
   "innenstadt-ost": {
     slug: "city-center-east",
-    name: "City Centre East",
+    name: "City Center East",
     shortDesc:
-      "East of Karl-Friedrich-Strasse: Friedrichsplatz, the state theatre and a lively urban downtown atmosphere.",
+      "East of Karl-Friedrich-Strasse: Friedrichsplatz, the state theater and a lively urban downtown atmosphere.",
     longDesc:
-      "City Centre East stretches from the Schlossplatz to the main station. Friedrichsplatz, the Natural History Museum, the Baden State Theatre and the café culture along Karl-Friedrich-Strasse give this district its character.",
-    characterTags: ["Urban", "Theatre", "Museums"],
+      "City Center East stretches from the Schlossplatz to the main station. Friedrichsplatz, the Natural History Museum, the Baden State Theater and the café culture along Karl-Friedrich-Strasse give this district its character.",
+    characterTags: ["Urban", "Theater", "Museums"],
   },
   suedstadt: {
     slug: "suedstadt",
     name: "Suedstadt",
     shortDesc:
-      "A multicultural, alternative neighbourhood around Werderplatz and Werderstrasse.",
+      "A multicultural, alternative neighborhood around Werderplatz and Werderstrasse.",
     longDesc:
-      "Suedstadt is Karlsruhe's most vibrant district. Werderplatz with its weekly market, Werderstrasse with its small shops and bars, the Tollhaus cultural centre and the Substage concert venue all sit here. Student life mingles with long-established Baden families.",
+      "Suedstadt is Karlsruhe's most vibrant district. Werderplatz with its weekly market, Werderstrasse with its small shops and bars, the Tollhaus cultural center and the Substage concert venue all sit here. Student life mingles with long-established Baden families.",
     characterTags: ["Multicultural", "Alternative", "Nightlife"],
   },
   suedweststadt: {
@@ -75,7 +75,7 @@ export const districtsEn: Record<string, DistrictEn> = {
     shortDesc:
       "A historic margravial town with the Karlsburg, an old town and the Turmberg rising above the city.",
     longDesc:
-      "Durlach is Karlsruhe's oldest town - founded before Karlsruhe itself, it was the residence of the Margraves of Baden until 1715. The Karlsburg, the old town, the Pfinzgau Museum, the Mehlwaage and the Turmberg funicular make Durlach a tourist highlight beyond the city centre.",
+      "Durlach is Karlsruhe's oldest town - founded before Karlsruhe itself, it was the residence of the Margraves of Baden until 1715. The Karlsburg, the old town, the Pfinzgau Museum, the Mehlwaage and the Turmberg funicular make Durlach a tourist highlight beyond the city center.",
     characterTags: ["Historic", "Margraves", "Views"],
   },
   oststadt: {
@@ -93,7 +93,7 @@ export const districtsEn: Record<string, DistrictEn> = {
     shortDesc:
       "A southern residential district with villas, garden-city character and quiet streets.",
     longDesc:
-      "Rüppurr is an affluent southern residential district with garden-city character. Villas, well-kept gardens and good connections to the city centre and the Alb valley define the area.",
+      "Rüppurr is an affluent southern residential district with garden-city character. Villas, well-kept gardens and good connections to the city center and the Alb valley define the area.",
     characterTags: ["Villas", "Residential", "Garden city"],
   },
   daxlanden: {

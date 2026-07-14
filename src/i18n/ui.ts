@@ -246,7 +246,7 @@ export const ui = {
   "about.heading": { de: "Über {site}-Interaktiv", en: "About {site}-Interaktiv" },
   "about.lead": {
     de: "{site}-Interaktiv ist ein unabhängiges Stadtportal für die Fächerstadt. Wir bündeln an einem Ort, was Besucher und Einheimische über {site} wirklich wissen wollen: Sehenswürdigkeiten, Hotels, Restaurants, Bezirke, Veranstaltungen und die Tech-Szene rund um KIT, ZKM und CyberForum. Ziel ist ein schneller, werblich klar gekennzeichneter Überblick statt unübersichtlicher Linklisten.",
-    en: "{site}-Interaktiv is an independent city portal for the fan-shaped city. We bring together in one place what visitors and locals really want to know about {site}: attractions, hotels, restaurants, districts, events and the tech scene around KIT, ZKM and CyberForum. Our goal is a fast, clearly labelled overview instead of confusing link lists.",
+    en: "{site}-Interaktiv is an independent city portal for the fan-shaped city. We bring together in one place what visitors and locals really want to know about {site}: attractions, hotels, restaurants, districts, events and the tech scene around KIT, ZKM and CyberForum. Our goal is a fast, clearly labeled overview instead of confusing link lists.",
   },
   "about.standardsHeading": { de: "Unser redaktioneller Anspruch", en: "Our editorial standards" },
   "about.standardsBody": {
@@ -256,12 +256,12 @@ export const ui = {
   "about.selectionHeading": { de: "Wie wir Inhalte auswählen", en: "How we select content" },
   "about.selectionBody": {
     de: "Die Auswahl folgt einem kuratierten Ansatz: Wir nehmen Orte auf, die {site} charakterisieren oder für einen Aufenthalt praktisch relevant sind - vom Schloss über die Bezirke bis zu den großen Anlässen wie Das Fest oder den Schlosslichtspielen. Die Reihenfolge und Hervorhebung von Einträgen richtet sich nach redaktioneller Einschätzung, nicht nach bezahlter Platzierung.",
-    en: "Our selection follows a curated approach: we include places that characterise {site} or are practically relevant for a stay - from the palace and the districts to the major occasions such as Das Fest or the Schlosslichtspiele. The order and prominence of entries is based on editorial judgement, not on paid placement.",
+    en: "Our selection follows a curated approach: we include places that characterize {site} or are practically relevant for a stay - from the palace and the districts to the major occasions such as Das Fest or the Schlosslichtspiele. The order and prominence of entries is based on editorial judgment, not on paid placement.",
   },
   "about.sourcesHeading": { de: "Quellen und Bildmaterial", en: "Sources and imagery" },
   "about.sourcesBody": {
     de: "Bilder stammen, sofern nicht anders ausgewiesen, von Wikimedia Commons unter Creative-Commons-Lizenzen. Der jeweilige Autor und die Lizenz werden unter jedem Bild ausgewiesen. Faktische Angaben recherchieren wir aus öffentlich zugänglichen, möglichst offiziellen Quellen.",
-    en: "Unless otherwise stated, images are sourced from Wikimedia Commons under Creative Commons licences. The respective author and licence are credited beneath each image. We research factual information from publicly available, preferably official sources.",
+    en: "Unless otherwise stated, images are sourced from Wikimedia Commons under Creative Commons licenses. The respective author and license are credited beneath each image. We research factual information from publicly available, preferably official sources.",
   },
   "about.affiliateHeading": { de: "Transparenz bei Affiliate-Links", en: "Transparency about affiliate links" },
   "about.affiliateBody": {
@@ -308,7 +308,7 @@ export const ui = {
   "imprint.copyrightHeading": { de: "Urheberrecht & Bilder", en: "Copyright & images" },
   "imprint.copyrightBody": {
     de: "Bilder auf {site}-Interaktiv stammen, sofern nicht anders ausgewiesen, von Wikimedia Commons unter Creative-Commons-Lizenzen. Der jeweilige Autor und die Lizenz werden unter jedem Bild ausgewiesen.",
-    en: "Unless otherwise stated, images on {site}-Interaktiv are sourced from Wikimedia Commons under Creative Commons licences. The respective author and licence are credited beneath each image.",
+    en: "Unless otherwise stated, images on {site}-Interaktiv are sourced from Wikimedia Commons under Creative Commons licenses. The respective author and license are credited beneath each image.",
   },
   "imprint.affiliateHeading": { de: "Affiliate-Hinweis", en: "Affiliate disclosure" },
   "imprint.affiliateBody": {
@@ -407,7 +407,7 @@ export const ui = {
   "terms.copyrightHeading": { de: "5. Urheberrecht", en: "5. Copyright" },
   "terms.copyrightBody": {
     de: "Alle Inhalte unterliegen dem Urheberrecht. Bilder werden, sofern nicht anders ausgewiesen, unter Creative-Commons-Lizenzen von Wikimedia Commons verwendet und entsprechend gekennzeichnet.",
-    en: "All content is subject to copyright. Unless otherwise stated, images are used under Creative Commons licences from Wikimedia Commons and credited accordingly.",
+    en: "All content is subject to copyright. Unless otherwise stated, images are used under Creative Commons licenses from Wikimedia Commons and credited accordingly.",
   },
   "terms.finalHeading": { de: "6. Schlussbestimmungen", en: "6. Final provisions" },
   "terms.finalBody": {

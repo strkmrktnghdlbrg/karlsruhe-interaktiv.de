@@ -22,7 +22,7 @@ export const eventsEn: Record<string, EventEn> = {
     title: "Hotels in Karlsruhe for Das Fest",
     eyebrow: "Das Fest 2026",
     intro:
-      "Das Fest on the Mount Klotz is one of the largest open-air festivals in south-west Germany. Hotels in the city centre book up early for the festival weekend.",
+      "Das Fest on the Mount Klotz is one of the largest open-air festivals in south-west Germany. Hotels in the city center book up early for the festival weekend.",
     description:
       "Hotels in Karlsruhe for Das Fest 2026 - live prices for the biggest regional open-air festival on the Mount Klotz.",
     address: "Karlsruhe, Germany",
@@ -42,7 +42,7 @@ export const eventsEn: Record<string, EventEn> = {
     title: "Hotels in Karlsruhe for the Christmas Market",
     eyebrow: "Christmas Market 2026",
     intro:
-      "Karlsruhe's Christkindlesmarkt on Marktplatz and Friedrichsplatz is one of the loveliest Christmas markets in southern Germany. Spend an Advent night right in the centre.",
+      "Karlsruhe's Christkindlesmarkt on Marktplatz and Friedrichsplatz is one of the loveliest Christmas markets in southern Germany. Spend an Advent night right in the center.",
     description:
       "Hotels in Karlsruhe for the Christmas Market 2026 - live prices for the Advent season on Marktplatz and Friedrichsplatz.",
     address: "Karlsruhe Marktplatz, Germany",
@@ -75,7 +75,7 @@ export const eventsEn: Record<string, EventEn> = {
       "Every five years Karlsruhe celebrates its founding anniversary with a grand stage festival on Schlossplatz. The fan-shaped city was founded back in 1715.",
     description:
       "Hotels in Karlsruhe for the City Anniversary - live prices for the grand stage festival at the palace and Marktplatz.",
-    address: "Karlsruhe city centre, Germany",
+    address: "Karlsruhe city center, Germany",
   },
 };
 

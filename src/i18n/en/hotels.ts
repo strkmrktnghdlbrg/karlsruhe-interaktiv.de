@@ -28,10 +28,10 @@ export const hotelsEn: Record<string, HotelEn> = {
     slug: "hotel-santo",
     name: "Hotel Santo Karlsruhe",
     shortDesc:
-      "Design hotel with minimalist architecture and richly coloured interiors. Close to the convention centre.",
+      "Design hotel with minimalist architecture and richly colored interiors. Close to the convention center.",
     longDesc:
-      "The Hotel Santo is Karlsruhe's design statement: minimalist architecture, vividly coloured interiors and Mediterranean cuisine in its restaurant. It sits right next to the convention centre and just a few minutes from the palace.",
-    amenities: ["Design", "Restaurant", "Convention centre", "Boutique"],
+      "The Hotel Santo is Karlsruhe's design statement: minimalist architecture, vividly colored interiors and Mediterranean cuisine in its restaurant. It sits right next to the convention center and just a few minutes from the palace.",
+    amenities: ["Design", "Restaurant", "Convention center", "Boutique"],
   },
   "novum-hotel-imperial": {
     slug: "novum-hotel-imperial",
@@ -48,7 +48,7 @@ export const hotelsEn: Record<string, HotelEn> = {
     shortDesc:
       "Comfortable business hotel in a central location with modern rooms and reliable service.",
     longDesc:
-      "The ACHAT Hotel Karlsruhe City is centrally located between the city centre and the main station. Solid business amenities, free Wi-Fi, its own car park and excellent value for money.",
+      "The ACHAT Hotel Karlsruhe City is centrally located between the city center and the main station. Solid business amenities, free Wi-Fi, its own car park and excellent value for money.",
     amenities: ["Business", "Central", "Car park"],
   },
   "hotel-am-markt": {
@@ -73,7 +73,7 @@ export const hotelsEn: Record<string, HotelEn> = {
     slug: "premier-inn-karlsruhe-city",
     name: "Premier Inn Karlsruhe City",
     shortDesc:
-      "Modern budget-comfort hotel centrally located on Erbprinzenstrasse. A favourite for city breaks.",
+      "Modern budget-comfort hotel centrally located on Erbprinzenstrasse. A favorite for city breaks.",
     longDesc:
       "The Premier Inn Karlsruhe City is one of the most modern budget-comfort hotels in town. A central location, a consistently high standard and very good value for money.",
     amenities: ["Budget", "Modern", "Central"],
@@ -82,9 +82,9 @@ export const hotelsEn: Record<string, HotelEn> = {
     slug: "holiday-inn-karlsruhe",
     name: "Holiday Inn Karlsruhe",
     shortDesc:
-      "International 4-star hotel with gym, sauna and restaurant. Close to the convention centre.",
+      "International 4-star hotel with gym, sauna and restaurant. Close to the convention center.",
     longDesc:
-      "The Holiday Inn Karlsruhe offers an international 4-star standard with a fitness area, sauna, restaurant and a quiet location towards the edge of the Suedstadt. Popular with business travellers.",
+      "The Holiday Inn Karlsruhe offers an international 4-star standard with a fitness area, sauna, restaurant and a quiet location towards the edge of the Suedstadt. Popular with business travelers.",
     amenities: ["Gym", "Sauna", "Restaurant"],
   },
   "hotel-eden": {
@@ -93,7 +93,7 @@ export const hotelsEn: Record<string, HotelEn> = {
     shortDesc:
       "Family-run city hotel with cosy rooms, set on a quiet side street in a central location.",
     longDesc:
-      "The Hotel Eden has been family-run for decades. A quiet city-centre side street, cosy rooms and a good breakfast. A favourite tip for returning guests.",
+      "The Hotel Eden has been family-run for decades. A quiet city-center side street, cosy rooms and a good breakfast. A favorite tip for returning guests.",
     amenities: ["Family-run", "Quiet", "Central"],
   },
   "bb-hotel-karlsruhe": {
@@ -138,7 +138,7 @@ export const hotelsEn: Record<string, HotelEn> = {
     shortDesc:
       "Privately run hotel with a garden and pool, close to the trade fair grounds.",
     longDesc:
-      "The Hotel Rio lies south of Karlsruhe towards the trade fair grounds. A garden, a pool and cosy rooms make it a favourite with fair visitors and short-stay guests arriving by car.",
+      "The Hotel Rio lies south of Karlsruhe towards the trade fair grounds. A garden, a pool and cosy rooms make it a favorite with fair visitors and short-stay guests arriving by car.",
     amenities: ["Garden", "Pool", "Near trade fair"],
   },
   "best-western-queens-hotel": {
@@ -154,7 +154,7 @@ export const hotelsEn: Record<string, HotelEn> = {
     slug: "erbprinz-ettlingen",
     name: "Hotel Erbprinz Ettlingen",
     shortDesc:
-      "5-star hotel with the Michelin-starred Erbprinz restaurant in neighbouring Ettlingen. Spa and fine dining.",
+      "5-star hotel with the Michelin-starred Erbprinz restaurant in neighboring Ettlingen. Spa and fine dining.",
     longDesc:
       "The Hotel Erbprinz in Ettlingen, just outside the gates of Karlsruhe, is a top-class 5-star property. Its Michelin-starred Erbprinz restaurant, an extensive spa and the historic atmosphere make it a destination for Karlsruhe's food lovers.",
     amenities: ["Michelin-starred restaurant", "Spa", "Upscale"],
@@ -163,9 +163,9 @@ export const hotelsEn: Record<string, HotelEn> = {
     slug: "ramada-by-wyndham",
     name: "Ramada by Wyndham Karlsruhe",
     shortDesc:
-      "Comfortable mid-range hotel in the west of Karlsruhe. Good links to the city centre and motorway.",
+      "Comfortable mid-range hotel in the west of Karlsruhe. Good links to the city center and motorway.",
     longDesc:
-      "The Ramada by Wyndham Karlsruhe lies in Muehlburg with good connections to the motorway and the city-centre tram. Standardised comfort rooms, free parking and a restaurant.",
+      "The Ramada by Wyndham Karlsruhe lies in Muehlburg with good connections to the motorway and the city-center tram. Standardised comfort rooms, free parking and a restaurant.",
     amenities: ["Free parking", "Restaurant"],
   },
 };

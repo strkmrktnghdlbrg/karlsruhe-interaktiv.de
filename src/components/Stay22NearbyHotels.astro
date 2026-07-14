@@ -14,9 +14,11 @@ interface Props {
   near: string;
   radius?: number;
   limit?: number;
+  locale?: "de" | "en";
 }
 
-const { lat, lng, near, radius = 1800, limit = 4 } = Astro.props;
+const { lat, lng, near, radius = 1800, limit = 4, locale = "de" } = Astro.props;
+const en = locale === "en";
 const lmaId = affiliate.stay22.lmaId;
 
 let hotels: Stay22Accommodation[] | null = null;
@@ -30,7 +32,7 @@ try {
     minguestrating: 7.5,
     limit,
     currency: "EUR",
-    lang: "de",
+    lang: en ? "en" : "de",
     aid: lmaId,
     campaign: lmaId,
   });
@@ -44,21 +46,25 @@ const visible = hotels && hotels.length > 0 ? hotels.slice(0, limit) : [];
 {visible.length > 0 && (
   <section class="my-12 pt-8 border-t" style="border-color: var(--color-border);">
     <div class="mb-6">
-      <p class="eyebrow mb-2">Live von Stay22</p>
+      <p class="eyebrow mb-2">{en ? "Live from Stay22" : "Live von Stay22"}</p>
       <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mb-2" style="color: var(--color-text);">
-        Hotels in der Naehe von {near}
+        {en ? `Hotels near ${near}` : `Hotels in der Naehe von ${near}`}
       </h2>
       <p class="text-base leading-relaxed" style="color: var(--color-text-body);">
-        Aktuelle Preise und Verfuegbarkeit im Umkreis von {Math.round(radius / 100) * 100} m.
+        {en
+          ? `Current prices and availability within ${Math.round(radius / 100) * 100} m.`
+          : `Aktuelle Preise und Verfuegbarkeit im Umkreis von ${Math.round(radius / 100) * 100} m.`}
       </p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {visible.map((h) => <Stay22HotelCard hotel={h} showDistance />)}
+      {visible.map((h) => <Stay22HotelCard hotel={h} showDistance locale={locale} />)}
     </div>
 
     <p class="text-[11px] mt-4 leading-relaxed" style="color: var(--color-text-muted);">
-      * Sponsored - Buchung laeuft ueber Booking.com via Stay22-Affiliate. Fuer dich entstehen keine Mehrkosten.
+      {en
+        ? "* Sponsored - booking is handled by Booking.com via the Stay22 affiliate. There is no extra cost to you."
+        : "* Sponsored - Buchung laeuft ueber Booking.com via Stay22-Affiliate. Fuer dich entstehen keine Mehrkosten."}
     </p>
   </section>
 )}

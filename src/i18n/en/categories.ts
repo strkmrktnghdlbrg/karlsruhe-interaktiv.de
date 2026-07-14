@@ -19,7 +19,7 @@ export const categoriesEn: Record<string, { slug: string; name: string; shortDes
   "wissenschaft": {
     slug: "science",
     name: "Science",
-    shortDesc: "KIT, research centres and universities",
+    shortDesc: "KIT, research centers and universities",
   },
   "wahrzeichen": {
     slug: "landmarks",

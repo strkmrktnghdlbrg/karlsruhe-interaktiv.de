@@ -14,32 +14,39 @@ interface Props {
   limit?: number;
   title?: string;
   lead?: string;
+  locale?: "de" | "en";
 }
 
+const locale = Astro.props.locale ?? "de";
+const en = locale === "en";
 const {
-  address = `${city.name}, Deutschland`,
+  address = en ? `${city.name}, Germany` : `${city.name}, Deutschland`,
   limit = 8,
-  title = `Aktuell bestbewertete Hotels in ${city.name}`,
-  lead = "Live von Booking.com - aktuelle Bewertungen und Preise, aktualisiert beim letzten Build.",
+  title = en
+    ? `Currently top-rated hotels in ${city.name}`
+    : `Aktuell bestbewertete Hotels in ${city.name}`,
+  lead = en
+    ? "Live from Booking.com - current ratings and prices, updated at the last build."
+    : "Live von Booking.com - aktuelle Bewertungen und Preise, aktualisiert beim letzten Build.",
 } = Astro.props;
 
 let hotels: Stay22Accommodation[] | null = null;
 try {
-  hotels = await getTopHotels(address, affiliate.stay22.lmaId, { limit });
+  hotels = await getTopHotels(address, affiliate.stay22.lmaId, { limit, lang: en ? "en" : "de" });
 } catch (err) {
   console.error("[Stay22TopHotels] Build-Fetch-Fehler:", err);
   hotels = null;
 }
 
 const visible = hotels && hotels.length > 0 ? hotels.slice(0, limit) : [];
-const buildTime = new Date().toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "numeric" });
+const buildTime = new Date().toLocaleDateString(en ? "en-US" : "de-DE", { year: "numeric", month: "long", day: "numeric" });
 ---
 
 {visible.length > 0 && (
   <section class="my-12">
     {title ? (
       <div class="mb-6 max-w-3xl">
-        <p class="eyebrow mb-2">Live von Stay22</p>
+        <p class="eyebrow mb-2">{en ? "Live from Stay22" : "Live von Stay22"}</p>
         <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mb-2" style="color: var(--color-text);">{title}</h2>
         <p class="text-base leading-relaxed" style="color: var(--color-text-body);">{lead}</p>
       </div>
@@ -48,11 +55,13 @@ const buildTime = new Date().toLocaleDateString("de-DE", { year: "numeric", mont
     )}
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {visible.map((h) => <Stay22HotelCard hotel={h} />)}
+      {visible.map((h) => <Stay22HotelCard hotel={h} locale={locale} />)}
     </div>
 
     <p class="text-[11px] mt-4 leading-relaxed" style="color: var(--color-text-muted);">
-      * Sponsored - Buchung laeuft ueber Booking.com via Stay22-Affiliate. Stand: {buildTime}. Preise und Verfuegbarkeit aendern sich taeglich.
+      {en
+        ? `* Sponsored - booking is handled by Booking.com via the Stay22 affiliate. As of ${buildTime}. Prices and availability change daily.`
+        : `* Sponsored - Buchung laeuft ueber Booking.com via Stay22-Affiliate. Stand: ${buildTime}. Preise und Verfuegbarkeit aendern sich taeglich.`}
     </p>
   </section>
 )}

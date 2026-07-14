@@ -137,7 +137,7 @@ const eventSchema = event.eventStart
 
     {bookable && visible.length > 0 && (
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {visible.map((h) => <Stay22HotelCard hotel={h} priceMode="total" />)}
+        {visible.map((h) => <Stay22HotelCard hotel={h} priceMode="total" locale="en" />)}
       </div>
     )}
 
@@ -147,7 +147,7 @@ const eventSchema = event.eventStart
       </p>
     )}
 
-    <GetYourGuideWidget placement={getGygPlacement(`event:${event.slug}`)} />
+    <GetYourGuideWidget placement={getGygPlacement(`event:${event.slug}`)} locale="en" />
 
     {otherEvents.length > 0 && (
       <section class="mt-14 pt-8 border-t" style="border-color: var(--color-border);">

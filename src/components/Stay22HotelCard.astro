@@ -9,15 +9,18 @@ interface Props {
   hotel: Stay22Accommodation;
   priceMode?: "perNight" | "total";
   showDistance?: boolean;
+  locale?: "de" | "en";
 }
 
-const { hotel: h, priceMode = "perNight", showDistance = false } = Astro.props;
+const { hotel: h, priceMode = "perNight", showDistance = false, locale = "de" } = Astro.props;
+const en = locale === "en";
 const priceTotal = h.price?.formattedTotal;
 const pricePerNight = h.price?.formattedPerNight;
 const showPrice = priceMode === "total" ? (priceTotal ?? pricePerNight) : (pricePerNight ?? priceTotal);
 const priceSuffix = priceMode === "total"
-  ? (priceTotal ? " gesamt" : "")
-  : (pricePerNight ? " / Nacht" : "");
+  ? (priceTotal ? (en ? " total" : " gesamt") : "")
+  : (pricePerNight ? (en ? " / night" : " / Nacht") : "");
+const distanceLabel = en ? "away" : "entfernt";
 ---
 
 <a
@@ -49,7 +52,7 @@ const priceSuffix = priceMode === "total"
     </div>
     <h3 class="font-semibold text-sm leading-tight mb-1.5 line-clamp-2" style="color: var(--color-text);">{h.name}</h3>
     {showDistance && h.distance !== undefined && (
-      <p class="text-[11px] mb-2" style="color: var(--color-text-muted);">{Math.round(h.distance)} m entfernt</p>
+      <p class="text-[11px] mb-2" style="color: var(--color-text-muted);">{Math.round(h.distance)} m {distanceLabel}</p>
     )}
     {!showDistance && h.address?.areaName && (
       <p class="text-[11px] mb-2" style="color: var(--color-text-muted);">{h.address.areaName}</p>
