@@ -58,13 +58,6 @@
   --shadow-subtle: rgb(35, 37, 42) 0px 0px 0px 1px inset;
   --shadow-xl: rgba(8, 9, 10, 0.6) 0px 4px 32px 0px;
 
-  /* === Bezirks-Hues (Karlsruhe Dark + Lime/Cyan/Violet) === */
-  --hue-1: linear-gradient(135deg, #1e1f24 0%, #5e6ad2 50%, #e4f222 100%);
-  --hue-2: linear-gradient(135deg, #0a1b1d 0%, #02b8cc 50%, #5eead4 100%);
-  --hue-3: linear-gradient(135deg, #1a1a1f 0%, #6366f1 50%, #8b5cf6 100%);
-  --hue-4: linear-gradient(135deg, #0f1a0f 0%, #008d2c 50%, #27a644 100%);
-  --hue-5: linear-gradient(135deg, #1a0e0e 0%, #7c2d12 50%, #ea580c 100%);
-
   /* === Karlsruhe-Twist: Radialer Fächer-Gradient für Hero === */
   --hero-faecher: conic-gradient(
     from 250deg at 50% 100%,
@@ -78,6 +71,15 @@
     rgba(94, 106, 210, 0.08) 140deg,
     transparent 360deg
   );
+}
+
+:root {
+  /* === Bezirks-Hues (Karlsruhe Dark + Lime/Cyan/Violet) === */
+  --hue-1: linear-gradient(135deg, #1e1f24 0%, #5e6ad2 50%, #e4f222 100%);
+  --hue-2: linear-gradient(135deg, #0a1b1d 0%, #02b8cc 50%, #5eead4 100%);
+  --hue-3: linear-gradient(135deg, #1a1a1f 0%, #6366f1 50%, #8b5cf6 100%);
+  --hue-4: linear-gradient(135deg, #0f1a0f 0%, #008d2c 50%, #27a644 100%);
+  --hue-5: linear-gradient(135deg, #1a0e0e 0%, #7c2d12 50%, #ea580c 100%);
 }
 
 @layer components {
