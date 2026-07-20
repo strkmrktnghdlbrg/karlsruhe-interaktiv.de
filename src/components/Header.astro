@@ -22,6 +22,7 @@ const navItems = [
   { href: indexUrl("hotels", locale), label: t(locale, "nav.hotels"), enabled: true },
   { href: indexUrl("restaurants", locale), label: t(locale, "nav.restaurants"), enabled: true },
   { href: indexUrl("districts", locale), label: t(locale, "nav.districts"), enabled: true },
+  { href: "/strassenverzeichnis/", label: "Straßen", enabled: locale === "de" },
   { href: indexUrl("events", locale), label: t(locale, "nav.events"), enabled: true },
   { href: detailUrl("categories", techCategorySlug, locale), label: t(locale, "nav.tech"), enabled: features.news.enabled },
   { href: indexUrl("guides", locale), label: t(locale, "nav.guides"), enabled: features.reiseplaner.enabled },

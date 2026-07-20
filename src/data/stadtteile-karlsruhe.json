@@ -1,0 +1,164 @@
+[
+ {
+  "num": 1,
+  "name": "Innenstadt-Ost",
+  "slug": "innenstadt-ost",
+  "streetCount": 47
+ },
+ {
+  "num": 2,
+  "name": "Innenstadt-West",
+  "slug": "innenstadt-west",
+  "streetCount": 67
+ },
+ {
+  "num": 3,
+  "name": "Südstadt",
+  "slug": "suedstadt",
+  "streetCount": 63
+ },
+ {
+  "num": 4,
+  "name": "Südweststadt",
+  "slug": "suedweststadt",
+  "streetCount": 74
+ },
+ {
+  "num": 5,
+  "name": "Weststadt",
+  "slug": "weststadt",
+  "streetCount": 83
+ },
+ {
+  "num": 6,
+  "name": "Nordweststadt",
+  "slug": "nordweststadt",
+  "streetCount": 82
+ },
+ {
+  "num": 7,
+  "name": "Oststadt",
+  "slug": "oststadt",
+  "streetCount": 98
+ },
+ {
+  "num": 8,
+  "name": "Mühlburg",
+  "slug": "muehlburg",
+  "streetCount": 86
+ },
+ {
+  "num": 9,
+  "name": "Daxlanden",
+  "slug": "daxlanden",
+  "streetCount": 102
+ },
+ {
+  "num": 10,
+  "name": "Knielingen",
+  "slug": "knielingen",
+  "streetCount": 88
+ },
+ {
+  "num": 11,
+  "name": "Grünwinkel",
+  "slug": "gruenwinkel",
+  "streetCount": 109
+ },
+ {
+  "num": 12,
+  "name": "Oberreut",
+  "slug": "oberreut",
+  "streetCount": 31
+ },
+ {
+  "num": 13,
+  "name": "Beiertheim-Bulach",
+  "slug": "beiertheim-bulach",
+  "streetCount": 48
+ },
+ {
+  "num": 14,
+  "name": "Weiherfeld-Dammerstock",
+  "slug": "weiherfeld-dammerstock",
+  "streetCount": 50
+ },
+ {
+  "num": 15,
+  "name": "Rüppurr",
+  "slug": "rueppurr",
+  "streetCount": 93
+ },
+ {
+  "num": 16,
+  "name": "Waldstadt",
+  "slug": "waldstadt",
+  "streetCount": 53
+ },
+ {
+  "num": 17,
+  "name": "Rintheim",
+  "slug": "rintheim",
+  "streetCount": 35
+ },
+ {
+  "num": 18,
+  "name": "Hagsfeld",
+  "slug": "hagsfeld",
+  "streetCount": 67
+ },
+ {
+  "num": 19,
+  "name": "Durlach",
+  "slug": "durlach",
+  "streetCount": 258
+ },
+ {
+  "num": 20,
+  "name": "Grötzingen",
+  "slug": "groetzingen",
+  "streetCount": 117
+ },
+ {
+  "num": 21,
+  "name": "Stupferich",
+  "slug": "stupferich",
+  "streetCount": 43
+ },
+ {
+  "num": 22,
+  "name": "Hohenwettersbach",
+  "slug": "hohenwettersbach",
+  "streetCount": 42
+ },
+ {
+  "num": 23,
+  "name": "Wolfartsweier",
+  "slug": "wolfartsweier",
+  "streetCount": 34
+ },
+ {
+  "num": 24,
+  "name": "Grünwettersbach",
+  "slug": "gruenwettersbach",
+  "streetCount": 60
+ },
+ {
+  "num": 25,
+  "name": "Palmbach",
+  "slug": "palmbach",
+  "streetCount": 26
+ },
+ {
+  "num": 26,
+  "name": "Neureut",
+  "slug": "neureut",
+  "streetCount": 161
+ },
+ {
+  "num": 27,
+  "name": "Nordstadt",
+  "slug": "nordstadt",
+  "streetCount": 50
+ }
+]

@@ -15,6 +15,7 @@ import { news } from "../data/news";
 import { events } from "../data/events";
 import { branchen } from "../data/branchen";
 import { features } from "../data/features";
+import { stadtteile as strassenStadtteile } from "../data/strassen";
 
 export const prerender = true;
 
@@ -27,7 +28,8 @@ type SearchType =
   | "Reiseplaner"
   | "News"
   | "Event"
-  | "Branche";
+  | "Branche"
+  | "Straßenverzeichnis";
 
 type SearchEntry = {
   url: string;
@@ -150,6 +152,21 @@ const entries: SearchEntry[] = [
         keywords: norm([b.title, b.label, b.description].filter(Boolean).join(" ")),
       }))
     : []),
+  {
+    url: "/strassenverzeichnis/",
+    title: "Straßenverzeichnis Karlsruhe",
+    type: "Straßenverzeichnis" as const,
+    lead: "Alle Karlsruher Straßen mit Stadtteil und Herkunft des Straßennamens.",
+    keywords: norm("strassenverzeichnis strassen strasse adresse plz stadtteil herkunft namen"),
+  },
+  ...strassenStadtteile.map((t) => ({
+    url: `/strassenverzeichnis/stadtteil/${t.slug}/`,
+    title: `Straßen in ${t.name}`,
+    type: "Straßenverzeichnis" as const,
+    district: t.name,
+    lead: `Alle ${t.streetCount} Straßen im Stadtteil ${t.name} mit Herkunft der Straßennamen.`,
+    keywords: norm(`strassen ${t.name} stadtteil strassenverzeichnis`),
+  })),
 ];
 
 export const GET: APIRoute = async () => {

@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import {
+  stadtteile,
+  getStadtteil,
+  streetsByStadtteilNum,
+  editorialDistrict,
+  STAND,
+} from "../../../data/strassen";
+import { city } from "../../../data/city";
+
+export function getStaticPaths() {
+  return stadtteile.map((t) => ({ params: { slug: t.slug } }));
+}
+
+const { slug } = Astro.params;
+const stt = getStadtteil(slug!)!;
+const list = streetsByStadtteilNum(stt.num);
+const guide = editorialDistrict(stt.slug);
+
+const metaDesc =
+  `Alle ${list.length} Straßen im Karlsruher Stadtteil ${stt.name}. ` +
+  `Mit Herkunft der Straßennamen und Verlinkung zu jeder Straße im Detail.`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Karlsruhe", item: `${city.domain}/` },
+    { "@type": "ListItem", position: 2, name: "Straßenverzeichnis", item: `${city.domain}/strassenverzeichnis/` },
+    { "@type": "ListItem", position: 3, name: stt.name },
+  ],
+};
+---
+
+<BaseLayout title={`Straßen in ${stt.name} (Karlsruhe)`} description={metaDesc}>
+  <div class="container-page py-12">
+    <Breadcrumbs
+      items={[
+        { label: "Start", href: "/" },
+        { label: "Straßenverzeichnis", href: "/strassenverzeichnis/" },
+        { label: stt.name },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-8">
+      <p class="eyebrow mb-3">Stadtteil {stt.num} von 27</p>
+      <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-5" style="color: var(--color-text);">
+        Straßen in {stt.name}
+      </h1>
+      <p class="text-lg leading-relaxed mb-3" style="color: var(--color-text-body);">
+        Der Karlsruher Stadtteil {stt.name} umfasst in unserem Verzeichnis {list.length} Straßen.
+        Wähle eine Straße, um Stadtteil-Einordnung und die Herkunft des Namens zu sehen.
+      </p>
+      {guide && (
+        <a href={guide} class="inline-block text-sm font-semibold link-accent">
+          Zum Stadtteil-Guide {stt.name} (Sehenswürdigkeiten, Hotels und Tipps) →
+        </a>
+      )}
+    </div>
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-4" style="color: var(--color-text);">
+        Alle Straßen in {stt.name} ({list.length})
+      </h2>
+      <ul class="columns-1 sm:columns-2 lg:columns-3 gap-6">
+        {list.map((s) => (
+          <li class="mb-1.5 break-inside-avoid">
+            <a href={`/strassenverzeichnis/${s.slug}/`} class="text-sm link-accent">{s.name}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <div class="mt-10 flex flex-wrap gap-x-6 gap-y-2">
+      <a href="/strassenverzeichnis/" class="text-sm font-semibold link-accent">← Zum Straßenverzeichnis</a>
+    </div>
+
+    <p class="text-xs mt-12 pt-6 border-t max-w-3xl" style="border-color: var(--color-border); color: var(--color-text-muted);">
+      Datenbasis: {STAND}. Straßengeometrie © OpenStreetMap-Mitwirkende (ODbL), aufbereitet vom
+      OK Lab Karlsruhe (Code for Karlsruhe). Stadtteil-Zuordnung über die amtlichen
+      Stadtteilgrenzen. Angaben ohne Gewähr.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />
+</BaseLayout>
