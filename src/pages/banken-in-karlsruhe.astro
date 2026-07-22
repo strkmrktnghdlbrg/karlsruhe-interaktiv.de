@@ -1,0 +1,164 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Faktische Google-Standort-Aggregate (gewichteter Durchschnitt, Anzahl
+// Bewertungen) und öffentliche Filialadressen. Es werden ausschließlich
+// Kennzahlen und Adressen dargestellt, keine Rezensionstexte. Quelle je
+// Bank: die verlinkte bankscore.de-Seite.
+const stadt = "Karlsruhe";
+const banken = [
+  { name: "Sparkasse Karlsruhe", rating: 3.7, count: 510, adresse: "Kaiserstraße 223, 76133 Karlsruhe-Innenstadt-West", stadtteil: "Innenstadt-West / stadtweit", url: "https://bankscore.de/filialen/karlsruhe/sparkasse/",
+    text: "Die Sparkasse Karlsruhe betreibt mit rund elf Standorten eines der dichtesten Filialnetze der Fächerstadt und ist von der Innenstadt über Durlach und Mühlburg bis in die Wohnstadtteile präsent. Ihre zentrale Adresse in der Kaiserstraße liegt im Bereich Innenstadt-West nahe dem Europaplatz. Aus rund 510 Bewertungen ergibt sich ein Schnitt von 3,7 Sternen, der neben der guten Erreichbarkeit auch die bei einem so breiten Schalternetz üblichen Schwankungen zwischen den einzelnen Filialen widerspiegelt. Für die laufende Kontoführung fallen je nach Modell monatliche Gebühren an." },
+  { name: "Volksbank pur", rating: 3.2, count: 285, adresse: "Am Entenfang 6, 76185 Karlsruhe-Mühlburg", stadtteil: "Mühlburg / stadtweit", url: "https://bankscore.de/filialen/karlsruhe/volksbank-raiffeisenbank/",
+    text: "Die Volksbank pur ist das genossenschaftliche Schwergewicht in Karlsruhe und deckt mit rund 20 Standorten das breiteste Netz aller Häuser der Stadt ab. Die zentrale Adresse Am Entenfang liegt in Mühlburg, dazu kommen Filialen quer über die Stadtteile. Der Durchschnitt von 3,2 Sternen fällt spürbar zurückhaltender aus, hier lohnt vor der Kontoeröffnung ein genauer Blick auf Konditionen und die jeweilige Filiale. Als Mitglied bist du zugleich Miteigentümer der Genossenschaft." },
+  { name: "Deutsche Bank", rating: 4.0, count: 399, adresse: "Kaiserstraße 90, 76133 Karlsruhe", stadtteil: "Innenstadt", url: "https://bankscore.de/filialen/karlsruhe/deutsche-bank/",
+    text: "Die Deutsche Bank bündelt ihr Karlsruher Geschäft in der Kaiserstraße, mitten auf der zentralen Einkaufsachse zwischen Europaplatz und Marktplatz. Aus knapp 400 Bewertungen ergibt sich ein glatter 4,0-Schnitt. Als einzelne Filiale ist der Standort auf zentrale Lauf- und Beratungskundschaft ausgelegt und gut mit Straßenbahn und U-Strab erreichbar." },
+  { name: "Commerzbank", rating: 4.2, count: 341, adresse: "Karl-Friedrich-Straße 7, 76133 Karlsruhe", stadtteil: "Innenstadt / Marktplatz", url: "https://bankscore.de/filialen/karlsruhe/commerzbank/",
+    text: "Die Commerzbank sitzt an der Karl-Friedrich-Straße unweit des Marktplatzes mit Pyramide und erreicht in Karlsruhe mit 4,2 Sternen eine der stabileren Bewertungen unter den überregionalen Häusern. Für Filialkundschaft, die Wert auf ein bundesweites Netz und eine bei Gehaltseingang kostenfreie Kontoführung legt, eine gängige Wahl in zentraler Lage." },
+  { name: "Postbank", rating: 3.7, count: 299, adresse: "Kaiserstraße 217, 76133 Karlsruhe", stadtteil: "Innenstadt-West", url: "https://bankscore.de/filialen/karlsruhe/postbank/",
+    text: "Die Postbank ist in Karlsruhe mit mehreren Standorten vertreten, der zentrale liegt in der westlichen Kaiserstraße nahe dem Europaplatz. Wie bei kombinierten Bank- und Postschaltern üblich ist die Frequenz hoch und die Bewertung mit 3,7 Sternen entsprechend gemischt. Praktisch für alle, die Bankgeschäft und Paketservice in einem Gang erledigen wollen, mit den bei Schalterandrang üblichen Wartezeiten." },
+  { name: "Targobank", rating: 4.6, count: 427, adresse: "Kaiserstraße 121, 76133 Karlsruhe", stadtteil: "Innenstadt", url: "https://bankscore.de/filialen/karlsruhe/targobank/",
+    text: "Die Targobank in der Kaiserstraße erreicht mit 4,6 Sternen aus über 400 Bewertungen eine der besten Noten im Karlsruher Filialvergleich. Ihr Schwerpunkt liegt traditionell auf Konsumentenkrediten und Ratenfinanzierung, dazu kommen Giro- und Anlageberatung direkt an der zentralen Fußgängerachse der Innenstadt." },
+  { name: "HypoVereinsbank", rating: 4.5, count: 57, adresse: "Waldstr. 67, 76133 Karlsruhe-Innenstadt-West", stadtteil: "Innenstadt-West", url: "https://bankscore.de/filialen/karlsruhe/hypovereinsbank/",
+    text: "Die HypoVereinsbank (UniCredit) ist in Karlsruhe mit einem Standort in der Waldstraße im westlichen Zentrum vertreten. Die Bewertung von 4,5 Sternen liegt hoch, beruht mit 57 Stimmen aber auf einer schmaleren Datenbasis als bei den großen Häusern. Wer die HVB gezielt für Vermögens- und Anlageberatung sucht, findet hier den zentralen Anlaufpunkt." },
+  { name: "Santander", rating: 4.8, count: 660, adresse: "Karlstraße 3-5, 76133 Karlsruhe", stadtteil: "Innenstadt / City-West", url: "https://bankscore.de/filialen/karlsruhe/santander/",
+    text: "Santander erreicht an der Karlstraße nahe dem Europaplatz mit 4,8 Sternen aus 660 Bewertungen die höchste Note aller Karlsruher Filialbanken, und das bei belastbarer Datenbasis. Das Haus richtet sich mit Krediten, Kreditkarten und einem gebührenfreien Girokonto vor allem an preisbewusste Kundschaft und liegt zentral an der Achse Richtung Innenstadt." },
+];
+
+const fmt = (n) => n.toLocaleString("de-DE");
+const komma = (n) => n.toFixed(1).replace(".", ",");
+const ratingSum = banken.reduce((s, b) => s + b.count, 0);
+
+const faqs = [
+  { q: "Welche Bank hat in Karlsruhe die beste Bewertung?", a: "Die höchste Note unter den Karlsruher Filialbanken erreicht Santander an der Karlstraße mit rund 4,8 von 5 Sternen aus über 600 Bewertungen, gefolgt von der Targobank (4,6) und der HypoVereinsbank (4,5, allerdings bei deutlich weniger Stimmen). Die Werte sind nach Bewertungsanzahl gewichtete Durchschnitte der öffentlich bei Google gelisteten Standorte." },
+  { q: "Welche Bank hat in Karlsruhe die meisten Filialen?", a: "Das dichteste Netz haben die beiden regionalen Institute: Die Volksbank pur ist mit rund 20 Standorten über die Stadtteile vertreten, die Sparkasse Karlsruhe mit etwa einem Dutzend. Deutsche Bank, Commerzbank, Targobank, HypoVereinsbank und Santander konzentrieren ihr Geschäft dagegen auf einzelne zentrale Filialen entlang der Kaiserstraße und rund um den Marktplatz." },
+  { q: "Wo finde ich in Karlsruhe die meisten Bankfilialen auf einen Blick?", a: "Die überregionalen Häuser reihen sich fast alle entlang der Kaiserstraße und der angrenzenden Karl-Friedrich- und Karlstraße in der Innenstadt aneinander, gut erreichbar über Marktplatz und Europaplatz. Die Filialen von Sparkasse und Volksbank pur verteilen sich zusätzlich in die Wohnstadtteile wie Durlach, Mühlburg und die Oststadt." },
+  { q: "Lohnt sich neben dem Filialkonto ein kostenloses Online-Konto?", a: "Für viele ja. Die klassischen Filialkonten von Sparkasse und Volksbank pur kosten je nach Modell eine monatliche Grundgebühr. Wer die Filiale nur noch selten braucht, kann parallel ein gebührenfreies Online-Girokonto führen und die laufenden Kosten sparen, ohne die Hausbank in Karlsruhe ganz aufzugeben." },
+  { q: "Woher stammen die Bewertungen und Adressen?", a: "Die Sterne-Werte sind nach Bewertungsanzahl gewichtete Durchschnitte der öffentlich bei Google gelisteten Standorte der jeweiligen Marke in Karlsruhe. Die Adressen stammen aus den öffentlichen Standortdaten. Es werden ausschließlich Kennzahlen und Adressen dargestellt, keine Rezensionstexte. Die vollständige Filialübersicht je Bank findest du auf der jeweils verlinkten bankscore.de-Seite." },
+];
+
+const itemListLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: `Banken in ${stadt}`,
+  itemListElement: banken.map((b, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: b.name,
+    url: b.url,
+  })),
+};
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+};
+const articleLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: `Banken in ${stadt}: Filialen, Adressen und Bewertungen`,
+  about: `Filialbanken in ${stadt}`,
+  author: { "@type": "Organization", name: "Karlsruhe-Interaktiv" },
+  publisher: { "@type": "Organization", name: "Karlsruhe-Interaktiv" },
+};
+---
+
+<BaseLayout title="Banken in Karlsruhe: Filialen, Adressen & Bewertungen" description="Die Filialbanken in Karlsruhe im Überblick: Sparkasse, Volksbank pur, Deutsche Bank, Commerzbank, Postbank, Targobank, HypoVereinsbank und Santander mit zentraler Adresse, Google-Bewertung und Filialnetz. Ratgeber von Karlsruhe-Interaktiv.">
+  <div class="bnk-wrap">
+    <div class="bnk-surface" style="--color-accent:#3659e3;--color-accent-hover:#2544c0;">
+      <h1>Banken in Karlsruhe: Filialen, Adressen &amp; Bewertungen</h1>
+      <p class="bnk-lead">Welche Filialbank passt in Karlsruhe zu dir? Von der Volksbank pur mit dem dichtesten Netz bis zum bestbewerteten Santander: Hier findest du die großen Banken der Fächerstadt mit zentraler Adresse, Google-Bewertung und einer ehrlichen Einordnung, sortiert nach Bekanntheit.</p>
+      <p class="bnk-meta">Redaktion Karlsruhe-Interaktiv</p>
+
+      <p>Karlsruhe ist Fächerstadt, Verwaltungs- und Hochschulstandort zugleich, entsprechend breit ist das Bankangebot zwischen der strahlenförmigen Innenstadt, Durlach, Mühlburg und den Wohnvierteln. Die beiden regionalen Institute, Sparkasse Karlsruhe und Volksbank pur, teilen sich das dichteste Filialnetz, während die überregionalen Häuser ihr Geschäft entlang der Kaiserstraße und rund um den Marktplatz mit seiner Pyramide bündeln. Die folgende Übersicht beruht auf über {fmt(ratingSum)} öffentlichen Google-Bewertungen und den öffentlich gelisteten Filialadressen.</p>
+
+      <h2>Die Banken in Karlsruhe auf einen Blick</h2>
+      <div class="bnk-tablewrap">
+        <table>
+          <thead>
+            <tr><th>Bank</th><th>Ø Google</th><th>Bewertungen</th><th>Zentrale Adresse</th><th>Details</th></tr>
+          </thead>
+          <tbody>
+            {banken.map((b) => (
+              <tr>
+                <td data-l="Bank"><strong>{b.name}</strong></td>
+                <td data-l="Ø Google"><span class="bnk-star">{komma(b.rating)}</span></td>
+                <td data-l="Bewertungen">{fmt(b.count)}</td>
+                <td data-l="Adresse">{b.adresse}</td>
+                <td data-l="Details"><a href={b.url} target="_blank" rel="noopener">Filialen &amp; Bewertungen &rarr;</a></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="bnk-note">Ø Google = nach Bewertungsanzahl gewichteter Durchschnitt der öffentlich gelisteten Standorte der Marke in Karlsruhe. Stand der Erhebung: Juli 2026. Es werden nur Kennzahlen und Adressen dargestellt, keine Rezensionstexte.</p>
+
+      <h2>Die Banken im Einzelnen</h2>
+      {banken.map((b) => (
+        <div class="bnk-card">
+          <div class="bnk-cardhead">
+            <h3>{b.name}</h3>
+            <span class="bnk-badge">{komma(b.rating)} &#9733; · {fmt(b.count)} Bew.</span>
+          </div>
+          <p class="bnk-addr">{b.adresse} · Stadtteil: {b.stadtteil}</p>
+          <p>{b.text}</p>
+          <p class="bnk-src">Quelle und vollständige Filialübersicht: <a href={b.url} target="_blank" rel="noopener">{b.name} in Karlsruhe auf bankscore.de</a></p>
+        </div>
+      ))}
+
+      <h2>Filialbank oder kostenloses Online-Konto?</h2>
+      <p>Die klassischen Filialkonten von Sparkasse Karlsruhe und Volksbank pur punkten mit Beratung vor Ort und einem Automaten um die Ecke, kosten je nach Modell aber eine monatliche Grundgebühr. Wer ohnehin fast alles per App erledigt, kombiniert die Karlsruher Hausbank häufig mit einem gebührenfreien Online-Girokonto und spart so die laufenden Kosten. Einen neutralen Vergleich der Konditionen samt Bewertungsmethodik findest du im <a href="https://bankscore.de/girokonto/" target="_blank" rel="noopener">Girokonto-Vergleich auf bankscore.de</a>.</p>
+
+      <h2>Häufige Fragen zu Banken in Karlsruhe</h2>
+      {faqs.map((f) => (
+        <div class="faq-item">
+          <h3>{f.q}</h3>
+          <p>{f.a}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(itemListLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</BaseLayout>
+
+<style>
+  .bnk-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1rem 3rem; }
+  .bnk-surface {
+    background: #ffffff; color: #33313f; border-radius: 16px;
+    padding: clamp(20px, 4vw, 40px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 30px rgba(0,0,0,0.05);
+    font-size: 16.5px; line-height: 1.7;
+  }
+  .bnk-surface h1 { color: #20233a; font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.5px; margin: 0 0 1rem; }
+  .bnk-lead { font-size: 1.12rem; color: #4a4858; margin: 0 0 1.6rem; }
+  .bnk-meta { font-size: 13px; color: #8a8896; margin: 0 0 1.6rem; }
+  .bnk-surface h2 { color: #20233a; font-size: 1.55rem; font-weight: 800; line-height: 1.25; letter-spacing: -0.3px; margin: 2.2rem 0 0.8rem; }
+  .bnk-surface h3 { color: #20233a; font-size: 1.2rem; font-weight: 700; line-height: 1.3; margin: 0; }
+  .bnk-surface p { margin: 0 0 1.05rem; }
+  .bnk-surface strong { color: #20233a; font-weight: 700; }
+  .bnk-surface a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
+  .bnk-note { font-size: 13px; color: #8a8896; margin: 0.6rem 0 0; }
+  .bnk-tablewrap { overflow-x: auto; margin: 0 0 0.4rem; }
+  .bnk-surface table { border-collapse: collapse; width: 100%; font-size: 15px; }
+  .bnk-surface th, .bnk-surface td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #ececf3; vertical-align: top; }
+  .bnk-surface th { color: #6b7280; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; }
+  .bnk-star { display: inline-block; background: #eef7ee; color: #237a37; font-weight: 800; border-radius: 6px; padding: 1px 8px; }
+  .bnk-card { border: 1px solid #ececf3; border-radius: 12px; padding: 18px 20px; margin: 1rem 0; }
+  .bnk-cardhead { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 0.3rem; }
+  .bnk-badge { background: #f6f6fb; color: #20233a; font-weight: 700; font-size: 13px; border-radius: 999px; padding: 3px 12px; white-space: nowrap; }
+  .bnk-addr { font-size: 14px; color: #6b7280; margin: 0 0 0.7rem; }
+  .bnk-src { font-size: 14px; color: #6b7280; margin: 0.6rem 0 0; }
+  .faq-item { border-top: 1px solid #e6e6ef; padding-top: 1.1rem; margin-top: 1.1rem; }
+  .faq-item:first-of-type { border-top: none; }
+  .faq-item h3 { font-size: 18px; }
+  @media (max-width: 640px) {
+    .bnk-surface table, .bnk-surface thead, .bnk-surface tbody, .bnk-surface tr, .bnk-surface th, .bnk-surface td { display: block; }
+    .bnk-surface thead { display: none; }
+    .bnk-surface tr { border: 1px solid #ececf3; border-radius: 10px; margin-bottom: 10px; padding: 6px 4px; }
+    .bnk-surface td { border: none; padding: 5px 12px; }
+    .bnk-surface td::before { content: attr(data-l) ": "; color: #8a8896; font-size: 12px; font-weight: 700; }
+    .bnk-surface td[data-l="Bank"]::before { content: ""; }
+  }
+</style>
