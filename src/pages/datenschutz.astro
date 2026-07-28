@@ -6,14 +6,14 @@ import { city } from "../data/city";
 import { indexUrl } from "../i18n/config";
 ---
 
-<BaseLayout title="Datenschutzerklaerung" noindex alternateUrls={{ de: indexUrl("privacy", "de"), en: indexUrl("privacy", "en") }}>
+<BaseLayout title="Datenschutzerklärung" noindex alternateUrls={{ de: indexUrl("privacy", "de"), en: indexUrl("privacy", "en") }}>
   <div class="container-page py-12 max-w-3xl">
     <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Datenschutz" }]} />
-    <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-8" style="color: var(--color-text);">Datenschutzerklaerung</h1>
+    <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-8" style="color: var(--color-text);">Datenschutzerklärung</h1>
 
     <div class="legal-prose">
       <h2>Verantwortlicher</h2>
-      <p>Verantwortlich fuer die Datenverarbeitung auf dieser Website nach Art. 4 Abs. 7 DSGVO ist:</p>
+      <p>Verantwortlich für die Datenverarbeitung auf dieser Website nach Art. 4 Abs. 7 DSGVO ist:</p>
       <p>
         <strong>{legal.companyName}</strong><br />
         {legal.registeredOffice.street}<br />
@@ -32,7 +32,7 @@ import { indexUrl } from "../i18n/config";
       <h2>Google Tag Manager / Analytics</h2>
       <p>
         Sofern aktiviert, verwenden wir den Google Tag Manager zur Verwaltung von Analyse- und Marketing-Tags.
-        Rechtsgrundlage ist deine Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO, eingeholt ueber unser Cookie-Banner.
+        Rechtsgrundlage ist deine Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO, eingeholt über unser Cookie-Banner.
         Du kannst deine Einwilligung jederzeit widerrufen.
       </p>
 
@@ -40,13 +40,13 @@ import { indexUrl } from "../i18n/config";
       <p>
         Diese Website kann Google AdSense zur Auslieferung kontextbezogener Werbung nutzen. AdSense kann Cookies
         verwenden. Mehr Informationen in der
-        <a href="https://policies.google.com/privacy" rel="nofollow noopener" target="_blank">Google Datenschutzerklaerung</a>.
+        <a href="https://policies.google.com/privacy" rel="nofollow noopener" target="_blank">Google Datenschutzerklärung</a>.
       </p>
 
       <h2>Affiliate-Anbieter: Stay22 und GetYourGuide</h2>
       <p>
         Wenn du auf einen Hotel-Buchungs-Link klickst oder ein Tour-Widget nutzt, werden Cookies dieser Anbieter
-        gesetzt (Affiliate-Tracking). Fuer dich entstehen keine Mehrkosten. Die Datenschutzhinweise:
+        gesetzt (Affiliate-Tracking). Für dich entstehen keine Mehrkosten. Die Datenschutzhinweise:
       </p>
       <ul>
         <li><a href="https://www.stay22.com/legal/privacy" rel="nofollow noopener" target="_blank">Stay22 Datenschutz</a></li>
@@ -57,23 +57,23 @@ import { indexUrl } from "../i18n/config";
       <h2>Cookies</h2>
       <p>
         Es kommen technisch notwendige sowie optionale Cookies (Analyse, Werbung, Affiliate) zum Einsatz. Beim
-        ersten Besuch erhaeltst du ein Cookie-Banner, in dem du selektiv entscheiden kannst.
+        ersten Besuch erhältst du ein Cookie-Banner, in dem du selektiv entscheiden kannst.
       </p>
 
       <h2>Deine Rechte</h2>
       <ul>
-        <li>Auskunft ueber deine gespeicherten Daten (Art. 15 DSGVO)</li>
+        <li>Auskunft über deine gespeicherten Daten (Art. 15 DSGVO)</li>
         <li>Berichtigung unrichtiger Daten (Art. 16)</li>
-        <li>Loeschung deiner Daten (Art. 17)</li>
-        <li>Einschraenkung der Verarbeitung (Art. 18)</li>
-        <li>Datenuebertragbarkeit (Art. 20)</li>
+        <li>Löschung deiner Daten (Art. 17)</li>
+        <li>Einschränkung der Verarbeitung (Art. 18)</li>
+        <li>Datenübertragbarkeit (Art. 20)</li>
         <li>Widerspruch gegen die Verarbeitung (Art. 21)</li>
         <li>Widerruf einer erteilten Einwilligung (Art. 7 Abs. 3)</li>
       </ul>
-      <p>Zur Ausuebung genuegt eine formlose Nachricht an <a href={`mailto:${legal.email}`}>{legal.email}</a>.</p>
+      <p>Zur Ausuebung genügt eine formlose Nachricht an <a href={`mailto:${legal.email}`}>{legal.email}</a>.</p>
 
       <h2>Stand</h2>
-      <p>Diese Datenschutzerklaerung wurde zuletzt im Mai 2026 ueberarbeitet.</p>
+      <p>Diese Datenschutzerklärung wurde zuletzt im Mai 2026 ueberarbeitet.</p>
     </div>
   </div>
 </BaseLayout>

@@ -1,5 +1,5 @@
 /**
- * Feature-Flags fuer karlsruhe-interaktiv.de
+ * Feature-Flags für karlsruhe-interaktiv.de
  * Off solange noch nicht deployed/relevant.
  */
 export const features = {

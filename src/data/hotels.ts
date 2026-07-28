@@ -45,9 +45,9 @@ export const hotels: Hotel[] = [
     reviews: 1240,
     guestFavorite: true,
     shortDesc:
-      "Design-Hotel mit minimalistischer Architektur und farbintensivem Innenraum. Naehe Kongresszentrum.",
+      "Design-Hotel mit minimalistischer Architektur und farbintensivem Innenraum. Nähe Kongresszentrum.",
     longDesc:
-      "Das Hotel Santo ist Karlsruhes Designstatement: minimalistische Architektur, farbintensive Innenwelten, mediterrane Kueche im Restaurant. Direkt neben dem Kongresszentrum und nur wenige Minuten vom Schloss entfernt.",
+      "Das Hotel Santo ist Karlsruhes Designstatement: minimalistische Architektur, farbintensive Innenwelten, mediterrane Küche im Restaurant. Direkt neben dem Kongresszentrum und nur wenige Minuten vom Schloss entfernt.",
     imageHue: 3,
     bookingUrl: "https://www.booking.com/hotel/de/hotel-santo-karlsruhe.de.html",
     amenities: ["Design", "Restaurant", "Kongresszentrum", "Boutique"],
@@ -64,10 +64,10 @@ export const hotels: Hotel[] = [
     shortDesc:
       "Modernes Stadthotel an der Kaiserstrasse mit klassischer Ausstattung und zentralster Lage.",
     longDesc:
-      "Das Novum Hotel Imperial liegt mitten in der Karlsruher Fussgaengerzone an der Kaiserstrasse. Klassische Ausstattung, gutes Fruehstuecksbuffet, ideal fuer Stadt-Erkundungen zu Fuss.",
+      "Das Novum Hotel Imperial liegt mitten in der Karlsruher Fussgaengerzone an der Kaiserstrasse. Klassische Ausstattung, gutes Frühstücksbuffet, ideal für Stadt-Erkundungen zu Fuss.",
     imageHue: 2,
     bookingUrl: "https://www.booking.com/hotel/de/novum-hotel-imperial-karlsruhe.de.html",
-    amenities: ["Zentral", "Kaiserstrasse", "Fruehstueck"],
+    amenities: ["Zentral", "Kaiserstrasse", "Frühstück"],
     categories: ["shopping", "wahrzeichen"],
   },
   {
@@ -81,7 +81,7 @@ export const hotels: Hotel[] = [
     shortDesc:
       "Komfortables Business-Hotel in zentraler Lage mit modernen Zimmern und gutem Service.",
     longDesc:
-      "Das ACHAT Hotel Karlsruhe City liegt zentral zwischen Innenstadt und Hauptbahnhof. Solide Business-Ausstattung, freies WLAN, eigenes Parkhaus, gutes Preis-Leistungs-Verhaeltnis.",
+      "Das ACHAT Hotel Karlsruhe City liegt zentral zwischen Innenstadt und Hauptbahnhof. Solide Business-Ausstattung, freies WLAN, eigenes Parkhaus, gutes Preis-Leistungs-Verhältnis.",
     imageHue: 4,
     bookingUrl: "https://www.booking.com/hotel/de/achat-comfort-karlsruhe-city.de.html",
     amenities: ["Business", "Zentral", "Parkhaus"],
@@ -96,9 +96,9 @@ export const hotels: Hotel[] = [
     rating: 8.4,
     reviews: 720,
     shortDesc:
-      "Privat gefuehrtes Stadthotel direkt am Marktplatz mit Pyramide-Blick.",
+      "Privat geführtes Stadthotel direkt am Marktplatz mit Pyramide-Blick.",
     longDesc:
-      "Das Hotel am Markt liegt traumhaft direkt am Marktplatz mit Blick auf die Pyramide. Familiengefuehrt, mit hausgemachtem Fruehstueck, gemuetlichen Zimmern und persoenlicher Atmosphaere.",
+      "Das Hotel am Markt liegt traumhaft direkt am Marktplatz mit Blick auf die Pyramide. Familiengefuehrt, mit hausgemachtem Frühstück, gemütlichen Zimmern und persönlicher Atmosphäre.",
     imageHue: 5,
     bookingUrl: "https://www.booking.com/hotel/de/hotel-am-markt-karlsruhe.de.html",
     amenities: ["Marktplatz", "Familiengefuehrt", "Boutique"],
@@ -115,7 +115,7 @@ export const hotels: Hotel[] = [
     shortDesc:
       "Traditionsreiches Stadthotel mit klassischen Zimmern, Bar und Restaurant.",
     longDesc:
-      "Das Hotel Kuebler ist ein klassisches Stadthotel mit langer Tradition. Schlichte, saubere Zimmer, ein gut sortierter Fruehstuecksraum und eine gemuetliche Bar.",
+      "Das Hotel Kuebler ist ein klassisches Stadthotel mit langer Tradition. Schlichte, saubere Zimmer, ein gut sortierter Fruehstuecksraum und eine gemütliche Bar.",
     imageHue: 1,
     bookingUrl: "https://www.booking.com/hotel/de/kuebler.de.html",
     amenities: ["Traditionell", "Restaurant", "Bar"],
@@ -130,9 +130,9 @@ export const hotels: Hotel[] = [
     rating: 8.6,
     reviews: 1380,
     shortDesc:
-      "Modernes Budget-Komfort-Hotel zentral an der Erbprinzenstrasse. Beliebt fuer Staedtetrips.",
+      "Modernes Budget-Komfort-Hotel zentral an der Erbprinzenstrasse. Beliebt für Staedtetrips.",
     longDesc:
-      "Das Premier Inn Karlsruhe City ist eines der modernsten Budget-Komfort-Hotels der Stadt. Zentrale Lage, einheitlich hoher Standard, sehr gutes Preis-Leistungs-Verhaeltnis.",
+      "Das Premier Inn Karlsruhe City ist eines der modernsten Budget-Komfort-Hotels der Stadt. Zentrale Lage, einheitlich hoher Standard, sehr gutes Preis-Leistungs-Verhältnis.",
     imageHue: 3,
     bookingUrl: "https://www.booking.com/hotel/de/premier-inn-karlsruhe-city.de.html",
     amenities: ["Budget", "Modern", "Zentral"],
@@ -149,7 +149,7 @@ export const hotels: Hotel[] = [
     shortDesc:
       "Internationales 4-Sterne-Haus mit Fitness, Sauna und Restaurant. Nah am Kongresszentrum.",
     longDesc:
-      "Das Holiday Inn Karlsruhe bietet internationalen 4-Sterne-Standard mit Fitnessbereich, Sauna, Restaurant und einer ruhigen Lage Richtung Suedstadt-Rand. Beliebt bei Geschaeftsreisenden.",
+      "Das Holiday Inn Karlsruhe bietet internationalen 4-Sterne-Standard mit Fitnessbereich, Sauna, Restaurant und einer ruhigen Lage Richtung Südstadt-Rand. Beliebt bei Geschäftsreisenden.",
     imageHue: 4,
     bookingUrl: "https://www.booking.com/hotel/de/holiday-inn-karlsruhe.de.html",
     amenities: ["Fitness", "Sauna", "Restaurant"],
@@ -164,9 +164,9 @@ export const hotels: Hotel[] = [
     rating: 8.1,
     reviews: 510,
     shortDesc:
-      "Familiengefuehrtes Stadthotel mit gemuetlichen Zimmern, in ruhiger Seitenstrasse zentral gelegen.",
+      "Familiengefuehrtes Stadthotel mit gemütlichen Zimmern, in ruhiger Seitenstrasse zentral gelegen.",
     longDesc:
-      "Das Hotel Eden wird seit Jahrzehnten familiengefuehrt. Ruhige Innenstadt-Seitenstrasse, gemuetliche Zimmer, gutes Fruehstueck. Beliebter Tipp fuer Wiederkehrer.",
+      "Das Hotel Eden wird seit Jahrzehnten familiengefuehrt. Ruhige Innenstadt-Seitenstrasse, gemütliche Zimmer, gutes Frühstück. Beliebter Tipp für Wiederkehrer.",
     imageHue: 2,
     bookingUrl: "https://www.booking.com/hotel/de/hotel-eden-karlsruhe.de.html",
     amenities: ["Familiengefuehrt", "Ruhig", "Zentral"],
@@ -181,9 +181,9 @@ export const hotels: Hotel[] = [
     rating: 8.0,
     reviews: 940,
     shortDesc:
-      "Budget-Hotel mit hohem Standard fuer den Preis. 24h Check-In, freies WLAN.",
+      "Budget-Hotel mit hohem Standard für den Preis. 24h Check-In, freies WLAN.",
     longDesc:
-      "Das B&B Hotel Karlsruhe ist die Budget-Option mit zuverlaessigem Standard. Schlicht eingerichtete Zimmer, 24-Stunden-Check-In, freies WLAN, gutes Fruehstuecksbuffet zum Aufpreis.",
+      "Das B&B Hotel Karlsruhe ist die Budget-Option mit zuverlaessigem Standard. Schlicht eingerichtete Zimmer, 24-Stunden-Check-In, freies WLAN, gutes Frühstücksbuffet zum Aufpreis.",
     imageHue: 5,
     bookingUrl: "https://www.booking.com/hotel/de/b-b-karlsruhe.de.html",
     amenities: ["Budget", "24h Check-In"],
@@ -202,7 +202,7 @@ export const hotels: Hotel[] = [
     shortDesc:
       "Verlaessliches Budget-Hotel direkt am Hauptbahnhof. Einheitlich, sauber, fair.",
     longDesc:
-      "Das Ibis Karlsruhe Hauptbahnhof bietet zuverlaessige Budget-Qualitaet direkt am Hauptbahnhof. Standardisierte Zimmer, faires Preis-Leistungs-Verhaeltnis, ideal fuer Kurzaufenthalte.",
+      "Das Ibis Karlsruhe Hauptbahnhof bietet zuverlässige Budget-Qualität direkt am Hauptbahnhof. Standardisierte Zimmer, faires Preis-Leistungs-Verhältnis, ideal für Kurzaufenthalte.",
     imageHue: 1,
     bookingUrl: "https://www.booking.com/hotel/de/ibis-karlsruhe-hauptbahnhof.de.html",
     amenities: ["Hauptbahnhof", "Budget", "Modern"],
@@ -217,9 +217,9 @@ export const hotels: Hotel[] = [
     rating: 8.0,
     reviews: 690,
     shortDesc:
-      "Gemuetliches Stadthotel in Hauptbahnhof-Naehe mit Garten und Restaurant.",
+      "Gemütliches Stadthotel in Hauptbahnhof-Nähe mit Garten und Restaurant.",
     longDesc:
-      "Das Hotel Berliner Hof liegt direkt am Hauptbahnhof Sued. Familiengefuehrtes Haus, schoener Innenhof-Garten, Restaurant mit badischer Kueche.",
+      "Das Hotel Berliner Hof liegt direkt am Hauptbahnhof Süd. Familiengefuehrtes Haus, schöner Innenhof-Garten, Restaurant mit badischer Küche.",
     imageHue: 3,
     bookingUrl: "https://www.booking.com/hotel/de/berliner-hof-karlsruhe.de.html",
     amenities: ["Garten", "Restaurant", "Familiengefuehrt"],
@@ -239,7 +239,7 @@ export const hotels: Hotel[] = [
     shortDesc:
       "Kunst-Themenhotel mit Werken inspiriert vom Blauen Reiter. Ruhig in Durlach gelegen.",
     longDesc:
-      "Das Hotel Der Blaue Reiter ist ein liebevoll gestaltetes Kunst-Themenhotel im historischen Durlach. Jedes Zimmer ist einem Kuenstler des Blauen Reiter gewidmet, das Restaurant Klauprecht 1 ist Geheimtipp.",
+      "Das Hotel Der Blaue Reiter ist ein liebevoll gestaltetes Kunst-Themenhotel im historischen Durlach. Jedes Zimmer ist einem Künstler des Blauen Reiter gewidmet, das Restaurant Klauprecht 1 ist Geheimtipp.",
     imageHue: 4,
     bookingUrl: "https://www.booking.com/hotel/de/blaue-reiter.de.html",
     amenities: ["Kunst", "Restaurant", "Durlach"],
@@ -256,12 +256,12 @@ export const hotels: Hotel[] = [
     rating: 7.8,
     reviews: 590,
     shortDesc:
-      "Privat gefuehrtes Hotel mit Garten und Pool, Messe-Naehe.",
+      "Privat geführtes Hotel mit Garten und Pool, Messe-Nähe.",
     longDesc:
-      "Das Hotel Rio liegt suedlich von Karlsruhe Richtung Messe. Garten, Pool, gemuetliche Zimmer. Beliebt bei Messegaesten und Kurzaufenthaltern mit dem Auto.",
+      "Das Hotel Rio liegt südlich von Karlsruhe Richtung Messe. Garten, Pool, gemütliche Zimmer. Beliebt bei Messegaesten und Kurzaufenthaltern mit dem Auto.",
     imageHue: 2,
     bookingUrl: "https://www.booking.com/hotel/de/rio-karlsruhe.de.html",
-    amenities: ["Garten", "Pool", "Messe-Naehe"],
+    amenities: ["Garten", "Pool", "Messe-Nähe"],
     categories: ["parks", "familie"],
   },
   {
@@ -275,7 +275,7 @@ export const hotels: Hotel[] = [
     shortDesc:
       "Internationales 4-Sterne-Haus an der Stadtgrenze Karlsruhe-Ettlingen. Fitness, Sauna, Restaurant.",
     longDesc:
-      "Das Best Western Queens Hotel liegt verkehrsguenstig zwischen Karlsruhe und Ettlingen. Komfortable Zimmer, Fitnessbereich mit Sauna, Restaurant. Beliebt fuer Tagungen und Messegaeste.",
+      "Das Best Western Queens Hotel liegt verkehrsgünstig zwischen Karlsruhe und Ettlingen. Komfortable Zimmer, Fitnessbereich mit Sauna, Restaurant. Beliebt für Tagungen und Messegaeste.",
     imageHue: 5,
     bookingUrl: "https://www.booking.com/hotel/de/best-western-queens.de.html",
     amenities: ["Fitness", "Sauna", "Tagungen"],
@@ -293,9 +293,9 @@ export const hotels: Hotel[] = [
     reviews: 980,
     guestFavorite: true,
     shortDesc:
-      "5-Sterne-Hotel mit Stern-Restaurant Erbprinz in der Nachbarstadt Ettlingen. Spa, gehobene Kueche.",
+      "5-Sterne-Hotel mit Stern-Restaurant Erbprinz in der Nachbarstadt Ettlingen. Spa, gehobene Küche.",
     longDesc:
-      "Das Hotel Erbprinz in Ettlingen vor den Toren Karlsruhes ist ein 5-Sterne-Haus der Spitzenklasse. Das Sterne-Restaurant Erbprinz, ein umfangreicher Spa-Bereich und die historische Atmosphaere machen ihn zum Ausflugsziel fuer Karlsruher Kulinariker.",
+      "Das Hotel Erbprinz in Ettlingen vor den Toren Karlsruhes ist ein 5-Sterne-Haus der Spitzenklasse. Das Sterne-Restaurant Erbprinz, ein umfangreicher Spa-Bereich und die historische Atmosphäre machen ihn zum Ausflugsziel für Karlsruher Kulinariker.",
     imageHue: 1,
     bookingUrl: "https://www.booking.com/hotel/de/erbprinz.de.html",
     amenities: ["Sternerestaurant", "Spa", "Gehoben"],
@@ -314,7 +314,7 @@ export const hotels: Hotel[] = [
     shortDesc:
       "Komfortables Mittelklasse-Hotel im Westen Karlsruhes. Gute Anbindung an Innenstadt und Autobahn.",
     longDesc:
-      "Das Ramada by Wyndham Karlsruhe liegt in Muehlburg mit guter Anbindung an Autobahn und Innenstadt-Tram. Standardisierte Komfortzimmer, freies Parken, Restaurant.",
+      "Das Ramada by Wyndham Karlsruhe liegt in Mühlburg mit guter Anbindung an Autobahn und Innenstadt-Tram. Standardisierte Komfortzimmer, freies Parken, Restaurant.",
     imageHue: 4,
     bookingUrl: "https://www.booking.com/hotel/de/ramada-karlsruhe.de.html",
     amenities: ["Parken frei", "Restaurant"],

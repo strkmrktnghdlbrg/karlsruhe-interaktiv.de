@@ -20,9 +20,9 @@ export const news: NewsItem[] = [
     slug: "kit-quantum-computing-fortschritt",
     title: "KIT meldet Fortschritt bei skalierbaren Quantencomputern",
     lead:
-      "Forscher des Karlsruher Instituts fuer Technologie demonstrieren erstmals einen ionenbasierten Quantenchip mit ueber 100 fehlerkorrigierten Qubits.",
+      "Forscher des Karlsruher Instituts für Technologie demonstrieren erstmals einen ionenbasierten Quantenchip mit über 100 fehlerkorrigierten Qubits.",
     summary:
-      "Ein Team am KIT-Institut fuer Quantenmaterialien und -technologien hat einen wichtigen Schritt in Richtung praxistauglicher Quantencomputer veroeffentlicht. In Zusammenarbeit mit dem Forschungszentrum Karlsruhe konnte erstmals ein ionenbasierter Chip mit ueber 100 fehlerkorrigierten Qubits stabil betrieben werden. Die Arbeit soll Ende des Monats in Nature Quantum Computing erscheinen. Karlsruhe positioniert sich damit erneut als eines der wichtigsten Quanten-Zentren Europas.",
+      "Ein Team am KIT-Institut für Quantenmaterialien und -technologien hat einen wichtigen Schritt in Richtung praxistauglicher Quantencomputer veröffentlicht. In Zusammenarbeit mit dem Forschungszentrum Karlsruhe konnte erstmals ein ionenbasierter Chip mit über 100 fehlerkorrigierten Qubits stabil betrieben werden. Die Arbeit soll Ende des Monats in Nature Quantum Computing erscheinen. Karlsruhe positioniert sich damit erneut als eines der wichtigsten Quanten-Zentren Europas.",
     district: "oststadt",
     category: "Tech",
     publishedAt: "2026-05-22T09:00:00+02:00",
@@ -35,11 +35,11 @@ export const news: NewsItem[] = [
   },
   {
     slug: "zkm-immersive-ki-ausstellung",
-    title: "ZKM eroeffnet immersive KI-Ausstellung 'Generative Welten'",
+    title: "ZKM eröffnet immersive KI-Ausstellung 'Generative Welten'",
     lead:
       "Die neue Wechselausstellung am ZKM zeigt 30 internationale Positionen zu generativer KI in Kunst und Wissenschaft.",
     summary:
-      "Das Zentrum fuer Kunst und Medien Karlsruhe eroeffnet am 14. Juni die neue Wechselausstellung 'Generative Welten'. 30 internationale Kuenstlerinnen und Kuenstler zeigen Arbeiten zu generativer KI - von KI-Architektur bis zu interaktiven Klang-Welten. Mit dabei sind Refik Anadol, Anna Ridler und das Karlsruher Atelier ZKM Labor. Eintritt frei am Eroeffnungswochenende.",
+      "Das Zentrum für Kunst und Medien Karlsruhe eröffnet am 14. Juni die neue Wechselausstellung 'Generative Welten'. 30 internationale Künstlerinnen und Künstler zeigen Arbeiten zu generativer KI - von KI-Architektur bis zu interaktiven Klang-Welten. Mit dabei sind Refik Anadol, Anna Ridler und das Karlsruher Atelier ZKM Labor. Eintritt frei am Eroeffnungswochenende.",
     district: "suedweststadt",
     category: "Kultur",
     publishedAt: "2026-05-20T11:00:00+02:00",
@@ -56,7 +56,7 @@ export const news: NewsItem[] = [
     lead:
       "Mit 87 neuen Mitgliedsunternehmen hat das CyberForum 2026 das aktivste Jahr seiner Geschichte.",
     summary:
-      "Das CyberForum, eines der groessten IT-Cluster Europas, meldet einen Rekord an Startup-Ansiedlungen. Im ersten Halbjahr 2026 sind bereits 87 neue Mitgliedsunternehmen aus den Bereichen KI, Cyber-Security und Industrial-Tech beigetreten. Karlsruhe gilt damit weiterhin als das wichtigste Tech-Cluster Sueddeutschlands jenseits von Muenchen. Besonders erfolgreich seien Ausgruendungen aus dem FZI und dem KIT-Inkubator.",
+      "Das CyberForum, eines der groessten IT-Cluster Europas, meldet einen Rekord an Startup-Ansiedlungen. Im ersten Halbjahr 2026 sind bereits 87 neue Mitgliedsunternehmen aus den Bereichen KI, Cyber-Security und Industrial-Tech beigetreten. Karlsruhe gilt damit weiterhin als das wichtigste Tech-Cluster Süddeutschlands jenseits von München. Besonders erfolgreich seien Ausgruendungen aus dem FZI und dem KIT-Inkubator.",
     district: "oststadt",
     category: "Tech",
     publishedAt: "2026-05-18T14:00:00+02:00",
@@ -71,9 +71,9 @@ export const news: NewsItem[] = [
     slug: "schlosslichtspiele-programm-2026",
     title: "Schlosslichtspiele 2026: Programm steht - vom 13. August bis 14. September",
     lead:
-      "Karlsruhes Open-Air-Projection-Mapping-Festival am Schloss laeuft 2026 mit zwoelf Show-Premieren und internationalen Beitraegen.",
+      "Karlsruhes Open-Air-Projection-Mapping-Festival am Schloss läuft 2026 mit zwölf Show-Premieren und internationalen Beiträgen.",
     summary:
-      "Die Schlosslichtspiele projizieren auch 2026 wieder jeden Abend kostenlos auf die Schlossfassade. Vom 13. August bis 14. September erwartet das Publikum zwoelf Premieren - darunter Beitraege aus Japan, Polen und Brasilien. Highlight ist die Eroeffnungsshow von Maxin10sity 'Genesis 2.0'. Eintritt frei, Beginn jeweils nach Einbruch der Dunkelheit.",
+      "Die Schlosslichtspiele projizieren auch 2026 wieder jeden Abend kostenlos auf die Schlossfassade. Vom 13. August bis 14. September erwartet das Publikum zwölf Premieren - darunter Beiträge aus Japan, Polen und Brasilien. Highlight ist die Eroeffnungsshow von Maxin10sity 'Genesis 2.0'. Eintritt frei, Beginn jeweils nach Einbruch der Dunkelheit.",
     district: "innenstadt-west",
     category: "Kultur",
     publishedAt: "2026-05-15T10:00:00+02:00",
@@ -88,9 +88,9 @@ export const news: NewsItem[] = [
     slug: "bverfg-urteil-digitale-grundrechte",
     title: "Bundesverfassungsgericht entscheidet zu digitalen Grundrechten",
     lead:
-      "Der Erste Senat hat in einem viel beachteten Urteil die Datenuebermittlung an US-Cloudanbieter eingeschraenkt.",
+      "Der Erste Senat hat in einem viel beachteten Urteil die Datenuebermittlung an US-Cloudanbieter eingeschränkt.",
     summary:
-      "Das Bundesverfassungsgericht Karlsruhe hat in einem viel beachteten Urteil entschieden, dass die Datenuebermittlung deutscher Behoerden an US-Cloudanbieter strengere Voraussetzungen erfuellen muss. Der Erste Senat sah in der bisherigen Praxis einen Verstoss gegen das Grundrecht auf informationelle Selbstbestimmung. Datenschuetzer begruessen das Urteil - die Behoerden mussten innerhalb von 18 Monaten ihre Cloud-Strategien anpassen.",
+      "Das Bundesverfassungsgericht Karlsruhe hat in einem viel beachteten Urteil entschieden, dass die Datenuebermittlung deutscher Behörden an US-Cloudanbieter strengere Voraussetzungen erfüllen muss. Der Erste Senat sah in der bisherigen Praxis einen Verstoss gegen das Grundrecht auf informationelle Selbstbestimmung. Datenschuetzer begruessen das Urteil - die Behörden mussten innerhalb von 18 Monaten ihre Cloud-Strategien anpassen.",
     district: "innenstadt-west",
     category: "Recht",
     publishedAt: "2026-05-12T16:00:00+02:00",
@@ -105,9 +105,9 @@ export const news: NewsItem[] = [
     slug: "das-fest-2026-line-up",
     title: "Das Fest 2026: Headliner steht fest - Deichkind und K.I.Z.",
     lead:
-      "Das Fest auf dem Mount Klotz hat das Line-Up fuer 2026 veroeffentlicht. Deichkind und K.I.Z. headlinen am Wochenende vom 23.-26. Juli.",
+      "Das Fest auf dem Mount Klotz hat das Line-Up für 2026 veröffentlicht. Deichkind und K.I.Z. headlinen am Wochenende vom 23.-26. Juli.",
     summary:
-      "Karlsruhes groesstes Open-Air-Festival Das Fest hat das Line-Up 2026 veroeffentlicht. Vom 23. bis 26. Juli stehen ueber 60 Bands auf den drei Buehnen am Mount Klotz, darunter Deichkind, K.I.Z., AnnenMayKantereit und internationale Top-Acts. Eintritt bleibt kostenlos. Mit 250.000 erwarteten Besuchern ist Das Fest eines der groessten kostenlosen Festivals Europas.",
+      "Karlsruhes groesstes Open-Air-Festival Das Fest hat das Line-Up 2026 veröffentlicht. Vom 23. bis 26. Juli stehen über 60 Bands auf den drei Bühnen am Mount Klotz, darunter Deichkind, K.I.Z., AnnenMayKantereit und internationale Top-Acts. Eintritt bleibt kostenlos. Mit 250.000 erwarteten Besuchern ist Das Fest eines der groessten kostenlosen Festivals Europas.",
     district: "suedstadt",
     category: "Kultur",
     publishedAt: "2026-05-10T12:00:00+02:00",
@@ -122,9 +122,9 @@ export const news: NewsItem[] = [
     slug: "kvv-stadtbahn-erweiterung",
     title: "KVV beschliesst Stadtbahn-Erweiterung nach Wolfartsweier",
     lead:
-      "Der Karlsruher Verkehrsverbund baut die Tram-Bahn-Linie S2 bis 2029 weiter. 1,8 Kilometer Neutrasse Richtung Sueden.",
+      "Der Karlsruher Verkehrsverbund baut die Tram-Bahn-Linie S2 bis 2029 weiter. 1,8 Kilometer Neutrasse Richtung Süden.",
     summary:
-      "Der Karlsruher Verkehrsverbund hat die Erweiterung der Stadtbahnlinie S2 nach Wolfartsweier beschlossen. Bis 2029 entstehen 1,8 Kilometer Neutrasse mit vier neuen Haltestellen. Investitionsvolumen: 78 Millionen Euro. Das Karlsruher Modell - Stadtbahn-Tram-Hybrid - bleibt damit Vorbild fuer den OePNV-Ausbau in mittleren Grossstaedten.",
+      "Der Karlsruher Verkehrsverbund hat die Erweiterung der Stadtbahnlinie S2 nach Wolfartsweier beschlossen. Bis 2029 entstehen 1,8 Kilometer Neutrasse mit vier neuen Haltestellen. Investitionsvolumen: 78 Millionen Euro. Das Karlsruher Modell - Stadtbahn-Tram-Hybrid - bleibt damit Vorbild für den ÖPNV-Ausbau in mittleren Grossstaedten.",
     district: "durlach",
     category: "Verkehr",
     publishedAt: "2026-05-08T09:00:00+02:00",
@@ -137,11 +137,11 @@ export const news: NewsItem[] = [
   },
   {
     slug: "fzi-it-sicherheit-eu-foerderung",
-    title: "FZI erhaelt 12 Millionen Euro EU-Foerderung fuer IT-Sicherheit",
+    title: "FZI erhält 12 Millionen Euro EU-Förderung für IT-Sicherheit",
     lead:
       "Das Forschungszentrum Informatik Karlsruhe ist Lead-Partner eines neuen Horizon-Europe-Konsortiums zur Quanten-Kryptographie.",
     summary:
-      "Das FZI Forschungszentrum Informatik Karlsruhe leitet ein neues Horizon-Europe-Konsortium zur Quanten-Kryptographie. Insgesamt 12 Millionen Euro Foerdermittel fliessen ueber drei Jahre in das Projekt QSAFE-EU, an dem sieben europaeische Partner beteiligt sind. Karlsruhe positioniert sich damit als zentraler Akteur fuer post-quantum-sichere IT-Infrastrukturen.",
+      "Das FZI Forschungszentrum Informatik Karlsruhe leitet ein neues Horizon-Europe-Konsortium zur Quanten-Kryptographie. Insgesamt 12 Millionen Euro Fördermittel fliessen über drei Jahre in das Projekt QSAFE-EU, an dem sieben europäische Partner beteiligt sind. Karlsruhe positioniert sich damit als zentraler Akteur für post-quantum-sichere IT-Infrastrukturen.",
     district: "oststadt",
     category: "Wissenschaft",
     publishedAt: "2026-05-05T11:30:00+02:00",
@@ -156,9 +156,9 @@ export const news: NewsItem[] = [
     slug: "tollhaus-zeltival-line-up",
     title: "Zeltival 2026 im Tollhaus: World-Music-Programm steht",
     lead:
-      "Das Zeltival, Karlsruhes Sommer-World-Music-Festival im Tollhaus-Innenhof, eroeffnet am 12. Juli mit Tinariwen.",
+      "Das Zeltival, Karlsruhes Sommer-World-Music-Festival im Tollhaus-Innenhof, eröffnet am 12. Juli mit Tinariwen.",
     summary:
-      "Das Karlsruher Tollhaus hat das Programm fuer das Zeltival 2026 veroeffentlicht. Sieben Wochen World-Music im Innenhof des alten Schlachthofs, eroeffnet wird mit der Wuestenblues-Band Tinariwen aus Mali. Weitere Acts: Lila Downs, Asaf Avidan, Mariza und das Karlsruher Pochontas Orchestra.",
+      "Das Karlsruher Tollhaus hat das Programm für das Zeltival 2026 veröffentlicht. Sieben Wochen World-Music im Innenhof des alten Schlachthofs, eröffnet wird mit der Wuestenblues-Band Tinariwen aus Mali. Weitere Acts: Lila Downs, Asaf Avidan, Mariza und das Karlsruher Pochontas Orchestra.",
     district: "suedstadt",
     category: "Kultur",
     publishedAt: "2026-05-02T14:00:00+02:00",

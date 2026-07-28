@@ -4,11 +4,11 @@
  * Build-Time-Fetch von Live-Hotel-Daten via /v1/accommodations.
  *
  * - X-API-Key Header (STAY22_API_KEY env var)
- * - Wenn Key fehlt: gibt null zurueck (graceful degradation, statische
+ * - Wenn Key fehlt: gibt null zurück (graceful degradation, statische
  *   Hotels bleiben sichtbar)
- * - Stay22 ToS: 60min Cache OK -> taeglicher Rebuild haelt Preise frisch
+ * - Stay22 ToS: 60min Cache OK -> taeglicher Rebuild hält Preise frisch
  *
- * Karlsruhe hat keine Umlaute im Namen, daher kein Sonder-Mapping noetig.
+ * Karlsruhe hat keine Umlaute im Namen, daher kein Sonder-Mapping nötig.
  * Die address-Umlaut-Ersetzung bleibt defensiv erhalten.
  */
 
@@ -62,7 +62,7 @@ const API_BASE = "https://api.stay22.com/v1";
  * Build-Time Rate-Limit-Handling.
  * Die Stay22-API drosselt aggressiv (HTTP 429). Astro rendert Seiten
  * nebenlaeufig -> ohne Serialisierung feuern Dutzende Calls gleichzeitig.
- * Loesung: globale serielle Queue (ein Request gleichzeitig + Delay) +
+ * Lösung: globale serielle Queue (ein Request gleichzeitig + Delay) +
  * Retry mit Backoff + In-Memory-Cache pro URL.
  */
 const REQUEST_DELAY_MS = 400;
@@ -141,7 +141,7 @@ export async function searchAccommodations(
 ): Promise<Stay22Accommodation[] | null> {
   const apiKey = getApiKey();
   if (!apiKey) {
-    console.warn("[stay22] STAY22_API_KEY fehlt - Live-Hotels werden uebersprungen.");
+    console.warn("[stay22] STAY22_API_KEY fehlt - Live-Hotels werden übersprungen.");
     return null;
   }
 

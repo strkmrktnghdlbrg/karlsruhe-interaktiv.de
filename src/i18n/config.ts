@@ -47,7 +47,7 @@ export const sectionPath: Record<string, Record<Locale, string>> = {
   tech: { de: "tech", en: "tech" },
 };
 
-/** Praefix fuer eine Locale ("" fuer Default, "/en" sonst). */
+/** Praefix für eine Locale ("" für Default, "/en" sonst). */
 export function localePrefix(locale: Locale): string {
   return locale === defaultLocale ? "" : `/${locale}`;
 }

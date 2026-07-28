@@ -1,7 +1,7 @@
 import type { Category } from "../../data/categories";
 
 /**
- * Englische Uebersetzungen der Kategorien, gekeyt nach deutschem slug.
+ * Englische Übersetzungen der Kategorien, gekeyt nach deutschem slug.
  * Enthaelt den englischen slug + uebersetzte Felder (name, shortDesc).
  * Nicht uebersetzt: icon (bleibt aus dem Basis-Eintrag).
  */
@@ -63,5 +63,5 @@ export const categoriesEn: Record<string, { slug: string; name: string; shortDes
   },
 };
 
-/** Aufloesung englischer Kategorie-Override per deutschem slug. */
+/** Auflösung englischer Kategorie-Override per deutschem slug. */
 export const getCategoryEn = (slug: string) => categoriesEn[slug];

@@ -1,5 +1,5 @@
 /**
- * Englische Inhaltsdaten fuer die Sektion "sights".
+ * Englische Inhaltsdaten für die Sektion "sights".
  * Gekeyt nach dem DEUTSCHEN slug (Sight.slug). Enthaelt den neuen englischen
  * Slug plus alle uebersetzten Felder. Nicht-uebersetzte Felder (Koordinaten,
  * Preise, imageKey, websiteUrl ...) kommen weiterhin aus dem Basis-Eintrag.

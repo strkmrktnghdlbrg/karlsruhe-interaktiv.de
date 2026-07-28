@@ -138,8 +138,8 @@ const advertiseHref = `${locale === "de" ? "" : "/" + locale}/werben/`;
       var backdrop = document.querySelector('[data-mobile-menu-backdrop]');
       if (!toggle || !menu || !backdrop || !closeBtn) return;
 
-      var labelOpen = toggle.getAttribute('data-label-open') || 'Menue oeffnen';
-      var labelClose = toggle.getAttribute('data-label-close') || 'Menue schliessen';
+      var labelOpen = toggle.getAttribute('data-label-open') || 'Menü öffnen';
+      var labelClose = toggle.getAttribute('data-label-close') || 'Menü schliessen';
 
       var openState = false;
       function setOpen(open) {

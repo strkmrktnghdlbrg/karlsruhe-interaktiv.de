@@ -2,7 +2,7 @@
  * Central Image Registry — Karlsruhe.
  * Bilder via astro:assets aus src/assets/images/{sights,districts}/.
  * Quelle: Wikimedia Commons (CC) — Autor + Lizenz + Backlink in der Caption.
- * Generiert aus Commons-Metadaten; bei fehlendem Key faellt ContentImage auf HueGradient zurueck.
+ * Generiert aus Commons-Metadaten; bei fehlendem Key fällt ContentImage auf HueGradient zurück.
  */
 import type { ImageMetadata } from "astro";
 
@@ -99,7 +99,7 @@ export const images: Record<string, ImageEntry> = {
   },
   "sight:naturkundemuseum": {
     src: asset("sights", "naturkundemuseum"),
-    alt: "Staatliches Museum fuer Naturkunde in Karlsruhe",
+    alt: "Staatliches Museum für Naturkunde in Karlsruhe",
     source: "wikimedia",
     credit: { author: "Sitacuisses", license: "CC BY-SA 3.0 de", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en", sourceUrl: "https://commons.wikimedia.org/wiki/File:Staatliches_Museum_f%C3%BCr_Naturkunde_Karlsruhe_20220831_162304.jpg" },
   },
@@ -171,7 +171,7 @@ export const images: Record<string, ImageEntry> = {
   },
   "sight:zkm": {
     src: asset("sights", "zkm"),
-    alt: "ZKM Zentrum fuer Kunst und Medien in Karlsruhe",
+    alt: "ZKM Zentrum für Kunst und Medien in Karlsruhe",
     source: "wikimedia",
     credit: { author: "Zkmkarlsruhe", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0", sourceUrl: "https://commons.wikimedia.org/wiki/File:ZKM-Karlsruhe-Au%C3%9Fenansicht-Achim-Mende.jpg" },
   },
@@ -207,7 +207,7 @@ export const images: Record<string, ImageEntry> = {
   },
   "district:muehlburg": {
     src: asset("districts", "muehlburg"),
-    alt: "Muehlburg in Karlsruhe",
+    alt: "Mühlburg in Karlsruhe",
     source: "wikimedia",
     credit: { author: "2AgentSmith2", license: "CC BY 3.0", licenseUrl: "https://creativecommons.org/licenses/by/3.0", sourceUrl: "https://commons.wikimedia.org/wiki/File:Entenfang_-_panoramio.jpg" },
   },
@@ -231,13 +231,13 @@ export const images: Record<string, ImageEntry> = {
   },
   "district:rueppurr": {
     src: asset("districts", "rueppurr"),
-    alt: "Rueppurr in Karlsruhe",
+    alt: "Rüppurr in Karlsruhe",
     source: "wikimedia",
     credit: { author: "Entbert", license: "CC BY 4.0", licenseUrl: "https://creativecommons.org/licenses/by/4.0", sourceUrl: "https://commons.wikimedia.org/wiki/File:Karlsruhe_Schloss_R%C3%BCppurr_railway_station_2025-02-08_01.jpg" },
   },
   "district:suedstadt": {
     src: asset("districts", "suedstadt"),
-    alt: "Suedstadt in Karlsruhe",
+    alt: "Südstadt in Karlsruhe",
     source: "wikimedia",
     credit: { author: "Foto: Bernd Schwabe in Hannover", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0", sourceUrl: "https://commons.wikimedia.org/wiki/File:Indianerbrunnen_Werderplatz_Karlsruhe_Wir_wollen_nicht_Streit_-_Randale_-_Chaos,_Schl%C3%A4gereien_-_Gewalt,_Dealer,_Schnapsleichen,_Scherben_-_M%C3%BCll._Wir_vom_Brunnen.jpg" },
   },

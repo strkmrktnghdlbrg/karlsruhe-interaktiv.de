@@ -1,13 +1,13 @@
 /**
- * GetYourGuide-Platzierungen fuer karlsruhe-interaktiv.de
+ * GetYourGuide-Platzierungen für karlsruhe-interaktiv.de
  *
  * Pro Seite recherchierte Widget-Konfiguration (deutsche Such-Query, Ueberschrift,
  * Anzahl, Show/Hide). Erzeugt vom GYG-Recherche-Workflow (gyg-research-karlsruhe):
- * je Sehenswuerdigkeit, Reiseplaner, Event, Kategorie, Bezirk und Index-Seite
- * wurde geprueft, ob GetYourGuide relevantes Inventar hat und welche Query am
+ * je Sehenswürdigkeit, Reiseplaner, Event, Kategorie, Bezirk und Index-Seite
+ * wurde geprüft, ob GetYourGuide relevantes Inventar hat und welche Query am
  * besten passt. show:false bedeutet: kein Widget (untouristisch / kein Inventar).
  *
- * Schluessel-Schema:
+ * Schlüssel-Schema:
  *   sight:<slug> | guide:<slug> | event:<slug> | category:<slug> | district:<slug> | page:<name>
  *
  * Das Partner-Script wird global im BaseLayout geladen (Partner-ID via affiliate.ts).

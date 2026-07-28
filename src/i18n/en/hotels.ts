@@ -84,7 +84,7 @@ export const hotelsEn: Record<string, HotelEn> = {
     shortDesc:
       "International 4-star hotel with gym, sauna and restaurant. Close to the convention center.",
     longDesc:
-      "The Holiday Inn Karlsruhe offers an international 4-star standard with a fitness area, sauna, restaurant and a quiet location towards the edge of the Suedstadt. Popular with business travelers.",
+      "The Holiday Inn Karlsruhe offers an international 4-star standard with a fitness area, sauna, restaurant and a quiet location towards the edge of the Südstadt. Popular with business travelers.",
     amenities: ["Gym", "Sauna", "Restaurant"],
   },
   "hotel-eden": {
@@ -165,12 +165,12 @@ export const hotelsEn: Record<string, HotelEn> = {
     shortDesc:
       "Comfortable mid-range hotel in the west of Karlsruhe. Good links to the city center and motorway.",
     longDesc:
-      "The Ramada by Wyndham Karlsruhe lies in Muehlburg with good connections to the motorway and the city-center tram. Standardised comfort rooms, free parking and a restaurant.",
+      "The Ramada by Wyndham Karlsruhe lies in Mühlburg with good connections to the motorway and the city-center tram. Standardised comfort rooms, free parking and a restaurant.",
     amenities: ["Free parking", "Restaurant"],
   },
 };
 
-/** Liefert das EN-Override fuer ein deutsches Hotel-slug. */
+/** Liefert das EN-Override für ein deutsches Hotel-slug. */
 export const getHotelEn = (slug: string): HotelEn | undefined => hotelsEn[slug];
 
 /** Sicherheitsnetz: stellt sicher, dass der Basis-Typ kompatibel referenziert wird. */

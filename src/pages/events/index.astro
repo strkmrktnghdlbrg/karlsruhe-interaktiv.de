@@ -16,7 +16,7 @@ const fmtRange = (ci: string, co: string) => {
 
 <BaseLayout
   title="Events & Termine in Karlsruhe"
-  description="Karlsruher Events 2026: Das Fest, Schlosslichtspiele, Christkindlesmarkt, art Karlsruhe. Mit aktuellen Hotelpreisen fuer jeden Termin."
+  description="Karlsruher Events 2026: Das Fest, Schlosslichtspiele, Christkindlesmarkt, art Karlsruhe. Mit aktuellen Hotelpreisen für jeden Termin."
   alternateUrls={{ de: indexUrl("events", "de"), en: indexUrl("events", "en") }}
 >
   <div class="container-page py-12">
@@ -25,7 +25,7 @@ const fmtRange = (ci: string, co: string) => {
       <p class="eyebrow mb-3">Termine mit Hotelpreisen</p>
       <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">Events in Karlsruhe</h1>
       <p class="text-lg" style="color: var(--color-text-body);">
-        Die wichtigsten Karlsruher Anlaesse - vom kostenlosen Open-Air-Festival Das Fest ueber die Schlosslichtspiele bis zur Kunstmesse art Karlsruhe. Zu jedem Termin zeigen wir aktuelle Hotelpreise fuer genau den Zeitraum.
+        Die wichtigsten Karlsruher Anlässe - vom kostenlosen Open-Air-Festival Das Fest über die Schlosslichtspiele bis zur Kunstmesse art Karlsruhe. Zu jedem Termin zeigen wir aktuelle Hotelpreise für genau den Zeitraum.
       </p>
     </header>
 
@@ -41,7 +41,7 @@ const fmtRange = (ci: string, co: string) => {
             <h2 class="text-xl font-semibold mb-2" style="color: var(--color-text);">{e.title.replace("Hotels in Karlsruhe ", "").replace("zu ", "").replace("zum ", "").replace("zur ", "").replace("zu den ", "")}</h2>
             <p class="text-sm leading-relaxed mb-4" style="color: var(--color-text-body);">{e.intro}</p>
             <p class="text-xs mb-3" style="color: var(--color-text-muted);">{fmtRange(e.checkin, e.checkout)}</p>
-            <span class="link-accent text-sm">Hotels fuer diesen Termin &rarr;</span>
+            <span class="link-accent text-sm">Hotels für diesen Termin &rarr;</span>
           </a>
         );
       })}

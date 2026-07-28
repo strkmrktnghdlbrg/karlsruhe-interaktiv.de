@@ -13,7 +13,7 @@ export const city = {
     short:
       "Karlsruhe interaktiv. Faecherstadt, KIT, ZKM und Bundesverfassungsgericht. Sehenswürdigkeiten, Hotels, Bezirke, Tech-News auf einem Portal.",
     long:
-      "Karlsruhe-Interaktiv ist das Stadtportal fuer die Faecherstadt. Vom Schloss bis zum ZKM, vom KIT bis zum Bundesverfassungsgericht, vom Schlosslichtspiele-Sommer bis zur Tech-Startup-Szene rund um das CyberForum.",
+      "Karlsruhe-Interaktiv ist das Stadtportal für die Faecherstadt. Vom Schloss bis zum ZKM, vom KIT bis zum Bundesverfassungsgericht, vom Schlosslichtspiele-Sommer bis zur Tech-Startup-Szene rund um das CyberForum.",
   },
   stats: {
     sights: 25,

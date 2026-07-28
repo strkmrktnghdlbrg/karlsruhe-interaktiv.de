@@ -1,13 +1,13 @@
 /**
- * Englische Inhaltsdaten fuer die Event-Sektion.
- * Gekeyt nach dem DEUTSCHEN slug; enthaelt den (beibehaltenen) englischen slug
+ * Englische Inhaltsdaten für die Event-Sektion.
+ * Gekeyt nach dem DEUTSCHEN slug; enthält den (beibehaltenen) englischen slug
  * plus alle uebersetzten Textfelder. Nicht-uebersetzte Felder (Koordinaten,
  * Daten, Limits, Schema-IDs) kommen aus dem deutschen Basis-Eintrag.
  */
 import type { CityEvent } from "../../data/events";
 
 export interface EventEn {
-  /** Englischer Slug (bleibt fuer Event-Landingpages nah am Original). */
+  /** Englischer Slug (bleibt für Event-Landingpages nah am Original). */
   slug: string;
   title: string;
   eyebrow: string;

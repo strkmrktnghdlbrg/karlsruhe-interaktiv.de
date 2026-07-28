@@ -1,6 +1,6 @@
 /**
- * Karlsruher Event-Kalender fuer Hotel-Landing-Pages.
- * Live-Stay22-Daten fuer konkrete Event-Termine.
+ * Karlsruher Event-Kalender für Hotel-Landing-Pages.
+ * Live-Stay22-Daten für konkrete Event-Termine.
  */
 export interface CityEvent {
   slug: string;
@@ -16,7 +16,7 @@ export interface CityEvent {
   radius?: number;
   maxPricePerNight?: number;
   limit?: number;
-  /** Tatsaechliche Event-Daten (nicht das Hotel-Buchungsfenster) fuer Event-Schema. */
+  /** Tatsaechliche Event-Daten (nicht das Hotel-Buchungsfenster) für Event-Schema. */
   eventStart?: string;
   eventEnd?: string;
 }
@@ -27,9 +27,9 @@ export const events: CityEvent[] = [
     title: "Hotels in Karlsruhe zu Das Fest",
     eyebrow: "Das Fest 2026",
     intro:
-      "Das Fest auf dem Mount Klotz ist eines der groessten Open-Air-Festivals Suedwestdeutschlands. Hotels in der Innenstadt buchen ueber das Fest-Wochenende fruehzeitig aus.",
+      "Das Fest auf dem Mount Klotz ist eines der groessten Open-Air-Festivals Suedwestdeutschlands. Hotels in der Innenstadt buchen über das Fest-Wochenende frühzeitig aus.",
     description:
-      "Hotels in Karlsruhe zu Das Fest 2026 - Live-Preise fuer das groesste regionale Open-Air-Festival auf dem Mount Klotz.",
+      "Hotels in Karlsruhe zu Das Fest 2026 - Live-Preise für das groesste regionale Open-Air-Festival auf dem Mount Klotz.",
     checkin: "2026-07-23",
     checkout: "2026-07-27",
     address: "Karlsruhe, Deutschland",
@@ -46,9 +46,9 @@ export const events: CityEvent[] = [
     title: "Hotels in Karlsruhe zu den Schlosslichtspielen",
     eyebrow: "Schlosslichtspiele 2026",
     intro:
-      "Die Schlosslichtspiele projizieren jeden Sommer-Abend auf die Schlossfassade. Eines der spektakulaersten Open-Air-Kunstevents Deutschlands, kostenlos.",
+      "Die Schlosslichtspiele projizieren jeden Sommer-Abend auf die Schlossfassade. Eines der spektakulärsten Open-Air-Kunstevents Deutschlands, kostenlos.",
     description:
-      "Hotels in Karlsruhe zu den Schlosslichtspielen 2026 - Live-Preise fuer den Open-Air-Kunstevent am Schloss.",
+      "Hotels in Karlsruhe zu den Schlosslichtspielen 2026 - Live-Preise für den Open-Air-Kunstevent am Schloss.",
     checkin: "2026-08-13",
     checkout: "2026-08-16",
     address: "Karlsruhe Schloss, Deutschland",
@@ -65,9 +65,9 @@ export const events: CityEvent[] = [
     title: "Hotels in Karlsruhe zum Christkindlesmarkt",
     eyebrow: "Christkindlesmarkt 2026",
     intro:
-      "Der Karlsruher Christkindlesmarkt am Marktplatz und Friedrichsplatz ist einer der schoensten Weihnachtsmaerkte Sueddeutschlands. Adventszeit-Hotelnaechte im Zentrum.",
+      "Der Karlsruher Christkindlesmarkt am Marktplatz und Friedrichsplatz ist einer der schönsten Weihnachtsmärkte Süddeutschlands. Adventszeit-Hotelnaechte im Zentrum.",
     description:
-      "Hotels in Karlsruhe zum Christkindlesmarkt 2026 - Live-Preise fuer die Adventszeit am Marktplatz und Friedrichsplatz.",
+      "Hotels in Karlsruhe zum Christkindlesmarkt 2026 - Live-Preise für die Adventszeit am Marktplatz und Friedrichsplatz.",
     checkin: "2026-12-04",
     checkout: "2026-12-06",
     address: "Karlsruhe Marktplatz, Deutschland",
@@ -84,9 +84,9 @@ export const events: CityEvent[] = [
     title: "Hotels in Karlsruhe zur art Karlsruhe",
     eyebrow: "art Karlsruhe 2027",
     intro:
-      "Die art Karlsruhe ist eine der wichtigsten Kunstmessen Deutschlands. Ueber 200 Galerien zeigen Klassische Moderne, Gegenwartskunst und Editionen in den Messehallen.",
+      "Die art Karlsruhe ist eine der wichtigsten Kunstmessen Deutschlands. Über 200 Galerien zeigen Klassische Moderne, Gegenwartskunst und Editionen in den Messehallen.",
     description:
-      "Hotels in Karlsruhe zur art Karlsruhe 2027 - Live-Preise und Verfuegbarkeit fuer die Kunstmesse Ende Februar.",
+      "Hotels in Karlsruhe zur art Karlsruhe 2027 - Live-Preise und Verfügbarkeit für die Kunstmesse Ende Februar.",
     checkin: "2027-02-18",
     checkout: "2027-02-22",
     address: "Messe Karlsruhe, Rheinstetten",
@@ -103,9 +103,9 @@ export const events: CityEvent[] = [
     title: "Hotels in Karlsruhe zum Brigande-Feschd",
     eyebrow: "Brigande-Feschd 2026",
     intro:
-      "Das Brigande-Feschd ist das groesste Strassenfest Durlachs. Drei Tage Live-Musik, badische Spezialitaeten und Stadtfest-Atmosphaere in der historischen Altstadt.",
+      "Das Brigande-Feschd ist das groesste Strassenfest Durlachs. Drei Tage Live-Musik, badische Spezialitäten und Stadtfest-Atmosphäre in der historischen Altstadt.",
     description:
-      "Hotels in Karlsruhe-Durlach zum Brigande-Feschd 2026 - Live-Preise fuer das groesste Durlacher Strassenfest.",
+      "Hotels in Karlsruhe-Durlach zum Brigande-Feschd 2026 - Live-Preise für das groesste Durlacher Strassenfest.",
     checkin: "2026-07-03",
     checkout: "2026-07-06",
     address: "Karlsruhe-Durlach, Deutschland",
@@ -122,9 +122,9 @@ export const events: CityEvent[] = [
     title: "Hotels in Karlsruhe zum Stadtgeburtstag",
     eyebrow: "Stadtgeburtstag",
     intro:
-      "Karlsruhe feiert alle fuenf Jahre seinen Stadtgeburtstag mit grossem Buehnenfest am Schlossplatz. 1715 wurde die Faecherstadt gegruendet.",
+      "Karlsruhe feiert alle fünf Jahre seinen Stadtgeburtstag mit grossem Buehnenfest am Schlossplatz. 1715 wurde die Faecherstadt gegründet.",
     description:
-      "Hotels in Karlsruhe zum Stadtgeburtstag - Live-Preise fuer das grosse Buehnenfest an Schloss und Marktplatz.",
+      "Hotels in Karlsruhe zum Stadtgeburtstag - Live-Preise für das grosse Buehnenfest an Schloss und Marktplatz.",
     checkin: "2030-06-14",
     checkout: "2030-06-17",
     address: "Karlsruhe Innenstadt, Deutschland",

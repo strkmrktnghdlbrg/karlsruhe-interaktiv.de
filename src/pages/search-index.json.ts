@@ -20,7 +20,7 @@ import { stadtteile as strassenStadtteile } from "../data/strassen";
 export const prerender = true;
 
 type SearchType =
-  | "Sehenswuerdigkeit"
+  | "Sehenswürdigkeit"
   | "Hotel"
   | "Restaurant"
   | "Bezirk"
@@ -36,8 +36,8 @@ type SearchEntry = {
   title: string;
   type: SearchType;
   district?: string;
-  lead: string; // 1-2 Saetze fuer die Suchergebnis-Card
-  keywords: string; // Tokens fuer die Suche (alles lowercased, raum-separiert)
+  lead: string; // 1-2 Sätze für die Suchergebnis-Card
+  keywords: string; // Tokens für die Suche (alles lowercased, raum-separiert)
 };
 
 const norm = (s: string) =>

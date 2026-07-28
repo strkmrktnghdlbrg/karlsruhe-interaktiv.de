@@ -1,10 +1,10 @@
 import type { Restaurant } from "../../data/restaurants";
 
 /**
- * Englische Inhalte fuer Restaurants, gekeyt nach deutschem slug.
+ * Englische Inhalte für Restaurants, gekeyt nach deutschem slug.
  * Enthaelt den neuen englischen slug + alle uebersetzten Felder.
  * Nicht uebersetzt: priceLevel, imageHue, imageKey, websiteUrl, reservation,
- * district-/category-Referenz-Slugs (werden ueber die jeweiligen EN-Records aufgeloest).
+ * district-/category-Referenz-Slugs (werden über die jeweiligen EN-Records aufgelöst).
  */
 export type RestaurantEn = {
   slug: string;
@@ -34,7 +34,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     shortDesc:
       "Brewpub with its own brewery in the heart of Karlsruhe. Baden classics and house-brewed beer.",
     longDesc:
-      "The Badisch Brauhaus is Karlsruhe's classic brewpub, with its own brewery right by the Stephanienbrunnen fountain. Baden specialities such as Schaeufele and Maultaschen, paired with house-brewed pils and wheat beer. Popular with locals and visitors alike.",
+      "The Badisch Brauhaus is Karlsruhe's classic brewpub, with its own brewery right by the Stephanienbrunnen fountain. Baden specialities such as Schäufele and Maultaschen, paired with house-brewed pils and wheat beer. Popular with locals and visitors alike.",
     openingHours: "Mon–Sun 11am–12am",
   },
   "vogelbraeu": {
@@ -44,7 +44,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     shortDesc:
       "Brewpub on Kapellenstrasse with its own beer and solid Baden-German cooking.",
     longDesc:
-      "The Vogelbraeu on Kapellenstrasse is Karlsruhe's second most important brewpub. Its own house brewery and a classic brewpub menu featuring pork knuckle, Spaetzle and Maultaschen. Large outdoor terrace in summer.",
+      "The Vogelbraeu on Kapellenstrasse is Karlsruhe's second most important brewpub. Its own house brewery and a classic brewpub menu featuring pork knuckle, Spätzle and Maultaschen. Large outdoor terrace in summer.",
     openingHours: "Mon–Sun 11am–12am",
   },
   "brauhaus-kuehler-krug": {
@@ -96,7 +96,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     shortDesc:
       "Modern, seasonal cuisine in the former boiler house of the old slaughterhouse. Industrial-chic ambience.",
     longDesc:
-      "The Kesselhaus is located in the restored old slaughterhouse quarter of the Suedstadt. Modern, seasonal cuisine in an industrial-chic setting of exposed concrete and steel beams. A favorite among young Karlsruhe food lovers.",
+      "The Kesselhaus is located in the restored old slaughterhouse quarter of the Südstadt. Modern, seasonal cuisine in an industrial-chic setting of exposed concrete and steel beams. A favorite among young Karlsruhe food lovers.",
     openingHours: "Tue–Sat 6pm–11pm",
   },
 
@@ -136,9 +136,9 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     name: "Tre Sorelle",
     cuisine: "Italian",
     shortDesc:
-      "A family-run Italian in the Suedstadt with a large menu and a relaxed atmosphere.",
+      "A family-run Italian in the Südstadt with a large menu and a relaxed atmosphere.",
     longDesc:
-      "Tre Sorelle is a classic Suedstadt Italian with a large menu, friendly service and a relaxed atmosphere. A favorite among regulars from the neighborhood.",
+      "Tre Sorelle is a classic Südstadt Italian with a large menu, friendly service and a relaxed atmosphere. A favorite among regulars from the neighborhood.",
     openingHours: "Mon–Sun 12pm–11pm",
   },
 
@@ -168,7 +168,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     name: "Pho Sai Gon",
     cuisine: "Vietnamese",
     shortDesc:
-      "Authentic Vietnamese in the Suedstadt. Pho bo and banh mi as Karlsruhe's insider tips.",
+      "Authentic Vietnamese in the Südstadt. Pho bo and banh mi as Karlsruhe's insider tips.",
     longDesc:
       "Pho Sai Gon is Karlsruhe's most authentic pho address. Vietnamese home cooking, rich broths and fresh herbs. Small and unfussy, but a culinary standout.",
     openingHours: "Tue–Sun 12pm–10pm",
@@ -239,12 +239,12 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
   },
   "hans-im-glueck": {
     slug: "hans-im-glueck",
-    name: "Hans im Glueck",
+    name: "Hans im Glück",
     cuisine: "Burger",
     shortDesc:
       "A burger chain with a Nordic birch-wood interior. A fairy-tale atmosphere and solid burgers.",
     longDesc:
-      "Hans im Glueck on Europaplatz serves its distinctive fairy-tale burgers in a Nordic birch-wood setting. Vegetarian options, a good burger selection and a favorite among students.",
+      "Hans im Glück on Europaplatz serves its distinctive fairy-tale burgers in a Nordic birch-wood setting. Vegetarian options, a good burger selection and a favorite among students.",
     openingHours: "Mon–Sun 11:30am–11pm",
   },
   "cafe-kreuzberg": {
@@ -252,9 +252,9 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     name: "Cafe Kreuzberg",
     cuisine: "Cafe",
     shortDesc:
-      "A lively Suedstadt cafe with good food, a daily menu and vegan options.",
+      "A lively Südstadt cafe with good food, a daily menu and vegan options.",
     longDesc:
-      "Cafe Kreuzberg is a Suedstadt classic for relaxed cafe hours, a good lunch and vegan options. A changing daily menu and a lovely courtyard in summer.",
+      "Cafe Kreuzberg is a Südstadt classic for relaxed cafe hours, a good lunch and vegan options. A changing daily menu and a lovely courtyard in summer.",
     openingHours: "Mon–Sun 9am–12am",
   },
   "cafe-bleu": {
@@ -276,7 +276,7 @@ export const restaurantsEn: Record<string, RestaurantEn> = {
     shortDesc:
       "A vegetarian-vegan restaurant with a changing menu and seasonal ingredients.",
     longDesc:
-      "The Goldene Krone is Karlsruhe's pioneering address for vegetarian-vegan cuisine. A changing menu, seasonal ingredients and a regional, organic focus. A favorite among young Suedstadt residents.",
+      "The Goldene Krone is Karlsruhe's pioneering address for vegetarian-vegan cuisine. A changing menu, seasonal ingredients and a regional, organic focus. A favorite among young Südstadt residents.",
     openingHours: "Tue–Sun 12pm–10pm",
   },
   "suppdiwupp": {

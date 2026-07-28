@@ -1,7 +1,7 @@
 import type { NewsItem } from "../../data/news";
 
 /**
- * Englische Inhalts-Overrides fuer News-Artikel.
+ * Englische Inhalts-Overrides für News-Artikel.
  * Gekeyt nach dem DEUTSCHEN slug. Enthaelt den neuen englischen slug
  * sowie alle uebersetzten Textfelder. Nicht uebersetzt werden
  * publishedAt, source.url, imageHue, imageKey, district (kommen aus dem Basis-Eintrag).

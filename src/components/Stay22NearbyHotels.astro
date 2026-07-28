@@ -48,12 +48,12 @@ const visible = hotels && hotels.length > 0 ? hotels.slice(0, limit) : [];
     <div class="mb-6">
       <p class="eyebrow mb-2">{en ? "Live from Stay22" : "Live von Stay22"}</p>
       <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mb-2" style="color: var(--color-text);">
-        {en ? `Hotels near ${near}` : `Hotels in der Naehe von ${near}`}
+        {en ? `Hotels near ${near}` : `Hotels in der Nähe von ${near}`}
       </h2>
       <p class="text-base leading-relaxed" style="color: var(--color-text-body);">
         {en
           ? `Current prices and availability within ${Math.round(radius / 100) * 100} m.`
-          : `Aktuelle Preise und Verfuegbarkeit im Umkreis von ${Math.round(radius / 100) * 100} m.`}
+          : `Aktuelle Preise und Verfügbarkeit im Umkreis von ${Math.round(radius / 100) * 100} m.`}
       </p>
     </div>
 
@@ -64,7 +64,7 @@ const visible = hotels && hotels.length > 0 ? hotels.slice(0, limit) : [];
     <p class="text-[11px] mt-4 leading-relaxed" style="color: var(--color-text-muted);">
       {en
         ? "* Sponsored - booking is handled by Booking.com via the Stay22 affiliate. There is no extra cost to you."
-        : "* Sponsored - Buchung laeuft ueber Booking.com via Stay22-Affiliate. Fuer dich entstehen keine Mehrkosten."}
+        : "* Sponsored - Buchung läuft über Booking.com via Stay22-Affiliate. Für dich entstehen keine Mehrkosten."}
     </p>
   </section>
 )}

@@ -112,10 +112,10 @@ import { city } from "../data/city";
           .sort(function (a, b) { return b.s - a.s; })
           .slice(0, 40);
         if (ranked.length === 0) {
-          meta.textContent = "Keine Treffer fuer „" + q + "“. Probier es mit einem anderen Stichwort.";
+          meta.textContent = "Keine Treffer für „" + q + "“. Probier es mit einem anderen Stichwort.";
           return;
         }
-        meta.textContent = ranked.length + " Treffer fuer „" + q + "“";
+        meta.textContent = ranked.length + " Treffer für „" + q + "“";
         var frag = document.createDocumentFragment();
         for (var j = 0; j < ranked.length; j++) {
           var e = ranked[j].e;
@@ -154,7 +154,7 @@ import { city } from "../data/city";
         .then(function (r) { return r.json(); })
         .then(function (data) {
           index = data;
-          meta.textContent = "Bereit - " + data.length + " Eintraege im Index.";
+          meta.textContent = "Bereit - " + data.length + " Einträge im Index.";
           if (input.value) render(input.value);
         })
         .catch(function () {

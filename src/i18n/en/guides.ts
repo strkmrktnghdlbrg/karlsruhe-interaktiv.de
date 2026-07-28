@@ -62,7 +62,7 @@ export const guidesEn: Record<string, GuideEn> = {
             type: "mittagessen",
             title: "Baden fare at Vogelbraeu",
             description:
-              "A classic Karlsruhe brewpub serving Spaetzle, Maultaschen and house-brewed beer. A solid lunch menu at fair prices.",
+              "A classic Karlsruhe brewpub serving Spätzle, Maultaschen and house-brewed beer. A solid lunch menu at fair prices.",
           },
           {
             time: "14:30 - 16:30",
@@ -97,9 +97,9 @@ export const guidesEn: Record<string, GuideEn> = {
       },
       {
         number: 2,
-        title: "Day 2 - ZKM, KIT and the Suedstadt",
+        title: "Day 2 - ZKM, KIT and the Südstadt",
         intro:
-          "The second day is all about art, media and tech. The ZKM as a museum unique in the world, followed by the KIT atmosphere and the lively Suedstadt in the evening.",
+          "The second day is all about art, media and tech. The ZKM as a museum unique in the world, followed by the KIT atmosphere and the lively Südstadt in the evening.",
         slots: [
           {
             time: "10:00 - 13:00",
@@ -112,9 +112,9 @@ export const guidesEn: Record<string, GuideEn> = {
           {
             time: "13:30 - 14:30",
             type: "mittagessen",
-            title: "Lunch at Cafe Kreuzberg (Suedstadt)",
+            title: "Lunch at Cafe Kreuzberg (Südstadt)",
             description:
-              "A Suedstadt cafe with a good daily menu and vegan options. A relaxed atmosphere and a good spot for a lunch break.",
+              "A Südstadt cafe with a good daily menu and vegan options. A relaxed atmosphere and a good spot for a lunch break.",
           },
           {
             time: "15:00 - 17:00",
@@ -142,7 +142,7 @@ export const guidesEn: Record<string, GuideEn> = {
             type: "abends",
             title: "A concert at the Tollhaus or Substage",
             description:
-              "If there is a concert at the Tollhaus (world music) or the Substage (rock/indie), it is well worth rounding off the evening in the Suedstadt.",
+              "If there is a concert at the Tollhaus (world music) or the Substage (rock/indie), it is well worth rounding off the evening in the Südstadt.",
           },
         ],
       },
@@ -296,7 +296,7 @@ export const guidesEn: Record<string, GuideEn> = {
             type: "abendessen",
             title: "Badisch Brauhaus",
             description:
-              "A classic brewpub with its own brewery. Schaeufele, Maultaschen and house beer - the ideal rainy-day therapy.",
+              "A classic brewpub with its own brewery. Schäufele, Maultaschen and house beer - the ideal rainy-day therapy.",
           },
         ],
       },

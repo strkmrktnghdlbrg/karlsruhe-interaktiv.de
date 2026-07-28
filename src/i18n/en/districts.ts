@@ -1,7 +1,7 @@
 import type { District } from "../../data/districts";
 
 /**
- * Englische Inhalts-Overrides fuer Bezirke (districts).
+ * Englische Inhalts-Overrides für Bezirke (districts).
  * Gekeyt nach dem DEUTSCHEN slug. Enthaelt den neuen englischen slug
  * sowie alle uebersetzten Textfelder. Nicht uebersetzt werden
  * coordinates, hue, imageKey (kommen aus dem Basis-Eintrag).
@@ -35,11 +35,11 @@ export const districtsEn: Record<string, DistrictEn> = {
   },
   suedstadt: {
     slug: "suedstadt",
-    name: "Suedstadt",
+    name: "Südstadt",
     shortDesc:
       "A multicultural, alternative neighborhood around Werderplatz and Werderstrasse.",
     longDesc:
-      "Suedstadt is Karlsruhe's most vibrant district. Werderplatz with its weekly market, Werderstrasse with its small shops and bars, the Tollhaus cultural center and the Substage concert venue all sit here. Student life mingles with long-established Baden families.",
+      "Südstadt is Karlsruhe's most vibrant district. Werderplatz with its weekly market, Werderstrasse with its small shops and bars, the Tollhaus cultural center and the Substage concert venue all sit here. Student life mingles with long-established Baden families.",
     characterTags: ["Multicultural", "Alternative", "Nightlife"],
   },
   suedweststadt: {
@@ -143,6 +143,6 @@ export const districtsEn: Record<string, DistrictEn> = {
   },
 };
 
-/** Liefert den EN-Override fuer einen deutschen District-Slug. */
+/** Liefert den EN-Override für einen deutschen District-Slug. */
 export const getDistrictEn = (district: Pick<District, "slug">) =>
   districtsEn[district.slug];

@@ -30,7 +30,7 @@ const featuredNews = features.news.enabled ? recentNews(3) : [];
         <span style="color: var(--color-text-muted);">interaktiv.</span>
       </h1>
       <p class="text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-10" style="color: var(--color-text-body);">
-        Schloss, ZKM, KIT, Bundesverfassungsgericht und Turmberg. Das Stadtportal fuer die Faecherstadt - Sehenswürdigkeiten, Hotels, Bezirke und Tech-News.
+        Schloss, ZKM, KIT, Bundesverfassungsgericht und Turmberg. Das Stadtportal für die Faecherstadt - Sehenswürdigkeiten, Hotels, Bezirke und Tech-News.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="/sehenswuerdigkeiten/" class="btn-primary">Sehenswürdigkeiten entdecken</a>
@@ -102,7 +102,7 @@ const featuredNews = features.news.enabled ? recentNews(3) : [];
   <section class="container-page section">
     <div class="flex items-end justify-between mb-8">
       <div>
-        <p class="eyebrow mb-2">Faecher entlang</p>
+        <p class="eyebrow mb-2">Fächer entlang</p>
         <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight" style="color: var(--color-text);">Karlsruher Bezirke</h2>
       </div>
       <a href="/bezirke/" class="hidden sm:inline-flex link-accent text-sm">Alle Bezirke &rarr;</a>
@@ -116,12 +116,12 @@ const featuredNews = features.news.enabled ? recentNews(3) : [];
   <section class="container-page section">
     <div class="flex items-end justify-between mb-2">
       <div>
-        <p class="eyebrow mb-2">Uebernachten</p>
+        <p class="eyebrow mb-2">Übernachten</p>
         <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight" style="color: var(--color-text);">Top-Hotels in Karlsruhe</h2>
       </div>
       <a href="/hotels/" class="hidden sm:inline-flex link-accent text-sm">Alle Hotels &rarr;</a>
     </div>
-    <Stay22TopHotels limit={4} title="" lead="Live von Booking.com - aktuelle Preise und Verfuegbarkeit, taeglich aktualisiert." />
+    <Stay22TopHotels limit={4} title="" lead="Live von Booking.com - aktuelle Preise und Verfügbarkeit, täglich aktualisiert." />
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-4">
       {featuredHotels.map((h) => <HotelCard hotel={h} />)}
     </div>
