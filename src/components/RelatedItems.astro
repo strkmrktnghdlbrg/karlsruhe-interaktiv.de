@@ -24,7 +24,7 @@ const restItems = restaurantsByDistrict(district).filter((r) => r.slug !== exclu
 
 const heading = title ?? (
   locale === "de"
-    ? (type === "sights" ? "Weitere Sehenswuerdigkeiten im Bezirk" :
+    ? (type === "sights" ? "Weitere Sehenswürdigkeiten im Bezirk" :
        type === "hotels" ? "Hotels im Bezirk" :
        "Restaurants im Bezirk")
     : (type === "sights" ? t(locale, "related.sights") :

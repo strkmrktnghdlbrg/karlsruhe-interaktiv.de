@@ -10,12 +10,12 @@ import { indexUrl } from "../../i18n/config";
 const sorted = [...sights].sort((a, b) => a.name.localeCompare(b.name, "de"));
 ---
 
-<BaseLayout title={`Sehenswuerdigkeiten in ${city.name}`} description={`Alle ${sights.length} Sehenswuerdigkeiten in Karlsruhe: Schloss, ZKM, Pyramide, Turmberg und mehr.`} alternateUrls={{ de: indexUrl("sights", "de"), en: indexUrl("sights", "en") }}>
+<BaseLayout title={`Sehenswürdigkeiten in ${city.name}`} description={`Alle ${sights.length} Sehenswürdigkeiten in Karlsruhe: Schloss, ZKM, Pyramide, Turmberg und mehr.`} alternateUrls={{ de: indexUrl("sights", "de"), en: indexUrl("sights", "en") }}>
   <div class="container-page py-12">
-    <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "Sehenswuerdigkeiten"}]} />
+    <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "Sehenswürdigkeiten"}]} />
     <header class="mb-12">
       <p class="eyebrow mb-3">{sights.length} Eintraege</p>
-      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">Sehenswuerdigkeiten in Karlsruhe</h1>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">Sehenswürdigkeiten in Karlsruhe</h1>
       <p class="text-lg max-w-3xl" style="color: var(--color-text-body);">
         Vom barocken Schloss bis zum weltweit einzigartigen ZKM, vom Turmberg in Durlach bis zum Bundesverfassungsgericht - alle ikonischen Orte der Faecherstadt.
       </p>

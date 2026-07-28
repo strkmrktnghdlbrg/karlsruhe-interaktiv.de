@@ -6,7 +6,7 @@ import type { Locale } from "./config";
 
 export const ui = {
   // Navigation / global
-  "nav.sights": { de: "Sehenswuerdigkeiten", en: "Attractions" },
+  "nav.sights": { de: "Sehenswürdigkeiten", en: "Attractions" },
   "nav.hotels": { de: "Hotels", en: "Hotels" },
   "nav.restaurants": { de: "Restaurants", en: "Restaurants" },
   "nav.districts": { de: "Bezirke", en: "Districts" },
@@ -40,7 +40,7 @@ export const ui = {
   "footer.techHub": { de: "Tech-Hub", en: "Tech hub" },
   "footer.homeAria": { de: "Zur Startseite", en: "Back to home" },
   "footer.brandDesc": {
-    de: "Karlsruhe interaktiv. Faecherstadt, KIT, ZKM und Bundesverfassungsgericht. Sehenswuerdigkeiten, Hotels, Bezirke, Tech-News auf einem Portal.",
+    de: "Karlsruhe interaktiv. Faecherstadt, KIT, ZKM und Bundesverfassungsgericht. Sehenswürdigkeiten, Hotels, Bezirke, Tech-News auf einem Portal.",
     en: "Karlsruhe interactive. Fan-shaped city, KIT, ZKM and the Federal Constitutional Court. Attractions, hotels, districts and tech news on one portal.",
   },
 
@@ -52,17 +52,17 @@ export const ui = {
   "home.eyebrow": { de: "Stadtportal · Faecherstadt · Tech-Hub", en: "City guide · Fan-shaped city · Tech hub" },
   "home.heroTitle": { de: "Karlsruhe interaktiv.", en: "Karlsruhe interactive." },
   "home.heroTagline": {
-    de: "Schloss, ZKM, KIT, Bundesverfassungsgericht und Turmberg. Das Stadtportal fuer die Faecherstadt - Sehenswuerdigkeiten, Hotels, Bezirke und Tech-News.",
+    de: "Schloss, ZKM, KIT, Bundesverfassungsgericht und Turmberg. Das Stadtportal fuer die Faecherstadt - Sehenswürdigkeiten, Hotels, Bezirke und Tech-News.",
     en: "Palace, ZKM, KIT, the Federal Constitutional Court and the Turmberg. The city guide for Karlsruhe - attractions, hotels, districts and tech news.",
   },
-  "home.ctaSights": { de: "Sehenswuerdigkeiten entdecken", en: "Discover attractions" },
+  "home.ctaSights": { de: "Sehenswürdigkeiten entdecken", en: "Discover attractions" },
   "home.ctaTech": { de: "Tech-Hub Karlsruhe", en: "Karlsruhe tech hub" },
-  "home.statSights": { de: "Sehenswuerdigkeiten", en: "Attractions" },
+  "home.statSights": { de: "Sehenswürdigkeiten", en: "Attractions" },
   "home.statHotels": { de: "Hotels", en: "Hotels" },
   "home.statRestaurants": { de: "Restaurants", en: "Restaurants" },
   "home.statDistricts": { de: "Bezirke", en: "Districts" },
   "home.highlights": { de: "Highlights", en: "Highlights" },
-  "home.sightsHeading": { de: "Sehenswuerdigkeiten in Karlsruhe", en: "Attractions in Karlsruhe" },
+  "home.sightsHeading": { de: "Sehenswürdigkeiten in Karlsruhe", en: "Attractions in Karlsruhe" },
   "home.seeAll": { de: "Alle ansehen →", en: "See all →" },
   "home.faecherEyebrow": { de: "Faecher entlang", en: "Along the fan" },
   "home.districtsHeading": { de: "Karlsruher Bezirke", en: "Karlsruhe districts" },
@@ -80,7 +80,7 @@ export const ui = {
 
   // Listing pages
   "sights.entries": { de: "{n} Eintraege", en: "{n} entries" },
-  "sights.heading": { de: "Sehenswuerdigkeiten in Karlsruhe", en: "Attractions in Karlsruhe" },
+  "sights.heading": { de: "Sehenswürdigkeiten in Karlsruhe", en: "Attractions in Karlsruhe" },
   "sights.intro": {
     de: "Vom barocken Schloss bis zum weltweit einzigartigen ZKM, vom Turmberg in Durlach bis zum Bundesverfassungsgericht - alle ikonischen Orte der Faecherstadt.",
     en: "From the baroque palace to the globally unique ZKM, from the Turmberg in Durlach to the Federal Constitutional Court - all the iconic places of Karlsruhe.",
@@ -126,7 +126,7 @@ export const ui = {
 
   // Categories detail / index
   "categories.eyebrow": { de: "Kategorie", en: "Category" },
-  "categories.sightsHeading": { de: "Sehenswuerdigkeiten", en: "Attractions" },
+  "categories.sightsHeading": { de: "Sehenswürdigkeiten", en: "Attractions" },
   "categories.restaurantsHeading": { de: "Restaurants", en: "Restaurants" },
   "categories.cardSights": { de: "Sights", en: "Sights" },
   "categories.cardRestaurants": { de: "Restaurants", en: "Restaurants" },
@@ -151,13 +151,13 @@ export const ui = {
   "detail.guestFavorite": { de: "Gaesteliebling", en: "Guest favorite" },
   "detail.reservationRecommended": { de: "Reservierung empfohlen", en: "Reservation recommended" },
   "detail.walkIn": { de: "Walk-In", en: "Walk-in" },
-  "detail.sightsIn": { de: "Sehenswuerdigkeiten in {name}", en: "Attractions in {name}" },
+  "detail.sightsIn": { de: "Sehenswürdigkeiten in {name}", en: "Attractions in {name}" },
   "detail.hotelsIn": { de: "Hotels in {name}", en: "Hotels in {name}" },
   "detail.restaurantsIn": { de: "Restaurants in {name}", en: "Restaurants in {name}" },
   "detail.categoryHeading": { de: "{name} in Karlsruhe", en: "{name} in Karlsruhe" },
 
   // Related
-  "related.sights": { de: "Weitere Sehenswuerdigkeiten im Bezirk", en: "More attractions in the district" },
+  "related.sights": { de: "Weitere Sehenswürdigkeiten im Bezirk", en: "More attractions in the district" },
   "related.hotels": { de: "Hotels im Bezirk", en: "Hotels in the district" },
   "related.restaurants": { de: "Restaurants im Bezirk", en: "Restaurants in the district" },
 
@@ -186,7 +186,7 @@ export const ui = {
   "guides.routes": { de: "{n} Routen", en: "{n} routes" },
   "guides.heading": { de: "Karlsruhe-Reiseplaner", en: "Karlsruhe Travel Planner" },
   "guides.intro": {
-    de: "Fertige Tagesplaene fuer Karlsruhe - Erstbesucher, Familien, Regen. Jeder Plan verweist auf konkrete Sehenswuerdigkeiten, Restaurants und Hotels.",
+    de: "Fertige Tagesplaene fuer Karlsruhe - Erstbesucher, Familien, Regen. Jeder Plan verweist auf konkrete Sehenswürdigkeiten, Restaurants und Hotels.",
     en: "Ready-made day plans for Karlsruhe - first-time visitors, families, rainy days. Every plan links to specific attractions, restaurants and hotels.",
   },
   "guides.indexTitle": { de: "Reiseplaner", en: "Travel Planner" },
@@ -391,7 +391,7 @@ export const ui = {
   },
   "terms.servicesHeading": { de: "2. Leistungen", en: "2. Services" },
   "terms.servicesBody": {
-    de: "{site}-Interaktiv ist ein redaktionelles Informationsportal. Wir stellen Informationen zu Sehenswuerdigkeiten, Hotels, Restaurants, Bezirken und Veranstaltungen bereit. Es besteht kein Anspruch auf Vollstaendigkeit oder Aktualitaet. {nature}",
+    de: "{site}-Interaktiv ist ein redaktionelles Informationsportal. Wir stellen Informationen zu Sehenswürdigkeiten, Hotels, Restaurants, Bezirken und Veranstaltungen bereit. Es besteht kein Anspruch auf Vollstaendigkeit oder Aktualitaet. {nature}",
     en: "{site}-Interaktiv is an editorial information portal. We provide information about attractions, hotels, restaurants, districts and events. There is no claim to completeness or topicality. {nature}",
   },
   "terms.affiliateHeading": { de: "3. Affiliate-Links und Buchungen", en: "3. Affiliate links and bookings" },

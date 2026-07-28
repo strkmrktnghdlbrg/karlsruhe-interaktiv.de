@@ -22,7 +22,7 @@ export type GygPlacement = {
 };
 
 export const gygPlacements: Record<string, GygPlacement> = {
-  // === Sehenswuerdigkeiten ===
+  // === Sehenswürdigkeiten ===
   "sight:karlsruher-schloss": { key: "sight:karlsruher-schloss", show: true, query: "Karlsruhe Schloss", title: "Touren & Tickets für das Karlsruher Schloss", lead: "Entdecke das Barockschloss Karlsruhe mit geführten Touren, Eintrittskarten zum Badischen Landesmuseum und Stadtführungen rund um das Wahrzeichen der Fächerstadt.", count: 4 },
   "sight:schlossgarten": { key: "sight:schlossgarten", show: true, query: "Karlsruhe Schloss", title: "Touren & Aktivitäten rund ums Karlsruher Schloss", lead: "Entdecke den Schlossgarten und das Karlsruher Schloss bei einer geführten Tour oder erkunde die Region mit spannenden Ausflügen.", count: 4 },
   "sight:zkm": { key: "sight:zkm", show: true, query: "ZKM Karlsruhe", title: "Touren & Tickets rund ums ZKM", lead: "Entdecke Führungen und Erlebnisse rund um das ZKM und die Karlsruher Kulturszene.", count: 3 },

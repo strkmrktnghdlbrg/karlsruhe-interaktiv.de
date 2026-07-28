@@ -11,7 +11,7 @@ export const city = {
   domain: "https://www.karlsruhe-interaktiv.de",
   description: {
     short:
-      "Karlsruhe interaktiv. Faecherstadt, KIT, ZKM und Bundesverfassungsgericht. Sehenswuerdigkeiten, Hotels, Bezirke, Tech-News auf einem Portal.",
+      "Karlsruhe interaktiv. Faecherstadt, KIT, ZKM und Bundesverfassungsgericht. Sehenswürdigkeiten, Hotels, Bezirke, Tech-News auf einem Portal.",
     long:
       "Karlsruhe-Interaktiv ist das Stadtportal fuer die Faecherstadt. Vom Schloss bis zum ZKM, vom KIT bis zum Bundesverfassungsgericht, vom Schlosslichtspiele-Sommer bis zur Tech-Startup-Szene rund um das CyberForum.",
   },
