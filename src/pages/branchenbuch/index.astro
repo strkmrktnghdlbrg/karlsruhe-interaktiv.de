@@ -3,8 +3,13 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import { branchen } from "../../data/branchen";
 import { city } from "../../data/city";
+import { branchenCategories, categoryCount, totalListings } from "../../data/branchenverzeichnis";
+import "../../styles/werben.css";
 
 const sorted = [...branchen].sort((a, b) => a.label.localeCompare(b.label, "de"));
+
+const kategorien = branchenCategories.map((c) => ({ ...c, count: categoryCount(c.slug) }));
+const gesamt = totalListings();
 
 const schema = {
   "@context": "https://schema.org",
@@ -27,13 +32,50 @@ const schema = {
       <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">
         Branchenbuch Karlsruhe
       </h1>
-      <p class="text-lg leading-relaxed" style="color: var(--color-text-body);">
+      <p class="text-lg leading-relaxed mb-6" style="color: var(--color-text-body);">
         Vom Notar über den Handwerker bis zur Marketingagentur: Hier findest du
-        empfehlenswerte Anbieter und Dienstleister aus Karlsruhe und Umgebung - 
+        empfehlenswerte Anbieter und Dienstleister aus Karlsruhe und Umgebung -
         redaktionell zusammengestellt, mit Adressen, Leistungen und Kontaktwegen.
       </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/branchenbuch/eintrag-beanspruchen/" class="btn-primary">Kostenlos eintragen &rarr;</a>
+        <a href="/werben/premium-partner/" class="btn-outline">Ganz oben stehen? Premium-Partner werden</a>
+      </div>
     </header>
 
+    <!-- Verzeichnis nach Kategorien -->
+    <section class="mb-14">
+      <div class="flex flex-wrap items-baseline justify-between gap-3 mb-6">
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight" style="color: var(--color-text);">
+          Betriebe nach Kategorien
+        </h2>
+        <p class="text-sm" style="color: var(--color-text-muted);">{gesamt} Einträge</p>
+      </div>
+      <div class="werben-grid werben-grid-3">
+        {kategorien.map((k) => (
+          <a href={`/branchenbuch/kategorie/${k.slug}/`} class="werben-card" style="text-decoration:none;">
+            <div class="flex items-baseline justify-between gap-3 mb-1">
+              <h3 class="text-lg font-semibold" style="color: var(--color-text);">{k.name}</h3>
+              <span class="pill">{k.count}</span>
+            </div>
+            <p>{k.description}</p>
+            <div class="werben-card-cta">
+              <span class="link-accent text-sm">
+                {k.count > 0 ? "Betriebe ansehen" : "Als Erster eintragen"} &rarr;
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <p class="werben-muted-note">
+        Die kostenlosen Einträge stammen aus der redaktionellen Arbeit dieses Portals - Restaurants,
+        Hotels, Apotheken und Banken, die hier bereits vorkommen. Alle Angaben ohne Gewähr.
+      </p>
+    </section>
+
+    <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mb-6" style="color: var(--color-text);">
+      Branchen von A bis Z
+    </h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
       {sorted.map((b) => (
         <a href={`/${b.slug}/`} class="card p-5 flex items-center justify-between gap-3 group">

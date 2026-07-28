@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
-import HueGradient from "../../../components/HueGradient.astro";
+import ContentImage from "../../../components/ContentImage.astro";
 import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
 import { getGygPlacement } from "../../../data/gyg";
 import { guides } from "../../../data/guides";
@@ -48,7 +48,14 @@ const enDayBySlug = new Map(en.days.map((d) => [d.number, d]));
     </header>
 
     <div class="aspect-[16/9] overflow-hidden mb-10" style="border-radius: var(--radius-card);">
-      <HueGradient hue={guide.imageHue} label={en.title} />
+      <ContentImage
+        imgKey={guide.imageKey}
+        fallbackHue={guide.imageHue}
+        fallbackLabel={en.title}
+        className="w-full h-full"
+        loading="eager"
+        showCredit
+      />
     </div>
 
     {guide.days.map((day) => {

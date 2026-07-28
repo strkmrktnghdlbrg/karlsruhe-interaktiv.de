@@ -1,0 +1,105 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import { city } from "../../../data/city";
+import { legal } from "../../../data/legal";
+import { totalListings } from "../../../data/branchenverzeichnis";
+import "../../../styles/werben.css";
+
+const locale = "en";
+const title = `Advertise on ${city.name}-Interaktiv`;
+const description = `Reach people who are looking for something in ${city.name}: premium business listing, sponsored articles and newsletter mentions.`;
+
+// Anti-spam: e-mail rendered without mailto and without a literal @.
+const mailUser = legal.email.split("@")[0];
+const mailDomain = legal.email.split("@")[1];
+
+const formats = [
+  {
+    eyebrow: "Visible all year",
+    title: "Premium partner",
+    body: "Your listing sits at the top of its category - with logo, description, contact buttons and a permanent dofollow backlink.",
+  },
+  {
+    eyebrow: "Editorial piece",
+    title: "Sponsored article",
+    body: "A full article about your business that stays online permanently, labelled as advertising, linking to your website.",
+  },
+  {
+    eyebrow: "Straight to the inbox",
+    title: "Newsletter",
+    body: `A mention in the ${city.name} newsletter. The list is currently being built up, so mentions are booked as part of the premium package.`,
+  },
+];
+
+const steps = [
+  { t: "Ask", b: "Tell us briefly what you have in mind: business, industry and preferred format." },
+  { t: "Offer", b: "You get a concrete quote with services, term and price - no automatic renewal." },
+  { t: "Live", b: "Once you approve it, we publish your listing and send you the links." },
+];
+---
+
+<BaseLayout title={title} description={description} locale={locale}>
+  <div class="container-page py-12">
+    <Breadcrumbs items={[{ label: city.name, href: "/en/" }, { label: "Advertise" }]} />
+
+    <div class="max-w-3xl mb-14">
+      <p class="eyebrow mb-3">Advertise on {city.name}-Interaktiv</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-6" style="color: var(--color-text);">
+        Be visible locally - to people who are into {city.name}.
+      </h1>
+      <p class="text-lg leading-relaxed mb-6" style="color: var(--color-text-body);">
+        {city.name}-Interaktiv is the city portal for the "fan city": sights, restaurants, hotels,
+        districts, events and the tech scene around KIT and CyberForum. Our directory already holds
+        {totalListings()} businesses from {city.name}.
+      </p>
+      <p class="text-sm mb-8" style="color: var(--color-text-muted);">
+        Prices are net and apply to businesses only (§ 14 BGB). The detailed German pages carry the
+        full terms: <a href="/werben/" class="link-accent">Werben</a> ·
+        <a href="/werben/premium-partner/" class="link-accent">Premium-Partner</a>.
+      </p>
+    </div>
+
+    <section class="mb-16">
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mb-6" style="color: var(--color-text);">Formats</h2>
+      <div class="werben-grid werben-grid-3">
+        {formats.map((f) => (
+          <div class="werben-card">
+            <p class="eyebrow mb-2">{f.eyebrow}</p>
+            <h3 class="text-lg font-semibold" style="color: var(--color-text);">{f.title}</h3>
+            <p>{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mb-6" style="color: var(--color-text);">How it works</h2>
+      <div class="werben-grid werben-grid-3">
+        {steps.map((s, i) => (
+          <div class="werben-card">
+            <span class="werben-step-num">{i + 1}</span>
+            <h3 class="text-base font-semibold" style="color: var(--color-text);">{s.t}</h3>
+            <p>{s.b}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="werben-cta-band">
+      <h2 class="text-2xl font-semibold tracking-tight mb-3" style="color: var(--color-text);">
+        Interested? Drop us a line.
+      </h2>
+      <p class="mb-4 max-w-xl mx-auto" style="color: var(--color-text-body);">
+        Tell us what you have in mind and we will come back with a suitable offer.
+        This offer is addressed to businesses only.
+      </p>
+      <p class="text-lg font-semibold" style="color: var(--color-text);">
+        {mailUser}<span aria-hidden="true">(at)</span><span class="sr-only">@</span>{mailDomain}
+      </p>
+      <p class="werben-muted-note">
+        Please copy the address manually - it is shown without a click link to keep spam bots out.
+      </p>
+    </section>
+  </div>
+</BaseLayout>

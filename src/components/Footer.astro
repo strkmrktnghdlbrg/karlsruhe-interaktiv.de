@@ -38,7 +38,7 @@ function categoryName(slug: string, name: string) {
 }
 
 const home = homeUrl(locale);
-const advertiseHref = `${locale === "de" ? "" : "/" + locale}/werben/`;
+const advertiseHref = locale === "de" ? "/werben/" : "/en/advertise/";
 const guidesHref = indexUrl("guides", locale);
 const allCategoriesHref = indexUrl("categories", locale);
 const eventsHref = indexUrl("events", locale);
@@ -120,6 +120,9 @@ const brandDesc = isEn ? t(locale, "footer.brandDesc") : city.description.short;
       </p>
       <div class="flex items-center gap-5">
         <a href={aboutHref} class="text-xs" style="color: var(--color-text-muted);">{t(locale, "footer.about")}</a>
+        {!isEn && (
+          <a href="/kontakt/" class="text-xs" style="color: var(--color-text-muted);">Kontakt</a>
+        )}
         <a href={imprintHref} class="text-xs" style="color: var(--color-text-muted);">{t(locale, "nav.imprint")}</a>
         <a href={privacyHref} class="text-xs" style="color: var(--color-text-muted);">{t(locale, "nav.privacy")}</a>
         <a href={termsHref} class="text-xs" style="color: var(--color-text-muted);">{t(locale, "nav.terms")}</a>

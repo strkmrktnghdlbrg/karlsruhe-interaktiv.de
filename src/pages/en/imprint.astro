@@ -28,7 +28,8 @@ import { homeUrl, indexUrl } from "../../i18n/config";
       </p>
 
       <h2>{t("en", "imprint.contactHeading")}</h2>
-      <p>{t("en", "imprint.emailLabel")} <a href={`mailto:${legal.email}`}>{legal.email}</a></p>
+      {/* Anti-spam: e-mail rendered without mailto and without a literal @. */}
+      <p>{t("en", "imprint.emailLabel")} {legal.email.split("@")[0]}<span aria-hidden="true">(at)</span><span class="sr-only">@</span>{legal.email.split("@")[1]}</p>
       <p style="font-size: 0.9rem; color: var(--color-text-muted);">{legal.natureOfBusiness}</p>
 
       <h2>{t("en", "imprint.responsibleHeading")}</h2>

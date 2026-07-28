@@ -19,7 +19,8 @@ import { indexUrl } from "../i18n/config";
         {legal.registeredOffice.street}<br />
         {legal.registeredOffice.city} {legal.registeredOffice.postcode}<br />
         {legal.registeredOffice.country}<br />
-        E-Mail: <a href={`mailto:${legal.email}`}>{legal.email}</a>
+        {/* Anti-Spam: E-Mail bewusst ohne mailto und ohne Klartext-@ ausgeben. */}
+        E-Mail: {legal.email.split("@")[0]}<span aria-hidden="true">(at)</span><span class="sr-only">@</span>{legal.email.split("@")[1]}
       </p>
 
       <h2>Erhebung allgemeiner Informationen beim Besuch der Website</h2>
@@ -70,7 +71,7 @@ import { indexUrl } from "../i18n/config";
         <li>Widerspruch gegen die Verarbeitung (Art. 21)</li>
         <li>Widerruf einer erteilten Einwilligung (Art. 7 Abs. 3)</li>
       </ul>
-      <p>Zur Ausuebung genügt eine formlose Nachricht an <a href={`mailto:${legal.email}`}>{legal.email}</a>.</p>
+      <p>Zur Ausübung genügt eine formlose Nachricht an {legal.email.split("@")[0]}<span aria-hidden="true">(at)</span><span class="sr-only">@</span>{legal.email.split("@")[1]}.</p>
 
       <h2>Stand</h2>
       <p>Diese Datenschutzerklärung wurde zuletzt im Mai 2026 ueberarbeitet.</p>

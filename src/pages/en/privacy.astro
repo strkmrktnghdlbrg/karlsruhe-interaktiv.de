@@ -26,7 +26,8 @@ import { homeUrl, indexUrl } from "../../i18n/config";
         {legal.registeredOffice.street}<br />
         {legal.registeredOffice.city} {legal.registeredOffice.postcode}<br />
         {legal.registeredOffice.country}<br />
-        {t("en", "privacy.emailLabel")} <a href={`mailto:${legal.email}`}>{legal.email}</a>
+        {/* Anti-spam: e-mail rendered without mailto and without a literal @. */}
+        {t("en", "privacy.emailLabel")} {legal.email.split("@")[0]}<span aria-hidden="true">(at)</span><span class="sr-only">@</span>{legal.email.split("@")[1]}
       </p>
 
       <h2>{t("en", "privacy.generalHeading")}</h2>
@@ -62,7 +63,8 @@ import { homeUrl, indexUrl } from "../../i18n/config";
         <li>{t("en", "privacy.rightsWithdraw")}</li>
       </ul>
       <p set:html={tf("en", "privacy.rightsContact", {
-        email: `<a href="mailto:${legal.email}">${legal.email}</a>`,
+        // Anti-spam: no mailto, no literal @ in the rendered address.
+        email: `${legal.email.split("@")[0]}<span aria-hidden="true">(at)</span><span class="sr-only">@</span>${legal.email.split("@")[1]}`,
       })} />
 
       <h2>{t("en", "privacy.lastUpdatedHeading")}</h2>

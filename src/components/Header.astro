@@ -33,7 +33,7 @@ const home = homeUrl(locale);
 const aboutHref = indexUrl("about", locale);
 const imprintHref = indexUrl("imprint", locale);
 const privacyHref = indexUrl("privacy", locale);
-const advertiseHref = `${locale === "de" ? "" : "/" + locale}/werben/`;
+const advertiseHref = locale === "de" ? "/werben/" : "/en/advertise/";
 ---
 
 <header class="sticky top-0 z-40 border-b" style="background: rgba(8,9,10,0.85); backdrop-filter: blur(12px); border-color: var(--color-border);">

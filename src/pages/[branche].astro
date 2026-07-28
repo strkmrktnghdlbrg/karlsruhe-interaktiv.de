@@ -12,6 +12,22 @@ const { branche } = Astro.params;
 const item = getBranche(branche!);
 if (!item) return Astro.redirect("/404");
 
+/**
+ * Anti-Spam: In den wiederhergestellten Beitraegen stehen Anbieter-Adressen im
+ * Klartext. Beim Rendern ersetzen wir das @ durch "(at)" und entfernen
+ * mailto-Links, damit Harvester nichts abgreifen koennen. Die Quelldaten
+ * bleiben unveraendert.
+ */
+const obfuscateEmails = (html: string) =>
+  html
+    .replace(/<a[^>]*href=["']mailto:([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi, (_m, _addr, label) => label)
+    .replace(
+      /([A-Za-z0-9._%+-]+)@([A-Za-z0-9.-]+\.[A-Za-z]{2,})/g,
+      '$1<span aria-hidden="true">(at)</span><span class="sr-only">@</span>$2'
+    );
+
+const bodyHtml = obfuscateEmails(item.bodyHtml);
+
 // Vorschlaege fuer interne Verlinkung (andere Branchen, alphabetisch nahe)
 const others = branchen.filter((b) => b.slug !== item.slug);
 const related = others.slice(0, 12);
@@ -41,7 +57,7 @@ const schema = {
       <p class="text-lg leading-relaxed" style="color: var(--color-text-body);">{item.description}</p>
     </header>
 
-    <div class="branchen-prose max-w-3xl" set:html={item.bodyHtml} />
+    <div class="branchen-prose max-w-3xl" set:html={bodyHtml} />
 
     <p class="mt-10 text-xs max-w-3xl" style="color: var(--color-text-subtle);">
       Hinweis: Die Anbieterangaben (Adressen, Kontaktdaten, Leistungen) stammen aus

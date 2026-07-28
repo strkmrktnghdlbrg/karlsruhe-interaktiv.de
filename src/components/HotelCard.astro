@@ -1,5 +1,5 @@
 ---
-import HueGradient from "./HueGradient.astro";
+import ContentImage from "./ContentImage.astro";
 import type { Hotel } from "../data/hotels";
 import { getDistrict } from "../data/districts";
 import type { Locale } from "../i18n/config";
@@ -26,7 +26,12 @@ const reviewsLabel = locale === "en" ? "reviews" : "Bew.";
 
 <a href={href} class="card group block">
   <div class="aspect-[4/3] relative overflow-hidden">
-    <HueGradient hue={hotel.imageHue} label={name} />
+    <ContentImage
+      imgKey={`hotel:${hotel.slug}`}
+      fallbackHue={hotel.imageHue}
+      fallbackLabel={name}
+      className="w-full h-full"
+    />
     <div class="absolute top-3 left-3 flex flex-col gap-1.5">
       {hotel.guestFavorite && <span class="pill-accent">{favoriteLabel}</span>}
       <span class="pill" style="background: rgba(8,9,10,0.85); backdrop-filter: blur(8px);">{starsLabel}</span>

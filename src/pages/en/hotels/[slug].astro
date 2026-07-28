@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
-import HueGradient from "../../../components/HueGradient.astro";
+import ContentImage from "../../../components/ContentImage.astro";
 import BookingCTA from "../../../components/BookingCTA.astro";
 import RelatedItems from "../../../components/RelatedItems.astro";
 import Stay22NearbyHotels from "../../../components/Stay22NearbyHotels.astro";
@@ -74,7 +74,14 @@ const schema = {
 
       <aside class="space-y-5">
         <div class="aspect-[4/3] overflow-hidden" style="border-radius: var(--radius-card);">
-          <HueGradient hue={hotel.imageHue} label={en.name} />
+          <ContentImage
+            imgKey={`hotel:${hotel.slug}`}
+            fallbackHue={hotel.imageHue}
+            fallbackLabel={en.name}
+            className="w-full h-full"
+            loading="eager"
+            showCredit
+          />
         </div>
         <BookingCTA hotel={hotel} locale={locale} />
       </aside>

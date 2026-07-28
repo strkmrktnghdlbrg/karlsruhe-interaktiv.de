@@ -21,7 +21,8 @@ import { indexUrl } from "../i18n/config";
       </p>
 
       <h2>Kontakt</h2>
-      <p>E-Mail: <a href={`mailto:${legal.email}`}>{legal.email}</a></p>
+      {/* Anti-Spam: E-Mail bewusst ohne mailto und ohne Klartext-@ ausgeben. */}
+      <p>E-Mail: {legal.email.split("@")[0]}<span aria-hidden="true">(at)</span><span class="sr-only">@</span>{legal.email.split("@")[1]}</p>
       <p style="font-size: 0.9rem; color: var(--color-text-muted);">{legal.natureOfBusiness}</p>
 
       <h2>Verantwortlich für den Inhalt nach Paragraph 18 Abs. 2 MStV</h2>
