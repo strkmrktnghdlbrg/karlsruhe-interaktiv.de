@@ -41,7 +41,7 @@
   font-weight: 700;
   font-size: 0.95rem;
   background: var(--color-accent);
-  color: var(--color-accent-contrast, #08090a);
+  color: var(--color-accent-contrast, #fff);
   margin-bottom: 0.75rem;
 }
 
@@ -113,7 +113,7 @@
   background: var(--color-surface-elevated, var(--color-border-subtle));
   color: var(--color-text-muted);
 }
-.werben-avatar.is-premium { background: var(--color-accent); color: var(--color-accent-contrast, #08090a); }
+.werben-avatar.is-premium { background: var(--color-accent); color: var(--color-accent-contrast, #fff); }
 .werben-badge {
   display: inline-flex;
   align-items: center;
@@ -125,7 +125,7 @@
   padding: 0.2rem 0.5rem;
   border-radius: 999px;
   background: var(--color-accent);
-  color: var(--color-accent-contrast, #08090a);
+  color: var(--color-accent-contrast, #fff);
 }
 .werben-mock-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem; }
 .werben-mock-btn {
