@@ -1,0 +1,44 @@
+---
+// Affiliate-Redirects (/r/...): statische Meta-Refresh-Seiten, da die Domain hinter
+// Cloudflare liegt und public/.htaccess dort nicht ausgewertet wird.
+// Ziel-URLs identisch mit public/.htaccess (AWIN 514869 / AdCell).
+export function getStaticPaths() {
+  const CLICKREF = "karlsruhe-interaktiv.de";
+  const targets = {
+    docmorris: `https://www.awin1.com/cread.php?s=2490784&v=14485&q=372737&r=514869&clickref=${CLICKREF}`,
+    "shop-apotheke": `https://www.awin1.com/cread.php?s=3450028&v=13808&q=471107&r=514869&clickref=${CLICKREF}`,
+    mediherz: `https://www.awin1.com/cread.php?s=2269210&v=11630&q=348918&r=514869&clickref=${CLICKREF}`,
+    medpex: `https://www.awin1.com/awclick.php?gid=447437&mid=36320&awinaffid=514869&linkid=3237938&clickref=${CLICKREF}`,
+    "fliegende-pillen": `https://t.adcell.com/p/click?promoId=120221&slotId=78194&subId=${CLICKREF}&param0=https://www.fliegende-pillen.de/`,
+    "parken-fliegen": `https://www.awin1.com/cread.php?awinmid=14793&awinaffid=514869&clickref=${CLICKREF}`,
+  };
+  const aliases = {
+    "docmorris-10euro": "docmorris",
+    "shop-apotheke-rezept": "shop-apotheke",
+    "mediherz-gutscheine": "mediherz",
+    "medpex-zuzahlungsfrei": "medpex",
+  };
+  return [
+    ...Object.entries(targets).map(([slug, url]) => ({ params: { slug }, props: { url } })),
+    ...Object.entries(aliases).map(([slug, canonical]) => ({ params: { slug }, props: { url: targets[canonical] } })),
+  ];
+}
+const { url } = Astro.props;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="refresh" content={`0; url=${url}`} />
+    <title>Weiterleitung …</title>
+    <script is:inline define:vars={{ url }}>
+      window.location.replace(url);
+    </script>
+  </head>
+  <body>
+    <p>Du wirst weitergeleitet. Falls nichts passiert: <a href={url} rel="sponsored nofollow">hier klicken</a>.</p>
+  </body>
+</html>

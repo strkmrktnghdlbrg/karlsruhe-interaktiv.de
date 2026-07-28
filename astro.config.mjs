@@ -18,6 +18,7 @@ export default defineConfig({
         !page.includes("/datenschutz") &&
         !page.includes("/agb") &&
         !page.includes("/404") &&
+        !page.includes("/r/") &&
         !page.includes("/werben") &&
         !page.includes("/news/") &&
         !page.includes("/en/imprint") &&
