@@ -123,6 +123,7 @@ const brandDesc = isEn ? t(locale, "footer.brandDesc") : city.description.short;
         {!isEn && (
           <a href="/kontakt/" class="text-xs" style="color: var(--color-text-muted);">Kontakt</a>
         )}
+        <a href="/bildnachweis/" class="text-xs" style="color: var(--color-text-muted);">{isEn ? "Image credits" : "Bildnachweis"}</a>
         <a href={imprintHref} class="text-xs" style="color: var(--color-text-muted);">{t(locale, "nav.imprint")}</a>
         <a href={privacyHref} class="text-xs" style="color: var(--color-text-muted);">{t(locale, "nav.privacy")}</a>
         <a href={termsHref} class="text-xs" style="color: var(--color-text-muted);">{t(locale, "nav.terms")}</a>

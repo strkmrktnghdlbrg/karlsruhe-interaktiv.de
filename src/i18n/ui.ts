@@ -260,8 +260,8 @@ export const ui = {
   },
   "about.sourcesHeading": { de: "Quellen und Bildmaterial", en: "Sources and imagery" },
   "about.sourcesBody": {
-    de: "Bilder stammen, sofern nicht anders ausgewiesen, von Wikimedia Commons unter Creative-Commons-Lizenzen. Der jeweilige Autor und die Lizenz werden unter jedem Bild ausgewiesen. Faktische Angaben recherchieren wir aus öffentlich zugänglichen, möglichst offiziellen Quellen.",
-    en: "Unless otherwise stated, images are sourced from Wikimedia Commons under Creative Commons licenses. The respective author and license are credited beneath each image. We research factual information from publicly available, preferably official sources.",
+    de: "Bilder stammen, sofern nicht anders ausgewiesen, von Wikimedia Commons unter Creative-Commons-Lizenzen. Der jeweilige Autor und die Lizenz sind zentral im Bildnachweis unter /bildnachweis/ ausgewiesen. Faktische Angaben recherchieren wir aus öffentlich zugänglichen, möglichst offiziellen Quellen.",
+    en: "Unless otherwise stated, images are sourced from Wikimedia Commons under Creative Commons licenses. The respective author and license are listed on the central image credits page at /bildnachweis/. We research factual information from publicly available, preferably official sources.",
   },
   "about.affiliateHeading": { de: "Transparenz bei Affiliate-Links", en: "Transparency about affiliate links" },
   "about.affiliateBody": {
@@ -307,8 +307,8 @@ export const ui = {
   },
   "imprint.copyrightHeading": { de: "Urheberrecht & Bilder", en: "Copyright & images" },
   "imprint.copyrightBody": {
-    de: "Bilder auf {site}-Interaktiv stammen, sofern nicht anders ausgewiesen, von Wikimedia Commons unter Creative-Commons-Lizenzen. Der jeweilige Autor und die Lizenz werden unter jedem Bild ausgewiesen.",
-    en: "Unless otherwise stated, images on {site}-Interaktiv are sourced from Wikimedia Commons under Creative Commons licenses. The respective author and license are credited beneath each image.",
+    de: "Bilder auf {site}-Interaktiv stammen, sofern nicht anders ausgewiesen, von Wikimedia Commons unter Creative-Commons-Lizenzen. Der jeweilige Autor und die Lizenz sind zentral im Bildnachweis unter /bildnachweis/ ausgewiesen.",
+    en: "Unless otherwise stated, images on {site}-Interaktiv are sourced from Wikimedia Commons under Creative Commons licenses. The respective author and license are listed on the central image credits page at /bildnachweis/.",
   },
   "imprint.affiliateHeading": { de: "Affiliate-Hinweis", en: "Affiliate disclosure" },
   "imprint.affiliateBody": {
@@ -406,8 +406,8 @@ export const ui = {
   },
   "terms.copyrightHeading": { de: "5. Urheberrecht", en: "5. Copyright" },
   "terms.copyrightBody": {
-    de: "Alle Inhalte unterliegen dem Urheberrecht. Bilder werden, sofern nicht anders ausgewiesen, unter Creative-Commons-Lizenzen von Wikimedia Commons verwendet und entsprechend gekennzeichnet.",
-    en: "All content is subject to copyright. Unless otherwise stated, images are used under Creative Commons licenses from Wikimedia Commons and credited accordingly.",
+    de: "Alle Inhalte unterliegen dem Urheberrecht. Bilder werden, sofern nicht anders ausgewiesen, unter Creative-Commons-Lizenzen von Wikimedia Commons verwendet und zentral im Bildnachweis unter /bildnachweis/ ausgewiesen.",
+    en: "All content is subject to copyright. Unless otherwise stated, images are used under Creative Commons licenses from Wikimedia Commons and credited on the central image credits page at /bildnachweis/.",
   },
   "terms.finalHeading": { de: "6. Schlussbestimmungen", en: "6. Final provisions" },
   "terms.finalBody": {

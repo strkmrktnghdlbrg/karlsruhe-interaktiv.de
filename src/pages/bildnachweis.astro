@@ -1,0 +1,113 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { city } from "../data/city";
+import { images } from "../data/images";
+
+const title = "Bildnachweis";
+const description = `Alle auf ${city.name}-Interaktiv verwendeten Fotos mit Urheber, Lizenz und Quelle auf einen Blick.`;
+
+type Row = {
+  motiv: string;
+  href: string;
+  author: string;
+  license: string;
+  licenseUrl: string;
+  sourceUrl: string;
+};
+
+function hrefForKey(key: string): string {
+  const [prefix, slug] = key.split(":");
+  if (prefix === "sight") return `/sehenswuerdigkeiten/${slug}/`;
+  if (prefix === "district") return `/bezirke/${slug}/`;
+  return "/";
+}
+
+function rowsFor(prefix: string): Row[] {
+  return Object.entries(images)
+    .filter(([key, entry]) => key.startsWith(prefix + ":") && entry.credit)
+    .map(([key, entry]) => ({
+      motiv: entry.alt,
+      href: hrefForKey(key),
+      author: entry.credit!.author,
+      license: entry.credit!.license,
+      licenseUrl: entry.credit!.licenseUrl,
+      sourceUrl: entry.credit!.sourceUrl,
+    }));
+}
+
+const sightRows = rowsFor("sight");
+const districtRows = rowsFor("district");
+
+const sections = [
+  { heading: "Sehenswürdigkeiten", label: "Motiv", rows: sightRows },
+  { heading: "Bezirke", label: "Bezirk", rows: districtRows },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="container-page py-12 max-w-4xl">
+    <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Bildnachweis" }]} />
+    <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-6" style="color: var(--color-text);">
+      Bildnachweis
+    </h1>
+    <p class="text-base leading-relaxed mb-10 max-w-3xl" style="color: var(--color-text-body);">
+      Alle Fotos auf {city.name}-Interaktiv stammen aus dem Bildbestand von Wikimedia Commons und sind hier
+      mit Urheber, Lizenz und Quell-Link ausgewiesen. Hotels und Restaurants besitzen kein eigenes Foto: Ihre
+      Seiten zeigen das unten ausgewiesene Foto ihres Bezirks als Bühnenmotiv, die Bildunterschrift nennt dann
+      den Bezirk und nie den Betrieb. Logo und Favicon sind Eigenwerk.
+    </p>
+
+    {sections.map((section) => (
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4" style="color: var(--color-text);">{section.heading}</h2>
+        <div class="overflow-x-auto">
+          <table class="credits w-full text-sm">
+            <thead>
+              <tr>
+                <th>{section.label}</th>
+                <th>Urheber</th>
+                <th>Lizenz</th>
+                <th>Quelle</th>
+              </tr>
+            </thead>
+            <tbody>
+              {section.rows.map((row) => (
+                <tr>
+                  <td><a href={row.href} class="underline">{row.motiv}</a></td>
+                  <td>{row.author}</td>
+                  <td><a href={row.licenseUrl} rel="nofollow noopener" target="_blank" class="underline">{row.license}</a></td>
+                  <td><a href={row.sourceUrl} rel="nofollow noopener" target="_blank" class="underline">Wikimedia Commons</a></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    ))}
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4" style="color: var(--color-text);">Weitere Grafiken</h2>
+      <p class="text-sm leading-relaxed" style="color: var(--color-text-body);">
+        Platzhalterkacheln ohne Foto sind generierte Farbverläufe (Eigenwerk). Kartendaten auf
+        eingebundenen Karten stammen von OpenStreetMap-Mitwirkenden (ODbL); der Hinweis steht direkt an
+        der jeweiligen Karte.
+      </p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .credits th,
+  .credits td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-body);
+    vertical-align: top;
+  }
+  .credits th {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+</style>
