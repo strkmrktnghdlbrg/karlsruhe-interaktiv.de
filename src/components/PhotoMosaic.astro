@@ -1,0 +1,42 @@
+---
+/**
+ * Kachelmosaik der Bildbuehne: Liste aus { href, imgKey, title, meta, span }.
+ * span: "w2" (doppelte Breite), "h2" (doppelte Hoehe) oder undefined.
+ */
+import ContentImage from "./ContentImage.astro";
+
+export interface MosaicItem {
+  href: string;
+  imgKey?: string;
+  title: string;
+  meta?: string;
+  span?: "w2" | "h2";
+  fallbackHue?: number;
+}
+
+interface Props {
+  items: MosaicItem[];
+  cols?: 3 | 4;
+}
+
+const { items, cols = 4 } = Astro.props;
+---
+
+<div class={`mosaic${cols === 3 ? " cols-3" : ""}`}>
+  {items.map((item) => (
+    <a class={`tile${item.span ? ` ${item.span}` : ""}`} href={item.href}>
+      <div class="tile-pic">
+        <ContentImage
+          imgKey={item.imgKey}
+          fallbackHue={item.fallbackHue ?? 1}
+          imgClass="w-full h-full object-cover"
+        />
+      </div>
+      <div class="veil"></div>
+      <div class="cap">
+        <h3>{item.title}</h3>
+        {item.meta && <span>{item.meta}</span>}
+      </div>
+    </a>
+  ))}
+</div>

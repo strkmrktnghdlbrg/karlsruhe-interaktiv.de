@@ -17,31 +17,28 @@ const restCount = restaurantsByDistrict(district.slug).length;
 const en = locale === "en" ? districtsEn[district.slug] : undefined;
 const href = locale === "en" ? detailUrl("districts", en!.slug, "en") : `/bezirke/${district.slug}/`;
 const name = en?.name ?? district.name;
-const shortDesc = en?.shortDesc ?? district.shortDesc;
 const characterTags = en?.characterTags ?? district.characterTags;
 ---
 
-<a href={href} class="card group block">
-  <div class="aspect-[4/3] relative overflow-hidden">
-    <ContentImage
-      imgKey={district.imageKey}
-      fallbackHue={district.hue}
-      fallbackLabel={name}
-      imgClass="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-    />
-    <div class="absolute bottom-3 left-3 flex flex-wrap gap-1.5">
-      {characterTags.slice(0, 2).map((tag) => (
-        <span class="pill" style="background: rgba(8,9,10,0.85); backdrop-filter: blur(8px);">{tag}</span>
-      ))}
+<a href={href} class="tilecard group block">
+  <div class="tilecard-media">
+    <div class="tilecard-pic">
+      <ContentImage
+        imgKey={district.imageKey}
+        fallbackHue={district.hue}
+        fallbackLabel={name}
+        imgClass="w-full h-full object-cover"
+      />
+    </div>
+    <div class="veil"></div>
+    <div class="cap">
+      <h3>{name}</h3>
+      <span class="cap-meta">{characterTags.slice(0, 3).join(" · ")}</span>
     </div>
   </div>
-  <div class="p-4">
-    <h3 class="text-lg font-semibold tracking-tight mb-2 transition-colors" style="color: var(--color-text);">{name}</h3>
-    <p class="text-sm leading-relaxed line-clamp-2 mb-3" style="color: var(--color-text-body);">{shortDesc}</p>
-    <div class="flex items-center gap-4 text-xs" style="color: var(--color-text-muted);">
-      <span><strong style="color: var(--color-text);">{sightCount}</strong> Sights</span>
-      <span><strong style="color: var(--color-text);">{hotelCount}</strong> Hotels</span>
-      <span><strong style="color: var(--color-text);">{restCount}</strong> Restaurants</span>
-    </div>
+  <div class="tilecard-meta">
+    <span><strong>{sightCount}</strong> Sights</span>
+    <span><strong>{hotelCount}</strong> Hotels</span>
+    <span><strong>{restCount}</strong> Restaurants</span>
   </div>
 </a>

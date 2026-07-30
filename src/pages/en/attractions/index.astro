@@ -30,8 +30,10 @@ const sorted = [...sights].sort((a, b) =>
         {t("en", "sights.intro")}
       </p>
     </header>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {sorted.map((s) => <SightCard sight={s} locale="en" />)}
+    <div class="mosaic">
+      {sorted.map((s, i) => (
+        <div class={i % 7 === 0 ? "w2" : i % 7 === 3 ? "h2" : undefined}><SightCard sight={s} locale="en" /></div>
+      ))}
     </div>
 
     <GetYourGuideWidget placement={getGygPlacement("page:sights-index")} locale="en" />

@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import StageHero from "../../components/StageHero.astro";
+import ActionDock from "../../components/ActionDock.astro";
 import { city } from "../../data/city";
 import { legal } from "../../data/legal";
 import { branchenCategories } from "../../data/branchenverzeichnis";
@@ -37,21 +39,29 @@ const premium = [
 ---
 
 <BaseLayout title={title} description={description}>
+  <StageHero
+    imgKey="district:innenstadt-west"
+    badge="Kostenloser Eintrag"
+    title={`Trag deinen ${city.name}er Betrieb kostenlos ein.`}
+    lead="Der Grundeintrag im Branchenbuch kostet nichts und bleibt dauerhaft bestehen. Sie können damit auch einen bereits vorhandenen Eintrag beanspruchen oder Angaben korrigieren lassen."
+    compact
+  />
+
+  <ActionDock
+    info={{
+      line: "Grundeintrag: kostenlos",
+      sub: "Premium-Auftritt: 199 € / Jahr netto (236,81 € brutto) · nur für Unternehmer · keine automatische Verlängerung",
+    }}
+    secondary={{ label: "Premium ansehen", href: "/werben/premium-partner/" }}
+    primary={{ label: "Betrieb melden", href: "#betrieb-melden" }}
+  />
+
   <div class="container-page py-12 max-w-3xl">
     <Breadcrumbs items={[
       { label: city.name, href: "/" },
       { label: "Branchenbuch", href: "/branchenbuch/" },
       { label: "Eintrag beanspruchen" },
     ]} />
-
-    <p class="eyebrow mb-3">Kostenloser Eintrag</p>
-    <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-5" style="color: var(--color-text);">
-      Trag deinen {city.name}er Betrieb kostenlos ein.
-    </h1>
-    <p class="text-lg leading-relaxed mb-10" style="color: var(--color-text-body);">
-      Der Grundeintrag im Branchenbuch kostet nichts und bleibt dauerhaft bestehen. Sie können damit
-      auch einen bereits vorhandenen Eintrag beanspruchen oder Angaben korrigieren lassen.
-    </p>
 
     <!-- Gratis vs Premium -->
     <div class="werben-grid werben-grid-2 mb-12">
@@ -75,7 +85,7 @@ const premium = [
     </div>
 
     <!-- Formular bzw. E-Mail-Weg -->
-    <section class="mb-12">
+    <section id="betrieb-melden" class="mb-12">
       <h2 class="text-2xl font-semibold tracking-tight mb-5" style="color: var(--color-text);">
         Betrieb melden
       </h2>

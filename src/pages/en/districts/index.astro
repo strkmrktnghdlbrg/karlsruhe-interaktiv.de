@@ -29,8 +29,10 @@ const locale = "en";
         {t(locale, "districts.intro")}
       </p>
     </header>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {districts.map((d) => <DistrictCard district={d} locale={locale} />)}
+    <div class="mosaic">
+      {districts.map((d, i) => (
+        <div class={i % 6 === 0 ? "w2" : i % 6 === 4 ? "h2" : undefined}><DistrictCard district={d} locale={locale} /></div>
+      ))}
     </div>
 
     <GetYourGuideWidget placement={getGygPlacement("page:districts-index")} locale="en" />

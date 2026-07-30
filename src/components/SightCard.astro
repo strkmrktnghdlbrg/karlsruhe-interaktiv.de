@@ -16,36 +16,34 @@ const en = locale === "en" ? sightsEn[sight.slug] : undefined;
 const href = locale === "en" ? detailUrl("sights", en!.slug, "en") : `/sehenswuerdigkeiten/${sight.slug}/`;
 const name = en?.name ?? sight.name;
 const typeLabel = en?.type ?? sight.type;
-const shortDesc = en?.shortDesc ?? sight.shortDesc;
 const districtName = locale === "en" ? (districtsEn[sight.district]?.name ?? district?.name ?? sight.district) : (district?.name ?? sight.district);
 
 const priceLabel = sight.priceFrom === null
   ? (locale === "en" ? t("en", "detail.freeEntry") : "Eintritt frei")
   : (locale === "en" ? `from ${sight.priceFrom} EUR` : `ab ${sight.priceFrom} EUR`);
-const freeBadge = locale === "en" ? "Free" : "Gratis";
 ---
 
-<a href={href} class="card group block">
-  <div class="aspect-[4/3] relative overflow-hidden">
-    <ContentImage
-      imgKey={sight.imageKey}
-      fallbackHue={sight.imageHue}
-      fallbackLabel={name}
-      imgClass="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-    />
-    <div class="absolute top-3 left-3">
+<a href={href} class="tilecard group block">
+  <div class="tilecard-media">
+    <div class="tilecard-pic">
+      <ContentImage
+        imgKey={sight.imageKey}
+        fallbackHue={sight.imageHue}
+        fallbackLabel={name}
+        imgClass="w-full h-full object-cover"
+      />
+    </div>
+    <div class="veil"></div>
+    <div class="tilecard-tags">
       <span class="pill" style="background: rgba(8,9,10,0.85); backdrop-filter: blur(8px);">{typeLabel}</span>
     </div>
-    {sight.priceFrom === null && (
-      <div class="absolute top-3 right-3"><span class="pill-accent">{freeBadge}</span></div>
-    )}
+    <div class="cap">
+      <h3>{name}</h3>
+      <span class="cap-meta">{districtName}</span>
+    </div>
   </div>
-  <div class="p-3">
-    <p class="text-xs font-semibold mb-1" style="color: var(--color-text-muted);">{districtName}</p>
-    <h3 class="text-base font-semibold tracking-tight leading-tight mb-2 transition-colors" style="color: var(--color-text);">
-      {name}
-    </h3>
-    <p class="text-xs leading-relaxed mb-2 line-clamp-2" style="color: var(--color-text-body);">{shortDesc}</p>
-    <p class="text-xs font-semibold" style="color: var(--color-accent);">{priceLabel}</p>
+  <div class="tilecard-meta">
+    <span><strong>{priceLabel}</strong></span>
+    <span>{typeLabel}</span>
   </div>
 </a>

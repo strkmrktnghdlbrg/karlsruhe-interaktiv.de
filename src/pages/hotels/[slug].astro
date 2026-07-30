@@ -1,12 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
-import ContentImage from "../../components/ContentImage.astro";
+import StageHero from "../../components/StageHero.astro";
+import ActionDock from "../../components/ActionDock.astro";
 import BookingCTA from "../../components/BookingCTA.astro";
 import RelatedItems from "../../components/RelatedItems.astro";
 import Stay22NearbyHotels from "../../components/Stay22NearbyHotels.astro";
 import { hotels, getHotel } from "../../data/hotels";
 import { getDistrict } from "../../data/districts";
+import { heroKey, getImage } from "../../data/images";
 import { city } from "../../data/city";
 import { hotelsEn } from "../../i18n/en/hotels";
 import { detailUrl } from "../../i18n/config";
@@ -21,6 +23,10 @@ if (!hotel) return Astro.redirect("/404");
 const district = getDistrict(hotel.district);
 const stars = "*".repeat(hotel.stars);
 
+/* Kein eigenes Hotelfoto -> Bezirksfoto als ehrliche Buehne, Caption nennt den Bezirk */
+const stageKey = heroKey(`hotel:${hotel.slug}`, hotel.district);
+const usesDistrictPhoto = stageKey?.startsWith("district:") && Boolean(getImage(stageKey));
+
 const schema = {
   "@context": "https://schema.org",
   "@type": "Hotel",
@@ -34,64 +40,75 @@ const schema = {
 ---
 
 <BaseLayout title={hotel.name} description={hotel.shortDesc} alternateUrls={{ de: detailUrl("hotels", hotel.slug, "de"), en: detailUrl("hotels", hotelsEn[hotel.slug].slug, "en") }}>
-  <article class="container-page py-12">
-    <Breadcrumbs items={[
-      { label: "Start", href: "/" },
-      { label: "Hotels", href: "/hotels/" },
-      { label: hotel.name },
-    ]} />
+  <article>
+    <StageHero
+      imgKey={stageKey}
+      badge={`${stars} · ${district?.name ?? hotel.district}`}
+      title={hotel.name}
+      lead={hotel.shortDesc}
+      sceneLabel={usesDistrictPhoto && district ? `Foto: ${district.name}` : undefined}
+      fallbackHue={hotel.imageHue}
+      minHeight="500px"
+    />
 
-    <div class="grid lg:grid-cols-[2fr_1fr] gap-10 mb-12">
-      <div>
-        <p class="eyebrow mb-3">{stars} &middot; {district?.name ?? hotel.district}</p>
-        <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-3" style="color: var(--color-text);">{hotel.name}</h1>
-        <div class="flex items-center gap-3 mb-6">
-          <span class="text-2xl font-bold" style="color: var(--color-accent);">{hotel.rating.toFixed(1)}</span>
-          <span class="text-sm" style="color: var(--color-text-muted);">{hotel.reviews} Gäste-Bewertungen</span>
-          {hotel.guestFavorite && <span class="pill-accent">Gaesteliebling</span>}
-        </div>
-        <p class="text-lg leading-relaxed mb-6" style="color: var(--color-text-body);">{hotel.longDesc}</p>
+    <ActionDock
+      info={{
+        line: `ab ${hotel.priceFrom} EUR / Nacht`,
+        sub: `${hotel.rating.toFixed(1)} von 10 · ${hotel.reviews} Gäste-Bewertungen${district ? ` · ${district.name}` : ""}`,
+      }}
+      secondary={district ? { label: "Zum Bezirk", href: `/bezirke/${district.slug}/` } : undefined}
+      primary={{ label: "Auf Booking.com prüfen", href: hotel.bookingUrl, rel: "nofollow noopener sponsored", target: "_blank" }}
+    />
 
-        <div class="flex flex-wrap gap-2 mb-6">
-          {hotel.amenities.map((a) => <span class="pill">{a}</span>)}
+    <div class="container-page py-10">
+      <Breadcrumbs items={[
+        { label: "Start", href: "/" },
+        { label: "Hotels", href: "/hotels/" },
+        { label: hotel.name },
+      ]} />
+
+      <div class="grid lg:grid-cols-[2fr_1fr] gap-10 mt-6 mb-12">
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="text-2xl font-bold" style="color: var(--color-text);">{hotel.rating.toFixed(1)}</span>
+            <span class="text-sm" style="color: var(--color-text-muted);">{hotel.reviews} Gäste-Bewertungen</span>
+            {hotel.guestFavorite && <span class="pill">Gästeliebling</span>}
+          </div>
+          <div class="stage-prose mb-6">
+            <p>{hotel.longDesc}</p>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-6">
+            {hotel.amenities.map((a) => <span class="pill">{a}</span>)}
+          </div>
         </div>
+
+        <aside>
+          <BookingCTA hotel={hotel} />
+        </aside>
       </div>
 
-      <aside class="space-y-5">
-        <div class="aspect-[4/3] overflow-hidden" style="border-radius: var(--radius-card);">
-          <ContentImage
-            imgKey={`hotel:${hotel.slug}`}
-            fallbackHue={hotel.imageHue}
-            fallbackLabel={hotel.name}
-            className="w-full h-full"
-            loading="eager"
-            showCredit
-          />
+      {district && (
+        <div class="my-12 p-6 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+          <p class="eyebrow mb-2">Bezirk</p>
+          <h2 class="text-xl font-semibold mb-2" style="color: var(--color-text);">{district.name}</h2>
+          <p class="text-sm mb-3" style="color: var(--color-text-body);">{district.shortDesc}</p>
+          <a href={`/bezirke/${district.slug}/`} class="link-accent text-sm">Bezirks-Hub ansehen &rarr;</a>
         </div>
-        <BookingCTA hotel={hotel} />
-      </aside>
+      )}
+
+      {district && (
+        <Stay22NearbyHotels
+          lat={district.coordinates[0]}
+          lng={district.coordinates[1]}
+          near={district.name}
+          radius={2500}
+          limit={4}
+        />
+      )}
+
+      <RelatedItems district={hotel.district} excludeSlug={hotel.slug} type="hotels" />
     </div>
-
-    {district && (
-      <div class="my-12 p-6 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
-        <p class="eyebrow mb-2">Bezirk</p>
-        <h2 class="text-xl font-semibold mb-2" style="color: var(--color-text);">{district.name}</h2>
-        <p class="text-sm mb-3" style="color: var(--color-text-body);">{district.shortDesc}</p>
-        <a href={`/bezirke/${district.slug}/`} class="link-accent text-sm">Bezirks-Hub ansehen &rarr;</a>
-      </div>
-    )}
-
-    {district && (
-      <Stay22NearbyHotels
-        lat={district.coordinates[0]}
-        lng={district.coordinates[1]}
-        near={district.name}
-        radius={2500}
-        limit={4}
-      />
-    )}
-
-    <RelatedItems district={hotel.district} excludeSlug={hotel.slug} type="hotels" />
 
     <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline></script>
   </article>

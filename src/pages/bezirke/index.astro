@@ -17,8 +17,10 @@ import { getGygPlacement } from "../../data/gyg";
         Vom Fächer-Ursprung am Schloss bis zum historischen Durlach am Turmberg, vom KIT-Umfeld in der Oststadt bis zum dörflichen Neureut - alle Karlsruher Bezirke im Überblick.
       </p>
     </header>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {districts.map((d) => <DistrictCard district={d} />)}
+    <div class="mosaic">
+      {districts.map((d, i) => (
+        <div class={i % 6 === 0 ? "w2" : i % 6 === 4 ? "h2" : undefined}><DistrictCard district={d} /></div>
+      ))}
     </div>
 
     <GetYourGuideWidget placement={getGygPlacement("page:districts-index")} />

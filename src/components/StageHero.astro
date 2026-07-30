@@ -1,0 +1,44 @@
+---
+/**
+ * Vollbild-Hero der Bildbuehne: Foto (oder designter Gradient-Platzhalter),
+ * Verlauf, Typo unten links. Wird von Startseite und Detailseiten genutzt.
+ */
+import ContentImage from "./ContentImage.astro";
+import { getImage } from "../data/images";
+
+interface Props {
+  imgKey?: string;
+  badge?: string;
+  title: string;
+  lead?: string;
+  minHeight?: string;
+  /** Ehrliche Bildunterschrift, z. B. "Foto: Durlach" bei Bezirks-Fallback */
+  sceneLabel?: string;
+  fallbackHue?: number;
+  compact?: boolean;
+}
+
+const { imgKey, badge, title, lead, minHeight, sceneLabel, fallbackHue = 1, compact = false } = Astro.props;
+const hasImage = imgKey ? Boolean(getImage(imgKey)) : false;
+---
+
+<section class={`stagehero${compact ? " is-compact" : ""}`} style={minHeight ? `min-height:${minHeight};` : undefined}>
+  <div class="stage-pic">
+    <ContentImage
+      imgKey={imgKey}
+      fallbackHue={fallbackHue}
+      loading="eager"
+      showCredit={hasImage}
+      sizes="100vw"
+      widths={[640, 1024, 1600, 2048]}
+      imgClass="w-full h-full object-cover"
+    />
+  </div>
+  <div class="veil"></div>
+  <div class="stage-in">
+    {badge && <span class="badge">{badge}</span>}
+    <h1>{title}</h1>
+    {lead && <p class="stage-lead">{lead}</p>}
+    {sceneLabel && <span class="stage-scene">{sceneLabel}</span>}
+  </div>
+</section>

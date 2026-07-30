@@ -1,5 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import StageHero from "../components/StageHero.astro";
+import PhotoMosaic from "../components/PhotoMosaic.astro";
+import ContentImage from "../components/ContentImage.astro";
 import SightCard from "../components/SightCard.astro";
 import HotelCard from "../components/HotelCard.astro";
 import DistrictCard from "../components/DistrictCard.astro";
@@ -8,7 +11,7 @@ import Stay22TopHotels from "../components/Stay22TopHotels.astro";
 import GetYourGuideWidget from "../components/GetYourGuideWidget.astro";
 import { city } from "../data/city";
 import { getGygPlacement } from "../data/gyg";
-import { sights } from "../data/sights";
+import { sights, sightsByDistrict } from "../data/sights";
 import { topHotels } from "../data/hotels";
 import { districts } from "../data/districts";
 import { recentNews } from "../data/news";
@@ -18,31 +21,31 @@ const featuredSights = sights.slice(0, 6);
 const featuredHotels = topHotels(4);
 const featuredDistricts = districts.slice(0, 6);
 const featuredNews = features.news.enabled ? recentNews(3) : [];
+const durlachSights = sightsByDistrict("durlach").length;
+
+/* Fuenf Einstiege, gemischte Kachelgroessen (Mockup Variante 3) */
+const mosaikItems = [
+  { href: "/bezirke/durlach/", imgKey: "district:durlach", title: "Durlach", meta: `Älter als die Stadt · ${durlachSights} Orte`, span: "h2" as const },
+  { href: "/kategorien/museen/", imgKey: "sight:staatliche-kunsthalle", title: "Kunst & Museen", meta: "Kunsthalle, ZKM, Landesmuseum", span: "w2" as const },
+  { href: "/kategorien/parks/", imgKey: "sight:schlossgarten", title: "Parks", meta: "Schlossgarten, Stadtgarten" },
+  { href: "/sehenswuerdigkeiten/turmberg/", imgKey: "sight:turmberg", title: "Aussicht", meta: "Turmberg" },
+  { href: "/sehenswuerdigkeiten/marktplatz-pyramide/", imgKey: "sight:marktplatz-pyramide", title: "Der Fächer", meta: "Marktplatz, Pyramide, Kaiserstraße", span: "w2" as const },
+];
 ---
 
 <BaseLayout title={city.name} description={city.description.long} alternateUrls={{ de: "/", en: "/en/" }}>
-  <!-- HERO mit Faecher-Gradient -->
-  <section class="hero-faecher relative">
-    <div class="container-page py-24 sm:py-32 lg:py-40 text-center">
-      <p class="eyebrow mb-6">Stadtportal &middot; Faecherstadt &middot; Tech-Hub</p>
-      <h1 class="text-5xl sm:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.95] mb-6" style="color: var(--color-text);">
-        Karlsruhe<br/>
-        <span style="color: var(--color-text-muted);">interaktiv.</span>
-      </h1>
-      <p class="text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-10" style="color: var(--color-text-body);">
-        Schloss, ZKM, KIT, Bundesverfassungsgericht und Turmberg. Das Stadtportal für die Faecherstadt - Sehenswürdigkeiten, Hotels, Bezirke und Tech-News.
-      </p>
-      <div class="flex flex-wrap justify-center gap-3">
-        <a href="/sehenswuerdigkeiten/" class="btn-primary">Sehenswürdigkeiten entdecken</a>
-        <a href="/tech/" class="btn-outline">Tech-Hub Karlsruhe</a>
-      </div>
+  <!-- BUEHNEN-HERO -->
+  <StageHero
+    imgKey="sight:karlsruher-schloss"
+    badge="Fächerstadt"
+    title="Karlsruhe beginnt am Schloss."
+    lead={`${city.stats.sights} Sehenswürdigkeiten, ${city.stats.districts} Bezirke, ${city.stats.restaurants} Restaurants - mit echten Fotos, geprüften Angaben und ohne Ranking-Karussell.`}
+  />
 
-      <form
-        role="search"
-        action="/suche/"
-        method="get"
-        class="mt-10 flex items-center gap-2 max-w-xl mx-auto"
-      >
+  <!-- SUCHE -->
+  <section class="border-b" style="border-color: var(--color-border); background: var(--color-surface);">
+    <div class="container-page py-5">
+      <form role="search" action="/suche/" method="get" class="flex items-center gap-2 max-w-xl">
         <label for="hero-search" class="sr-only">Suche auf Karlsruhe-Interaktiv</label>
         <input
           id="hero-search"
@@ -51,45 +54,37 @@ const featuredNews = features.news.enabled ? recentNews(3) : [];
           autocomplete="off"
           placeholder="Schloss, ZKM, KIT, Brauhaus, Innenstadt, …"
           class="flex-1 border px-5 py-3 text-base focus:outline-none transition-colors text-left"
-          style="background: var(--color-surface); border-color: var(--color-border); color: var(--color-text); border-radius: var(--radius-input);"
+          style="background: var(--color-bg); border-color: var(--color-border); color: var(--color-text); border-radius: var(--radius-input, 6px);"
           onfocus="this.style.borderColor='var(--color-accent)'"
           onblur="this.style.borderColor='var(--color-border)'"
         />
         <button type="submit" class="btn-primary shrink-0">Suchen</button>
       </form>
+    </div>
+  </section>
 
-      <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto">
-        <div class="text-center">
-          <p class="text-3xl font-medium" style="color: var(--color-accent);">{city.stats.sights}</p>
-          <p class="text-xs uppercase tracking-widest mt-1" style="color: var(--color-text-muted);">Sehenswürdigkeiten</p>
-        </div>
-        <div class="text-center">
-          <p class="text-3xl font-medium" style="color: var(--color-accent);">{city.stats.hotels}</p>
-          <p class="text-xs uppercase tracking-widest mt-1" style="color: var(--color-text-muted);">Hotels</p>
-        </div>
-        <div class="text-center">
-          <p class="text-3xl font-medium" style="color: var(--color-accent);">{city.stats.restaurants}</p>
-          <p class="text-xs uppercase tracking-widest mt-1" style="color: var(--color-text-muted);">Restaurants</p>
-        </div>
-        <div class="text-center">
-          <p class="text-3xl font-medium" style="color: var(--color-accent);">{city.stats.districts}</p>
-          <p class="text-xs uppercase tracking-widest mt-1" style="color: var(--color-text-muted);">Bezirke</p>
-        </div>
-      </div>
+  <!-- WO ANFANGEN: Mosaik -->
+  <section class="stage-sec">
+    <div class="container-page">
+      <h2>Wo anfangen</h2>
+      <p class="stage-sub">Fünf Einstiege, die den größten Teil der Stadt abdecken.</p>
+      <PhotoMosaic items={mosaikItems} />
     </div>
   </section>
 
   <!-- TOP SIGHTS -->
-  <section class="container-page section">
-    <div class="flex items-end justify-between mb-8">
-      <div>
-        <p class="eyebrow mb-2">Highlights</p>
-        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight" style="color: var(--color-text);">Sehenswürdigkeiten in Karlsruhe</h2>
+  <section class="stage-sec alt">
+    <div class="container-page">
+      <div class="flex items-end justify-between mb-2">
+        <h2>Sehenswürdigkeiten in Karlsruhe</h2>
+        <a href="/sehenswuerdigkeiten/" class="hidden sm:inline-flex link-accent text-sm">Alle ansehen &rarr;</a>
       </div>
-      <a href="/sehenswuerdigkeiten/" class="hidden sm:inline-flex link-accent text-sm">Alle ansehen &rarr;</a>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {featuredSights.map((s) => <SightCard sight={s} />)}
+      <p class="stage-sub">Vom barocken Schloss bis zum ZKM - die wichtigsten Orte der Fächerstadt.</p>
+      <div class="mosaic">
+        {featuredSights.map((s, i) => (
+          <div class={i === 0 ? "w2" : undefined}><SightCard sight={s} /></div>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -98,48 +93,79 @@ const featuredNews = features.news.enabled ? recentNews(3) : [];
     <GetYourGuideWidget placement={getGygPlacement("page:home")} />
   </section>
 
-  <!-- BEZIRKE -->
-  <section class="container-page section">
-    <div class="flex items-end justify-between mb-8">
-      <div>
-        <p class="eyebrow mb-2">Fächer entlang</p>
-        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight" style="color: var(--color-text);">Karlsruher Bezirke</h2>
-      </div>
-      <a href="/bezirke/" class="hidden sm:inline-flex link-accent text-sm">Alle Bezirke &rarr;</a>
+  <!-- STORY: Schwerpunkt -->
+  <div class="story">
+    <div class="story-pic">
+      <ContentImage imgKey="sight:bundesverfassungsgericht" fallbackHue={1} showCredit imgClass="w-full h-full object-cover" />
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {featuredDistricts.map((d) => <DistrictCard district={d} />)}
+    <div class="story-txt">
+      <span class="badge">Schwerpunkt</span>
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mt-4 mb-3" style="color: var(--color-text);">Residenz des Rechts</h2>
+      <p class="stage-sub" style="margin-bottom: 20px;">
+        Warum das höchste deutsche Gericht in Karlsruhe sitzt - und was davon zu sehen ist.
+      </p>
+      <a href="/sehenswuerdigkeiten/bundesverfassungsgericht/" class="btn-outline">Weiterlesen &rarr;</a>
+    </div>
+  </div>
+
+  <!-- BEZIRKE -->
+  <section class="stage-sec">
+    <div class="container-page">
+      <div class="flex items-end justify-between mb-2">
+        <h2>Karlsruher Bezirke</h2>
+        <a href="/bezirke/" class="hidden sm:inline-flex link-accent text-sm">Alle Bezirke &rarr;</a>
+      </div>
+      <p class="stage-sub">Den Fächer entlang - von der Innenstadt bis Neureut.</p>
+      <div class="mosaic">
+        {featuredDistricts.map((d, i) => (
+          <div class={i === 1 ? "w2" : undefined}><DistrictCard district={d} /></div>
+        ))}
+      </div>
     </div>
   </section>
 
   <!-- TOP HOTELS (Live Stay22 + redaktionell) -->
-  <section class="container-page section">
-    <div class="flex items-end justify-between mb-2">
-      <div>
-        <p class="eyebrow mb-2">Übernachten</p>
-        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight" style="color: var(--color-text);">Top-Hotels in Karlsruhe</h2>
+  <section class="stage-sec alt">
+    <div class="container-page">
+      <div class="flex items-end justify-between mb-2">
+        <h2>Top-Hotels in Karlsruhe</h2>
+        <a href="/hotels/" class="hidden sm:inline-flex link-accent text-sm">Alle Hotels &rarr;</a>
       </div>
-      <a href="/hotels/" class="hidden sm:inline-flex link-accent text-sm">Alle Hotels &rarr;</a>
-    </div>
-    <Stay22TopHotels limit={4} title="" lead="Live von Booking.com - aktuelle Preise und Verfügbarkeit, täglich aktualisiert." />
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-4">
-      {featuredHotels.map((h) => <HotelCard hotel={h} />)}
+      <Stay22TopHotels limit={4} title="" lead="Live von Booking.com - aktuelle Preise und Verfügbarkeit, täglich aktualisiert." />
+      <div class="mosaic mt-4">
+        {featuredHotels.map((h) => (
+          <div><HotelCard hotel={h} /></div>
+        ))}
+      </div>
     </div>
   </section>
 
   <!-- NEWS / Tech-USP -->
   {features.news.enabled && featuredNews.length > 0 && (
-    <section class="container-page section">
-      <div class="flex items-end justify-between mb-8">
-        <div>
-          <p class="eyebrow mb-2">Tech &middot; Wissenschaft &middot; Kultur</p>
-          <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight" style="color: var(--color-text);">Karlsruhe-News</h2>
+    <section class="stage-sec">
+      <div class="container-page">
+        <div class="flex items-end justify-between mb-2">
+          <h2>Karlsruhe-News</h2>
+          <a href="/news/" class="hidden sm:inline-flex link-accent text-sm">Alle News &rarr;</a>
         </div>
-        <a href="/news/" class="hidden sm:inline-flex link-accent text-sm">Alle News &rarr;</a>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {featuredNews.map((n) => <NewsCard item={n} />)}
+        <p class="stage-sub">Tech, Wissenschaft und Kultur aus der Stadt.</p>
+        <div class="mosaic cols-3">
+          {featuredNews.map((n) => (
+            <div><NewsCard item={n} /></div>
+          ))}
+        </div>
       </div>
     </section>
   )}
+
+  <!-- FUER BETRIEBE -->
+  <section class="stage-sec alt border-t" style="border-color: var(--color-border);">
+    <div class="container-page">
+      <h2>Für Betriebe aus Karlsruhe</h2>
+      <p class="stage-sub">
+        Grundeintrag kostenlos und dauerhaft. Premium-Auftritt 199 € pro Jahr netto, nur für Unternehmer.
+      </p>
+      <a href="/werben/" class="btn-primary">Werbemöglichkeiten &rarr;</a>
+    </div>
+  </section>
 </BaseLayout>

@@ -1,0 +1,372 @@
+/**
+ * Bildbuehne-Layer fuer karlsruhe-interaktiv.de.
+ * Layout-Schicht der Design-Variante 3 (siehe Mockups-Karlsruhe.html, Variante "Bildbuehne"):
+ * Vollbild-Hero, Kachelmosaik, klebende Aktionsleiste, Story-Block.
+ * Keine neuen Farben, keine neuen Fonts - alle Werte kommen aus brand.css,
+ * jede var() traegt einen literalen Fallback, damit fehlende Tokens die Regel
+ * nicht ungueltig machen.
+ */
+
+/* ---------- Buehnen-Hero ---------- */
+.stagehero {
+  position: relative;
+  min-height: 540px;
+  display: grid;
+  overflow: hidden;
+  background: var(--color-surface, #0f1011);
+}
+.stagehero.is-compact { min-height: 440px; }
+.stagehero .stage-pic {
+  position: absolute;
+  inset: 0;
+}
+.stagehero .stage-pic figure,
+.stagehero .stage-pic > div {
+  position: absolute;
+  inset: 0;
+}
+.stagehero .stage-pic img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.stagehero .veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 9, 10, 0.72) 0%,
+    rgba(8, 9, 10, 0.25) 40%,
+    rgba(8, 9, 10, 0.94) 100%
+  );
+}
+.stagehero .stage-in {
+  position: relative;
+  z-index: 2;
+  align-self: end;
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 40px 32px 44px;
+}
+.stagehero h1 {
+  font-size: clamp(44px, 7vw, 86px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  margin: 14px 0;
+  max-width: 18ch;
+  text-wrap: balance;
+  color: var(--color-text, #f7f8f8);
+}
+.stagehero .stage-lead {
+  color: rgba(247, 248, 248, 0.82);
+  font-size: 18px;
+  max-width: 54ch;
+  margin: 0;
+  line-height: 1.55;
+}
+.stagehero .stage-scene {
+  display: block;
+  margin-top: 14px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted, #8a8f98);
+}
+/* Wikimedia-Credit der ContentImage-Figure ueber den Verlauf heben */
+.stagehero .stage-pic figcaption {
+  z-index: 3;
+}
+
+/* ---------- Akzent-Badge (Mono-Label auf Akzentflaeche) ---------- */
+.badge {
+  display: inline-block;
+  background: var(--color-accent, #e4f222);
+  color: var(--color-accent-contrast, #08090a);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: var(--radius-tag, 2px);
+}
+
+/* ---------- Kachelmosaik ---------- */
+.mosaic {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: dense;
+  gap: 12px;
+}
+.mosaic.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.mosaic > .w2, .mosaic > .tile.w2 { grid-column: span 2; }
+.mosaic > .h2, .mosaic > .tile.h2 { grid-row: span 2; }
+.tile {
+  position: relative;
+  border-radius: var(--radius-card, 6px);
+  overflow: hidden;
+  min-height: 200px;
+  display: grid;
+  background: var(--color-surface, #0f1011);
+  border: 1px solid var(--color-border, #23252a);
+}
+.tile.h2 { min-height: 412px; }
+.tile:hover { border-color: var(--color-border-subtle, #323334); }
+.tile .tile-pic {
+  position: absolute;
+  inset: 0;
+}
+.tile .tile-pic figure,
+.tile .tile-pic > div {
+  position: absolute;
+  inset: 0;
+}
+.tile .tile-pic img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.tile:hover .tile-pic img { transform: scale(1.04); }
+.tile .veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 40%, rgba(8, 9, 10, 0.9) 100%);
+}
+.tile .cap {
+  position: relative;
+  z-index: 2;
+  align-self: end;
+  padding: 16px;
+}
+.tile .cap h3, .tile .cap .cap-title {
+  margin: 0;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  color: var(--color-text, #f7f8f8);
+}
+.tile .cap span, .tile .cap .cap-meta {
+  font-size: 12px;
+  color: var(--color-text-muted, #8a8f98);
+}
+
+/* ---------- Kachel-Karten (Cards in Kachel-Optik, Meta unter dem Bild) ---------- */
+.tilecard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: var(--radius-card, 6px);
+  overflow: hidden;
+  background: var(--color-surface, #0f1011);
+  border: 1px solid var(--color-border, #23252a);
+  transition: border-color 0.2s ease;
+}
+.tilecard:hover { border-color: var(--color-accent, #e4f222); }
+.tilecard .tilecard-media {
+  position: relative;
+  flex: 1;
+  min-height: 200px;
+  display: grid;
+  overflow: hidden;
+}
+.tilecard .tilecard-media figure,
+.tilecard .tilecard-media .tilecard-pic {
+  position: absolute;
+  inset: 0;
+}
+.tilecard .tilecard-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.tilecard:hover .tilecard-media img { transform: scale(1.04); }
+.tilecard .veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 40%, rgba(8, 9, 10, 0.9) 100%);
+}
+.tilecard .cap {
+  position: relative;
+  z-index: 2;
+  align-self: end;
+  padding: 14px 16px;
+}
+.tilecard .cap h3 {
+  margin: 0;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-text, #f7f8f8);
+}
+.tilecard .cap .cap-meta {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--color-text-muted, #8a8f98);
+}
+.tilecard .tilecard-tags {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tilecard .tilecard-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+  padding: 10px 16px 12px;
+  border-top: 1px solid var(--color-border, #23252a);
+  font-size: 12px;
+  color: var(--color-text-muted, #8a8f98);
+}
+.tilecard .tilecard-meta strong {
+  color: var(--color-text, #f7f8f8);
+  font-weight: 600;
+}
+.tilecard .tilecard-meta .meta-accent {
+  color: var(--color-accent, #e4f222);
+  font-weight: 600;
+}
+
+/* ---------- Klebende Aktionsleiste ---------- */
+.dock {
+  position: sticky;
+  bottom: 0;
+  z-index: 30;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 14px 32px;
+  background: rgba(15, 16, 17, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid var(--color-border, #23252a);
+  border-bottom: 1px solid var(--color-border, #23252a);
+}
+.dock .dock-info {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text, #f7f8f8);
+}
+.dock .dock-info small {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--color-text-muted, #8a8f98);
+  letter-spacing: 0;
+  margin-top: 2px;
+}
+.dock .dock-sp { flex: 1; }
+
+/* ---------- Story-Block (halbe Bildflaeche neben Text) ---------- */
+.story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--color-surface, #0f1011);
+  border-top: 1px solid var(--color-border, #23252a);
+  border-bottom: 1px solid var(--color-border, #23252a);
+}
+.story .story-pic {
+  position: relative;
+  min-height: 440px;
+  overflow: hidden;
+}
+.story .story-pic figure,
+.story .story-pic > div {
+  position: absolute;
+  inset: 0;
+}
+.story .story-pic img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.story .story-txt {
+  padding: 52px 40px;
+  align-self: center;
+}
+
+/* ---------- Sektionen der Buehne ---------- */
+.stage-sec { padding: 54px 0; }
+.stage-sec.alt { background: var(--color-surface, #0f1011); }
+.stage-sec h2 {
+  font-size: clamp(26px, 3.2vw, 36px);
+  letter-spacing: -0.03em;
+  margin: 0 0 8px;
+  font-weight: 700;
+  color: var(--color-text, #f7f8f8);
+}
+.stage-sub {
+  color: var(--color-text-muted, #8a8f98);
+  max-width: 62ch;
+  margin: 0 0 28px;
+  font-size: 15.5px;
+}
+.stage-prose { max-width: 68ch; }
+.stage-prose p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--color-text-body, #d0d6e0);
+  margin: 0 0 1.1em;
+}
+
+/* ---------- FAQ ---------- */
+.stage-qa details {
+  border-bottom: 1px solid var(--color-border, #23252a);
+  padding: 18px 0;
+}
+.stage-qa summary {
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-text, #f7f8f8);
+}
+.stage-qa p {
+  color: var(--color-text-body, #d0d6e0);
+  line-height: 1.7;
+  margin: 10px 0 0;
+}
+
+/* ---------- Mobil ---------- */
+@media (max-width: 900px) {
+  .stagehero { min-height: 460px; }
+  .stagehero .stage-in { padding: 28px 18px 32px; }
+  .mosaic, .mosaic.cols-3 { grid-template-columns: repeat(2, 1fr); }
+  .mosaic > .h2, .mosaic > .tile.h2 { grid-row: span 1; }
+  .tile.h2 { min-height: 200px; }
+  .story { grid-template-columns: 1fr; }
+  .story .story-pic { min-height: 260px; }
+  .story .story-txt { padding: 32px 18px; }
+  .dock { padding: 12px 18px; }
+}
+@media (max-width: 480px) {
+  .mosaic, .mosaic.cols-3 { grid-template-columns: 1fr; }
+  .mosaic > .w2, .mosaic > .tile.w2 { grid-column: span 1; }
+}

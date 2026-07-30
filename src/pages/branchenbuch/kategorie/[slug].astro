@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import StageHero from "../../../components/StageHero.astro";
+import ActionDock from "../../../components/ActionDock.astro";
 import { city } from "../../../data/city";
 import {
   branchenCategories,
@@ -48,26 +50,30 @@ const schema = {
   title={`${kategorie.name} in ${city.name}`}
   description={`${kategorie.name} in ${city.name}: ${listings.length} Einträge aus dem Branchenbuch von ${city.name}-Interaktiv. Kostenloser Eintrag für Betriebe möglich.`}
 >
+  <StageHero
+    badge={`${listings.length} ${listings.length === 1 ? "Eintrag" : "Einträge"}`}
+    title={`${kategorie.name} in ${city.name}`}
+    lead={kategorie.description}
+    fallbackHue={1}
+    compact
+    minHeight="380px"
+  />
+
+  <ActionDock
+    info={{
+      line: "Grundeintrag: kostenlos",
+      sub: "Premium-Auftritt: 199 € / Jahr netto (236,81 € brutto) · nur für Unternehmer · keine automatische Verlängerung",
+    }}
+    secondary={{ label: "Ganz oben stehen?", href: "/werben/premium-partner/" }}
+    primary={{ label: "Kostenlos eintragen", href: "/branchenbuch/eintrag-beanspruchen/" }}
+  />
+
   <div class="container-page py-12">
     <Breadcrumbs items={[
       { label: city.name, href: "/" },
       { label: "Branchenbuch", href: "/branchenbuch/" },
       { label: kategorie.name },
     ]} />
-
-    <header class="max-w-3xl mb-12">
-      <p class="eyebrow mb-3">{listings.length} {listings.length === 1 ? "Eintrag" : "Einträge"}</p>
-      <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-5" style="color: var(--color-text);">
-        {kategorie.name} in {city.name}
-      </h1>
-      <p class="text-lg leading-relaxed mb-6" style="color: var(--color-text-body);">
-        {kategorie.description}
-      </p>
-      <div class="flex flex-wrap gap-3">
-        <a href="/branchenbuch/eintrag-beanspruchen/" class="btn-primary">Kostenlos eintragen &rarr;</a>
-        <a href="/werben/premium-partner/" class="btn-outline">Ganz oben stehen?</a>
-      </div>
-    </header>
 
     {listings.length > 0 ? (
       <section class="mb-14 max-w-3xl">
@@ -80,7 +86,7 @@ const schema = {
               <div class="werben-mock is-premium" style="margin-bottom:0.9rem;">
                 <div class="flex items-center justify-between mb-3">
                   <p class="eyebrow">Premium-Partner</p>
-                  <span class="werben-badge">&#9733; Premium</span>
+                  <span class="badge">&#9733; Premium</span>
                 </div>
                 <div class="werben-mock-head">
                   <span class="werben-avatar is-premium">{initials(l.name)}</span>

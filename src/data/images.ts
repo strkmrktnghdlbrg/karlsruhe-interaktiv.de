@@ -264,3 +264,12 @@ export const images: Record<string, ImageEntry> = {
 export function getImage(key: string): ImageEntry | undefined {
   return images[key];
 }
+
+/**
+ * Fallback-Kette der Bildbuehne (gleiche Logik wie hamburg-guide.org):
+ * eigener Key, sonst Bezirksfoto, sonst undefined (ContentImage zeigt den
+ * designten Platzhalter). Fuer Hotels/Restaurants ist das Bezirksfoto die
+ * ehrliche Buehne - die Bildunterschrift nennt dann den Bezirk, nie den Betrieb.
+ */
+export const heroKey = (own: string, fallbackDistrict?: string) =>
+  getImage(own) ? own : fallbackDistrict ? `district:${fallbackDistrict}` : undefined;

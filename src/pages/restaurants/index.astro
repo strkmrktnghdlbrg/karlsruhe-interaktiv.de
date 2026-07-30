@@ -23,8 +23,10 @@ const cuisines = [...new Set(restaurants.map((r) => r.cuisine))].sort();
         {cuisines.map((c) => <span class="pill">{c}</span>)}
       </div>
     </header>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {sorted.map((r) => <RestaurantCard restaurant={r} />)}
+    <div class="mosaic">
+      {sorted.map((r, i) => (
+        <div class={i % 7 === 0 ? "w2" : i % 7 === 3 ? "h2" : undefined}><RestaurantCard restaurant={r} /></div>
+      ))}
     </div>
   </div>
 </BaseLayout>

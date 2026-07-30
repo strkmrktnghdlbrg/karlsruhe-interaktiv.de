@@ -114,19 +114,7 @@
   color: var(--color-text-muted);
 }
 .werben-avatar.is-premium { background: var(--color-accent); color: var(--color-accent-contrast, #fff); }
-.werben-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.2rem 0.5rem;
-  border-radius: 999px;
-  background: var(--color-accent);
-  color: var(--color-accent-contrast, #fff);
-}
+/* .werben-badge entfernt - stage.css .badge uebernimmt diese Rolle */
 .werben-mock-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem; }
 .werben-mock-btn {
   font-size: 0.82rem;

@@ -1,10 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
-import ContentImage from "../../components/ContentImage.astro";
+import StageHero from "../../components/StageHero.astro";
+import ActionDock from "../../components/ActionDock.astro";
 import RelatedItems from "../../components/RelatedItems.astro";
 import { restaurants, getRestaurant } from "../../data/restaurants";
 import { getDistrict } from "../../data/districts";
+import { heroKey, getImage } from "../../data/images";
 import { city } from "../../data/city";
 import { detailUrl } from "../../i18n/config";
 import { restaurantsEn } from "../../i18n/en/restaurants";
@@ -17,6 +19,10 @@ const { slug } = Astro.params;
 const restaurant = getRestaurant(slug!);
 if (!restaurant) return Astro.redirect("/404");
 const district = getDistrict(restaurant.district);
+
+/* Kein eigenes Restaurantfoto -> Bezirksfoto als ehrliche Buehne */
+const stageKey = heroKey(restaurant.imageKey ?? `restaurant:${restaurant.slug}`, restaurant.district);
+const usesDistrictPhoto = stageKey?.startsWith("district:") && Boolean(getImage(stageKey));
 
 const schema = {
   "@context": "https://schema.org",
@@ -33,46 +39,60 @@ const schema = {
 ---
 
 <BaseLayout title={restaurant.name} description={restaurant.shortDesc} alternateUrls={{ de: detailUrl("restaurants", restaurant.slug, "de"), en: detailUrl("restaurants", restaurantsEn[restaurant.slug].slug, "en") }}>
-  <article class="container-page py-12">
-    <Breadcrumbs items={[
-      { label: "Start", href: "/" },
-      { label: "Restaurants", href: "/restaurants/" },
-      { label: restaurant.name },
-    ]} />
+  <article>
+    <StageHero
+      imgKey={stageKey}
+      badge={`${restaurant.cuisine} · ${restaurant.priceLevel}${district ? ` · ${district.name}` : ""}`}
+      title={restaurant.name}
+      lead={restaurant.shortDesc}
+      sceneLabel={usesDistrictPhoto && district ? `Foto: ${district.name}` : undefined}
+      fallbackHue={restaurant.imageHue}
+      minHeight="500px"
+    />
 
-    <div class="grid lg:grid-cols-[2fr_1fr] gap-10 mb-12">
-      <div>
-        <p class="eyebrow mb-3">{restaurant.cuisine} &middot; {restaurant.priceLevel}{district && ` · ${district.name}`}</p>
-        <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-6" style="color: var(--color-text);">{restaurant.name}</h1>
-        <p class="text-lg leading-relaxed mb-6" style="color: var(--color-text-body);">{restaurant.longDesc}</p>
+    <ActionDock
+      info={{
+        line: district?.name ?? "Karlsruhe",
+        sub: [
+          restaurant.openingHours ? `Öffnung laut Betreiber: ${restaurant.openingHours} · Stand Juli 2026` : null,
+          restaurant.reservation ? "Reservierung empfohlen" : restaurant.reservation === false ? "Walk-In" : null,
+        ].filter(Boolean).join(" · ") || `${restaurant.cuisine} · ${restaurant.priceLevel}`,
+      }}
+      secondary={district ? { label: "Zum Bezirk", href: `/bezirke/${district.slug}/` } : undefined}
+      primary={restaurant.websiteUrl
+        ? { label: "Website", href: restaurant.websiteUrl, rel: "nofollow noopener", target: "_blank" }
+        : { label: "Alle Restaurants", href: "/restaurants/" }}
+    />
 
-        <div class="flex flex-wrap gap-2 mb-6">
-          {restaurant.openingHours && <span class="pill">{restaurant.openingHours}</span>}
-          {restaurant.reservation && <span class="pill-accent">Reservierung empfohlen</span>}
-          {restaurant.reservation === false && <span class="pill">Walk-In</span>}
+    <div class="container-page py-10">
+      <Breadcrumbs items={[
+        { label: "Start", href: "/" },
+        { label: "Restaurants", href: "/restaurants/" },
+        { label: restaurant.name },
+      ]} />
+
+      <div class="stage-prose mt-6 mb-6">
+        <p>{restaurant.longDesc}</p>
+      </div>
+
+      <div class="flex flex-wrap gap-2 mb-6">
+        {restaurant.openingHours && <span class="pill">{restaurant.openingHours}</span>}
+        {restaurant.reservation && <span class="pill">Reservierung empfohlen</span>}
+        {restaurant.reservation === false && <span class="pill">Walk-In</span>}
+      </div>
+
+      {district && (
+        <div class="my-12 p-6 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+          <p class="eyebrow mb-2">Bezirk</p>
+          <h2 class="text-xl font-semibold mb-2" style="color: var(--color-text);">{district.name}</h2>
+          <p class="text-sm mb-3" style="color: var(--color-text-body);">{district.shortDesc}</p>
+          <a href={`/bezirke/${district.slug}/`} class="link-accent text-sm">Bezirks-Hub ansehen &rarr;</a>
         </div>
+      )}
 
-        {restaurant.websiteUrl && (
-          <a href={restaurant.websiteUrl} rel="nofollow noopener" target="_blank" class="btn-primary">Website &rarr;</a>
-        )}
-      </div>
-
-      <aside class="aspect-[4/3] lg:aspect-auto lg:min-h-[320px] overflow-hidden" style="border-radius: var(--radius-card);">
-        <ContentImage imgKey={restaurant.imageKey} fallbackHue={restaurant.imageHue} fallbackLabel={restaurant.name} loading="eager" />
-      </aside>
+      <RelatedItems district={restaurant.district} excludeSlug={restaurant.slug} type="restaurants" />
+      <RelatedItems district={restaurant.district} type="sights" title="Sehenswürdigkeiten im Bezirk" />
     </div>
-
-    {district && (
-      <div class="my-12 p-6 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
-        <p class="eyebrow mb-2">Bezirk</p>
-        <h2 class="text-xl font-semibold mb-2" style="color: var(--color-text);">{district.name}</h2>
-        <p class="text-sm mb-3" style="color: var(--color-text-body);">{district.shortDesc}</p>
-        <a href={`/bezirke/${district.slug}/`} class="link-accent text-sm">Bezirks-Hub ansehen &rarr;</a>
-      </div>
-    )}
-
-    <RelatedItems district={restaurant.district} excludeSlug={restaurant.slug} type="restaurants" />
-    <RelatedItems district={restaurant.district} type="sights" title="Sehenswürdigkeiten im Bezirk" />
 
     <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline></script>
   </article>

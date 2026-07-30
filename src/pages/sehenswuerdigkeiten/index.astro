@@ -20,8 +20,10 @@ const sorted = [...sights].sort((a, b) => a.name.localeCompare(b.name, "de"));
         Vom barocken Schloss bis zum weltweit einzigartigen ZKM, vom Turmberg in Durlach bis zum Bundesverfassungsgericht - alle ikonischen Orte der Faecherstadt.
       </p>
     </header>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {sorted.map((s) => <SightCard sight={s} />)}
+    <div class="mosaic">
+      {sorted.map((s, i) => (
+        <div class={i % 7 === 0 ? "w2" : i % 7 === 3 ? "h2" : undefined}><SightCard sight={s} /></div>
+      ))}
     </div>
 
     <GetYourGuideWidget placement={getGygPlacement("page:sights-index")} />

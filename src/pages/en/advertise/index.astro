@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import StageHero from "../../../components/StageHero.astro";
+import ActionDock from "../../../components/ActionDock.astro";
 import { city } from "../../../data/city";
 import { legal } from "../../../data/legal";
 import { totalListings } from "../../../data/branchenverzeichnis";
@@ -40,20 +42,28 @@ const steps = [
 ---
 
 <BaseLayout title={title} description={description} locale={locale}>
+  <StageHero
+    imgKey="sight:rheinhafen"
+    badge={`Advertise on ${city.name}-Interaktiv`}
+    title={`Be visible locally - to people who are into ${city.name}.`}
+    lead={`${city.name}-Interaktiv is the city portal for the "fan city": sights, restaurants, hotels, districts, events and the tech scene around KIT and CyberForum. Our directory already holds ${totalListings()} businesses from ${city.name}.`}
+    compact
+  />
+
+  <ActionDock
+    info={{
+      line: "199 € / year net",
+      sub: "236.81 € gross · businesses only (§ 14 BGB) · no automatic renewal",
+    }}
+    secondary={{ label: "Premium-Partner (German)", href: "/werben/premium-partner/" }}
+    primary={{ label: "Get in touch", href: "#advertise-contact" }}
+  />
+
   <div class="container-page py-12">
     <Breadcrumbs items={[{ label: city.name, href: "/en/" }, { label: "Advertise" }]} />
 
-    <div class="max-w-3xl mb-14">
-      <p class="eyebrow mb-3">Advertise on {city.name}-Interaktiv</p>
-      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-6" style="color: var(--color-text);">
-        Be visible locally - to people who are into {city.name}.
-      </h1>
-      <p class="text-lg leading-relaxed mb-6" style="color: var(--color-text-body);">
-        {city.name}-Interaktiv is the city portal for the "fan city": sights, restaurants, hotels,
-        districts, events and the tech scene around KIT and CyberForum. Our directory already holds
-        {totalListings()} businesses from {city.name}.
-      </p>
-      <p class="text-sm mb-8" style="color: var(--color-text-muted);">
+    <div class="max-w-3xl mb-14 mt-4">
+      <p class="text-sm" style="color: var(--color-text-muted);">
         Prices are net and apply to businesses only (§ 14 BGB). The detailed German pages carry the
         full terms: <a href="/werben/" class="link-accent">Werben</a> ·
         <a href="/werben/premium-partner/" class="link-accent">Premium-Partner</a>.
@@ -86,7 +96,7 @@ const steps = [
       </div>
     </section>
 
-    <section class="werben-cta-band">
+    <section id="advertise-contact" class="werben-cta-band">
       <h2 class="text-2xl font-semibold tracking-tight mb-3" style="color: var(--color-text);">
         Interested? Drop us a line.
       </h2>

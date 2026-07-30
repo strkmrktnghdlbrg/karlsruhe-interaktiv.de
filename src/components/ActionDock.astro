@@ -1,0 +1,36 @@
+---
+/**
+ * Klebende Aktionsleiste der Bildbuehne (position: sticky, bottom: 0).
+ * info = fette Zeile + Kleintext, primary/secondary = Buttons.
+ */
+interface DockLink {
+  label: string;
+  href: string;
+  rel?: string;
+  target?: string;
+}
+
+interface Props {
+  primary?: DockLink;
+  secondary?: DockLink;
+  info?: { line: string; sub?: string };
+}
+
+const { primary, secondary, info } = Astro.props;
+---
+
+<div class="dock">
+  {info && (
+    <div class="dock-info">
+      {info.line}
+      {info.sub && <small>{info.sub}</small>}
+    </div>
+  )}
+  <span class="dock-sp"></span>
+  {secondary && (
+    <a href={secondary.href} rel={secondary.rel} target={secondary.target} class="btn-outline">{secondary.label}</a>
+  )}
+  {primary && (
+    <a href={primary.href} rel={primary.rel} target={primary.target} class="btn-primary">{primary.label}</a>
+  )}
+</div>

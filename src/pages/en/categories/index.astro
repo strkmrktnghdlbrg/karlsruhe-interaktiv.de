@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import ContentImage from "../../../components/ContentImage.astro";
 import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
 import { categories } from "../../../data/categories";
 import { categoriesEn } from "../../../i18n/en/categories";
@@ -28,18 +29,22 @@ const locale = "en";
         {t(locale, "categories.intro")}
       </p>
     </header>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {categories.map((c) => {
+    <div class="mosaic">
+      {categories.map((c, i) => {
         const en = categoriesEn[c.slug];
-        const sCount = sightsByCategory(c.slug).length;
+        const catSights = sightsByCategory(c.slug);
         const rCount = restaurantsByCategory(c.slug).length;
+        const imgKey = catSights.find((s) => s.imageKey)?.imageKey;
+        const span = i % 5 === 0 ? "w2" : undefined;
         return (
-          <a href={detailUrl("categories", en.slug, locale)} class="card group block p-6">
-            <h3 class="text-xl font-semibold mb-2" style="color: var(--color-text);">{en.name}</h3>
-            <p class="text-sm mb-4" style="color: var(--color-text-body);">{en.shortDesc}</p>
-            <div class="flex gap-3 text-xs" style="color: var(--color-text-muted);">
-              <span><strong style="color: var(--color-text);">{sCount}</strong> {t(locale, "categories.cardSights")}</span>
-              <span><strong style="color: var(--color-text);">{rCount}</strong> {t(locale, "categories.cardRestaurants")}</span>
+          <a href={detailUrl("categories", en.slug, locale)} class={`tile${span ? ` ${span}` : ""}`}>
+            <div class="tile-pic">
+              <ContentImage imgKey={imgKey} fallbackHue={(i % 5) + 1} imgClass="w-full h-full object-cover" />
+            </div>
+            <div class="veil"></div>
+            <div class="cap">
+              <h3>{en.name}</h3>
+              <span>{en.shortDesc} · {catSights.length} {t(locale, "categories.cardSights")}{rCount > 0 ? ` · ${rCount} ${t(locale, "categories.cardRestaurants")}` : ""}</span>
             </div>
           </a>
         );

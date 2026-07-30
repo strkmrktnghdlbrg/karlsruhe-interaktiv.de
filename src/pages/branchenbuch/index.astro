@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import StageHero from "../../components/StageHero.astro";
+import ActionDock from "../../components/ActionDock.astro";
 import { branchen } from "../../data/branchen";
 import { city } from "../../data/city";
 import { branchenCategories, categoryCount, totalListings } from "../../data/branchenverzeichnis";
@@ -24,24 +26,25 @@ const schema = {
   title={`Branchenbuch ${city.name}`}
   description={`Das Karlsruher Branchenbuch: ${branchen.length} Branchen von Notaren über Handwerker bis IT-Dienstleister - mit Anbieterprofilen, Adressen und Kontaktwegen.`}
 >
+  <StageHero
+    imgKey="sight:marktplatz-pyramide"
+    badge={`${branchen.length} Branchen`}
+    title="Branchenbuch Karlsruhe"
+    lead="Vom Notar über den Handwerker bis zur Marketingagentur: Hier findest du empfehlenswerte Anbieter und Dienstleister aus Karlsruhe und Umgebung - redaktionell zusammengestellt, mit Adressen, Leistungen und Kontaktwegen."
+    compact
+  />
+
+  <ActionDock
+    info={{
+      line: "Grundeintrag: kostenlos",
+      sub: "Premium-Auftritt: 199 € / Jahr netto (236,81 € brutto) · nur für Unternehmer · keine automatische Verlängerung",
+    }}
+    secondary={{ label: "Premium-Partner werden", href: "/werben/premium-partner/" }}
+    primary={{ label: "Kostenlos eintragen", href: "/branchenbuch/eintrag-beanspruchen/" }}
+  />
+
   <div class="container-page py-12">
     <Breadcrumbs items={[{ label: "Start", href: "/" }, { label: "Branchenbuch" }]} />
-
-    <header class="mb-12 max-w-3xl">
-      <p class="eyebrow mb-3">{branchen.length} Branchen</p>
-      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">
-        Branchenbuch Karlsruhe
-      </h1>
-      <p class="text-lg leading-relaxed mb-6" style="color: var(--color-text-body);">
-        Vom Notar über den Handwerker bis zur Marketingagentur: Hier findest du
-        empfehlenswerte Anbieter und Dienstleister aus Karlsruhe und Umgebung -
-        redaktionell zusammengestellt, mit Adressen, Leistungen und Kontaktwegen.
-      </p>
-      <div class="flex flex-wrap gap-3">
-        <a href="/branchenbuch/eintrag-beanspruchen/" class="btn-primary">Kostenlos eintragen &rarr;</a>
-        <a href="/werben/premium-partner/" class="btn-outline">Ganz oben stehen? Premium-Partner werden</a>
-      </div>
-    </header>
 
     <!-- Verzeichnis nach Kategorien -->
     <section class="mb-14">

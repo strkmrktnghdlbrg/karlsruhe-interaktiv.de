@@ -2,6 +2,7 @@
 import ContentImage from "./ContentImage.astro";
 import type { Hotel } from "../data/hotels";
 import { getDistrict } from "../data/districts";
+import { heroKey, getImage } from "../data/images";
 import type { Locale } from "../i18n/config";
 import { detailUrl } from "../i18n/config";
 import { hotelsEn } from "../i18n/en/hotels";
@@ -15,43 +16,40 @@ const starsLabel = "*".repeat(hotel.stars);
 const en = locale === "en" ? hotelsEn[hotel.slug] : undefined;
 const href = locale === "en" ? detailUrl("hotels", en!.slug, "en") : `/hotels/${hotel.slug}/`;
 const name = en?.name ?? hotel.name;
-const shortDesc = en?.shortDesc ?? hotel.shortDesc;
 const districtName = locale === "en" ? (districtsEn[hotel.district]?.name ?? district?.name ?? hotel.district) : (district?.name ?? hotel.district);
 
-const favoriteLabel = locale === "en" ? "Guest favorite" : "Gaesteliebling";
+const favoriteLabel = locale === "en" ? "Guest favorite" : "Gästeliebling";
 const fromLabel = locale === "en" ? "from" : "ab";
-const perNightLabel = locale === "en" ? " / night" : " / Nacht";
+const perNightLabel = locale === "en" ? "/ night" : "/ Nacht";
 const reviewsLabel = locale === "en" ? "reviews" : "Bew.";
+
+/* Kein eigenes Hotelfoto vorhanden -> Bezirksfoto als ehrliche Buehne */
+const imgKey = heroKey(`hotel:${hotel.slug}`, hotel.district);
+const usesDistrictPhoto = imgKey?.startsWith("district:") && Boolean(getImage(imgKey));
 ---
 
-<a href={href} class="card group block">
-  <div class="aspect-[4/3] relative overflow-hidden">
-    <ContentImage
-      imgKey={`hotel:${hotel.slug}`}
-      fallbackHue={hotel.imageHue}
-      fallbackLabel={name}
-      className="w-full h-full"
-    />
-    <div class="absolute top-3 left-3 flex flex-col gap-1.5">
-      {hotel.guestFavorite && <span class="pill-accent">{favoriteLabel}</span>}
+<a href={href} class="tilecard group block">
+  <div class="tilecard-media">
+    <div class="tilecard-pic">
+      <ContentImage
+        imgKey={imgKey}
+        fallbackHue={hotel.imageHue}
+        fallbackLabel={name}
+        imgClass="w-full h-full object-cover"
+      />
+    </div>
+    <div class="veil"></div>
+    <div class="tilecard-tags">
       <span class="pill" style="background: rgba(8,9,10,0.85); backdrop-filter: blur(8px);">{starsLabel}</span>
+      {hotel.guestFavorite && <span class="pill" style="background: rgba(8,9,10,0.85); backdrop-filter: blur(8px);">{favoriteLabel}</span>}
+    </div>
+    <div class="cap">
+      <h3>{name}</h3>
+      <span class="cap-meta">{usesDistrictPhoto ? `${districtName} · Foto: ${districtName}` : districtName}</span>
     </div>
   </div>
-  <div class="p-3">
-    <p class="text-xs font-semibold mb-1" style="color: var(--color-text-muted);">{districtName}</p>
-    <h3 class="text-base font-semibold leading-tight mb-2" style="color: var(--color-text);">{name}</h3>
-    <p class="text-xs leading-relaxed line-clamp-2 mb-2" style="color: var(--color-text-body);">{shortDesc}</p>
-    <div class="flex items-end justify-between">
-      <div>
-        <p class="text-xs" style="color: var(--color-text-muted);">{fromLabel}</p>
-        <p class="text-base font-bold" style="color: var(--color-text);">
-          {hotel.priceFrom} EUR<span class="text-xs font-normal" style="color: var(--color-text-muted);">{perNightLabel}</span>
-        </p>
-      </div>
-      <div class="text-right">
-        <p class="text-sm font-bold" style="color: var(--color-accent);">{hotel.rating.toFixed(1)}</p>
-        <p class="text-[10px]" style="color: var(--color-text-muted);">{hotel.reviews} {reviewsLabel}</p>
-      </div>
-    </div>
+  <div class="tilecard-meta">
+    <span><strong>{fromLabel} {hotel.priceFrom} EUR</strong> {perNightLabel}</span>
+    <span><strong>{hotel.rating.toFixed(1)}</strong> · {hotel.reviews} {reviewsLabel}</span>
   </div>
 </a>

@@ -1,11 +1,13 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
-import ContentImage from "../../../components/ContentImage.astro";
+import StageHero from "../../../components/StageHero.astro";
+import ActionDock from "../../../components/ActionDock.astro";
+import PhotoMosaic from "../../../components/PhotoMosaic.astro";
 import RelatedItems from "../../../components/RelatedItems.astro";
 import Stay22NearbyHotels from "../../../components/Stay22NearbyHotels.astro";
 import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
-import { sights } from "../../../data/sights";
+import { sights, sightsByDistrict } from "../../../data/sights";
 import { sightsEn } from "../../../i18n/en/sights";
 import { getDistrict } from "../../../data/districts";
 import { districtsEn } from "../../../i18n/en/districts";
@@ -27,8 +29,37 @@ const { sight, en } = Astro.props;
 const locale = "en";
 const district = getDistrict(sight.district);
 const districtEn = districtsEn[sight.district];
+const districtName = districtEn?.name ?? district?.name ?? sight.district;
 const priceLabel =
   sight.priceFrom === null ? t(locale, "detail.freeEntry") : tf(locale, "detail.priceFrom", { n: sight.priceFrom });
+
+/* Nearby: other sights in the same district, as photo mosaic */
+const nearby = sightsByDistrict(sight.district)
+  .filter((s) => s.slug !== sight.slug)
+  .slice(0, 3)
+  .map((s) => ({
+    href: detailUrl("sights", sightsEn[s.slug].slug, "en"),
+    imgKey: s.imageKey,
+    title: sightsEn[s.slug].name,
+    meta: sightsEn[s.slug].type,
+    fallbackHue: s.imageHue,
+  }));
+
+/* FAQ built strictly from existing data - no invented facts */
+const faqs = [
+  ...(district
+    ? [{ q: `Which district is ${en.name} in?`, a: `${en.name} is located in ${districtName}. ${districtEn?.shortDesc ?? ""}`.trim() }]
+    : []),
+  {
+    q: "How much is admission?",
+    a: sight.priceFrom === null
+      ? "Admission is free."
+      : `According to the operator, admission starts at ${sight.priceFrom} EUR (as of July 2026). The operator's own information is binding.`,
+  },
+  ...(en.openingHours
+    ? [{ q: `When is ${en.name} open?`, a: `According to the operator: ${en.openingHours} (as of July 2026). The official website is binding.` }]
+    : []),
+];
 
 const schema = {
   "@context": "https://schema.org",
@@ -48,62 +79,91 @@ const schema = {
   locale={locale}
   alternateUrls={{ de: `/sehenswuerdigkeiten/${sight.slug}/`, en: detailUrl("sights", en.slug, locale) }}
 >
-  <article class="container-page py-12">
-    <Breadcrumbs locale={locale} items={[
-      { label: t(locale, "nav.home"), href: homeUrl(locale) },
-      { label: t(locale, "nav.sights"), href: indexUrl("sights", locale) },
-      { label: en.name },
-    ]} />
+  <article>
+    <StageHero
+      imgKey={sight.imageKey}
+      badge={district ? `${en.type} · ${districtName}` : en.type}
+      title={en.name}
+      lead={en.shortDesc}
+      fallbackHue={sight.imageHue}
+      minHeight="500px"
+    />
 
-    <div class="grid lg:grid-cols-[2fr_1fr] gap-10 mb-12">
-      <div>
-        <p class="eyebrow mb-3">{en.type}{district && ` · ${districtEn?.name ?? district.name}`}</p>
-        <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-6" style="color: var(--color-text);">{en.name}</h1>
-        <p class="text-lg leading-relaxed mb-6" style="color: var(--color-text-body);">{en.longDesc}</p>
+    <ActionDock
+      info={{
+        line: districtName,
+        sub: [priceLabel, en.openingHours ? `Hours according to the operator: ${en.openingHours} · as of July 2026` : null]
+          .filter(Boolean)
+          .join(" · "),
+      }}
+      secondary={sight.websiteUrl ? { label: t(locale, "detail.officialWebsite"), href: sight.websiteUrl, rel: "nofollow noopener", target: "_blank" } : undefined}
+      primary={{ label: "Hotels nearby", href: "#hotels-nearby" }}
+    />
 
-        <div class="flex flex-wrap gap-2 mb-6">
-          <span class="pill-accent">{priceLabel}</span>
-          {en.openingHours && <span class="pill">{en.openingHours}</span>}
-          {sight.categories.map((c) => {
-            const cat = getCategory(c);
-            const catEn = categoriesEn[c];
-            return cat ? <a href={detailUrl("categories", catEn?.slug ?? cat.slug, locale)} class="pill">{catEn?.name ?? cat.name}</a> : null;
-          })}
-        </div>
+    <div class="container-page py-10">
+      <Breadcrumbs locale={locale} items={[
+        { label: t(locale, "nav.home"), href: homeUrl(locale) },
+        { label: t(locale, "nav.sights"), href: indexUrl("sights", locale) },
+        { label: en.name },
+      ]} />
 
-        {sight.websiteUrl && (
-          <a href={sight.websiteUrl} rel="nofollow noopener" target="_blank" class="btn-primary">
-            {t(locale, "detail.officialWebsite")}
-          </a>
-        )}
+      <div class="stage-prose mt-6">
+        <p>{en.longDesc}</p>
       </div>
 
-      <aside class="aspect-[4/3] lg:aspect-auto lg:min-h-[320px] overflow-hidden" style="border-radius: var(--radius-card);">
-        <ContentImage
-          imgKey={sight.imageKey}
-          fallbackHue={sight.imageHue}
-          fallbackLabel={en.name}
-          loading="eager"
-          showCredit
-          sizes="(min-width: 1024px) 33vw, 100vw"
-        />
-      </aside>
+      <div class="flex flex-wrap gap-2 mt-6 mb-4">
+        <span class="pill">{priceLabel}</span>
+        {en.openingHours && <span class="pill">{en.openingHours}</span>}
+        {sight.categories.map((c) => {
+          const cat = getCategory(c);
+          const catEn = categoriesEn[c];
+          return cat ? <a href={detailUrl("categories", catEn?.slug ?? cat.slug, locale)} class="pill">{catEn?.name ?? cat.name}</a> : null;
+        })}
+      </div>
     </div>
 
-    {district && districtEn && (
-      <div class="my-12 p-6 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
-        <p class="eyebrow mb-2">{t(locale, "detail.inDistrict")}</p>
-        <h2 class="text-xl font-semibold mb-2" style="color: var(--color-text);">{districtEn.name}</h2>
-        <p class="text-sm mb-3" style="color: var(--color-text-body);">{districtEn.shortDesc}</p>
-        <a href={detailUrl("districts", districtEn.slug, locale)} class="link-accent text-sm">{t(locale, "detail.districtHub")}</a>
-      </div>
+    {nearby.length > 0 && (
+      <section class="stage-sec alt">
+        <div class="container-page">
+          <h2>Nearby</h2>
+          <p class="stage-sub">More places in {districtName}.</p>
+          <PhotoMosaic items={nearby} cols={3} />
+        </div>
+      </section>
     )}
 
-    <GetYourGuideWidget placement={getGygPlacement(`sight:${sight.slug}`)} locale="en" />
+    <div class="container-page">
+      {district && districtEn && (
+        <div class="my-12 p-6 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+          <p class="eyebrow mb-2">{t(locale, "detail.inDistrict")}</p>
+          <h2 class="text-xl font-semibold mb-2" style="color: var(--color-text);">{districtEn.name}</h2>
+          <p class="text-sm mb-3" style="color: var(--color-text-body);">{districtEn.shortDesc}</p>
+          <a href={detailUrl("districts", districtEn.slug, locale)} class="link-accent text-sm">{t(locale, "detail.districtHub")}</a>
+        </div>
+      )}
 
-    <Stay22NearbyHotels lat={sight.coordinates[0]} lng={sight.coordinates[1]} near={en.name} limit={4} locale={locale} />
+      <GetYourGuideWidget placement={getGygPlacement(`sight:${sight.slug}`)} locale="en" />
 
-    <RelatedItems district={sight.district} excludeSlug={sight.slug} type="sights" locale={locale} />
+      <div id="hotels-nearby">
+        <Stay22NearbyHotels lat={sight.coordinates[0]} lng={sight.coordinates[1]} near={en.name} limit={4} locale={locale} />
+      </div>
+
+      {faqs.length > 0 && (
+        <section class="py-12" style="max-width: 70ch;">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2" style="color: var(--color-text);">Frequently asked questions</h2>
+          <div class="stage-qa">
+            {faqs.map((f, i) => (
+              <details open={i === 0}>
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <RelatedItems district={sight.district} excludeSlug={sight.slug} type="sights" locale={locale} />
+    </div>
 
     <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline></script>
   </article>

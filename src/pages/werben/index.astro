@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import StageHero from "../../components/StageHero.astro";
+import ActionDock from "../../components/ActionDock.astro";
 import { city } from "../../data/city";
 import { totalListings } from "../../data/branchenverzeichnis";
 import "../../styles/werben.css";
@@ -66,25 +68,25 @@ const faqLd = {
 ---
 
 <BaseLayout title={title} description={description}>
+  <StageHero
+    imgKey="sight:rheinhafen"
+    badge={`Werben auf ${city.name}-Interaktiv`}
+    title={`Lokal sichtbar werden - bei Menschen, die ${city.name} lieben.`}
+    lead={`${city.name}-Interaktiv ist das Stadtportal für die Fächerstadt: Sehenswürdigkeiten, Restaurants, Hotels, Stadtteile, Veranstaltungen und die Tech-Szene rund um KIT und CyberForum. Wer hier liest, sucht etwas in ${city.name} - und genau dort kann Ihr Betrieb auftauchen.`}
+    compact
+  />
+
+  <ActionDock
+    info={{
+      line: "199 € / Jahr netto",
+      sub: "236,81 € brutto · nur für Unternehmer · keine automatische Verlängerung",
+    }}
+    secondary={{ label: "Branchenbuch ansehen", href: "/branchenbuch/" }}
+    primary={{ label: "Werbung anfragen", href: "/kontakt/" }}
+  />
+
   <div class="container-page py-12">
     <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Werben" }]} />
-
-    <!-- Hero -->
-    <div class="max-w-3xl mb-14">
-      <p class="eyebrow mb-3">Werben auf {city.name}-Interaktiv</p>
-      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-6" style="color: var(--color-text);">
-        Lokal sichtbar werden - bei Menschen, die {city.name} lieben.
-      </h1>
-      <p class="text-lg leading-relaxed mb-8" style="color: var(--color-text-body);">
-        {city.name}-Interaktiv ist das Stadtportal für die Fächerstadt: Sehenswürdigkeiten, Restaurants,
-        Hotels, Stadtteile, Veranstaltungen und die Tech-Szene rund um KIT und CyberForum. Wer hier liest,
-        sucht etwas in {city.name} - und genau dort kann Ihr Betrieb auftauchen.
-      </p>
-      <div class="flex flex-wrap gap-3">
-        <a href="/kontakt/" class="btn-primary">Werbung anfragen &rarr;</a>
-        <a href="/branchenbuch/" class="btn-outline">Branchenbuch ansehen</a>
-      </div>
-    </div>
 
     <!-- Werbeformen -->
     <section class="mb-16">

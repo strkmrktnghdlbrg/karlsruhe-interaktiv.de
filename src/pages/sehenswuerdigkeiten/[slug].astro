@@ -1,11 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
-import ContentImage from "../../components/ContentImage.astro";
+import StageHero from "../../components/StageHero.astro";
+import ActionDock from "../../components/ActionDock.astro";
+import PhotoMosaic from "../../components/PhotoMosaic.astro";
 import RelatedItems from "../../components/RelatedItems.astro";
 import Stay22NearbyHotels from "../../components/Stay22NearbyHotels.astro";
 import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
-import { sights, getSight } from "../../data/sights";
+import { sights, getSight, sightsByDistrict } from "../../data/sights";
 import { sightsEn } from "../../i18n/en/sights";
 import { detailUrl } from "../../i18n/config";
 import { getDistrict } from "../../data/districts";
@@ -23,6 +25,34 @@ if (!sight) return Astro.redirect("/404");
 const district = getDistrict(sight.district);
 const priceLabel = sight.priceFrom === null ? "Eintritt frei" : `ab ${sight.priceFrom} EUR`;
 
+/* In der Umgebung: weitere Orte im selben Bezirk, als Kachelmosaik */
+const nearby = sightsByDistrict(sight.district)
+  .filter((s) => s.slug !== sight.slug)
+  .slice(0, 3)
+  .map((s) => ({
+    href: `/sehenswuerdigkeiten/${s.slug}/`,
+    imgKey: s.imageKey,
+    title: s.name,
+    meta: s.type,
+    fallbackHue: s.imageHue,
+  }));
+
+/* FAQ ausschliesslich aus vorhandenen Daten - keine erfundenen Fakten */
+const faqs = [
+  ...(district
+    ? [{ q: `In welchem Bezirk liegt ${sight.name}?`, a: `${sight.name} liegt im Bezirk ${district.name}. ${district.shortDesc}` }]
+    : []),
+  {
+    q: `Was kostet der Eintritt?`,
+    a: sight.priceFrom === null
+      ? "Der Eintritt ist frei."
+      : `Der Eintritt beginnt laut Betreiber bei ${sight.priceFrom} EUR (Stand Juli 2026). Verbindlich sind die Angaben des Betreibers.`,
+  },
+  ...(sight.openingHours
+    ? [{ q: `Wann ist ${sight.name} geöffnet?`, a: `Laut Betreiber: ${sight.openingHours} (Stand Juli 2026). Verbindlich sind die Angaben auf der offiziellen Website.` }]
+    : []),
+];
+
 const schema = {
   "@context": "https://schema.org",
   "@type": "TouristAttraction",
@@ -36,63 +66,93 @@ const schema = {
 ---
 
 <BaseLayout title={sight.name} description={sight.shortDesc} alternateUrls={{ de: `/sehenswuerdigkeiten/${sight.slug}/`, en: detailUrl("sights", sightsEn[sight.slug].slug, "en") }}>
-  <article class="container-page py-12">
-    <Breadcrumbs items={[
-      { label: "Start", href: "/" },
-      { label: "Sehenswürdigkeiten", href: "/sehenswuerdigkeiten/" },
-      { label: sight.name },
-    ]} />
+  <article>
+    <StageHero
+      imgKey={sight.imageKey}
+      badge={district ? `${sight.type} · ${district.name}` : sight.type}
+      title={sight.name}
+      lead={sight.shortDesc}
+      fallbackHue={sight.imageHue}
+      minHeight="500px"
+    />
 
-    <div class="grid lg:grid-cols-[2fr_1fr] gap-10 mb-12">
-      <div>
-        <p class="eyebrow mb-3">{sight.type}{district && ` · ${district.name}`}</p>
-        <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-6" style="color: var(--color-text);">{sight.name}</h1>
-        <p class="text-lg leading-relaxed mb-6" style="color: var(--color-text-body);">{sight.longDesc}</p>
+    <ActionDock
+      info={{
+        line: district?.name ?? "Karlsruhe",
+        sub: [priceLabel, sight.openingHours ? `Öffnung laut Betreiber: ${sight.openingHours} · Stand Juli 2026` : null]
+          .filter(Boolean)
+          .join(" · "),
+      }}
+      secondary={sight.websiteUrl ? { label: "Offizielle Website", href: sight.websiteUrl, rel: "nofollow noopener", target: "_blank" } : undefined}
+      primary={{ label: "Hotels in der Nähe", href: "#hotels-in-der-naehe" }}
+    />
 
-        <div class="flex flex-wrap gap-2 mb-6">
-          <span class="pill-accent">{priceLabel}</span>
-          {sight.openingHours && <span class="pill">{sight.openingHours}</span>}
-          {sight.categories.map((c) => {
-            const cat = getCategory(c);
-            return cat ? <a href={`/kategorien/${cat.slug}/`} class="pill">{cat.name}</a> : null;
-          })}
-        </div>
+    <div class="container-page py-10">
+      <Breadcrumbs items={[
+        { label: "Start", href: "/" },
+        { label: "Sehenswürdigkeiten", href: "/sehenswuerdigkeiten/" },
+        { label: sight.name },
+      ]} />
 
-        {sight.websiteUrl && (
-          <a href={sight.websiteUrl} rel="nofollow noopener" target="_blank" class="btn-primary">
-            Offizielle Website &rarr;
-          </a>
-        )}
+      <!-- Prosa -->
+      <div class="stage-prose mt-6">
+        <p>{sight.longDesc}</p>
       </div>
 
-      <aside class="aspect-[4/3] lg:aspect-auto lg:min-h-[320px] overflow-hidden" style="border-radius: var(--radius-card);">
-        <ContentImage
-          imgKey={sight.imageKey}
-          fallbackHue={sight.imageHue}
-          fallbackLabel={sight.name}
-          loading="eager"
-          showCredit
-          sizes="(min-width: 1024px) 33vw, 100vw"
-        />
-      </aside>
+      <div class="flex flex-wrap gap-2 mt-6 mb-4">
+        <span class="pill">{priceLabel}</span>
+        {sight.openingHours && <span class="pill">{sight.openingHours}</span>}
+        {sight.categories.map((c) => {
+          const cat = getCategory(c);
+          return cat ? <a href={`/kategorien/${cat.slug}/`} class="pill">{cat.name}</a> : null;
+        })}
+      </div>
     </div>
 
-    {district && (
-      <div class="my-12 p-6 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
-        <p class="eyebrow mb-2">Im Bezirk</p>
-        <h2 class="text-xl font-semibold mb-2" style="color: var(--color-text);">{district.name}</h2>
-        <p class="text-sm mb-3" style="color: var(--color-text-body);">{district.shortDesc}</p>
-        <a href={`/bezirke/${district.slug}/`} class="link-accent text-sm">Bezirks-Hub ansehen &rarr;</a>
-      </div>
+    {nearby.length > 0 && (
+      <section class="stage-sec alt">
+        <div class="container-page">
+          <h2>In der Umgebung</h2>
+          <p class="stage-sub">Weitere Ziele im Bezirk {district?.name ?? "Karlsruhe"}.</p>
+          <PhotoMosaic items={nearby} cols={3} />
+        </div>
+      </section>
     )}
 
-    <GetYourGuideWidget placement={getGygPlacement(`sight:${sight.slug}`)} />
+    <div class="container-page">
+      {district && (
+        <div class="my-12 p-6 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+          <p class="eyebrow mb-2">Im Bezirk</p>
+          <h2 class="text-xl font-semibold mb-2" style="color: var(--color-text);">{district.name}</h2>
+          <p class="text-sm mb-3" style="color: var(--color-text-body);">{district.shortDesc}</p>
+          <a href={`/bezirke/${district.slug}/`} class="link-accent text-sm">Bezirks-Hub ansehen &rarr;</a>
+        </div>
+      )}
 
-    <Stay22NearbyHotels lat={sight.coordinates[0]} lng={sight.coordinates[1]} near={sight.name} limit={4} />
+      <GetYourGuideWidget placement={getGygPlacement(`sight:${sight.slug}`)} />
 
-    <RelatedItems district={sight.district} excludeSlug={sight.slug} type="sights" />
-    <RelatedItems district={sight.district} type="hotels" title="Hotels im Bezirk" />
-    <RelatedItems district={sight.district} type="restaurants" title="Restaurants im Bezirk" />
+      <div id="hotels-in-der-naehe">
+        <Stay22NearbyHotels lat={sight.coordinates[0]} lng={sight.coordinates[1]} near={sight.name} limit={4} />
+      </div>
+
+      {faqs.length > 0 && (
+        <section class="py-12" style="max-width: 70ch;">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2" style="color: var(--color-text);">Häufige Fragen</h2>
+          <div class="stage-qa">
+            {faqs.map((f, i) => (
+              <details open={i === 0}>
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <RelatedItems district={sight.district} excludeSlug={sight.slug} type="sights" />
+      <RelatedItems district={sight.district} type="hotels" title="Hotels im Bezirk" />
+      <RelatedItems district={sight.district} type="restaurants" title="Restaurants im Bezirk" />
+    </div>
 
     <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline></script>
   </article>
