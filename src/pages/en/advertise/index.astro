@@ -3,6 +3,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import StageHero from "../../../components/StageHero.astro";
 import ActionDock from "../../../components/ActionDock.astro";
+import OsmAttribution from "../../../components/OsmAttribution.astro";
 import { city } from "../../../data/city";
 import { legal } from "../../../data/legal";
 import { totalListings } from "../../../data/branchenverzeichnis";
@@ -68,6 +69,7 @@ const steps = [
         full terms: <a href="/werben/" class="link-accent">Werben</a> ·
         <a href="/werben/premium-partner/" class="link-accent">Premium-Partner</a>.
       </p>
+      <OsmAttribution lang="en" />
     </div>
 
     <section class="mb-16">

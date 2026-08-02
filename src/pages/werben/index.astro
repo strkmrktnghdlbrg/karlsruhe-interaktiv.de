@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import StageHero from "../../components/StageHero.astro";
 import ActionDock from "../../components/ActionDock.astro";
+import OsmAttribution from "../../components/OsmAttribution.astro";
 import { city } from "../../data/city";
 import { totalListings } from "../../data/branchenverzeichnis";
 import "../../styles/werben.css";
@@ -130,6 +131,7 @@ const faqLd = {
           </details>
         ))}
       </div>
+      <OsmAttribution />
     </section>
 
     <!-- CTA -->

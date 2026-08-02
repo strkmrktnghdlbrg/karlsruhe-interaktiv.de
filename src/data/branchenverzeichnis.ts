@@ -3,14 +3,24 @@
  *
  * Zwei Stufen:
  *   1. Kostenloser Eintrag  - aus vorhandenen redaktionellen Inhalten erzeugt
- *      (Restaurants, Hotels, Apotheken, Banken). Rein alphabetisch, ohne Logo,
- *      ohne Beschreibung, ohne Link. "Angaben ohne Gewaehr".
+ *      (Restaurants, Hotels, Apotheken, Banken) sowie aus OpenStreetMap.
+ *      Rein alphabetisch, ohne Logo, ohne Beschreibung, ohne Link.
+ *      "Angaben ohne Gewaehr".
  *   2. Premium-Partner      - kostenpflichtig (199 EUR/Jahr netto, B2B).
  *      Steht in seiner Kategorie ganz oben, mit Logo-Initialen, Beschreibung,
  *      Website-/E-Mail-Button und DOFOLLOW-Backlink.
  *
+ * Datenquellen (sourceType):
+ *   - "portal"  Restaurants, Hotels und kuratierte Eintraege aus Portal-Beitraegen.
+ *   - "osm"     OpenStreetMap via Overpass (partners.osm.json). ODbL: die
+ *               Namensnennung ist Pflicht auf jeder Seite, die diese Daten
+ *               zeigt (Komponente OsmAttribution.astro). Reine Listings,
+ *               KEINE eigenen Detailseiten und keine Detail-Links.
+ *               Datenpflege: node scripts/fetch-osm-partners.mjs --write
+ *   - "premium" zahlende Partner. Bleibt leer, bis jemand bucht.
+ *
  * Redaktionsregeln:
- *   - Nur reale, bereits im Portal belegte Betriebe. Keine erfundenen Firmen.
+ *   - Nur reale Betriebe aus belegten Quellen. Keine erfundenen Firmen.
  *   - Keine erfundenen Bewertungen, keine Test-/Testsieger-Claims (§ 5a UWG).
  *   - Restaurants und Hotels bekommen KEINE zweite Detailseite, sondern
  *     verlinken auf ihre bestehende Seite (kein Duplicate Content).
@@ -19,6 +29,7 @@ import { restaurants } from "./restaurants";
 import { hotels } from "./hotels";
 import { getDistrict } from "./districts";
 import { branchen } from "./branchen";
+import osmRaw from "./partners.osm.json";
 
 export type BranchenCategory = {
   slug: string;
@@ -48,6 +59,14 @@ export type Listing = {
   premium?: boolean;
   /** Quellenhinweis fuer den kostenlosen Eintrag */
   source?: string;
+  /** Feinere Einordnung, z. B. "Friseur" innerhalb von Dienstleistung */
+  subcategory?: string;
+  /** Stufe des Eintrags. Kostenlose Eintraege: "free". */
+  plan?: "free" | "premium";
+  /** true = vom Betrieb bestaetigt. Portal- und OSM-Eintraege: false. */
+  verified?: boolean;
+  /** Datenherkunft. Steuert Sortierung und die ODbL-Attribution. */
+  sourceType?: "portal" | "premium" | "osm";
 };
 
 export const branchenCategories: BranchenCategory[] = [
@@ -110,6 +129,13 @@ export const branchenCategories: BranchenCategory[] = [
       "Inhabergeführte Geschäfte, Fachhandel und Boutiquen in der Innenstadt und den Stadtteilen.",
     keywords: ["handel", "shop", "laden", "moebel", "optik", "juwel"],
   },
+  {
+    slug: "freizeit",
+    name: "Freizeit & Sport",
+    description:
+      "Fitnessstudios, Sportanlagen, Tanzschulen, Kinos und Clubs in Karlsruhe und den Stadtteilen.",
+    keywords: ["sport", "fitness", "tanz", "freizeit", "kino", "musik"],
+  },
 ];
 
 export const getBranchenCategory = (slug: string) =>
@@ -170,25 +196,71 @@ const ausHotels = (): Listing[] =>
     source: "/hotels/",
   }));
 
+/**
+ * OpenStreetMap-Betriebe (ODbL). Reine Listings: kein href, also keine
+ * Detailseite und kein Detail-Link. Website und E-Mail werden bei kostenlosen
+ * Eintraegen bewusst nicht ausgegeben - das bleibt dem Premium-Eintrag
+ * vorbehalten. Erzeugt von scripts/fetch-osm-partners.mjs.
+ */
+type OsmRaw = {
+  name: string;
+  slug: string;
+  category: string;
+  subcategory: string;
+  street: string;
+  zip: string;
+  city: string;
+  suburb: string;
+  phone: string;
+  email: string;
+  website: string;
+  osmId: string;
+};
+
+export const osmListings: Listing[] = (osmRaw as OsmRaw[]).map((p) => ({
+  slug: p.slug,
+  name: p.name,
+  category: p.category,
+  subcategory: p.subcategory,
+  address: [p.street, [p.zip, p.city || "Karlsruhe"].filter(Boolean).join(" ")]
+    .filter(Boolean)
+    .join(", "),
+  districtLabel: p.suburb || undefined,
+  premium: false,
+  plan: "free" as const,
+  verified: false,
+  sourceType: "osm" as const,
+  source: "openstreetmap",
+}));
+
 const collator = new Intl.Collator("de", { sensitivity: "base" });
 
-/** Alle Eintraege: Premium zuerst, danach kostenlose alphabetisch. */
+/**
+ * Alle Eintraege: Premium zuerst, danach die redaktionellen Portal-Eintraege
+ * (mit Detailseite), zuletzt die OSM-Listings - jeweils alphabetisch.
+ */
 export const allListings = (): Listing[] => {
-  const frei = [...kuratiert, ...ausRestaurants(), ...ausHotels()].sort((a, b) =>
-    collator.compare(a.name, b.name)
-  );
-  return [...premiumPartners, ...frei];
+  const portal = [...kuratiert, ...ausRestaurants(), ...ausHotels()]
+    .map((l) => ({ ...l, plan: "free" as const, verified: false, sourceType: "portal" as const }))
+    .sort((a, b) => collator.compare(a.name, b.name));
+  const osm = [...osmListings].sort((a, b) => collator.compare(a.name, b.name));
+  return [...premiumPartners, ...portal, ...osm];
 };
 
-export const listingsByCategory = (category: string): Listing[] => {
-  const alle = allListings().filter((l) => l.category === category);
-  return [...alle.filter((l) => l.premium), ...alle.filter((l) => !l.premium)];
-};
+export const listingsByCategory = (category: string): Listing[] =>
+  allListings().filter((l) => l.category === category);
 
 export const categoryCount = (category: string) =>
   allListings().filter((l) => l.category === category).length;
 
 export const totalListings = () => allListings().length;
+
+/** Enthaelt eine Kategorie OSM-Daten? Steuert die ODbL-Attribution. */
+export const categoryHasOsm = (category: string): boolean =>
+  osmListings.some((l) => l.category === category);
+
+/** Gesamtzahl der OSM-Listings (fuer Hub-Hinweis und Attribution). */
+export const osmListingCount = osmListings.length;
 
 /**
  * Passende Beitraege aus dem bestehenden Branchenbuch (/[branche]/).

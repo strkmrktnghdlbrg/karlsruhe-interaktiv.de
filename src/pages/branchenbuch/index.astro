@@ -3,9 +3,15 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import StageHero from "../../components/StageHero.astro";
 import ActionDock from "../../components/ActionDock.astro";
+import OsmAttribution from "../../components/OsmAttribution.astro";
 import { branchen } from "../../data/branchen";
 import { city } from "../../data/city";
-import { branchenCategories, categoryCount, totalListings } from "../../data/branchenverzeichnis";
+import {
+  branchenCategories,
+  categoryCount,
+  totalListings,
+  osmListingCount,
+} from "../../data/branchenverzeichnis";
 import "../../styles/werben.css";
 
 const sorted = [...branchen].sort((a, b) => a.label.localeCompare(b.label, "de"));
@@ -72,8 +78,12 @@ const schema = {
       </div>
       <p class="werben-muted-note">
         Die kostenlosen Einträge stammen aus der redaktionellen Arbeit dieses Portals - Restaurants,
-        Hotels, Apotheken und Banken, die hier bereits vorkommen. Alle Angaben ohne Gewähr.
+        Hotels, Apotheken und Banken, die hier bereits vorkommen - sowie aus {osmListingCount} Adressen
+        der offenen Kartendatenbank OpenStreetMap. Diese Karteneinträge sind unbestätigt und lassen
+        sich kostenlos <a href="/branchenbuch/eintrag-beanspruchen/" class="link-accent">beanspruchen</a>.
+        Alle Angaben ohne Gewähr.
       </p>
+      <OsmAttribution />
     </section>
 
     <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mb-6" style="color: var(--color-text);">

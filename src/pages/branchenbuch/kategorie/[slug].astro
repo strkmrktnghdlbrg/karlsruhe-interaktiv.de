@@ -3,6 +3,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import StageHero from "../../../components/StageHero.astro";
 import ActionDock from "../../../components/ActionDock.astro";
+import OsmAttribution from "../../../components/OsmAttribution.astro";
 import { city } from "../../../data/city";
 import {
   branchenCategories,
@@ -19,6 +20,25 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const kategorie = getBranchenCategory(slug!)!;
 const listings = listingsByCategory(kategorie.slug);
+
+/*
+ * Redaktionelle Eintraege (Premium + Portal) stehen oben und verlinken auf ihre
+ * bestehende Detailseite. Die OSM-Listings darunter sind reine Eintraege ohne
+ * Detailseite; sie werden nach Feinkategorie gebuendelt, damit die Liste
+ * lesbar bleibt. ODbL: Attribution ist Pflicht, sobald OSM-Daten erscheinen.
+ */
+const redaktionell = listings.filter((l) => l.sourceType !== "osm");
+const osmListings = listings.filter((l) => l.sourceType === "osm");
+const hasOsm = osmListings.length > 0;
+
+const collator = new Intl.Collator("de", { sensitivity: "base" });
+const osmGruppen = Object.entries(
+  osmListings.reduce<Record<string, typeof osmListings>>((acc, l) => {
+    const key = l.subcategory || kategorie.name;
+    (acc[key] ??= []).push(l);
+    return acc;
+  }, {}),
+).sort((a, b) => b[1].length - a[1].length || collator.compare(a[0], b[0]));
 
 /*
  * Leere Kategorien bleiben erreichbar und verlinkt (sie laden zum ersten
@@ -75,13 +95,13 @@ const schema = {
       { label: kategorie.name },
     ]} />
 
-    {listings.length > 0 ? (
+    {redaktionell.length > 0 && (
       <section class="mb-14 max-w-3xl">
         <h2 class="text-2xl font-semibold tracking-tight mb-4" style="color: var(--color-text);">
           Betriebe
         </h2>
         <div>
-          {listings.map((l) => (
+          {redaktionell.map((l) => (
             l.premium ? (
               <div class="werben-mock is-premium" style="margin-bottom:0.9rem;">
                 <div class="flex items-center justify-between mb-3">
@@ -130,7 +150,45 @@ const schema = {
           <a href="/kontakt/" class="link-accent">Redaktion</a> melden.
         </p>
       </section>
-    ) : (
+    )}
+
+    {hasOsm && (
+      <section class="mb-14 max-w-3xl">
+        <h2 class="text-2xl font-semibold tracking-tight mb-2" style="color: var(--color-text);">
+          Weitere Betriebe in {city.name}
+        </h2>
+        <p class="mb-6" style="color: var(--color-text-body);">
+          {osmListings.length} weitere Adressen aus der offenen Kartendatenbank OpenStreetMap. Diese
+          Einträge sind unbestätigt und haben keine eigene Seite. Betriebe können ihren Eintrag
+          kostenlos <a href="/branchenbuch/eintrag-beanspruchen/" class="link-accent">beanspruchen</a>
+          und korrigieren lassen.
+        </p>
+        {osmGruppen.map(([gruppe, eintraege]) => (
+          <div class="mb-8">
+            <h3 class="text-lg font-semibold mb-3" style="color: var(--color-text);">
+              {gruppe} <span style="color: var(--color-text-subtle); font-weight: 400;">({eintraege.length})</span>
+            </h3>
+            <div>
+              {eintraege.map((l) => (
+                <div class="branchen-item">
+                  <span class="branchen-item-name">{l.name}</span>
+                  <span class="branchen-item-meta">
+                    {[l.address, l.districtLabel].filter(Boolean).join(" · ")}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+        <p class="werben-muted-note">
+          Alle Angaben ohne Gewähr. Stand der Kartendaten kann abweichen. Fehler bitte an die
+          <a href="/kontakt/" class="link-accent">Redaktion</a> melden.
+        </p>
+        <OsmAttribution />
+      </section>
+    )}
+
+    {listings.length === 0 && (
       <section class="werben-card mb-14 max-w-3xl">
         <h2 class="text-xl font-semibold mb-2" style="color: var(--color-text);">
           Noch kein Eintrag in dieser Branche
