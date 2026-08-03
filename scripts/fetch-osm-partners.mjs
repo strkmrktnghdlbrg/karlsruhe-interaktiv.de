@@ -16,6 +16,15 @@
  *    deshalb wird jeder OSM-Tag auf einen der vorhandenen Kategorie-Slugs
  *    abgebildet; das feinere OSM-Label wandert als "subcategory" mit.
  *  - Dedup gegen restaurants.ts, hotels.ts und die kuratierten Eintraege.
+ *
+ * SPERRLISTE (src/data/osm-blocklist.json):
+ *  Betriebe, die ihre Loeschung verlangt haben, stehen in dieser Datei und
+ *  werden hier herausgefiltert, BEVOR partners.osm.json geschrieben wird.
+ *  Sie kommen dadurch auch bei jedem kuenftigen Lauf nicht zurueck. Gesperrt
+ *  ist ein Datensatz, wenn die osmId passt ODER Name UND Strasse normalisiert
+ *  (klein, ohne Satz- und Leerzeichen) uebereinstimmen. Schema und Details
+ *  stehen in src/data/osm-blocklist.ts, das dieselbe Sperre zusaetzlich in der
+ *  Datenschicht anwendet.
  */
 import { writeFileSync, existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -364,6 +373,44 @@ if (qualityBase > SCALE_LIMIT) {
   );
 }
 console.log("Ergebnis: " + quality.length + " Eintraege" + (applied ? " (Zusatzfilter aktiv)" : "") + ".");
+
+// ---------------------------------------------------------------------------
+// SPERRLISTE: Loeschwuensche dauerhaft wirksam machen (siehe Kopf der Datei).
+// ---------------------------------------------------------------------------
+const BLOCKLIST_FILE = "src/data/osm-blocklist.json";
+let blocklist = [];
+if (existsSync(BLOCKLIST_FILE)) {
+  try {
+    blocklist = JSON.parse(readFileSync(BLOCKLIST_FILE, "utf8"));
+    if (!Array.isArray(blocklist)) throw new Error("kein JSON-Array");
+  } catch (e) {
+    throw new Error(`${BLOCKLIST_FILE} ist nicht lesbar (${e.message}). ` +
+      "Abbruch: ohne gueltige Sperrliste darf nicht geschrieben werden.");
+  }
+} else {
+  console.log("(Keine " + BLOCKLIST_FILE + " gefunden - keine Sperren aktiv.)");
+}
+
+const isBlocked = (p) => {
+  const id = (p.osmId || "").trim().toLowerCase();
+  const name = norm(p.name);
+  const street = norm(p.street);
+  return blocklist.some((b) => {
+    if (b.osmId && id && String(b.osmId).trim().toLowerCase() === id) return true;
+    if (b.name && b.street && name && street) {
+      return norm(b.name) === name && norm(b.street) === street;
+    }
+    return false;
+  });
+};
+
+const beforeBlock = quality.length;
+quality = quality.filter((p) => !isBlocked(p));
+const suppressed = beforeBlock - quality.length;
+console.log("");
+console.log("Sperrliste (" + BLOCKLIST_FILE + "): " + blocklist.length + " Eintraege.");
+console.log("Wegen Loeschwunsch unterdrueckt: " + suppressed);
+console.log("Verbleibend: " + quality.length);
 
 const finalCat = {};
 for (const p of quality) finalCat[p.category] = (finalCat[p.category] || 0) + 1;

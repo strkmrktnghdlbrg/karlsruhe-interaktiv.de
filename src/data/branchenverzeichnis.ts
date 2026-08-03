@@ -30,6 +30,7 @@ import { hotels } from "./hotels";
 import { getDistrict } from "./districts";
 import { branchen } from "./branchen";
 import osmRaw from "./partners.osm.json";
+import { isOsmBlocked } from "./osm-blocklist";
 
 export type BranchenCategory = {
   slug: string;
@@ -217,21 +218,28 @@ type OsmRaw = {
   osmId: string;
 };
 
-export const osmListings: Listing[] = (osmRaw as OsmRaw[]).map((p) => ({
-  slug: p.slug,
-  name: p.name,
-  category: p.category,
-  subcategory: p.subcategory,
-  address: [p.street, [p.zip, p.city || "Karlsruhe"].filter(Boolean).join(" ")]
-    .filter(Boolean)
-    .join(", "),
-  districtLabel: p.suburb || undefined,
-  premium: false,
-  plan: "free" as const,
-  verified: false,
-  sourceType: "osm" as const,
-  source: "openstreetmap",
-}));
+/**
+ * Sperrliste (src/data/osm-blocklist.json): Betriebe, die ihre Loeschung
+ * verlangt haben, werden hier ein zweites Mal herausgefiltert - auch dann,
+ * wenn partners.osm.json noch veraltet ist.
+ */
+export const osmListings: Listing[] = (osmRaw as OsmRaw[])
+  .filter((p) => !isOsmBlocked({ osmId: p.osmId, name: p.name, street: p.street }))
+  .map((p) => ({
+    slug: p.slug,
+    name: p.name,
+    category: p.category,
+    subcategory: p.subcategory,
+    address: [p.street, [p.zip, p.city || "Karlsruhe"].filter(Boolean).join(" ")]
+      .filter(Boolean)
+      .join(", "),
+    districtLabel: p.suburb || undefined,
+    premium: false,
+    plan: "free" as const,
+    verified: false,
+    sourceType: "osm" as const,
+    source: "openstreetmap",
+  }));
 
 const collator = new Intl.Collator("de", { sensitivity: "base" });
 
