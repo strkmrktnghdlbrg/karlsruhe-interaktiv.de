@@ -6,7 +6,7 @@ import { city } from "../data/city";
 import { affiliate, stay22Enabled, gygEnabled } from "../data/affiliate";
 import { adsense, adsenseEnabled } from "../data/adsense";
 import { analytics, gtmEnabled } from "../data/analytics";
-import { type Locale, htmlLang, ogLocale, schemaLang } from "../i18n/config";
+import { type Locale, htmlLang, ogLocale } from "../i18n/config";
 
 interface Props {
   title: string;
@@ -31,6 +31,11 @@ const {
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, city.domain).toString();
 const fullTitle = title === city.name ? `${city.name} - Stadtportal` : `${title} · ${city.name}-Interaktiv`;
 
+// Sitewide-Entities als @graph mit stabilen @id's. Unterseiten-Schemata
+// referenzieren `${city.domain}/#organization` statt eigene Organization-
+// Nodes anzulegen, sonst entstehen doppelte Entities.
+// Betreiber (legalName) = Impressum dieser Domain (src/data/legal.ts).
+import { legal } from "../data/legal";
 const siteName = `${city.name}-Interaktiv`;
 const siteSchema = {
   "@context": "https://schema.org",
@@ -39,8 +44,13 @@ const siteSchema = {
       "@type": "Organization",
       "@id": `${city.domain}/#organization`,
       name: siteName,
+      legalName: legal.companyName,
       url: `${city.domain}/`,
-      logo: `${city.domain}/favicon.svg`,
+      logo: {
+        "@type": "ImageObject",
+        url: `${city.domain}/favicon.svg`,
+      },
+      email: legal.email,
     },
     {
       "@type": "WebSite",
@@ -48,7 +58,7 @@ const siteSchema = {
       name: siteName,
       url: `${city.domain}/`,
       description: city.description.short,
-      inLanguage: schemaLang[locale],
+      inLanguage: ["de", "en"],
       publisher: { "@id": `${city.domain}/#organization` },
     },
   ],

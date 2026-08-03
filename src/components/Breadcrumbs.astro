@@ -6,6 +6,8 @@ interface Crumb { label: string; href?: string }
 interface Props { items: Crumb[]; locale?: Locale }
 const { items } = Astro.props;
 
+// BreadcrumbList-Schema aus den sichtbaren Crumbs. Das letzte Element
+// (aktuelle Seite) bekommt kein `item` — so erlaubt es Google explizit.
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -13,7 +15,9 @@ const breadcrumbSchema = {
     "@type": "ListItem",
     position: i + 1,
     name: item.label,
-    ...(item.href && { item: `${city.domain}${item.href}` }),
+    ...(item.href && i < items.length - 1
+      ? { item: new URL(item.href, city.domain).toString() }
+      : {}),
   })),
 };
 ---

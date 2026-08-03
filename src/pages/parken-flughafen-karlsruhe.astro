@@ -1,24 +1,25 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+// FAQPage-Schema: exakt die sichtbaren Fragen/Antworten der FAQ-Sektion unten.
 const faqLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
     {
       "@type": "Question",
-      name: "Wie viel kostet Parken am Flughafen Karlsruhe/Baden-Baden?",
+      name: "Wie viel günstiger ist das Vorbuchen?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Die flughafeneigenen Parkplätze am Baden-Airpark sind vergleichsweise günstig, in der Ferienzeit aber schnell belegt. Externe Parkplätze mit Shuttle sind vorab gebucht oft ab wenigen Euro pro Tag zu haben, gerade bei längeren Aufenthalten lohnt sich der Vergleich.",
+        text: "Je nach Reisezeitraum und Anbieter sichern Sie sich den Bestpreis und vermeiden ausgebuchte Parkplätze in der Ferienzeit.",
       },
     },
     {
       "@type": "Question",
-      name: "Gibt es einen Shuttle zum Terminal?",
+      name: "Ist ein Shuttle zum Terminal inklusive?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Bei den meisten externen Anbietern rund um den Baden-Airpark ist ein Shuttle inklusive. Dank der kompakten Größe des Flughafens sind die Wege ohnehin kurz.",
+        text: "Bei den meisten externen Parkplätzen ja. Dank der kompakten Größe des Baden-Airparks sind die Wege ohnehin kurz.",
       },
     },
     {
@@ -26,7 +27,15 @@ const faqLd = {
       name: "Muss ich einen Gutscheincode eingeben?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Nein. Der Rabatt ist im Buchungslink hinterlegt und wird bei der Abfrage für Ihren Reisezeitraum automatisch angewendet.",
+        text: "Nein. Der Rabatt ist im Link hinterlegt und wird bei der Abfrage automatisch angewendet.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Wie früh sollte ich buchen?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Gerade in den Ferien lohnt es sich, den Stellplatz einige Tage im Voraus zu reservieren, um Platz und Bestpreis zu sichern.",
       },
     },
   ],

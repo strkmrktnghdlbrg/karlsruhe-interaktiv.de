@@ -6,9 +6,25 @@ import { city } from "../data/city";
 const title = "Von Karlsruhe bis Stuttgart: Premium-Büros in Top-Lagen mieten";
 const description =
   "Büro mieten zwischen Karlsruhe und Stuttgart: flexible Mietmodelle, Coworking und voll ausgestattete Büros – mit Checklisten zu Lage, Kosten und Mietvertrag.";
+
+// FAQPage-Schema: exakt die sichtbaren Fragen/Antworten der FAQ-Sektion unten.
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    { "@type": "Question", name: "Wie finde ich schnell ein passendes Büro zum Mieten?", acceptedAnswer: { "@type": "Answer", text: "Definiere zunächst Budget, Fläche, Lage und Ausstattung. Nutze Immobilienportale, Makler und Coworking-Anbieter. Erstelle eine kurze Checkliste und sortiere Angebote danach." } },
+    { "@type": "Question", name: "Welche Lage ist für ein Büro am wichtigsten?", acceptedAnswer: { "@type": "Answer", text: "Gute Erreichbarkeit mit ÖPNV, Parkmöglichkeiten und Nähe zu Kunden oder Partnern. Achte auf Restaurants, Supermärkte und Banken in der Gegend. Gute Lage = gutes Image und erleichterter Arbeitsalltag." } },
+    { "@type": "Question", name: "Worauf sollte ich bei der Büro-Besichtigung achten?", acceptedAnswer: { "@type": "Answer", text: "Prüfe Licht, Lärm, Raumaufteilung, Internetanschluss, Sanitäranlagen und Sicherheit. Checke den Zustand von Boden, Fenstern und Heizung. Geh die Pläne durch oder miss grob, ob Arbeitsplätze, Stauraum und Meetingbereiche gut passen. Schau alles in Ruhe an und mach Notizen oder Fotos für den Vergleich." } },
+    { "@type": "Question", name: "Welche versteckten Kosten gibt es beim Büro mieten?", acceptedAnswer: { "@type": "Answer", text: "Nebenkosten, Strom, Internet, Reinigung, Müll, Wartung und Versicherung kommen hinzu. Gemeinsame Flächen, Stellplatz oder Renovierungspflicht kosten ebenfalls Geld. Vermieter bzw. Hausverwaltungen müssen alle Kostenarten schriftlich angeben, und Nebenkostenabrechnungen sollten genau geprüft werden." } },
+    { "@type": "Question", name: "Wie lese ich einen gewerblichen Mietvertrag richtig?", acceptedAnswer: { "@type": "Answer", text: "Achte auf Mietdauer, Kündigungsfristen, Mieterhöhungen, Nebenkosten und Renovierungspflichten. Prüfe Regelungen zu Umbauten und Schadensübernahme. Im Zweifelsfall vor der Unterschrift von Fachkundigen prüfen lassen." } },
+    { "@type": "Question", name: "Wie viel Fläche brauche ich pro Person im Büro?", acceptedAnswer: { "@type": "Answer", text: "Grobe Regel: 8–12 m² pro Person, je nach Arbeitsart. Mit vielen Meetings oder Lagerbedarf kann es mehr sein. Plane lieber Reserve ein, statt später zu eng zu sitzen." } },
+    { "@type": "Question", name: "Ist ein Coworking-Space eine gute Alternative zum klassischen Büro?", acceptedAnswer: { "@type": "Answer", text: "Ja, besonders für Start-ups, Freiberufler und kleine Teams. Vorteile sind flexible Laufzeiten, möblierte Räume, Meetingräume, Networking und oft zentrale Lage. Dafür gibt es weniger Spielraum zur Gestaltung und geteilte Infrastruktur. Wähle, was zu deinem Arbeitsstil passt." } },
+  ],
+};
 ---
 
 <BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} is:inline></script>
   <article class="container-page py-12 max-w-3xl">
     <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Ideale Büros Karlsruhe–Stuttgart" }]} />
     <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-8" style="color: var(--color-text);">

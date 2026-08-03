@@ -6,9 +6,25 @@ import { city } from "../data/city";
 const title = "Zwischen Karlsruhe und München: Wie ein Business Center den Sprung in die bayerische Metropole erleichtert";
 const description =
   "Von Karlsruhe nach München expandieren: flexible Büro- und Servicelösungen, Hybrid-Modelle und virtuelle Büros als Sprungbrett in die bayerische Metropole.";
+
+// FAQPage-Schema: exakt die sichtbaren Fragen/Antworten der FAQ-Sektion unten.
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    { "@type": "Question", name: "Wie finde ich das passende Business Center in München für mein Unternehmen?", acceptedAnswer: { "@type": "Answer", text: "Achte auf Lage, Erreichbarkeit, Ausstattung und Vertragslaufzeiten. Prüfe Büros, Coworking und Meetingräume auf flexible Buchung, vergleiche Preise, lies Bewertungen und schau dir die Fläche an. So findest du das passende Business Center zum Wachsen." } },
+    { "@type": "Question", name: "Welche Vorteile hat ein Business Center in München gegenüber einem klassischen Büro?", acceptedAnswer: { "@type": "Answer", text: "Du kommst schneller in die Gänge, hast geringere Anfangskosten und bist flexibler. Infrastruktur, Empfang, Meetingräume und Internet sind meist inklusive. So konzentrierst du dich auf dein Kerngeschäft statt auf Möbel, Technik und lange Mietverträge." } },
+    { "@type": "Question", name: "Eignet sich ein Business Center in München auch für Firmen aus Karlsruhe?", acceptedAnswer: { "@type": "Answer", text: "Ja. Nutze ein Business Center, um München als neuen Standort auszutesten. Du brauchst kein eigenes Büro aufzubauen, kannst Kunden vor Ort treffen und dein Team nach und nach erweitern. Damit minimierst du dein Risiko und bleibst zwischen Karlsruhe und München flexibel." } },
+    { "@type": "Question", name: "Welche Büro-Lösungen bieten Business Center in München typischerweise an?", acceptedAnswer: { "@type": "Answer", text: "Meist Einzel- und Teambüros, Coworking-Plätze, virtuelle Büros sowie Meeting- und Konferenzräume. Dazu kommen Postannahme, Firmensitz, Telefonservice, IT-Support und ähnliche Services. So wählst du immer die Lösung, die zu deiner Phase passt." } },
+    { "@type": "Question", name: "Worauf sollte ich bei der Auswahl eines Business Centers in München besonders achten?", acceptedAnswer: { "@type": "Answer", text: "Wichtig sind ÖPNV-Anbindung, Parkplätze, Internetqualität, Bürogröße, Laufzeiten, versteckte Kosten und Servicequalität. Schau dir das Center an und stelle Fragen zu Vertrag und Erweiterungsmöglichkeiten. Damit bleibst du später flexibel." } },
+    { "@type": "Question", name: "Wie schnell kann ich in einem Business Center in München einziehen?", acceptedAnswer: { "@type": "Answer", text: "Oft innerhalb weniger Tage, manchmal sogar am selben Tag. Die Büros sind möbliert, Internet und Infrastruktur stehen. Du unterschreibst deinen Vertrag, richtest deinen Arbeitsplatz ein und kannst direkt mit Kundenterminen und Projekten loslegen." } },
+    { "@type": "Question", name: "Ist ein Business Center in München auch für kleine Teams oder Solo-Selbstständige sinnvoll?", acceptedAnswer: { "@type": "Answer", text: "Ja. Du sicherst dir eine professionelle Geschäftsadresse, flexible Arbeitsplätze und Meetingräume, wann immer du sie brauchst – bei überschaubaren Fixkosten. So wirkst du nach außen wie ein großes Unternehmen, auch wenn du noch klein bist." } },
+  ],
+};
 ---
 
 <BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} is:inline></script>
   <article class="container-page py-12 max-w-3xl">
     <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Business Center München" }]} />
     <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-8" style="color: var(--color-text);">
