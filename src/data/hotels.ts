@@ -1,12 +1,27 @@
+/*
+ * KEINE Gaeste-Bewertungen in dieser Datei.
+ *
+ * Bis 2026-08-03 trug jeder Eintrag ein handgepflegtes `rating`, `reviews`
+ * und teils `guestFavorite: true`. Diese Zahlen hatten keine Quelle. Auf
+ * bad-duerkheim-interaktiv.de wurden zwei davon gegen Booking.com geprueft:
+ *   Mercure an den Salinen  -> Datei 8.6 / 1120,  real 7.9 / 1035
+ *   Kurpark-Hotel           -> Datei 8.7 /  980,  real 7.8 / 1092
+ * Beide zugunsten des Hauses geschoent, und sie gingen zusaetzlich als
+ * schema.org/AggregateRating an Google (§ 5a UWG, Anhang Nr. 23b UWG).
+ *
+ * Der Live-Score der Stay22-v1-API taugt NICHT als Ersatz: er ist
+ * ganzzahlig und schneidet ab statt zu runden (real 7.9 -> API 7).
+ * Echte Bewertungen zeigt der Stay22-Block auf denselben Seiten.
+ *
+ * Wer hier wieder Bewertungen einbauen will: nur mit belegter Quelle UND
+ * Stand-Datum.
+ */
 export type Hotel = {
   slug: string;
   name: string;
   district: string;
   stars: 2 | 3 | 4 | 5;
   priceFrom: number;
-  rating: number;
-  reviews: number;
-  guestFavorite?: boolean;
   shortDesc: string;
   longDesc: string;
   imageHue: number;
@@ -23,9 +38,6 @@ export const hotels: Hotel[] = [
     district: "innenstadt-west",
     stars: 4,
     priceFrom: 145,
-    rating: 8.5,
-    reviews: 1820,
-    guestFavorite: true,
     shortDesc:
       "Klassisches 4-Sterne-Haus direkt am Hauptbahnhof. Komfortabel, gehoben, mit Restaurant und Bar.",
     longDesc:
@@ -41,9 +53,6 @@ export const hotels: Hotel[] = [
     district: "innenstadt-west",
     stars: 4,
     priceFrom: 125,
-    rating: 8.8,
-    reviews: 1240,
-    guestFavorite: true,
     shortDesc:
       "Design-Hotel mit minimalistischer Architektur und farbintensivem Innenraum. Nähe Kongresszentrum.",
     longDesc:
@@ -59,8 +68,6 @@ export const hotels: Hotel[] = [
     district: "innenstadt-west",
     stars: 4,
     priceFrom: 95,
-    rating: 7.9,
-    reviews: 980,
     shortDesc:
       "Modernes Stadthotel an der Kaiserstrasse mit klassischer Ausstattung und zentralster Lage.",
     longDesc:
@@ -76,8 +83,6 @@ export const hotels: Hotel[] = [
     district: "innenstadt-west",
     stars: 4,
     priceFrom: 105,
-    rating: 8.2,
-    reviews: 1450,
     shortDesc:
       "Komfortables Business-Hotel in zentraler Lage mit modernen Zimmern und gutem Service.",
     longDesc:
@@ -93,8 +98,6 @@ export const hotels: Hotel[] = [
     district: "innenstadt-west",
     stars: 3,
     priceFrom: 85,
-    rating: 8.4,
-    reviews: 720,
     shortDesc:
       "Privat geführtes Stadthotel direkt am Marktplatz mit Pyramide-Blick.",
     longDesc:
@@ -110,8 +113,6 @@ export const hotels: Hotel[] = [
     district: "innenstadt-west",
     stars: 3,
     priceFrom: 75,
-    rating: 7.8,
-    reviews: 640,
     shortDesc:
       "Traditionsreiches Stadthotel mit klassischen Zimmern, Bar und Restaurant.",
     longDesc:
@@ -127,8 +128,6 @@ export const hotels: Hotel[] = [
     district: "innenstadt-west",
     stars: 3,
     priceFrom: 70,
-    rating: 8.6,
-    reviews: 1380,
     shortDesc:
       "Modernes Budget-Komfort-Hotel zentral an der Erbprinzenstrasse. Beliebt für Staedtetrips.",
     longDesc:
@@ -144,8 +143,6 @@ export const hotels: Hotel[] = [
     district: "innenstadt-west",
     stars: 4,
     priceFrom: 110,
-    rating: 8.3,
-    reviews: 1820,
     shortDesc:
       "Internationales 4-Sterne-Haus mit Fitness, Sauna und Restaurant. Nah am Kongresszentrum.",
     longDesc:
@@ -161,8 +158,6 @@ export const hotels: Hotel[] = [
     district: "innenstadt-west",
     stars: 3,
     priceFrom: 80,
-    rating: 8.1,
-    reviews: 510,
     shortDesc:
       "Familiengefuehrtes Stadthotel mit gemütlichen Zimmern, in ruhiger Seitenstrasse zentral gelegen.",
     longDesc:
@@ -178,8 +173,6 @@ export const hotels: Hotel[] = [
     district: "innenstadt-west",
     stars: 2,
     priceFrom: 65,
-    rating: 8.0,
-    reviews: 940,
     shortDesc:
       "Budget-Hotel mit hohem Standard für den Preis. 24h Check-In, freies WLAN.",
     longDesc:
@@ -197,8 +190,6 @@ export const hotels: Hotel[] = [
     district: "suedweststadt",
     stars: 3,
     priceFrom: 75,
-    rating: 8.2,
-    reviews: 2100,
     shortDesc:
       "Verlaessliches Budget-Hotel direkt am Hauptbahnhof. Einheitlich, sauber, fair.",
     longDesc:
@@ -214,8 +205,6 @@ export const hotels: Hotel[] = [
     district: "suedweststadt",
     stars: 3,
     priceFrom: 85,
-    rating: 8.0,
-    reviews: 690,
     shortDesc:
       "Gemütliches Stadthotel in Hauptbahnhof-Nähe mit Garten und Restaurant.",
     longDesc:
@@ -233,9 +222,6 @@ export const hotels: Hotel[] = [
     district: "durlach",
     stars: 4,
     priceFrom: 130,
-    rating: 8.9,
-    reviews: 1180,
-    guestFavorite: true,
     shortDesc:
       "Kunst-Themenhotel mit Werken inspiriert vom Blauen Reiter. Ruhig in Durlach gelegen.",
     longDesc:
@@ -253,8 +239,6 @@ export const hotels: Hotel[] = [
     district: "rueppurr",
     stars: 3,
     priceFrom: 80,
-    rating: 7.8,
-    reviews: 590,
     shortDesc:
       "Privat geführtes Hotel mit Garten und Pool, Messe-Nähe.",
     longDesc:
@@ -270,8 +254,6 @@ export const hotels: Hotel[] = [
     district: "rueppurr",
     stars: 4,
     priceFrom: 120,
-    rating: 8.4,
-    reviews: 1320,
     shortDesc:
       "Internationales 4-Sterne-Haus an der Stadtgrenze Karlsruhe-Ettlingen. Fitness, Sauna, Restaurant.",
     longDesc:
@@ -289,9 +271,6 @@ export const hotels: Hotel[] = [
     district: "rueppurr",
     stars: 5,
     priceFrom: 220,
-    rating: 9.2,
-    reviews: 980,
-    guestFavorite: true,
     shortDesc:
       "5-Sterne-Hotel mit Stern-Restaurant Erbprinz in der Nachbarstadt Ettlingen. Spa, gehobene Küche.",
     longDesc:
@@ -309,8 +288,6 @@ export const hotels: Hotel[] = [
     district: "muehlburg",
     stars: 3,
     priceFrom: 85,
-    rating: 7.9,
-    reviews: 760,
     shortDesc:
       "Komfortables Mittelklasse-Hotel im Westen Karlsruhes. Gute Anbindung an Innenstadt und Autobahn.",
     longDesc:
@@ -326,8 +303,8 @@ export const getHotel = (slug: string) => hotels.find((h) => h.slug === slug);
 export const hotelsByDistrict = (district: string) =>
   hotels.filter((h) => h.district === district);
 export const topHotelsByDistrict = (district: string, limit = 5) =>
-  hotelsByDistrict(district).sort((a, b) => b.rating - a.rating).slice(0, limit);
+  hotelsByDistrict(district).slice(0, limit);
 export const topHotels = (limit = 6) =>
-  [...hotels].sort((a, b) => b.rating - a.rating).slice(0, limit);
+  [...hotels].slice(0, limit);
 export const hotelsByCategory = (category: string) =>
   hotels.filter((h) => h.categories.includes(category));

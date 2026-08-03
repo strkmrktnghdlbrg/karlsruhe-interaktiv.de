@@ -40,7 +40,6 @@ const schema = {
   name: en.name,
   description: en.shortDesc,
   starRating: { "@type": "Rating", ratingValue: hotel.stars },
-  aggregateRating: { "@type": "AggregateRating", ratingValue: hotel.rating, reviewCount: hotel.reviews, bestRating: 10 },
   priceRange: `EUR ${hotel.priceFrom}+`,
   address: { "@type": "PostalAddress", addressLocality: city.name, addressCountry: city.countryCode },
 };
@@ -69,7 +68,7 @@ const schema = {
     <ActionDock
       info={{
         line: `from ${hotel.priceFrom} EUR / night`,
-        sub: `${hotel.rating.toFixed(1)} / 10 · ${tf(locale, "detail.guestReviews", { n: hotel.reviews })} · ${districtName}`,
+        sub: districtName,
       }}
       secondary={districtEn ? { label: "District hub", href: detailUrl("districts", districtEn.slug, locale) } : undefined}
       primary={{ label: "Check on Booking.com", href: hotel.bookingUrl, rel: "nofollow noopener sponsored", target: "_blank" }}
@@ -85,9 +84,6 @@ const schema = {
       <div class="grid lg:grid-cols-[2fr_1fr] gap-10 mt-6 mb-12">
         <div>
           <div class="flex items-center gap-3 mb-6">
-            <span class="text-2xl font-bold" style="color: var(--color-text);">{hotel.rating.toFixed(1)}</span>
-            <span class="text-sm" style="color: var(--color-text-muted);">{tf(locale, "detail.guestReviews", { n: hotel.reviews })}</span>
-            {hotel.guestFavorite && <span class="pill">{t(locale, "detail.guestFavorite")}</span>}
           </div>
           <div class="stage-prose mb-6">
             <p>{en.longDesc}</p>

@@ -33,7 +33,6 @@ const schema = {
   name: hotel.name,
   description: hotel.shortDesc,
   starRating: { "@type": "Rating", ratingValue: hotel.stars },
-  aggregateRating: { "@type": "AggregateRating", ratingValue: hotel.rating, reviewCount: hotel.reviews, bestRating: 10 },
   priceRange: `EUR ${hotel.priceFrom}+`,
   address: { "@type": "PostalAddress", addressLocality: city.name, addressCountry: city.countryCode },
 };
@@ -54,7 +53,7 @@ const schema = {
     <ActionDock
       info={{
         line: `ab ${hotel.priceFrom} EUR / Nacht`,
-        sub: `${hotel.rating.toFixed(1)} von 10 · ${hotel.reviews} Gäste-Bewertungen${district ? ` · ${district.name}` : ""}`,
+        sub: district ? district.name : "",
       }}
       secondary={district ? { label: "Zum Bezirk", href: `/bezirke/${district.slug}/` } : undefined}
       primary={{ label: "Auf Booking.com prüfen", href: hotel.bookingUrl, rel: "nofollow noopener sponsored", target: "_blank" }}
@@ -70,9 +69,6 @@ const schema = {
       <div class="grid lg:grid-cols-[2fr_1fr] gap-10 mt-6 mb-12">
         <div>
           <div class="flex items-center gap-3 mb-6">
-            <span class="text-2xl font-bold" style="color: var(--color-text);">{hotel.rating.toFixed(1)}</span>
-            <span class="text-sm" style="color: var(--color-text-muted);">{hotel.reviews} Gäste-Bewertungen</span>
-            {hotel.guestFavorite && <span class="pill">Gästeliebling</span>}
           </div>
           <div class="stage-prose mb-6">
             <p>{hotel.longDesc}</p>

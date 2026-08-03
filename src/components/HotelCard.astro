@@ -41,7 +41,6 @@ const usesDistrictPhoto = imgKey?.startsWith("district:") && Boolean(getImage(im
     <div class="veil"></div>
     <div class="tilecard-tags">
       <span class="pill" style="background: rgba(8,9,10,0.85); backdrop-filter: blur(8px);">{starsLabel}</span>
-      {hotel.guestFavorite && <span class="pill" style="background: rgba(8,9,10,0.85); backdrop-filter: blur(8px);">{favoriteLabel}</span>}
     </div>
     <div class="cap">
       <h3>{name}</h3>
@@ -50,6 +49,5 @@ const usesDistrictPhoto = imgKey?.startsWith("district:") && Boolean(getImage(im
   </div>
   <div class="tilecard-meta">
     <span><strong>{fromLabel} {hotel.priceFrom} EUR</strong> {perNightLabel}</span>
-    <span><strong>{hotel.rating.toFixed(1)}</strong> · {hotel.reviews} {reviewsLabel}</span>
   </div>
 </a>
