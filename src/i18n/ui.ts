@@ -88,8 +88,8 @@ export const ui = {
   "hotels.count": { de: "{n} Häuser", en: "{n} properties" },
   "hotels.heading": { de: "Hotels in Karlsruhe", en: "Hotels in Karlsruhe" },
   "hotels.intro": {
-    de: "Vom Design-Hotel Santo bis zum Schlosshotel am Hauptbahnhof, vom Erbprinz Ettlingen bis zur Karlsburg-Nähe in Durlach - geprüft, sortiert nach Gäste-Bewertung.",
-    en: "From the design hotel Santo to the Schlosshotel by the main station, from the Erbprinz in Ettlingen to the Karlsburg in Durlach - curated, sorted by guest rating.",
+    de: "Vom Design-Hotel Santo bis zum Schlosshotel am Hauptbahnhof, vom Erbprinz Ettlingen bis zur Karlsburg-Nähe in Durlach - redaktionell ausgewählt, sortiert nach Sternekategorie und Einstiegspreis.",
+    en: "From the design hotel Santo to the Schlosshotel by the main station, from the Erbprinz in Ettlingen to the Karlsburg in Durlach - editorially curated, sorted by star category and entry-level price.",
   },
   "hotels.editorial": { de: "Unsere redaktionelle Hotel-Auswahl", en: "Our editorial hotel selection" },
   "hotels.topLive.title": { de: "Aktuell bestbewertete Hotels in Karlsruhe", en: "Currently top-rated hotels in Karlsruhe" },

@@ -21,7 +21,7 @@ const { slug } = Astro.params;
 const hotel = getHotel(slug!);
 if (!hotel) return Astro.redirect("/404");
 const district = getDistrict(hotel.district);
-const stars = "*".repeat(hotel.stars);
+const stars = "★".repeat(hotel.stars);
 
 /* Kein eigenes Hotelfoto -> Bezirksfoto als ehrliche Buehne, Caption nennt den Bezirk */
 const stageKey = heroKey(`hotel:${hotel.slug}`, hotel.district);

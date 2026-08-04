@@ -1,4 +1,11 @@
 ---
+/*
+ * KEIN Gaeste-Score. Der rating.value der Stay22-v1-API ist ganzzahlig und
+ * schneidet ab statt zu runden (real 7.9 -> API 7). Zusammen mit dem Filter
+ * minguestrating:8 kam auf jeder Karte dieselbe "8.0 / 10" heraus - eine
+ * Zahl, die weder stimmt noch differenziert (§ 5a UWG). Wer sie zurueckholen
+ * will, braucht eine Quelle mit Nachkommastelle UND ein Stand-Datum.
+ */
 /**
  * Stay22 Live-Hotel-Card (Dark). Rendert ein einzelnes API-Hotel.
  * priceMode: "perNight" (Default) oder "total" (Event-Pages mit Zeitraum).
@@ -44,10 +51,7 @@ const distanceLabel = en ? "away" : "entfernt";
   <div class="p-4">
     <div class="flex items-center gap-2 mb-1.5">
       {h.starRating && (
-        <span class="text-xs font-bold" style="color: var(--color-accent);">{"*".repeat(Math.round(h.starRating))}</span>
-      )}
-      {h.rating?.score && (
-        <span class="pill-accent text-[10px]">{h.rating.score.toFixed(1)} / 10</span>
+        <span class="text-xs font-bold" style="color: var(--color-accent);">{"★".repeat(Math.round(h.starRating))}</span>
       )}
     </div>
     <h3 class="font-semibold text-sm leading-tight mb-1.5 line-clamp-2" style="color: var(--color-text);">{h.name}</h3>

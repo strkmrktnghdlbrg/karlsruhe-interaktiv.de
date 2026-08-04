@@ -6,7 +6,7 @@ import Stay22TopHotels from "../../components/Stay22TopHotels.astro";
 import { hotels } from "../../data/hotels";
 import { city } from "../../data/city";
 import { indexUrl } from "../../i18n/config";
-const sorted = [...hotels].sort((a, b) => b.rating - a.rating);
+const sorted = [...hotels].sort((a, b) => b.stars - a.stars || a.priceFrom - b.priceFrom);
 ---
 
 <BaseLayout title={`Hotels in ${city.name}`} description={`Hotels in Karlsruhe - von Design-Boutiquen bis 5-Sterne. Innenstadt, Hauptbahnhof, Durlach.`} alternateUrls={{ de: indexUrl("hotels", "de"), en: indexUrl("hotels", "en") }}>
@@ -16,7 +16,7 @@ const sorted = [...hotels].sort((a, b) => b.rating - a.rating);
       <p class="eyebrow mb-3">{hotels.length} Häuser</p>
       <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">Hotels in Karlsruhe</h1>
       <p class="text-lg max-w-3xl" style="color: var(--color-text-body);">
-        Vom Design-Hotel Santo bis zum Schlosshotel am Hauptbahnhof, vom Erbprinz Ettlingen bis zur Karlsburg-Nähe in Durlach - geprüft, sortiert nach Gäste-Bewertung.
+        Vom Design-Hotel Santo bis zum Schlosshotel am Hauptbahnhof, vom Erbprinz Ettlingen bis zur Karlsburg-Nähe in Durlach - redaktionell ausgewählt, sortiert nach Sternekategorie und Einstiegspreis.
       </p>
     </header>
 

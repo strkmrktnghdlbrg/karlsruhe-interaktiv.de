@@ -177,7 +177,8 @@ export const sights: Sight[] = [
     imageHue: 3,
     categories: ["nightlife", "kunst-medien"],
     coordinates: [48.9994, 8.4106],
-    websiteUrl: "https://www.staatstheater.karlsruhe.de",
+    // websiteUrl entfernt 2026-08-03: https://www.staatstheater.karlsruhe.de loest nicht auf (Domain existiert nicht).
+    // Die Adresse war geraten. Erst wieder eintragen, wenn geprueft.
   },
   {
     slug: "karlsruher-zoo",

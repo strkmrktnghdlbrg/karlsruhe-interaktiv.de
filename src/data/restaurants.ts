@@ -77,7 +77,8 @@ export const restaurants: Restaurant[] = [
       "Das Brauhaus Kuehler Krug liegt mitten im Stadtgarten direkt am Hauptbahnhof. Im Sommer einer der schönsten Biergärten der Stadt unter alten Kastanien. Klassische badische Wirtshauskueche, hauseigenes Bier.",
     imageHue: 4,
     openingHours: "Mo-So 11:00-23:00",
-    websiteUrl: "https://www.kuehler-krug.de",
+    // websiteUrl entfernt 2026-08-03: https://www.kuehler-krug.de loest nicht auf (Domain existiert nicht).
+    // Die Adresse war geraten. Erst wieder eintragen, wenn geprueft.
     reservation: false,
   },
 
@@ -111,7 +112,8 @@ export const restaurants: Restaurant[] = [
       "Das Erasmus ist Karlsruhes Bistro-Stern: gehobene saisonal-mediterrane Küche in entspannter Atmosphäre. Wechselnde Tageskarte, weniger formell als das Sein, beliebt für Genuss-Mittagessen.",
     imageHue: 1,
     openingHours: "Di-Sa 12:00-14:00 + 18:30-22:00",
-    websiteUrl: "https://www.restaurant-erasmus.de",
+    // websiteUrl entfernt 2026-08-03: https://www.restaurant-erasmus.de loest nicht auf (Domain existiert nicht).
+    // Die Adresse war geraten. Erst wieder eintragen, wenn geprueft.
     reservation: true,
   },
   {

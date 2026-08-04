@@ -32,7 +32,14 @@ const {
 
 let hotels: Stay22Accommodation[] | null = null;
 try {
-  hotels = await getTopHotels(address, affiliate.stay22.lmaId, { limit, lang: en ? "en" : "de" });
+  hotels = await getTopHotels(address, affiliate.stay22.lmaId, {
+    limit,
+    lang: en ? "en" : "de",
+    lat: city.coordinates[0],
+    lng: city.coordinates[1],
+    radius,
+    cityName: city.name.split(" ")[0],
+  });
 } catch (err) {
   console.error("[Stay22TopHotels] Build-Fetch-Fehler:", err);
   hotels = null;

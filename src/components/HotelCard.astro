@@ -11,7 +11,7 @@ import { districtsEn } from "../i18n/en/districts";
 interface Props { hotel: Hotel; locale?: Locale }
 const { hotel, locale = "de" } = Astro.props;
 const district = getDistrict(hotel.district);
-const starsLabel = "*".repeat(hotel.stars);
+const starsLabel = "★".repeat(hotel.stars);
 
 const en = locale === "en" ? hotelsEn[hotel.slug] : undefined;
 const href = locale === "en" ? detailUrl("hotels", en!.slug, "en") : `/hotels/${hotel.slug}/`;

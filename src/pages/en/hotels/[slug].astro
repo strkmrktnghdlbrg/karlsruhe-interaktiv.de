@@ -28,7 +28,7 @@ const district = getDistrict(hotel.district);
 const districtEn = districtsEn[hotel.district];
 const districtName = districtEn?.name ?? district?.name ?? hotel.district;
 const districtShortDesc = districtEn?.shortDesc ?? district?.shortDesc ?? "";
-const stars = "*".repeat(hotel.stars);
+const stars = "★".repeat(hotel.stars);
 
 /* No photos of private businesses -> district photo as an honest stage */
 const stageKey = heroKey(`hotel:${hotel.slug}`, hotel.district);
