@@ -1,0 +1,75 @@
+# Cloudflare Pages 301-Regeln.
+#
+# ACHTUNG: Diese Datei ist die WIRKSAME Redirect-Quelle dieses Projekts.
+# public/.htaccess wird von Cloudflare Pages NICHT ausgewertet - die dort
+# gepflegten WordPress-Redirects liefen alle ins 404 (live geprueft 04.08.2026:
+# /architektur/, /anlageberater-karlsruhe-2/, /seo-agenturen-in-karlsruhe/,
+# /category/... allesamt 404). Neue Regeln gehoeren hierher, nicht in .htaccess.
+#
+# Reihenfolge: erste passende Regel gewinnt, also spezifisch vor generisch.
+# Keine generische /thema/*-Regel: darunter liegen echte Seiten.
+
+# --- Backlink-Rescue: schirmer-graf.de ---------------------------------------
+# Die Quelldomain (frueher ein Buchverlag) leitet auf /category/graf/ und haengt
+# dabei den Originalpfad an, jeder Deep-Link landet also auf einer eigenen
+# Nonsense-URL. Splat faengt alle davon auf der thematisch naechsten Seite ab.
+/category/graf/*  /thema/buchhandlungen-karlsruhe/  301
+/category/graf  /thema/buchhandlungen-karlsruhe/  301
+
+# --- Stadt-/Tourismus-Content auf das jeweilige neue Pendant ---
+/schloss/  /sehenswuerdigkeiten/karlsruher-schloss/  301
+/universitaet-kit/  /sehenswuerdigkeiten/kit-campus-sued/  301
+/bundesgerichtshof/  /sehenswuerdigkeiten/bundesverfassungsgericht/  301
+/hoftheater/  /sehenswuerdigkeiten/badisches-staatstheater/  301
+/majolika-kunsthandwerk/  /sehenswuerdigkeiten/majolika-manufaktur/  301
+/kunstszene/  /kategorien/kunst-medien/  301
+/museen/  /kategorien/museen/  301
+/badische-landesbibliothek/  /kategorien/museen/  301
+/badische-landesmuseum/  /kategorien/museen/  301
+/faecherstadt/  /  301
+/ein-tag-in-karlsruhe-die-besten-aktivitaeten-fuer-einen-unvergesslichen-aufenthalt/  /reiseplaner/  301
+/hotels-karlsruhe/  /hotels/  301
+/hotels/hotels-in-karlsruhe*  /hotels/  301
+
+# --- Geschichts-Artikel -> Kategorie "Historisches" ---
+/wichtige-historische-ereignisse/  /kategorien/historische-architektur/  301
+/architektur/  /kategorien/historische-architektur/  301
+/denkmaeler/  /kategorien/historische-architektur/  301
+/18-jahrhundert/  /kategorien/historische-architektur/  301
+/20-jahrhundert/  /kategorien/historische-architektur/  301
+/industrialisierung/  /kategorien/historische-architektur/  301
+/industriegeschichte/  /kategorien/historische-architektur/  301
+/industrielle-revolution-19-jahrhundert/  /kategorien/historische-architektur/  301
+/weimarer-republik/  /kategorien/historische-architektur/  301
+/badische-revolution-1848-49/  /kategorien/historische-architektur/  301
+/gruendung/  /kategorien/historische-architektur/  301
+/beruehmte-persoenlichkeiten/  /kategorien/historische-architektur/  301
+/juedisches-leben/  /kategorien/historische-architektur/  301
+/archaeologische-funde/  /kategorien/historische-architektur/  301
+/staedtebauliche-soziale-entwicklung/  /kategorien/historische-architektur/  301
+/historische-feste-und-braeuche/  /kategorien/historische-architektur/  301
+/historische-stadtfuehrungen/  /kategorien/historische-architektur/  301
+/karlsruhes-beitrag-zur-deutschen-einigung-im-19-jahrhundert/  /kategorien/historische-architektur/  301
+
+# --- Alte Blog-/Ratgeber-Artikel -> passende neue Branchenseite ---
+/die-top-10-immobilienmakler-in-karlsruhe-expertenliste-2023/  /immobilienmakler-karlsruhe/  301
+/hochzeitsfotograf-karlsruhe-vergleich-preise/  /fotografen-karlsruhe/  301
+/so-findest-du-den-passenden-hochzeitsfotograf-fuer-dich-in-karlsruhe/  /fotografen-karlsruhe/  301
+/die-ideale-werbeagentur/  /marketingagenturen-karlsruhe/  301
+/werbeagentur-beratung/  /marketingagenturen-karlsruhe/  301
+/seo-agenturen-in-karlsruhe/*  /marketingagenturen-karlsruhe/  301
+/seo-agenturen-in-karlsruhe/  /marketingagenturen-karlsruhe/  301
+
+# --- WordPress-Duplikat-Slugs (-2) -> kanonische Branchenseite ---
+/anlageberater-karlsruhe-2/  /anlageberater-karlsruhe/  301
+/bestatter-karlsruhe-2/  /bestatter-karlsruhe/  301
+/energieberater-karlsruhe-2/  /energieberater-karlsruhe/  301
+/gebaudereiniger-karlsruhe-2/  /gebaudereiniger-karlsruhe/  301
+/spediteure-karlsruhe-2/  /spediteure-karlsruhe/  301
+
+# --- WordPress-Taxonomie-Archive ---
+# /thema/inka-online/ ist eine echte Seite und darf NICHT umgeleitet werden
+# (die alte .htaccess-Regel haette sie auf /events/ geschickt).
+/thema/leben-in-karlsruhe/*  /bezirke/  301
+/thema/leben-in-karlsruhe/  /bezirke/  301
+/category/*  /  301

@@ -1,3 +1,14 @@
+# ============================================================
+# ⚠️ WIRKUNGSLOS auf der aktuellen Infrastruktur.
+# karlsruhe-interaktiv.de laeuft auf Cloudflare Pages, dort wird .htaccess
+# NICHT ausgewertet. Live geprueft am 04.08.2026: /architektur/,
+# /anlageberater-karlsruhe-2/, /seo-agenturen-in-karlsruhe/ und /category/...
+# liefern 404, obwohl die Regeln unten sie umleiten wuerden.
+# Wirksame Redirects stehen in public/_redirects - neue Regeln dorthin.
+# Diese Datei bleibt nur als Referenz und fuer einen moeglichen Apache-Umzug.
+# Die /r/-Affiliate-Ziele werden live von src/pages/r/[slug].astro bedient.
+# ============================================================
+
 Options -Indexes
 
 ErrorDocument 404 /404.html
