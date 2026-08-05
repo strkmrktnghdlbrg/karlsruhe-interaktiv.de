@@ -27,6 +27,10 @@ const navItems = [
   { href: detailUrl("categories", techCategorySlug, locale), label: t(locale, "nav.tech"), enabled: features.news.enabled },
   { href: indexUrl("guides", locale), label: t(locale, "nav.guides"), enabled: features.reiseplaner.enabled },
   { href: indexUrl("news", locale), label: t(locale, "nav.news"), enabled: features.news.enabled },
+  // Verzeichnis-Einstieg: stand bisher nur im Footer. Wer den kostenlosen
+  // Eintrag nicht findet, kommt auch nicht zum Premium-Angebot.
+  // DE-only (kein EN-Pendant), Label kurz wegen der umbruchfreien Desktop-Nav.
+  { href: "/branchenbuch/", label: "Branchen", enabled: locale === "de" && features.branchen.enabled },
 ].filter((item) => item.enabled);
 
 const home = homeUrl(locale);
