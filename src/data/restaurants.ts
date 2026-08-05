@@ -481,6 +481,14 @@ export const restaurants: Restaurant[] = [
  */
 export const unverifiedRestaurantSlugs = new Set<string>([
   "klauprecht-1",
+
+  // --- Nachtrag 2026-08-05 -------------------------------------------------
+  // Zweite Pruefrunde: fuer diese Eintraege gab es weder einen OpenStreetMap-
+  // Datensatz noch eine erreichbare Website noch einen Treffer bei gezielter
+  // Suche auf unabhaengigen Quellen. Drei unabhaengige Fehlanzeigen - dieselbe
+  // Beweislage wie bei den oben bereits zurueckgezogenen Eintraegen.
+  "goldene-krone", // Goldene Krone
+  "suppdiwupp", // Suppdiwupp
 ]);
 
 export const isUnverifiedRestaurant = (slug: string) =>
