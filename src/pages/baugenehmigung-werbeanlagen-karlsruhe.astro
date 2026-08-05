@@ -1,0 +1,109 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "Baugenehmigung für Werbeanlagen in Karlsruhe: Wann sie nötig ist und wie der Antrag läuft";
+const description = "Werbeanlagen in Karlsruhe: ab wann eine Baugenehmigung nötig ist, was verfahrensfrei bleibt, welche Regeln in Innenstadt und Durlacher Altstadt gelten und wie der Antrag beim Bauordnungsamt abläuft.";
+// FAQPage-Schema: exakt die sichtbaren Fragen/Antworten der FAQ-Sektion unten.
+const faqLd = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ab welcher Größe braucht eine Werbeanlage in Karlsruhe eine Baugenehmigung?","acceptedAnswer":{"@type":"Answer","text":"Im Innenbereich sind Werbeanlagen bis zu einer Ansichtsfläche von einem Quadratmeter verfahrensfrei. Darüber ist ein Bauantrag beim Bauordnungsamt nötig. Im Außenbereich ist praktisch jede dauerhafte Werbeanlage genehmigungspflichtig."}},{"@type":"Question","name":"Gibt es in Karlsruhe eine Werbeanlagensatzung?","acceptedAnswer":{"@type":"Answer","text":"Eine stadtweite Werbeanlagensatzung gibt es nicht. Die Vorgaben stecken in einzelnen Bebauungsplänen und örtlichen Bauvorschriften, in der Gestaltungssatzung Altstadt Durlach sowie im Verunstaltungsverbot der Landesbauordnung."}},{"@type":"Question","name":"Wie lange dauert die Entscheidung über den Bauantrag?","acceptedAnswer":{"@type":"Answer","text":"Die Baurechtsbehörde prüft den Antrag innerhalb von zehn Arbeitstagen auf Vollständigkeit und teilt den Entscheidungszeitpunkt mit. Über den Bauantrag ist innerhalb von zwei Monaten zu entscheiden, im vereinfachten Verfahren innerhalb eines Monats."}},{"@type":"Question","name":"Welche Unterlagen gehören zum Bauantrag für eine Werbeanlage?","acceptedAnswer":{"@type":"Answer","text":"Lageplan mit zeichnerischem und schriftlichem Teil, Bauzeichnungen der Anlage, Baubeschreibung und in der Regel ein Foto der Bestandsfassade. Je nach Anlage kommt ein Nachweis der Standsicherheit dazu. Eingereicht wird digital als archivfähiges PDF/A über das Virtuelle Bauamt."}}]};
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+  <div class="ha-wrap">
+    <div class="ha-surface">
+      <h1>Baugenehmigung für Werbeanlagen in Karlsruhe</h1>
+      <p class="ha-lead">Ein Leuchtschild an der Fassade, ein Pylon vor dem Betriebsgelände, ein Ausleger über dem Gehweg: In Karlsruhe entscheidet sich schon bei der Planung, ob eine Werbeanlage später ohne Diskussion hängt oder ob das Bauordnungsamt Nachbesserungen verlangt. Dieser Überblick zeigt, wann eine Baugenehmigung nötig ist, welche Regeln im Stadtgebiet gelten und wie der Antrag praktisch abläuft. Fachlich begleitet von <a href="https://assion.de/">ASSION Lichtwerbeanlagen GmbH</a>.</p>
+
+      <h2>Das Wichtigste in Kürze</h2>
+      <ul>
+        <li>Werbeanlagen gelten in Baden-Württemberg als bauliche Anlagen. Ab einer Ansichtsfläche von mehr als einem Quadratmeter ist im Innenbereich ein Bauantrag fällig.</li>
+        <li>Zuständig ist das Bauordnungsamt der Stadt Karlsruhe als untere Baurechtsbehörde. Eingereicht wird digital über das Virtuelle Bauamt.</li>
+        <li>Karlsruhe hat keine stadtweite Werbeanlagensatzung. Was zulässig ist, ergibt sich aus Bebauungsplänen, örtlichen Bauvorschriften und dem Verunstaltungsverbot der Landesbauordnung.</li>
+        <li>In der Durlacher Altstadt gilt seit November 2019 eine eigene Gestaltungssatzung mit deutlich engeren Grenzen als im übrigen Stadtgebiet.</li>
+        <li>Ragt die Anlage in den öffentlichen Straßenraum, kommt zusätzlich eine Sondernutzungserlaubnis dazu. Bei Kulturdenkmalen eine denkmalschutzrechtliche Genehmigung.</li>
+      </ul>
+
+      <h2>Was baurechtlich als Werbeanlage zählt</h2>
+      <p>Die Landesbauordnung Baden-Württemberg fasst den Begriff weit: Schilder, Beschriftungen, Leuchtwerbung, Schaukästen, Automaten und Pylone sind Werbeanlagen und damit bauliche Anlagen. Entscheidend ist nicht das Material und auch nicht, ob gebohrt oder geklebt wird, sondern die Sichtbarkeit vom öffentlichen Verkehrsraum aus. Eine folierte Schaufensterscheibe kann deshalb genauso unter das Baurecht fallen wie ein zwei Meter hoher Leuchtkasten.</p>
+      <p>Rechtsgrundlage sind unter anderem die §§ 2, 11, 53, 58, 59 und 74 der Landesbauordnung sowie die zugehörige Verfahrensverordnung. § 11 enthält dabei den Satz, an dem in der Praxis die meisten Anträge hängen: Werbeanlagen dürfen das Straßen-, Orts- und Landschaftsbild nicht verunstalten. Das ist ein Beurteilungsspielraum, kein Rechenwert, und genau deshalb lohnt sich die Vorabstimmung.</p>
+
+      <h2>Verfahrensfrei oder genehmigungspflichtig?</h2>
+      <p>Im Innenbereich, also innerhalb der im Zusammenhang bebauten Ortsteile, bleiben Werbeanlagen bis zu einer Ansichtsfläche von einem Quadratmeter verfahrensfrei. Ebenfalls ohne Bauantrag zulässig sind Werbung an der Stätte der Leistung für zeitlich begrenzte Veranstaltungen, Wahlplakate während der Wahlkampfzeit sowie Schaufensterdekorationen und Auslagen.</p>
+      <p>Sobald die Ansichtsfläche einen Quadratmeter überschreitet und die Anlage dauerhaft angebracht wird, ist ein Bauantrag beim Bauordnungsamt nötig. Im Außenbereich gilt das unabhängig von der Größe. Wichtig ist der Zusatz, den viele übersehen: Verfahrensfrei heißt nicht regelfrei. Auch eine Anlage ohne Bauantrag muss die Vorgaben des Bebauungsplans, den Denkmalschutz und das Verunstaltungsverbot einhalten. Wer hier danebenliegt, bekommt die Beseitigungsverfügung trotzdem.</p>
+      <p>Ein zweiter Punkt betrifft die Nutzungsart des Gebiets. In reinen und allgemeinen Wohngebieten ist Werbung grundsätzlich nur an der Stätte der Leistung zulässig, also am eigenen Betrieb. Fremdwerbung, etwa eine vermietete Großfläche an der Giebelwand, scheitert dort regelmäßig schon an der Baunutzungsverordnung. In den Karlsruher Gewerbe- und Industriegebieten, vom Rheinhafen über Hagsfeld bis zum Killisfeld in Durlach, ist der Spielraum dagegen deutlich größer.</p>
+
+      <h2>Wo in Karlsruhe die eigentlichen Regeln stehen</h2>
+      <p>Anders als etwa Mannheim oder Baden-Baden hat Karlsruhe keine einheitliche Werbeanlagensatzung für das gesamte Stadtgebiet. Ein Beteiligungsverfahren für eine Innenstadtsatzung lief 2018, zu einer stadtweiten Regelung geführt hat es nicht. Für die Praxis bedeutet das: Die maßgeblichen Vorgaben stehen verstreut, und zwar an drei Stellen.</p>
+      <p><strong>Erstens in den Bebauungsplänen und örtlichen Bauvorschriften.</strong> Viele Karlsruher Bebauungspläne enthalten eigene Festsetzungen zu Werbeanlagen, etwa zur maximalen Höhe, zur Lage unterhalb der Brüstung des ersten Obergeschosses oder zum Ausschluss von Wechselwerbung. Welcher Plan für eine Adresse gilt, lässt sich vorab über die Bebauungsplan-Auskunft im Geoportal der Stadt prüfen. Dieser Schritt kostet zehn Minuten und erspart im Zweifel eine komplette Umplanung.</p>
+      <p><strong>Zweitens in der Gestaltungssatzung Altstadt Durlach</strong>, in Kraft seit dem 15. November 2019. Sie regelt Baukörper, Fassaden, Öffnungen und ausdrücklich auch Werbeanlagen. Störende Anlagen sind ausgeschlossen, zulässige Werbung muss sich dem architektonischen Ausdruck des Gebäudes unterordnen. Leuchtbänder, Blinklichtanlagen, Leuchtschriften und Großflächenwerbung sind dort unzulässig. Wer in der Durlacher Altstadt plant, sollte deshalb von vornherein mit hinterleuchteten Einzelbuchstaben, gestockten Profilen oder klassischen Auslegern rechnen statt mit einem geschlossenen Leuchtkasten.</p>
+      <p><strong>Drittens im Denkmalschutz.</strong> Für Kulturdenkmale und für Gebäude innerhalb geschützter Gesamtanlagen braucht die Anbringung einer Werbeanlage zusätzlich eine denkmalschutzrechtliche Genehmigung. Das betrifft in Karlsruhe nicht nur den Schlossbezirk und den Marktplatz, sondern auch zahlreiche Einzelgebäude in der Weststadt, der Oststadt und der <a href="/bezirke/durlach/">Durlacher Altstadt</a>. Die denkmalrechtliche Prüfung läuft im Baugenehmigungsverfahren mit, verlängert es aber spürbar.</p>
+
+      <div class="ha-box">
+        <p class="ha-box-title">Kaiserstraße und Fußgängerzone: an den Straßenraum denken</p>
+        <p class="ha-box-text">Ausleger, Schaukästen und Vordachwerbung, die über die Grundstücksgrenze in den öffentlichen Straßenraum ragen, brauchen neben der Baugenehmigung eine Sondernutzungserlaubnis. Für die Innenstadt gibt es dazu eine eigene Sondernutzungsrichtlinie mit Vorgaben zu Auskragung und lichter Höhe. Beide Verfahren laufen getrennt, sollten aber parallel gestartet werden, sonst hängt die Anlage genehmigt an der Wand und darf trotzdem nicht montiert werden.</p>
+      </div>
+
+      <h2>Der Antrag beim Bauordnungsamt: Ablauf und Unterlagen</h2>
+      <p>Untere Baurechtsbehörde ist das Bauordnungsamt der Stadt Karlsruhe. Der Bauantrag wird digital als archivfähiges PDF/A über das Virtuelle Bauamt eingereicht. Zum Standardumfang gehören:</p>
+      <ul>
+        <li>Lageplan mit zeichnerischem und schriftlichem Teil, Standort der Anlage eingetragen</li>
+        <li>Bauzeichnungen der Werbeanlage mit Ansicht, Schnitt und Maßen</li>
+        <li>Baubeschreibung mit Angaben zu Material, Farbe, Befestigung und Beleuchtung</li>
+        <li>Foto der Bestandsfassade, idealerweise mit einmontierter Anlage im Maßstab</li>
+        <li>je nach Anlage ein Nachweis oder eine Bestätigung der Standsicherheit</li>
+      </ul>
+      <p>Zeitlich gibt die Landesbauordnung den Rahmen vor: Die Baurechtsbehörde prüft den Antrag innerhalb von zehn Arbeitstagen auf Vollständigkeit und teilt den ermittelten Entscheidungszeitpunkt mit. Über den Bauantrag selbst ist innerhalb von zwei Monaten zu entscheiden, im vereinfachten Verfahren innerhalb eines Monats. Diese Fristen laufen allerdings erst ab vollständigen Unterlagen. Jede Nachforderung setzt die Uhr faktisch neu, und genau daran scheitert der Zeitplan in der Praxis häufiger als an der Behörde.</p>
+
+      <h2>Typische Gründe, warum es länger dauert</h2>
+      <p>Die Ablehnungen und Rückfragen wiederholen sich auffallend oft. Am häufigsten fehlt der Nachweis, wie die Anlage im Verhältnis zur Fassade wirkt: Ein technisches Datenblatt ohne Fassadenmontage lässt sich baurechtlich nicht beurteilen. Ebenfalls regelmäßig unvollständig sind Angaben zur Leuchtdichte, obwohl gerade bei LED-Anlagen die Blendwirkung auf Wohnnutzung und Verkehr geprüft wird. Der dritte Klassiker ist der übersehene Bebauungsplan, in dem eine maximale Höhe oder ein Ausschluss von Leuchtwerbung festgesetzt ist.</p>
+      <p>Hinzu kommt ein Punkt, der nichts mit dem Bauamt zu tun hat: die Zustimmung des Eigentümers. Bei angemieteten Ladenflächen ist die Werbeanlage baurechtlich Sache des Bauherrn, mietrechtlich aber Sache des Vermieters. Beides sollte vor dem Antrag geklärt sein.</p>
+
+      <h2>Fachbetrieb oder selbst beantragen?</h2>
+      <p>Für eine einfache, klar innerhalb der Vorgaben liegende Anlage ist der Antrag gut allein zu schaffen. Sobald Denkmalschutz, Durlacher Gestaltungssatzung, Sondernutzung oder eine Anlage über der Ein-Quadratmeter-Grenze im Spiel sind, spart ein Fachbetrieb meist mehr Zeit, als er kostet: Planung, Statik, Zeichnungen und Antragsunterlagen kommen aus einer Hand, und die Anlage wird von vornherein so entworfen, dass sie genehmigungsfähig ist. Wer nach passenden Betrieben in der Stadt sucht, findet sie im <a href="/werbetechniker-karlsruhe/">Verzeichnis der Werbetechniker in Karlsruhe</a> und im übrigen <a href="/branchenbuch/">Karlsruher Branchenbuch</a>.</p>
+
+      <h2>Häufige Fragen</h2>
+      <div class="faq-item">
+        <h3>Ab welcher Größe braucht eine Werbeanlage in Karlsruhe eine Baugenehmigung?</h3>
+        <p>Im Innenbereich sind Werbeanlagen bis zu einer Ansichtsfläche von einem Quadratmeter verfahrensfrei. Darüber ist ein Bauantrag beim Bauordnungsamt nötig. Im Außenbereich ist praktisch jede dauerhafte Werbeanlage genehmigungspflichtig.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Gibt es in Karlsruhe eine Werbeanlagensatzung?</h3>
+        <p>Eine stadtweite Werbeanlagensatzung gibt es nicht. Die Vorgaben stecken in einzelnen Bebauungsplänen und örtlichen Bauvorschriften, in der Gestaltungssatzung Altstadt Durlach sowie im Verunstaltungsverbot der Landesbauordnung.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Wie lange dauert die Entscheidung über den Bauantrag?</h3>
+        <p>Die Baurechtsbehörde prüft den Antrag innerhalb von zehn Arbeitstagen auf Vollständigkeit und teilt den Entscheidungszeitpunkt mit. Über den Bauantrag ist innerhalb von zwei Monaten zu entscheiden, im vereinfachten Verfahren innerhalb eines Monats.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Welche Unterlagen gehören zum Bauantrag für eine Werbeanlage?</h3>
+        <p>Lageplan mit zeichnerischem und schriftlichem Teil, Bauzeichnungen der Anlage, Baubeschreibung und in der Regel ein Foto der Bestandsfassade. Je nach Anlage kommt ein Nachweis der Standsicherheit dazu. Eingereicht wird digital als archivfähiges PDF/A über das Virtuelle Bauamt.</p>
+      </div>
+
+      <p class="ha-note">Stand: August 2026. Dieser Beitrag ersetzt keine Rechtsberatung im Einzelfall. Maßgeblich sind die Landesbauordnung Baden-Württemberg, der für das Grundstück geltende Bebauungsplan und die Auskunft des Bauordnungsamts der Stadt Karlsruhe.</p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .ha-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1rem 3rem; }
+  .ha-surface {
+    background: #ffffff; color: #33313f; border-radius: 16px;
+    padding: clamp(20px, 4vw, 40px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 30px rgba(0,0,0,0.05);
+    font-size: 16.5px; line-height: 1.7;
+  }
+  .ha-surface h1 { color: #20233a; font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.5px; margin: 0 0 1rem; }
+  .ha-surface .ha-lead { font-size: 1.12rem; color: #4a4858; margin: 0 0 1.6rem; }
+  .ha-surface h2 { color: #20233a; font-size: 1.55rem; font-weight: 800; line-height: 1.25; letter-spacing: -0.3px; margin: 2.2rem 0 0.8rem; }
+  .ha-surface h3 { color: #20233a; font-size: 1.2rem; font-weight: 700; line-height: 1.3; margin: 1.5rem 0 0.5rem; }
+  .ha-surface p { margin: 0 0 1.05rem; }
+  .ha-surface ul, .ha-surface ol { margin: 0 0 1.15rem; padding-left: 1.4rem; }
+  .ha-surface li { margin-bottom: 0.5rem; }
+  .ha-surface strong { color: #20233a; font-weight: 700; }
+  .ha-surface a { color: #365DA3; text-decoration: underline; text-underline-offset: 3px; }
+  .ha-box { background: #f4f6fb; border: 1px solid #dde3f0; border-radius: 14px; padding: 22px 24px; margin: 28px 0; }
+  .ha-box-title { font-size: 19px; font-weight: 800; color: #20233a; margin-bottom: 6px; }
+  .ha-box-text { margin: 0; }
+  .ha-surface .faq-item { border-top: 1px solid #e6e6ef; padding-top: 1.1rem; margin-top: 1.1rem; }
+  .ha-surface .faq-item h3 { margin-top: 0; font-size: 18px; }
+  .ha-surface .ha-note { margin-top: 2rem; padding-top: 1.1rem; border-top: 1px solid #e6e6ef; font-size: 14px; color: #6b6879; }
+</style>
