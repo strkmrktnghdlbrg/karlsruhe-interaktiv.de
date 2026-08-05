@@ -15,6 +15,8 @@ interface Props {
   title?: string;
   lead?: string;
   locale?: "de" | "en";
+  /** Suchradius in Metern rund um das Stadtzentrum. */
+  radius?: number;
 }
 
 const locale = Astro.props.locale ?? "de";
@@ -28,6 +30,10 @@ const {
   lead = en
     ? "Live from Booking.com - current ratings and prices, updated at the last build."
     : "Live von Booking.com - aktuelle Bewertungen und Preise, aktualisiert beim letzten Build.",
+  // Fehlte bisher komplett: `radius` wurde unten an getTopHotels durchgereicht,
+  // war aber nirgends definiert. Der ReferenceError landete im catch, damit war
+  // die Live-Hotelliste bei jedem Build leer.
+  radius = 15000,
 } = Astro.props;
 
 let hotels: Stay22Accommodation[] | null = null;

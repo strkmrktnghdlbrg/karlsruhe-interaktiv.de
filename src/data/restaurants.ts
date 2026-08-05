@@ -461,11 +461,42 @@ export const restaurants: Restaurant[] = [
   },
 ];
 
+/**
+ * Zurueckgezogener Eintrag (Pruefung 2026-08-03).
+ *
+ * "Klauprecht 1" meint das Cafe Klauprecht - das liegt aber in der
+ * Klauprechtstrasse 41 in der **Suedweststadt**, nicht in Durlach. Der
+ * Eintrag traegt einen so nicht existierenden Namen und den falschen
+ * Stadtteil; nur beides zu korrigieren wuerde die uebrigen, unbelegten
+ * Angaben an einen echten, benannten Betrieb heften.
+ *
+ * Gegengeprueft gegen OpenStreetMap (alle benannten Gastro-POIs im
+ * Stadtgebiet) und die Website des Betriebs.
+ *
+ * Nicht geloescht, sondern nicht mehr veroeffentlicht: raus aus allen Listen,
+ * Bezirks- und Kategorieseiten, der Suche, dem Branchenverzeichnis und der
+ * Sitemap. Die Detailseite bleibt unter ihrer URL erreichbar (kein 404 fuer
+ * bestehende Links), traegt aber noindex und einen Hinweis statt Name, Text
+ * und schema.org.
+ */
+export const unverifiedRestaurantSlugs = new Set<string>([
+  "klauprecht-1",
+]);
+
+export const isUnverifiedRestaurant = (slug: string) =>
+  unverifiedRestaurantSlugs.has(slug);
+
+/** Alles, was oeffentlich gelistet werden darf. Listen nutzen ausschliesslich das. */
+export const publishedRestaurants = restaurants.filter(
+  (r) => !isUnverifiedRestaurant(r.slug),
+);
+
+/** Ungefiltert - die Detailseite muss ihre URL weiter aufloesen koennen. */
 export const getRestaurant = (slug: string) =>
   restaurants.find((r) => r.slug === slug);
 export const restaurantsByDistrict = (district: string) =>
-  restaurants.filter((r) => r.district === district);
+  publishedRestaurants.filter((r) => r.district === district);
 export const restaurantsByCategory = (category: string) =>
-  restaurants.filter((r) => r.categories.includes(category));
+  publishedRestaurants.filter((r) => r.categories.includes(category));
 export const restaurantsByCuisine = (cuisine: string) =>
-  restaurants.filter((r) => r.cuisine === cuisine);
+  publishedRestaurants.filter((r) => r.cuisine === cuisine);

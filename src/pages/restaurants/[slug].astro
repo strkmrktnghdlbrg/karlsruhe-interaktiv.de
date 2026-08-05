@@ -1,10 +1,11 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import UnverifiedNotice from "../../components/UnverifiedNotice.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import StageHero from "../../components/StageHero.astro";
 import ActionDock from "../../components/ActionDock.astro";
 import RelatedItems from "../../components/RelatedItems.astro";
-import { restaurants, getRestaurant } from "../../data/restaurants";
+import { restaurants, getRestaurant, isUnverifiedRestaurant } from "../../data/restaurants";
 import { getDistrict } from "../../data/districts";
 import { heroKey, getImage } from "../../data/images";
 import { city } from "../../data/city";
@@ -36,7 +37,26 @@ const schema = {
   ...(restaurant.websiteUrl && { url: restaurant.websiteUrl }),
   ...(restaurant.reservation !== undefined && { acceptsReservations: restaurant.reservation }),
 };
+
+/**
+ * Zurueckgezogener Eintrag: die URL loest weiter auf, aber es gehen weder
+ * Name noch Beschreibung noch schema.org-Daten raus, und die Seite bekommt
+ * noindex. Siehe die Notiz in src/data/restaurants.ts.
+ */
+const unverified = isUnverifiedRestaurant(restaurant.slug);
 ---
+
+{unverified ? (
+  <BaseLayout title="Eintrag nicht verfügbar" description="Dieser Eintrag wird derzeit überprüft und ist vorübergehend nicht verfügbar." noindex>
+    <div class="container-page py-12">
+      <Breadcrumbs items={[
+        { label: "Start", href: "/" },
+        { label: "Restaurants", href: "/restaurants/" },
+      ]} />
+      <UnverifiedNotice backHref="/restaurants/" backLabel="Zur Restaurant-Übersicht" />
+    </div>
+  </BaseLayout>
+) : (
 
 <BaseLayout title={restaurant.name} description={restaurant.shortDesc} alternateUrls={{ de: detailUrl("restaurants", restaurant.slug, "de"), en: detailUrl("restaurants", restaurantsEn[restaurant.slug].slug, "en") }}>
   <article>
@@ -97,3 +117,4 @@ const schema = {
     <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline></script>
   </article>
 </BaseLayout>
+)}

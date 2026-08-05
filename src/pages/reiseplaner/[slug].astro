@@ -9,7 +9,7 @@ import { guidesEn } from "../../i18n/en/guides";
 import { detailUrl } from "../../i18n/config";
 import { getSight } from "../../data/sights";
 import { getHotel } from "../../data/hotels";
-import { getRestaurant } from "../../data/restaurants";
+import { getRestaurant, isUnverifiedRestaurant } from "../../data/restaurants";
 import { getDistrict } from "../../data/districts";
 import { features } from "../../data/features";
 
@@ -58,7 +58,9 @@ const en = guidesEn[guide.slug];
           {day.slots.map((slot) => {
             const refSight = slot.sightSlug ? getSight(slot.sightSlug) : null;
             const refHotel = slot.hotelSlug ? getHotel(slot.hotelSlug) : null;
-            const refRest = slot.restaurantSlug ? getRestaurant(slot.restaurantSlug) : null;
+            // Zurueckgezogene Betriebe tauchen auch im Reiseplaner nicht mehr auf.
+            const refRestRaw = slot.restaurantSlug ? getRestaurant(slot.restaurantSlug) : null;
+            const refRest = refRestRaw && !isUnverifiedRestaurant(refRestRaw.slug) ? refRestRaw : null;
             const refDistrict = slot.districtSlug ? getDistrict(slot.districtSlug) : null;
             return (
               <li class="grid grid-cols-[100px_1fr] gap-4">

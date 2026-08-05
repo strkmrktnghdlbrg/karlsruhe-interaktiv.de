@@ -1,10 +1,11 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+import UnverifiedNotice from "../../../components/UnverifiedNotice.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import StageHero from "../../../components/StageHero.astro";
 import ActionDock from "../../../components/ActionDock.astro";
 import RelatedItems from "../../../components/RelatedItems.astro";
-import { restaurants } from "../../../data/restaurants";
+import { restaurants, isUnverifiedRestaurant } from "../../../data/restaurants";
 import { restaurantsEn } from "../../../i18n/en/restaurants";
 import { districtsEn } from "../../../i18n/en/districts";
 import { getDistrict } from "../../../data/districts";
@@ -43,7 +44,26 @@ const schema = {
   ...(restaurant.websiteUrl && { url: restaurant.websiteUrl }),
   ...(restaurant.reservation !== undefined && { acceptsReservations: restaurant.reservation }),
 };
+
+/**
+ * Zurueckgezogener Eintrag: die URL loest weiter auf, aber es gehen weder
+ * Name noch Beschreibung noch schema.org-Daten raus, und die Seite bekommt
+ * noindex. Siehe die Notiz in src/data/restaurants.ts.
+ */
+const unverified = isUnverifiedRestaurant(restaurant.slug);
 ---
+
+{unverified ? (
+  <BaseLayout title="Entry not available" description="This entry is currently being verified and is temporarily unavailable." noindex>
+    <div class="container-page py-12">
+      <Breadcrumbs items={[
+        { label: "Home", href: "/en/" },
+        { label: "Restaurants", href: "/en/restaurants/" },
+      ]} />
+      <UnverifiedNotice locale={locale} backHref="/en/restaurants/" backLabel="Back to restaurants" />
+    </div>
+  </BaseLayout>
+) : (
 
 <BaseLayout
   title={en.name}
@@ -105,3 +125,4 @@ const schema = {
     <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline></script>
   </article>
 </BaseLayout>
+)}
