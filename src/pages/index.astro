@@ -158,6 +158,29 @@ const mosaikItems = [
     </section>
   )}
 
+  <!-- Apotheken & Gesundheit -->
+  <section class="stage-sec">
+    <div class="container-page">
+      <div class="apo-home">
+        <p class="apo-home-eyebrow">Gesundheit</p>
+        <h2 class="apo-home-h2">Apotheken in Karlsruhe: Adressen und Versandalternative</h2>
+        <p>Von der Innenstadt über Mühlburg und die Oststadt bis Durlach ist die Versorgung solide, doch nach Feierabend gilt der wechselnde Notdienst für den gesamten Stadtkreis. Wer nicht suchen will, schaut vorher nach. Adressen nach Stadtteil und die Notdiensthinweise haben wir bei den <a href="/apotheken-karlsruhe/">Apotheken in Karlsruhe</a> zusammengestellt.</p>
+        <p>Für den planbaren Bedarf ist der Versandweg meist günstiger. Bei rezeptfreien Medikamenten und Pflegeprodukten summieren sich die Unterschiede über das Jahr deutlich. Welche Versandapotheke nach Karlsruhe wie schnell liefert und welche Versandkostengrenze gilt, steht im <a href="/online-apotheke-karlsruhe/">Online-Apotheken-Vergleich</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feiern & Events -->
+  <section class="stage-sec">
+    <div class="container-page">
+      <div class="apo-home">
+        <p class="apo-home-eyebrow">Feiern &amp; Events</p>
+        <h2 class="apo-home-h2">Fotobox für Hochzeit und Firmenfeier in Karlsruhe</h2>
+        <p>Von der Fotosäule mit Touchscreen über den Magic-Mirror-Fotospiegel bis zum restaurierten Oldtimer-Bus: Wer in der Fächerstadt feiert, hat bei Fotoboxen inzwischen echte Auswahl - und die Angebote unterscheiden sich weniger im Stundenpreis als bei Anfahrt, Betreuung und Druckkontingent. Welche Variante zu welchem Anlass passt und worauf es bei der Buchung ankommt, steht im Ratgeber <a href="/fotobox-mieten-karlsruhe/">Fotobox mieten in Karlsruhe</a>.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- FUER BETRIEBE -->
   <section class="stage-sec alt border-t" style="border-color: var(--color-border);">
     <div class="container-page">
@@ -169,3 +192,23 @@ const mosaikItems = [
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  /* Apotheken-Teaser (Startseite) */
+  .apo-home { max-width: 70ch; }
+  .apo-home-eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; opacity: .6; margin: 0 0 8px;
+  }
+  .apo-home-h2 {
+    font-size: clamp(24px, 3.2vw, 32px); font-weight: 600; line-height: 1.15;
+    letter-spacing: -.02em; margin: 0 0 14px;
+  }
+  .apo-home p { font-size: 1rem; line-height: 1.75; margin: 0 0 12px; opacity: .88; }
+  .apo-home p:last-child { margin-bottom: 0; }
+  .apo-home a {
+    color: inherit; font-weight: 600; text-decoration: underline;
+    text-underline-offset: 3px; text-decoration-thickness: 1px;
+  }
+  .apo-home a:hover { text-decoration-thickness: 2px; }
+</style>
