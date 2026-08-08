@@ -1,0 +1,109 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "Schauburg Karlsruhe: Programmkino, Saal und Festivals";
+const description = "Die Schauburg in Karlsruhe: traditionsreiches Programmkino in der Südstadt mit großem Saal, 70-mm-Technik und den Todd-AO-Filmtagen – Programm, Anfahrt und Tipps.";
+const faqLd = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Wo ist die Schauburg in Karlsruhe?", "acceptedAnswer": {"@type": "Answer", "text": "In der Karlsruher Südstadt, Marienstraße 16. Vom Hauptbahnhof sind es wenige Gehminuten, dazu ist das Kino mit Straßenbahn und Bus gut erreichbar."}}, {"@type": "Question", "name": "Was macht die Schauburg Karlsruhe besonders?", "acceptedAnswer": {"@type": "Answer", "text": "Sie ist eines der wenigen Kinos in Deutschland, das große analoge Filmformate projizieren kann, und veranstaltet damit jährliche Filmtage, zu denen Gäste überregional anreisen. Dazu kommt ein klassisches Programmkino-Profil mit Arthouse-Filmen und Originalfassungen."}}, {"@type": "Question", "name": "Wie bekommt man Tickets für die Schauburg?", "acceptedAnswer": {"@type": "Answer", "text": "Online über das Kino oder an der Abendkasse. Für reguläre Vorstellungen reicht meist der Kauf am selben Tag. Für Previews, Sonderveranstaltungen und besonders für die Filmtage sollte man früh im Vorverkauf buchen."}}, {"@type": "Question", "name": "Wo parkt man bei der Schauburg Karlsruhe?", "acceptedAnswer": {"@type": "Answer", "text": "Stellplätze in der Südstadt sind knapp. Verlässlicher sind die Parkhäuser in der Innenstadt, von dort ist man in wenigen Minuten zu Fuß oder mit einer Station Straßenbahn am Kino."}}, {"@type": "Question", "name": "Zeigt die Schauburg Filme in Originalfassung?", "acceptedAnswer": {"@type": "Answer", "text": "Ja, Originalfassungen gehören zum Programmprofil des Hauses – ebenso wie Arthouse-Filme, die in den Multiplexkinos der Stadt nicht laufen. Welche Vorstellung in welcher Fassung läuft, steht im Tagesprogramm."}}]};
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+  <div class="pf-wrap">
+    <div class="pf-surface">
+      <h1>Schauburg Karlsruhe: Programmkino mit eigener Handschrift</h1>
+      <p class="pf-lead">Die Schauburg in der Karlsruher Südstadt ist mehr als ein Kino: Sie ist eines der wenigen Häuser in Deutschland, das große Filmformate noch analog projizieren kann, und zieht mit ihren Filmtagen ein Publikum an, das dafür quer durch die Republik anreist. Wer in Karlsruhe ins Kino geht und Wert auf Saal, Ton und Programm legt, landet hier. Diese Seite ordnet ein, was die Schauburg ausmacht und worauf man beim Besuch achtet.</p>
+      <h2>Das Wichtigste in Kürze</h2>
+      <ul>
+        <li>Die Schauburg liegt in der Karlsruher Südstadt, Marienstraße 16, wenige Minuten vom Hauptbahnhof.</li>
+        <li>Das Haus hat mehrere Säle unterschiedlicher Größe; der große Saal ist der Grund für den Ruf des Kinos.</li>
+        <li>Neben dem regulären Programm laufen Filmreihen, Previews und Sonderveranstaltungen.</li>
+        <li>Die Schauburg ist eines der wenigen Kinos in Deutschland mit Projektionstechnik für große analoge Filmformate.</li>
+        <li>Für die Filmtage mit klassischen Großformaten reisen Besucherinnen und Besucher überregional an – Tickets dafür früh sichern.</li>
+        <li>Parkplätze sind in der Südstadt knapp; mit Straßenbahn oder zu Fuß vom Hauptbahnhof ist man schneller da.</li>
+      </ul>
+      <h2>Was die Schauburg besonders macht</h2>
+      <ul class="ph-list">
+        <li class="ph">
+          <span class="ph-name">Der große Saal</span>
+          <span class="ph-lage">Hauptsaal des Hauses</span>
+          <span class="ph-meta">Große Leinwand, klassische Kinoarchitektur</span>
+          <span class="ph-hint">Der Grund, warum viele Karlsruher hier und nicht im Multiplex buchen. Wer die Wahl hat, nimmt für Filme mit großen Bildern diesen Saal.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">Analoge Großformate</span>
+          <span class="ph-lage">Projektionstechnik für 70 mm</span>
+          <span class="ph-meta">Bundesweit selten geworden</span>
+          <span class="ph-hint">Die Schauburg hält Technik und Wissen für analoge Großformatprojektion vor. Das ist keine Nostalgie-Deko, sondern läuft im Programm.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">Todd-AO-Filmtage</span>
+          <span class="ph-lage">Jährliche Veranstaltungsreihe</span>
+          <span class="ph-meta">Überregionales Publikum, früh ausgebucht</span>
+          <span class="ph-hint">Das Alleinstellungsmerkmal des Hauses: Klassiker in großen Formaten, für die Gäste aus ganz Deutschland und dem Ausland anreisen.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">Programmkino-Profil</span>
+          <span class="ph-lage">Reguläres Tagesprogramm</span>
+          <span class="ph-meta">Arthouse, Originalfassungen, Previews</span>
+          <span class="ph-hint">Neben den Sonderveranstaltungen ein klassisches Programmkino mit Filmen, die im Multiplex nicht laufen, häufig auch in Originalfassung.</span>
+        </li>
+      </ul>
+      <h2>Anfahrt und Praktisches</h2>
+      <p>Die Schauburg liegt in der Südstadt, wenige Gehminuten vom Karlsruher Hauptbahnhof und gut mit Straßenbahn und Bus erreichbar. Wer mit dem Auto kommt, sollte einplanen, dass Stellplätze in der Südstadt knapp sind – die Parkhäuser in der Innenstadt sind der verlässlichere Weg, von dort sind es einige Minuten zu Fuß oder eine Station mit der Bahn.</p>
+      <p>Tickets gibt es online und an der Kasse. Für reguläre Vorstellungen genügt in der Regel der Kauf am selben Tag, für Sonderveranstaltungen, Previews und die Filmtage lohnt der frühe Vorverkauf. Bei den Filmtagen sind einzelne Vorstellungen Wochen vorher weg.</p>
+      <h2>Häufige Fragen</h2>
+      <div class="faq-item">
+        <h3>Wo ist die Schauburg in Karlsruhe?</h3>
+        <p>In der Karlsruher Südstadt, Marienstraße 16. Vom Hauptbahnhof sind es wenige Gehminuten, dazu ist das Kino mit Straßenbahn und Bus gut erreichbar.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Was macht die Schauburg Karlsruhe besonders?</h3>
+        <p>Sie ist eines der wenigen Kinos in Deutschland, das große analoge Filmformate projizieren kann, und veranstaltet damit jährliche Filmtage, zu denen Gäste überregional anreisen. Dazu kommt ein klassisches Programmkino-Profil mit Arthouse-Filmen und Originalfassungen.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Wie bekommt man Tickets für die Schauburg?</h3>
+        <p>Online über das Kino oder an der Abendkasse. Für reguläre Vorstellungen reicht meist der Kauf am selben Tag. Für Previews, Sonderveranstaltungen und besonders für die Filmtage sollte man früh im Vorverkauf buchen.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Wo parkt man bei der Schauburg Karlsruhe?</h3>
+        <p>Stellplätze in der Südstadt sind knapp. Verlässlicher sind die Parkhäuser in der Innenstadt, von dort ist man in wenigen Minuten zu Fuß oder mit einer Station Straßenbahn am Kino.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Zeigt die Schauburg Filme in Originalfassung?</h3>
+        <p>Ja, Originalfassungen gehören zum Programmprofil des Hauses – ebenso wie Arthouse-Filme, die in den Multiplexkinos der Stadt nicht laufen. Welche Vorstellung in welcher Fassung läuft, steht im Tagesprogramm.</p>
+      </div>
+      <h2>Weiterlesen</h2>
+      <ul>
+        <li><a href="/sehenswuerdigkeiten/">Sehenswürdigkeiten in Karlsruhe</a></li>
+        <li><a href="/parken-in-karlsruhe/">Parken in Karlsruhe</a></li>
+        <li><a href="/events/">Veranstaltungen in Karlsruhe</a></li>
+      </ul>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .pf-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1rem 3rem; }
+  .pf-surface {
+    background: #ffffff; color: #33313f; border-radius: 16px;
+    padding: clamp(20px, 4vw, 40px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 30px rgba(0,0,0,0.05);
+    font-size: 16.5px; line-height: 1.7;
+  }
+  .pf-surface h1 { color: #20233a; font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.5px; margin: 0 0 1rem; }
+  .pf-surface .pf-lead { font-size: 1.12rem; color: #4a4858; margin: 0 0 1.6rem; }
+  .pf-surface h2 { color: #20233a; font-size: 1.55rem; font-weight: 800; line-height: 1.25; letter-spacing: -0.3px; margin: 2.2rem 0 0.8rem; }
+  .pf-surface h3 { color: #20233a; font-size: 1.2rem; font-weight: 700; line-height: 1.3; margin: 1.5rem 0 0.5rem; }
+  .pf-surface p { margin: 0 0 1.05rem; }
+  .pf-surface ul, .pf-surface ol { margin: 0 0 1.15rem; padding-left: 1.4rem; }
+  .pf-surface li { margin-bottom: 0.5rem; }
+  .pf-surface strong { color: #20233a; font-weight: 700; }
+  .pf-surface a { color: #365DA3; text-decoration: underline; text-underline-offset: 3px; }
+  .pf-surface .ph-list { list-style: none; padding-left: 0; }
+  .pf-surface .ph { display: block; border: 1px solid #e6e6ef; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; background: #fafafd; }
+  .pf-surface .ph-name { display: block; font-weight: 800; color: #20233a; font-size: 1.05rem; }
+  .pf-surface .ph-lage { display: block; color: #4a4858; margin-top: 2px; }
+  .pf-surface .ph-meta { display: block; color: #33313f; margin-top: 6px; font-size: 0.97rem; }
+  .pf-surface .ph-hint { display: block; color: #6b7280; margin-top: 4px; font-size: 0.94rem; }
+  .pf-surface .faq-item { border-top: 1px solid #e6e6ef; padding-top: 1.1rem; margin-top: 1.1rem; }
+  .pf-surface .faq-item h3 { margin-top: 0; font-size: 18px; }
+</style>
