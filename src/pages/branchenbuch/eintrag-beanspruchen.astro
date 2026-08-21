@@ -95,6 +95,7 @@ const premium = [
       {formAktiv ? (
         <form class="werben-form" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value={formKey} />
+          <input type="hidden" name="site_domain" value="karlsruhe-interaktiv.de" />
           <input type="hidden" name="subject" value={`Branchenbuch-Eintrag ${city.name}`} />
           <input type="hidden" name="from_name" value={`${city.name}-Interaktiv`} />
           <!-- Honeypot gegen Bots -->
