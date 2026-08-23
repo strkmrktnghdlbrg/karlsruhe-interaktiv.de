@@ -20,6 +20,11 @@ if (!features.reiseplaner.enabled) return Astro.redirect("/", 302);
       <p class="text-lg max-w-3xl" style="color: var(--color-text-body);">
         Fertige Tagespläne für Karlsruhe - Erstbesucher, Familien, Regen. Jeder Plan verweist auf konkrete Sehenswürdigkeiten, Restaurants und Hotels.
       </p>
+      <p class="text-base max-w-3xl mt-4" style="color: var(--color-text-body);">
+        Nach demselben Muster lassen sich andere Städte planen. Für Köln ist zum Beispiel gut
+        dokumentiert, welche Bauwerke das Stadtbild prägen und welche davon ohne Ticket zugänglich
+        sind, <a href="https://koeln-interaktiv.de/wahrzeichen-koeln/" target="_blank" rel="noopener">nachzulesen hier</a>.
+      </p>
     </header>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {guides.map((g) => (
