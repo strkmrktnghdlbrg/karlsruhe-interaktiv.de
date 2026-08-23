@@ -1,0 +1,226 @@
+---
+/**
+ * Listen-Money-Page: Flohmaerkte in Karlsruhe (8.100 SV).
+ *
+ * Der Wettbewerber rankt hier mit einer einfachen Terminliste, die jedes Jahr
+ * veraltet. Deshalb steht hier der wiederkehrende Rhythmus im Vordergrund
+ * (erster Samstag im Monat, Hinterhofflohmaerkte im Fruehjahr, Grossflohmarkt
+ * mehrmals im Jahr) und die Jahrestermine nur als datierter Zusatz.
+ *
+ * PFLEGE: Der Block `termine2026` ist der einzige Teil, der jaehrlich neu
+ * recherchiert werden muss. Wenn die Liste veraltet, lieber leeren als
+ * falsche Termine stehen lassen - der Rhythmus-Teil traegt die Seite allein.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { city } from "../data/city";
+
+const title = "Flohmarkt Karlsruhe: Termine, Orte und der feste Rhythmus";
+const description =
+  "Flohmärkte in Karlsruhe im Überblick: Stadtflohmarkt am Stephanplatz jeden ersten Samstag, Großflohmarkt auf dem Messplatz, Hinterhofflohmärkte in den Stadtteilen und der Durlacher Kruschtlmarkt.";
+
+type Markt = {
+  name: string;
+  ort: string;
+  rhythmus: string;
+  zeit?: string;
+  text: string;
+};
+
+/* Wiederkehrende Maerkte - der Teil der Seite, der nicht veraltet. */
+const maerkte: Markt[] = [
+  {
+    name: "Stadtflohmarkt am Stephanplatz",
+    ort: "Stephanplatz, hinter der Postgalerie, Innenstadt-West",
+    rhythmus: "März bis Dezember, jeweils am ersten Samstag im Monat",
+    zeit: "8:00 bis 16:00 Uhr",
+    text:
+      "Der verlässlichste Termin im Karlsruher Flohmarktkalender und der einzige mitten in der Innenstadt. Weil er monatlich stattfindet, lohnt er sich auch für Besucher, die nicht auf einen einzelnen Jahrestermin planen können. Die Haltestelle Europaplatz liegt wenige Schritte entfernt.",
+  },
+  {
+    name: "Großflohmarkt auf dem Messplatz",
+    ort: "Messplatz, Oststadt",
+    rhythmus: "mehrmals im Jahr, Termine wechseln jährlich",
+    text:
+      "Der größte Flohmarkt der Stadt, auf der Fläche, auf der sonst die Messen und Volksfeste stehen. Entsprechend viele Stände und entsprechend voll. Weil es nur eine Handvoll Termine im Jahr gibt, lohnt der Blick auf die aktuellen Daten weiter unten.",
+  },
+  {
+    name: "Hinterhofflohmärkte in den Stadtteilen",
+    ort: "wechselnd, unter anderem Südweststadt, Oststadt, Südstadt, Hagsfeld und Grötzingen",
+    rhythmus: "Frühjahr bis Frühsommer, je Stadtteil ein Termin",
+    text:
+      "Die Karlsruher Spezialität: Ganze Viertel öffnen an einem Samstag ihre Hinterhöfe und Vorgärten. Das ist weniger Handel und mehr Stadtteilfest, und es ist die beste Gelegenheit, ein Karlsruher Wohnviertel von innen zu sehen. Jeder Stadtteil hat seinen eigenen Termin, meist zwischen April und Juni.",
+  },
+  {
+    name: "Durlacher Kruschtlmarkt",
+    ort: "Durlacher Altstadt",
+    rhythmus: "jährlich",
+    text:
+      "Der Flohmarkt in der historischen Altstadt von Durlach. Kruschtl ist badisch für Kram, und genau darum geht es. Lässt sich gut mit dem Turmberg und der Karlsburg zu einem Tag in Durlach verbinden.",
+  },
+  {
+    name: "Flohmarkt an der Hochschule",
+    ort: "Umfeld der Hochschule Karlsruhe, Oststadt",
+    rhythmus: "mehrmals im Jahr",
+    text:
+      "Studentisch geprägter Markt mit entsprechend anderem Sortiment: mehr Bücher, Technik und Möbel als Haushaltsauflösung.",
+  },
+];
+
+/**
+ * Datierte Jahrestermine. Quelle unten angegeben, Stand August 2026.
+ * Vor Jahreswechsel neu recherchieren oder entfernen.
+ */
+const termine2026 = [
+  { datum: "12. September 2026", zeit: "15:00 bis 18:00 Uhr", was: "Großflohmarkt auf dem Messplatz" },
+];
+
+const faqs = [
+  {
+    q: "Wann ist Flohmarkt in Karlsruhe?",
+    a: "Der verlässlichste Termin ist der Stadtflohmarkt am Stephanplatz: von März bis Dezember jeweils am ersten Samstag im Monat von 8:00 bis 16:00 Uhr. Der Großflohmarkt auf dem Messplatz findet nur an einigen Terminen im Jahr statt, die Hinterhofflohmärkte der Stadtteile liegen im Frühjahr und Frühsommer.",
+  },
+  {
+    q: "Wo ist der größte Flohmarkt in Karlsruhe?",
+    a: "Der Großflohmarkt auf dem Messplatz in der Oststadt. Er nutzt die Fläche, auf der sonst Messen und Volksfeste stattfinden, und hat damit deutlich mehr Stände als die übrigen Karlsruher Märkte.",
+  },
+  {
+    q: "Was ist ein Hinterhofflohmarkt?",
+    a: "Eine Karlsruher Eigenheit: Ein ganzer Stadtteil öffnet an einem Samstag seine Hinterhöfe, Garagen und Vorgärten und verkauft privat. Südweststadt, Oststadt, Südstadt, Hagsfeld und Grötzingen haben jeweils eigene Termine, meist zwischen April und Juni.",
+  },
+  {
+    q: "Gibt es in Karlsruhe einen Flohmarkt in der Innenstadt?",
+    a: "Ja, den Stadtflohmarkt am Stephanplatz hinter der Postgalerie. Er ist der einzige regelmäßige Markt direkt im Zentrum und über die Haltestelle Europaplatz in wenigen Minuten erreichbar.",
+  },
+  {
+    q: "Was ist der Durlacher Kruschtlmarkt?",
+    a: "Der Flohmarkt in der Durlacher Altstadt. Kruschtl ist das badische Wort für Kram. Der Markt lässt sich gut mit einem Besuch von Turmberg und Karlsburg verbinden.",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const itemListLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: `Flohmärkte in ${city.name}`,
+  itemListElement: maerkte.map((m, i) => ({ "@type": "ListItem", position: i + 1, name: m.name })),
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="container-page py-12">
+    <Breadcrumbs items={[{ label: "Start", href: "/" }, { label: "Flohmärkte in Karlsruhe" }]} />
+
+    <header class="mb-10">
+      <p class="eyebrow mb-3">Märkte in Karlsruhe</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">Flohmarkt Karlsruhe</h1>
+      <div class="stage-prose" style="max-width: 70ch;">
+        <p>
+          Karlsruhe hat keinen einzelnen großen Flohmarkt, sondern vier verschiedene Formate, die sich über das Jahr
+          verteilen. Wer regelmäßig stöbern will, merkt sich den Stadtflohmarkt am Stephanplatz: März bis Dezember,
+          jeder erste Samstag im Monat. Wer die große Fläche sucht, wartet auf einen der wenigen Termine des
+          Großflohmarkts auf dem Messplatz.
+        </p>
+        <p>
+          Die Karlsruher Besonderheit sind die Hinterhofflohmärkte. Dabei öffnet ein ganzer Stadtteil an einem
+          Samstag seine Höfe und Vorgärten. Das ist eher Stadtteilfest als Handel und für Ortsfremde die
+          interessanteste Variante.
+        </p>
+      </div>
+    </header>
+
+    <section class="mb-14">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2" style="color: var(--color-text);">Die Flohmärkte im Überblick</h2>
+      <p class="text-base mb-6" style="color: var(--color-text-muted);">
+        Sortiert nach Verlässlichkeit: Was regelmäßig stattfindet, steht oben.
+      </p>
+      <div class="space-y-4">
+        {maerkte.map((m) => (
+          <article class="p-5 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+            <h3 class="text-lg font-semibold mb-2" style="color: var(--color-text);">{m.name}</h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span class="pill">{m.rhythmus}</span>
+              {m.zeit && <span class="pill">{m.zeit}</span>}
+            </div>
+            <p class="text-base leading-relaxed mb-2" style="color: var(--color-text-body);">{m.text}</p>
+            <p class="text-sm" style="color: var(--color-text-muted);">Ort: {m.ort}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    {termine2026.length > 0 && (
+      <section class="mb-14" style="max-width: 70ch;">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2" style="color: var(--color-text);">Bestätigte Einzeltermine</h2>
+        <p class="text-base mb-4" style="color: var(--color-text-muted);">
+          Termine, die für die laufende Saison feststehen. Bereits vergangene Termine nehmen wir heraus, statt sie
+          stehen zu lassen.
+        </p>
+        <ul class="space-y-2">
+          {termine2026.map((t) => (
+            <li class="p-4 border flex flex-wrap justify-between gap-x-4 gap-y-1" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+              <span class="font-medium" style="color: var(--color-text);">{t.was}</span>
+              <span class="text-sm" style="color: var(--color-text-body);">{t.datum} &middot; {t.zeit}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <section class="mb-14" style="max-width: 70ch;">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-3" style="color: var(--color-text);">Anfahrt zu den wichtigsten Plätzen</h2>
+      <div class="stage-prose">
+        <p>
+          Der Stephanplatz liegt hinter der Postgalerie, nächste Haltestelle ist der Europaplatz mitten in der
+          Fußgängerzone. Der Messplatz in der Oststadt ist über die Durlacher Allee angebunden und mit der Stadtbahn
+          direkt erreichbar. Für beide gilt: Mit dem Auto wird es an Markttagen eng, das Parkleitsystem der Stadt
+          zeigt die Belegung der Innenstadthäuser in Echtzeit.
+        </p>
+      </div>
+      <p class="mt-4 text-sm">
+        <a href="/parken-in-karlsruhe/" class="link-accent">Parkhäuser in Karlsruhe mit Tarifen &rarr;</a>
+      </p>
+    </section>
+
+    <section class="py-8" style="max-width: 70ch;">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2" style="color: var(--color-text);">Häufige Fragen</h2>
+      <div class="stage-qa">
+        {faqs.map((f, i) => (
+          <details open={i === 0}>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="my-12 pt-8 border-t" style="border-color: var(--color-border); max-width: 70ch;">
+      <h2 class="text-lg font-semibold mb-2" style="color: var(--color-text);">Quellen und Stand</h2>
+      <p class="text-sm mb-3 leading-relaxed" style="color: var(--color-text-muted);">
+        Einzeltermine geprüft im August 2026. Flohmarkttermine werden von den Veranstaltern jährlich neu festgelegt,
+        verbindlich sind deren Angaben.
+      </p>
+      <ul class="text-sm space-y-1">
+        <li>
+          <a href="https://kalender.karlsruhe.de/" rel="nofollow noopener" target="_blank" class="link-accent">Veranstaltungskalender der Stadt Karlsruhe</a>
+        </li>
+        <li>
+          <a href="https://www.ka-news.de/karlsruhe/freizeit-und-veranstaltungen/flohmarkt-karlsruhe-2026-alle-wichtigen-termine-fuer-troedelfans-im-ueberblick-13-113083284" rel="nofollow noopener" target="_blank" class="link-accent">ka-news, Flohmarkt Karlsruhe 2026</a>
+          <span style="color: var(--color-text-muted);"> &middot; abgerufen am 23.08.2026</span>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(itemListLd)} is:inline></script>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} is:inline></script>
+</BaseLayout>

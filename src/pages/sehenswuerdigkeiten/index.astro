@@ -3,29 +3,177 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import SightCard from "../../components/SightCard.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
-import { sights } from "../../data/sights";
+import { sights, getSight } from "../../data/sights";
+import { getDistrict } from "../../data/districts";
 import { getGygPlacement } from "../../data/gyg";
 import { city } from "../../data/city";
 import { indexUrl } from "../../i18n/config";
+
 const sorted = [...sights].sort((a, b) => a.name.localeCompare(b.name, "de"));
+
+/**
+ * Kuratierte Top-Liste. Die Konkurrenz auf dieser SERP sind ortsfremde
+ * Reisemagazine, die dieselben zehn Orte in derselben Reihenfolge abschreiben.
+ * Gegenmittel ist Ortskenntnis: Reihenfolge nach tatsaechlicher Besuchsrelevanz,
+ * und je Eintrag ein Satz, der eine Entscheidung erleichtert.
+ *
+ * `note` darf nur enthalten, was auf der jeweiligen Detailseite belegt ist.
+ * Preise und Zeiten stehen bewusst NICHT hier, sondern werden aus den
+ * Basisdaten gezogen - sonst laufen zwei Staende auseinander.
+ */
+const topListe: { slug: string; note: string }[] = [
+  { slug: "karlsruher-schloss", note: "Der Ursprung der Stadt und der einzige Ort, an dem der Fächergrundriss als Ganzes sichtbar wird. Im Schloss sitzt das Badische Landesmuseum, dahinter beginnt der frei zugängliche Schlossgarten." },
+  { slug: "zkm", note: "Weltweit das einzige Museum, das sich systematisch der Medienkunst widmet. Vieles ist zum Ausprobieren gebaut, freitags ab 14 Uhr ist der Eintritt frei." },
+  { slug: "karlsruher-zoo", note: "Zoo und Landschaftspark in einer Anlage, der Haupteingang liegt direkt gegenüber dem Hauptbahnhof. Für Familien der verlässlichste Ganztagesplan der Stadt." },
+  { slug: "europabad", note: "Das große Erlebnisbad mit acht Rutschen und Saunalandschaft. Werktags außerhalb der Ferien deutlich günstiger als am Wochenende." },
+  { slug: "marktplatz-pyramide", note: "Die rote Sandsteinpyramide über dem Grab des Stadtgründers ist Karlsruhes ungewöhnlichstes Wahrzeichen und der zentrale Orientierungspunkt in der Fußgängerzone." },
+  { slug: "turmberg", note: "Der Aussichtsberg über Durlach mit Blick über die Rheinebene. Die Turmbergbahn ist wegen des Neubaus außer Betrieb, hinauf geht es derzeit über die Turmbergtreppe." },
+  { slug: "staatliche-kunsthalle", note: "Eine der bedeutendsten Sammlungen alter Meister in Deutschland, von Cranach und Baldung Grien bis zur deutschen Romantik." },
+  { slug: "bundesverfassungsgericht", note: "Karlsruhes Rolle als Residenz des Rechts wird hier konkret. Der Bau am Schlossplatz ist von außen frei zugänglich, Verhandlungen sind nach Anmeldung öffentlich." },
+  { slug: "badisches-staatstheater", note: "Das große Dreispartenhaus der Stadt mit Oper, Schauspiel und Ballett, direkt am Ettlinger Tor." },
+  { slug: "botanischer-garten", note: "Historische Gewächshausanlage neben dem Schloss. Der kürzeste Weg zu tropischer Luft mitten in der Innenstadt und ideal als Ergänzung zum Schlossbesuch." },
+  { slug: "naturkundemuseum", note: "Das Landesmuseum für Naturkunde am Friedrichsplatz, mit Vivarium und lebenden Tieren ein Schlechtwetter-Klassiker für Familien." },
+  { slug: "schlossgarten", note: "Englischer Landschaftspark direkt hinter dem Schloss, ohne Eintritt. Von der Gartenseite aus wirkt die Schlossfassade deutlich besser als vom Platz." },
+  { slug: "karlsburg", note: "Die Renaissance-Residenz in Durlach, aus der Karlsruhe hervorging, bevor der Hof 1715 in die neue Stadt zog." },
+  { slug: "ettlinger-tor", note: "Größtes Einkaufszentrum der Innenstadt und zugleich der Verkehrsknoten, an dem die Stadtbahnen aus der ganzen Region zusammenlaufen." },
+  { slug: "majolika-manufaktur", note: "Die einzige noch arbeitende Keramikmanufaktur ihrer Art in Deutschland, mit Werkstätten und Verkauf am Rand des Hardtwalds." },
+  { slug: "stephanskirche", note: "Weinbrenners klassizistische Rotunde nach dem Vorbild des römischen Pantheon, wenige Schritte vom Marktplatz." },
+  { slug: "schloss-gottesaue", note: "Renaissanceschloss in der Oststadt, heute Sitz der Musikhochschule. Das Gelände drumherum ist öffentlich zugänglich." },
+  { slug: "verkehrsmuseum", note: "Privates Museum zur Karlsruher Verkehrsgeschichte, von der Straßenbahn bis zur Draisine des in Karlsruhe geborenen Karl Drais." },
+  { slug: "rheinhafen", note: "Einer der größten Binnenhäfen Deutschlands, Industriekultur zum Anschauen und im Sommer Ziel für Hafenrundfahrten." },
+  { slug: "hardtwald", note: "Der Wald beginnt direkt hinter dem Schloss und zieht sich nach Norden. Die schnellste Art, aus der Innenstadt ins Grüne zu kommen." },
+];
+
+const topEintraege = topListe
+  .map((e) => ({ ...e, sight: getSight(e.slug) }))
+  .filter((e): e is typeof e & { sight: NonNullable<ReturnType<typeof getSight>> } => Boolean(e.sight));
+
+const faqs = [
+  {
+    q: "Was sind die wichtigsten Sehenswürdigkeiten in Karlsruhe?",
+    a: "Das Karlsruher Schloss mit dem Badischen Landesmuseum, das ZKM Zentrum für Kunst und Medien, der Zoologische Stadtgarten, der Marktplatz mit der Pyramide und der Turmberg über Durlach. Das Bundesverfassungsgericht und die Staatliche Kunsthalle kommen dazu, wenn Recht und Kunst interessieren.",
+  },
+  {
+    q: "Wie viel Zeit braucht man für Karlsruhe?",
+    a: "Für die Innenstadt mit Schloss, Marktplatz und einem Museum reicht ein Tag. Wer Durlach mit Turmberg und das ZKM ergänzen will, sollte zwei bis drei Tage einplanen. Die Fächerstruktur macht Fußwege im Zentrum kurz.",
+  },
+  {
+    q: "Welche Sehenswürdigkeiten in Karlsruhe sind kostenlos?",
+    a: "Marktplatz mit Pyramide, Schlossplatz und Schlossgarten, der Botanische Garten in Teilen, das Bundesverfassungsgericht von außen sowie der Hardtwald. Im ZKM ist der Eintritt freitags ab 14 Uhr frei, Kinder und Jugendliche unter 18 zahlen dort nie.",
+  },
+  {
+    q: "Was kann man in Karlsruhe bei Regen machen?",
+    a: "Das ZKM, das Badische Landesmuseum im Schloss, die Staatliche Kunsthalle, das Naturkundemuseum mit Vivarium und das Europabad mit Rutschen und Sauna sind alle wetterunabhängig.",
+  },
+  {
+    q: "Was ist in Karlsruhe mit Kindern zu empfehlen?",
+    a: "Der Zoologische Stadtgarten mit Gondoletta, das Europabad, das Naturkundemuseum mit lebenden Tieren und die interaktiven Installationen im ZKM. Alle vier sind mit der Bahn direkt erreichbar.",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const itemListLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: `Sehenswürdigkeiten in ${city.name}`,
+  itemListElement: topEintraege.map((e, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: e.sight.name,
+    url: `${city.domain}/sehenswuerdigkeiten/${e.sight.slug}/`,
+  })),
+};
 ---
 
-<BaseLayout title={`Sehenswürdigkeiten in ${city.name}`} description={`Alle ${sights.length} Sehenswürdigkeiten in Karlsruhe: Schloss, ZKM, Pyramide, Turmberg und mehr.`} alternateUrls={{ de: indexUrl("sights", "de"), en: indexUrl("sights", "en") }}>
+<BaseLayout
+  title={`Sehenswürdigkeiten in ${city.name}: die ${topEintraege.length} wichtigsten Orte`}
+  description={`Alle Sehenswürdigkeiten in Karlsruhe im Überblick: Schloss, ZKM, Zoologischer Stadtgarten, Pyramide, Turmberg und Europabad - mit Eintritt, Öffnungszeiten und Bezirk zu jedem Ort.`}
+  alternateUrls={{ de: indexUrl("sights", "de"), en: indexUrl("sights", "en") }}
+>
   <div class="container-page py-12">
     <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "Sehenswürdigkeiten"}]} />
-    <header class="mb-12">
+    <header class="mb-10">
       <p class="eyebrow mb-3">{sights.length} Einträge</p>
       <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">Sehenswürdigkeiten in Karlsruhe</h1>
-      <p class="text-lg max-w-3xl" style="color: var(--color-text-body);">
-        Vom barocken Schloss bis zum weltweit einzigartigen ZKM, vom Turmberg in Durlach bis zum Bundesverfassungsgericht - alle ikonischen Orte der Faecherstadt.
-      </p>
+      <div class="stage-prose" style="max-width: 70ch;">
+        <p>
+          Karlsruhe ist eine Planstadt, und das merkt man beim Sightseeing: Vom Schlossturm laufen 32 Straßen
+          strahlenförmig nach Süden, fast alles Sehenswerte liegt an einem dieser Strahlen. Wer im Zentrum startet,
+          erreicht Schloss, Marktplatz, Kunsthalle und Staatstheater zu Fuß, und der Rest hängt an einer Bahnlinie.
+        </p>
+        <p>
+          Diese Übersicht ordnet die {topEintraege.length} lohnendsten Orte nach Besuchsrelevanz, nicht nach
+          Bekanntheit. Zu jedem Eintrag stehen Eintritt, Öffnungszeiten und Bezirk, soweit der Betreiber sie
+          veröffentlicht, dazu ein Satz, der die Entscheidung erleichtert. Die Detailseiten führen Preise, Anfahrt und
+          FAQ mit Quellenangabe.
+        </p>
+      </div>
     </header>
-    <div class="mosaic">
-      {sorted.map((s, i) => (
-        <div class={i % 7 === 0 ? "w2" : i % 7 === 3 ? "h2" : undefined}><SightCard sight={s} /></div>
-      ))}
-    </div>
+
+    <section class="mb-14">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-6" style="color: var(--color-text);">Die wichtigsten Sehenswürdigkeiten im Überblick</h2>
+      <ol class="space-y-4">
+        {topEintraege.map((e, i) => {
+          const d = getDistrict(e.sight.district);
+          const preis = e.sight.priceFrom === null ? "Eintritt frei" : `ab ${e.sight.priceFrom} EUR`;
+          return (
+            <li class="p-5 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+              <div class="flex items-baseline gap-3 mb-2 flex-wrap">
+                <span class="text-sm font-semibold tabular-nums" style="color: var(--color-text-muted);">{String(i + 1).padStart(2, "0")}</span>
+                <h3 class="text-lg font-semibold" style="color: var(--color-text);">
+                  <a href={`/sehenswuerdigkeiten/${e.sight.slug}/`} class="link-accent">{e.sight.name}</a>
+                </h3>
+              </div>
+              <p class="text-base leading-relaxed mb-3" style="color: var(--color-text-body);">{e.note}</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="pill">{e.sight.type}</span>
+                <span class="pill">{preis}</span>
+                {e.sight.openingHours && <span class="pill">{e.sight.openingHours}</span>}
+                {d && <a href={`/bezirke/${d.slug}/`} class="pill">{d.name}</a>}
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+      <p class="text-sm mt-4" style="color: var(--color-text-muted);">
+        Eintritt und Öffnungszeiten nach Angaben der Betreiber. Verbindlich sind deren aktuelle Angaben, die
+        Detailseiten nennen die jeweilige Quelle mit Abrufdatum.
+      </p>
+    </section>
+
+    <section class="mb-14">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-6" style="color: var(--color-text);">Alle Orte auf einen Blick</h2>
+      <div class="mosaic">
+        {sorted.map((s, i) => (
+          <div class={i % 7 === 0 ? "w2" : i % 7 === 3 ? "h2" : undefined}><SightCard sight={s} /></div>
+        ))}
+      </div>
+    </section>
+
+    <section class="py-8" style="max-width: 70ch;">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2" style="color: var(--color-text);">Häufige Fragen</h2>
+      <div class="stage-qa">
+        {faqs.map((f, i) => (
+          <details open={i === 0}>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
 
     <GetYourGuideWidget placement={getGygPlacement("page:sights-index")} />
   </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(itemListLd)} is:inline></script>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} is:inline></script>
 </BaseLayout>

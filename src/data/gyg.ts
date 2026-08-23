@@ -47,6 +47,8 @@ export const gygPlacements: Record<string, GygPlacement> = {
   "sight:hardtwald": { key: "sight:hardtwald", show: true, query: "Karlsruhe", title: "Touren & Aktivitäten rund um den Hardtwald", lead: "Entdecke Karlsruhe und die Umgebung mit geführten Touren, Ausflügen in den Schwarzwald und weiteren Erlebnissen.", count: 3 },
   "sight:majolika-manufaktur": { key: "sight:majolika-manufaktur", show: true, query: "Karlsruhe", title: "Touren & Erlebnisse in Karlsruhe", lead: "Entdecke Karlsruhe mit geführten Touren, Schlossbesichtigungen und spannenden Tagesausflügen in die Region.", count: 3 },
   "sight:verkehrsmuseum": { key: "sight:verkehrsmuseum", show: true, query: "Karlsruhe", title: "Touren & Aktivitäten in Karlsruhe", lead: "Entdecke Karlsruhe und die Region mit geführten Touren, Tagesausflügen und besonderen Erlebnissen – direkt buchbar.", count: 3 },
+  "sight:europabad": { key: "sight:europabad", show: true, query: "Karlsruhe", title: "Touren & Erlebnisse in Karlsruhe", lead: "Entdecke Karlsruhe mit geführten Touren, Schlossbesichtigungen und Ausflügen in die Region - passend zu einem Badetag im Europabad.", count: 3 },
+  "sight:ettlinger-tor": { key: "sight:ettlinger-tor", show: true, query: "Karlsruhe", title: "Touren & Erlebnisse in Karlsruhe", lead: "Entdecke die Karlsruher Innenstadt mit geführten Stadttouren und verbinde den Einkaufsbummel mit einem Blick auf Schloss, Pyramide und Fächer.", count: 3 },
   "sight:rheinhafen": { key: "sight:rheinhafen", show: true, query: "Karlsruhe Rheinhafen", title: "Touren & Erlebnisse am Rheinhafen", lead: "Entdecke den Karlsruher Rheinhafen bei einer Hafenrundfahrt oder erkunde die Region mit geführten Touren.", count: 3 },
 
   // === Reiseplaner ===

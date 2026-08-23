@@ -1,0 +1,276 @@
+---
+/**
+ * Listen-Money-Page: Erlebnisbaeder, Thermen und Baeder in Karlsruhe.
+ *
+ * Zielcluster: europabad karlsruhe, faecherbad karlsruhe, therme vierordtbad,
+ * schwimmbad karlsruhe. Der Wettbewerb rankt hier teils mit alten News-URLs;
+ * gewinnen soll das gepflegte Evergreen-Format.
+ *
+ * REDAKTIONSREGEL: Preise nur dort, wo sie mit Datum belegt sind (Europabad).
+ * Fuer alle uebrigen Baeder verlinken wir die Betreiberseite, statt Zahlen zu
+ * raten - Baederpreise und Zeiten aendern sich saisonal.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { city } from "../data/city";
+
+const title = "Erlebnisbäder, Thermen und Schwimmbäder in Karlsruhe";
+const description =
+  "Alle Bäder in Karlsruhe im Überblick: Europabad mit acht Rutschen, Fächerbad, Therme Vierordtbad, Hallenbäder und Freibäder von Rappenwört bis Turmbergbad - mit Lage, Betreiber und Charakter.";
+
+type Bad = {
+  name: string;
+  art: string;
+  lage: string;
+  betreiber: string;
+  text: string;
+  url: string;
+  intern?: string;
+};
+
+/* Bestand nach der Baederuebersicht der Stadt Karlsruhe. */
+const erlebnisbaeder: Bad[] = [
+  {
+    name: "Europabad Karlsruhe",
+    art: "Erlebnis- und Familienbad mit Sauna",
+    lage: "Hermann-Veit-Straße 5, Südweststadt",
+    betreiber: "Karlsruher Bädergesellschaft",
+    text:
+      "Das größte Bad der Stadt und das einzige mit einem echten Rutschenturm: acht Bahnen von der Kinderrutsche bis zum 14 Meter langen freien Fall der Aqua Rocket, dazu ein 32 Grad warmes Erlebnisbecken, Außenbereich und eine mehrteilige Saunalandschaft mit karelischem Saunadorf. Abgerechnet wird nach Zeitfenstern über zwei Stunden, vier Stunden oder den ganzen Tag. Werktags außerhalb der Karlsruher Schulferien sind die Tarife um vier Euro reduziert.",
+    url: "https://www.ka-europabad.de/",
+    intern: "/sehenswuerdigkeiten/europabad/",
+  },
+  {
+    name: "Therme Vierordtbad",
+    art: "Therme und Wellnessanlage",
+    lage: "Rankestraße, Südweststadt",
+    betreiber: "Bäderbetriebe der Stadt Karlsruhe",
+    text:
+      "Das Vierordtbad ist das historische Wellnessbad der Stadt, kein Familien- oder Sportbad. Es steht für Sauna, Dampfbad und Ruhe statt für Rutschen, und ist damit der Gegenentwurf zum Europabad. Öffnungszeiten und Tarife stehen bei den Karlsruher Bädern.",
+    url: "https://www.ka-vierordtbad.de/",
+  },
+  {
+    name: "Fächerbad Karlsruhe",
+    art: "Sportbad mit Sauna",
+    lage: "Oststadt, Nähe Hertzstraße",
+    betreiber: "Fächerbad Karlsruhe GmbH",
+    text:
+      "Das Fächerbad ist das Bad für alle, die Bahnen schwimmen wollen: 25-Meter-Becken mit Hubboden, Sprungbecken und Saunabereich. Vereine und Kurse belegen Teile der Bahnen, ein Blick auf den Belegungsplan vor dem Besuch lohnt sich.",
+    url: "https://www.ka-faecherbad.de/",
+  },
+];
+
+const hallenbaeder: Bad[] = [
+  {
+    name: "Weiherhofbad Durlach",
+    art: "Hallenbad",
+    lage: "Durlach",
+    betreiber: "Bäderbetriebe der Stadt Karlsruhe",
+    text: "Städtisches Hallenbad im Osten der Stadt, das Standardbad für Durlach und Umgebung.",
+    url: "https://www.karlsruhe.de/kultur-freizeit/freizeit-und-tourismus/baeder",
+  },
+  {
+    name: "Adolf-Ehrmann-Bad",
+    art: "Hallenbad",
+    lage: "Neureut",
+    betreiber: "Bäderbetriebe der Stadt Karlsruhe",
+    text: "Hallenbad im Norden Karlsruhes, zuständig für Neureut und die nördlichen Stadtteile.",
+    url: "https://www.karlsruhe.de/kultur-freizeit/freizeit-und-tourismus/baeder",
+  },
+  {
+    name: "Hallenbad Grötzingen",
+    art: "Hallenbad",
+    lage: "Grötzingen",
+    betreiber: "Bäderbetriebe der Stadt Karlsruhe",
+    text: "Kleineres Hallenbad im östlichsten Stadtteil, gut erreichbar mit der Stadtbahn.",
+    url: "https://www.karlsruhe.de/kultur-freizeit/freizeit-und-tourismus/baeder",
+  },
+  {
+    name: "Oberwaldbad",
+    art: "Kleines Hallenbad",
+    lage: "Südstadt",
+    betreiber: "Post Südstadt Karlsruhe e. V.",
+    text: "Vereinsgeführtes kleines Hallenbad, entsprechend eingeschränkte Öffnungszeiten.",
+    url: "https://www.karlsruhe.de/kultur-freizeit/freizeit-und-tourismus/baeder",
+  },
+];
+
+const freibaeder: Bad[] = [
+  {
+    name: "Rheinstrandbad Rappenwört",
+    art: "Freibad am Rhein",
+    lage: "Daxlanden, am Rheinauwald",
+    betreiber: "Bäderbetriebe der Stadt Karlsruhe",
+    text:
+      "Das bekannteste Freibad der Stadt, mitten im Naturschutzgebiet am Rhein gelegen. Im Sommer ein Ganztagesziel mit weitläufiger Liegewiese, kein reines Schwimmbad.",
+    url: "https://www.karlsruhe.de/kultur-freizeit/freizeit-und-tourismus/baeder",
+    intern: "/bezirke/daxlanden/",
+  },
+  {
+    name: "Sonnenbad",
+    art: "Freibad",
+    lage: "Nordweststadt",
+    betreiber: "Bäderbetriebe der Stadt Karlsruhe",
+    text: "Städtisches Freibad im Nordwesten, das innenstadtnächste der Karlsruher Freibäder.",
+    url: "https://www.karlsruhe.de/kultur-freizeit/freizeit-und-tourismus/baeder",
+  },
+  {
+    name: "Freibad Rüppurr",
+    art: "Freibad",
+    lage: "Rüppurr",
+    betreiber: "Bäderbetriebe der Stadt Karlsruhe",
+    text: "Klassisches Stadtteilfreibad im Süden Karlsruhes.",
+    url: "https://www.karlsruhe.de/kultur-freizeit/freizeit-und-tourismus/baeder",
+    intern: "/bezirke/rueppurr/",
+  },
+  {
+    name: "Turmbergbad",
+    art: "Freibad",
+    lage: "Durlach, am Fuß des Turmbergs",
+    betreiber: "Bäderbetriebe der Stadt Karlsruhe",
+    text: "Freibad unterhalb des Turmbergs, gut mit einem Aufstieg über die Turmbergtreppe zu verbinden.",
+    url: "https://www.karlsruhe.de/kultur-freizeit/freizeit-und-tourismus/baeder",
+    intern: "/sehenswuerdigkeiten/turmberg/",
+  },
+  {
+    name: "Freibad Wölfle",
+    art: "Familienfreibad",
+    lage: "Wolfartsweier",
+    betreiber: "Förderverein Freibad Wolfartsweier e. V.",
+    text: "Kleines, von einem Förderverein betriebenes Familienfreibad am östlichen Stadtrand.",
+    url: "https://www.karlsruhe.de/kultur-freizeit/freizeit-und-tourismus/baeder",
+  },
+];
+
+const faqs = [
+  {
+    q: "Welches Erlebnisbad gibt es in Karlsruhe?",
+    a: "Das Europabad Karlsruhe in der Südweststadt ist das Erlebnisbad der Stadt: acht Rutschen, ein 32 Grad warmes Erlebnisbecken, Außenbereich und eine große Saunalandschaft. Alle anderen Karlsruher Bäder sind Sport-, Hallen- oder Freibäder.",
+  },
+  {
+    q: "Was kostet der Eintritt ins Europabad?",
+    a: "Die Tageskarte für Erwachsene kostet am Wochenende, an Feiertagen und in den Karlsruher Schulferien 26,00 EUR, montags bis freitags außerhalb der Ferien 22,00 EUR. Mit Sauna sind es 34,00 beziehungsweise 30,00 EUR. Kürzere Zeitfenster über zwei oder vier Stunden sind günstiger (Stand 19.05.2026, Quelle ka-europabad.de).",
+  },
+  {
+    q: "Gibt es in Karlsruhe eine Therme?",
+    a: "Ja, die Therme Vierordtbad in der Südweststadt. Sie ist als Wellnessanlage mit Sauna und Dampfbad angelegt, nicht als Familienbad. Eine zweite Saunalandschaft gibt es im Europabad.",
+  },
+  {
+    q: "Wo kann man in Karlsruhe Bahnen schwimmen?",
+    a: "Im Fächerbad in der Oststadt mit 25-Meter-Becken und Sprungbecken sowie in den städtischen Hallenbädern Weiherhofbad, Adolf-Ehrmann-Bad und Grötzingen. Auch das Europabad hat ein Sportbecken, das allerdings teils von Vereinen und Kursen belegt ist.",
+  },
+  {
+    q: "Welche Freibäder hat Karlsruhe?",
+    a: "Das Rheinstrandbad Rappenwört am Rhein, das Sonnenbad im Nordwesten, das Freibad Rüppurr, das Turmbergbad in Durlach und das vereinsgeführte Freibad Wölfle in Wolfartsweier.",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const alle = [...erlebnisbaeder, ...hallenbaeder, ...freibaeder];
+const itemListLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: `Bäder in ${city.name}`,
+  itemListElement: alle.map((b, i) => ({ "@type": "ListItem", position: i + 1, name: b.name })),
+};
+
+const gruppen = [
+  { titel: "Erlebnisbad, Therme und Sportbad", lead: "Die drei großen Häuser, für die Besucher gezielt anreisen.", items: erlebnisbaeder },
+  { titel: "Hallenbäder", lead: "Ganzjährig geöffnet, überwiegend für den Stadtteilbedarf.", items: hallenbaeder },
+  { titel: "Freibäder", lead: "Saisonbetrieb im Sommer, Öffnung abhängig von Wetter und Wassertemperatur.", items: freibaeder },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="container-page py-12">
+    <Breadcrumbs items={[{ label: "Start", href: "/" }, { label: "Bäder in Karlsruhe" }]} />
+
+    <header class="mb-10">
+      <p class="eyebrow mb-3">{alle.length} Bäder</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">Erlebnisbäder und Schwimmbäder in Karlsruhe</h1>
+      <div class="stage-prose" style="max-width: 70ch;">
+        <p>
+          Karlsruhe hat genau ein Erlebnisbad, eine Therme, ein Sportbad und dazu ein knappes Dutzend Hallen- und
+          Freibäder in den Stadtteilen. Wer mit Kindern einen Regentag füllen will, landet praktisch immer im
+          Europabad. Wer Bahnen schwimmen will, ist im Fächerbad besser aufgehoben, und wer Ruhe sucht, im
+          Vierordtbad.
+        </p>
+        <p>
+          Diese Übersicht sortiert alle Karlsruher Bäder nach genau dieser Frage: wofür ist das Haus eigentlich
+          gebaut. Dazu Lage, Betreiber und der direkte Weg zur offiziellen Seite mit Preisen und aktuellen Zeiten.
+        </p>
+      </div>
+    </header>
+
+    {gruppen.map((g) => (
+      <section class="mb-14">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2" style="color: var(--color-text);">{g.titel}</h2>
+        <p class="text-base mb-6" style="color: var(--color-text-muted);">{g.lead}</p>
+        <div class="space-y-4">
+          {g.items.map((b) => (
+            <article class="p-5 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+              <h3 class="text-lg font-semibold mb-2" style="color: var(--color-text);">{b.name}</h3>
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="pill">{b.art}</span>
+                <span class="pill">{b.lage}</span>
+              </div>
+              <p class="text-base leading-relaxed mb-3" style="color: var(--color-text-body);">{b.text}</p>
+              <p class="text-sm" style="color: var(--color-text-muted);">Betreiber: {b.betreiber}</p>
+              <p class="text-sm mt-2 flex flex-wrap gap-x-4 gap-y-1">
+                {b.intern && <a href={b.intern} class="link-accent">Mehr auf Karlsruhe-Interaktiv &rarr;</a>}
+                <a href={b.url} rel="nofollow noopener" target="_blank" class="link-accent">Offizielle Seite mit Preisen und Zeiten &rarr;</a>
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <section class="mb-14 p-6 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card); max-width: 70ch;">
+      <h2 class="text-xl font-semibold mb-3" style="color: var(--color-text);">Warum hier keine Preistabelle für alle Bäder steht</h2>
+      <p class="text-base leading-relaxed" style="color: var(--color-text-body);">
+        Bädertarife in Karlsruhe hängen an Wochentag, Ferien, Aufenthaltsdauer und Saison, und die Betreiber ändern
+        sie mehrmals im Jahr. Eine abgeschriebene Tabelle wäre nach wenigen Wochen falsch. Wir nennen deshalb nur die
+        Preise, die wir mit Datum belegen können, und verlinken sonst direkt zur Kasse des Betreibers.
+      </p>
+    </section>
+
+    <section class="py-8" style="max-width: 70ch;">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2" style="color: var(--color-text);">Häufige Fragen</h2>
+      <div class="stage-qa">
+        {faqs.map((f, i) => (
+          <details open={i === 0}>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="my-12 pt-8 border-t" style="border-color: var(--color-border); max-width: 70ch;">
+      <h2 class="text-lg font-semibold mb-2" style="color: var(--color-text);">Quellen</h2>
+      <ul class="text-sm space-y-1">
+        <li>
+          <a href="https://www.karlsruhe.de/kultur-freizeit/freizeit-und-tourismus/baeder" rel="nofollow noopener" target="_blank" class="link-accent">Stadt Karlsruhe, Bäderlandschaft in Karlsruhe</a>
+          <span style="color: var(--color-text-muted);"> &middot; abgerufen am 23.08.2026</span>
+        </li>
+        <li>
+          <a href="https://www.ka-europabad.de/fuer-den-besuch/oeffnungszeiten-preise" rel="nofollow noopener" target="_blank" class="link-accent">Europabad Karlsruhe, Öffnungszeiten und Preise</a>
+          <span style="color: var(--color-text-muted);"> &middot; abgerufen am 19.05.2026</span>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(itemListLd)} is:inline></script>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} is:inline></script>
+</BaseLayout>

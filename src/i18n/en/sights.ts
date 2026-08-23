@@ -36,14 +36,17 @@ export const sightsEn: Record<string, SightEn> = {
       "The Palace Gardens are the green lung of central Karlsruhe. Once the court garden, today a public English landscape park with mature trees, water features and the adjoining Botanical Garden. Located right behind the palace.",
   },
   "zkm": {
+    // Voller Institutsname statt Kurzform: Die englische Query lautet
+    // "zkm center for art and media karlsruhe" und wurde bislang mal von
+    // dieser, mal von der deutschen URL beantwortet.
     slug: "zkm-art-and-media",
-    name: "ZKM Center for Art and Media",
+    name: "ZKM Center for Art and Media Karlsruhe",
     type: "Museum",
     shortDesc:
       "A globally unique museum of media art in a former munitions factory. Interactive installations, virtual worlds and digital art.",
     longDesc:
       "The ZKM Center for Art and Media Karlsruhe is the only museum in the world dedicated systematically to electronic and digital art. Housed in a vast listed industrial hall (a former munitions factory), it is home to the Media Museum, the Museum of Contemporary Art, research institutes and an arthouse cinema. A must-see for everyone interested in technology and art.",
-    openingHours: "Wed 10am–6pm, Thu–Sun 11am–6pm",
+    openingHours: "Wed–Fri 10am–6pm, Sat–Sun 11am–6pm",
   },
   "staatliche-kunsthalle": {
     slug: "state-art-gallery",
@@ -162,9 +165,9 @@ export const sightsEn: Record<string, SightEn> = {
     name: "Turmberg Durlach",
     type: "Viewpoint",
     shortDesc:
-      "Karlsruhe's local mountain, home to Germany's oldest observation tower and the historic Turmbergbahn funicular.",
+      "Karlsruhe's local mountain, home to Germany's oldest observation tower. The Turmbergbahn funicular is currently being rebuilt, so the climb is on foot.",
     longDesc:
-      "The Turmberg is Karlsruhe's classic vantage point. The square keep of the former castle is the oldest observation tower in Germany. It can be reached on foot or by the historic Turmbergbahn - Germany's oldest funicular still in operation (1888). On a clear day the view reaches all the way to the Palatinate Forest.",
+      "The Turmberg is Karlsruhe's classic vantage point. The square keep of the former castle is the oldest observation tower in Germany, and on a clear day the view reaches all the way to the Palatinate Forest. Important for planning: the 1888 Turmbergbahn funicular has been out of service since March 2026 while it is rebuilt with step-free access, and is scheduled to reopen at the end of 2027. Until then the way up is the Turmberg staircase (as of 23 August 2026, source: VBK).",
   },
   "karlsburg": {
     slug: "karlsburg-durlach",
@@ -248,5 +251,25 @@ export const sightsEn: Record<string, SightEn> = {
       "One of the largest inland ports in Germany. Industrial heritage, harbour cruises and Karlsruhe land-art spots.",
     longDesc:
       "The Karlsruhe Rhine Harbour is one of the most important inland ports in Germany. Harbour cruises, industrial-heritage walks and popular photo spots line the port. In summer it becomes a meeting point for urban photography and harbour festivals.",
+  },
+  "europabad": {
+    slug: "europabad-water-park",
+    name: "Europabad Karlsruhe",
+    type: "Leisure",
+    shortDesc:
+      "Karlsruhe's big adventure and family pool: eight slides, a 32-degree activity pool, an outdoor area and a Karelian sauna village.",
+    longDesc:
+      "Europabad Karlsruhe is the city's adventure pool, right next to the Europahalle in the Suedweststadt district. Eight slides ranging from a children's chute to a 14-metre free fall, a 32-degree activity pool with current channel and grotto, a sports pool and a multi-part sauna landscape with the Excalibur sauna, the Kalevala sauna and a Karelian sauna village.",
+    openingHours: "Mon–Sat 10am–11pm, Sun 10am–9pm",
+  },
+  "ettlinger-tor": {
+    slug: "ettlinger-tor",
+    name: "Ettlinger Tor",
+    type: "Shopping",
+    shortDesc:
+      "The largest shopping centre in central Karlsruhe with around 130 stores, plus the square and transport hub at the southern edge of the city centre.",
+    longDesc:
+      "In Karlsruhe, Ettlinger Tor means three things: the historic southern city gate towards Ettlingen, today's square on Kriegsstrasse, and the shopping centre there with around 130 stores across some 37,000 square metres. Beneath the square lies one of the most important interchanges of the Karlsruhe Kombiloesung transit system.",
+    openingHours: "Centre Mon–Sat 10am–8pm",
   },
 };

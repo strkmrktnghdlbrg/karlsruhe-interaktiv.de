@@ -15,7 +15,7 @@ export const districts: District[] = [
     imageKey: "district:innenstadt-west",
     name: "Innenstadt-West",
     shortDesc:
-      "Schlossplatz, Marktplatz und westliche Fussgaengerzone. Karlsruhes barockes Zentrum mit dem Fächer-Ursprung.",
+      "Schlossplatz, Marktplatz und westliche Fußgängerzone. Karlsruhes barockes Zentrum mit dem Fächer-Ursprung.",
     longDesc:
       "Die Innenstadt-West ist der Fächer-Ursprung. Vom Karlsruher Schloss aus strahlen die 32 Strahlen der Stadt nach Süden. Hier liegen Marktplatz, Pyramide, Stephanskirche, Staatliche Kunsthalle und der Botanische Garten.",
     hue: 1,
@@ -27,9 +27,9 @@ export const districts: District[] = [
     imageKey: "district:innenstadt-ost",
     name: "Innenstadt-Ost",
     shortDesc:
-      "Oestlich der Karl-Friedrich-Strasse: Friedrichsplatz, Staatstheater, urbane Innenstadt-Atmosphäre.",
+      "Oestlich der Karl-Friedrich-Straße: Friedrichsplatz, Staatstheater, urbane Innenstadt-Atmosphäre.",
     longDesc:
-      "Die Innenstadt-Ost reicht vom Schlossplatz bis zum Hauptbahnhof. Friedrichsplatz, Naturkundemuseum, Badisches Staatstheater und die Cafekultur rund um die Karl-Friedrich-Strasse prägen den Bezirk.",
+      "Die Innenstadt-Ost reicht vom Schlossplatz bis zum Hauptbahnhof. Friedrichsplatz, Naturkundemuseum, Badisches Staatstheater und die Cafekultur rund um die Karl-Friedrich-Straße prägen den Bezirk.",
     hue: 2,
     coordinates: [49.0064, 8.4131],
     characterTags: ["Urban", "Theater", "Museen"],
@@ -39,9 +39,9 @@ export const districts: District[] = [
     imageKey: "district:suedstadt",
     name: "Südstadt",
     shortDesc:
-      "Multikulturelles, alternatives Viertel rund um Werderplatz und Werderstrasse.",
+      "Multikulturelles, alternatives Viertel rund um Werderplatz und Werderstraße.",
     longDesc:
-      "Die Südstadt ist Karlsruhes lebendigster Bezirk. Werderplatz mit Wochenmarkt, Werderstrasse mit kleinen Läden und Bars, Tollhaus-Kulturzentrum und Substage-Konzerthaus. Hier mischt sich Studierendenkultur mit alteingesessenen badischen Familien.",
+      "Die Südstadt ist Karlsruhes lebendigster Bezirk. Werderplatz mit Wochenmarkt, Werderstraße mit kleinen Läden und Bars, Tollhaus-Kulturzentrum und Substage-Konzerthaus. Hier mischt sich Studierendenkultur mit alteingesessenen badischen Familien.",
     hue: 3,
     coordinates: [48.9989, 8.4022],
     characterTags: ["Multikulti", "Alternativ", "Nightlife"],
@@ -49,11 +49,11 @@ export const districts: District[] = [
   {
     slug: "suedweststadt",
     imageKey: "district:suedweststadt",
-    name: "Suedweststadt",
+    name: "Südweststadt",
     shortDesc:
       "Gründerzeit-Wohnviertel mit Altbauten, Stadtgarten und Nähe zum Zoo.",
     longDesc:
-      "Die Suedweststadt ist ein Wohlfuehl-Wohnbezirk mit Gründerzeit-Bauten, ruhigen Strassen und dem Karlsruher Stadtgarten samt Zoo. Beliebt bei jungen Familien und Akademikern.",
+      "Die Südweststadt ist ein Wohlfühl-Wohnbezirk mit Gründerzeit-Bauten, ruhigen Straßen und dem Karlsruher Stadtgarten samt Zoo. Beliebt bei jungen Familien und Akademikern.",
     hue: 4,
     coordinates: [48.9985, 8.3902],
     characterTags: ["Gründerzeit", "Wohnen", "Park"],
@@ -63,9 +63,9 @@ export const districts: District[] = [
     imageKey: "district:weststadt",
     name: "Weststadt",
     shortDesc:
-      "Muehlburger Tor, Yorkstrasse, Hochschulen und Wohnen. Vorklassizismus trifft Studierendenleben.",
+      "Mühlburger Tor, Yorckstraße, Hochschulen und Wohnen. Vorklassizismus trifft Studierendenleben.",
     longDesc:
-      "Die Weststadt umfasst den Bereich zwischen Muehlburger Tor und Yorkstrasse. Hochschulen, Architektur aus mehreren Epochen, der Botanische Garten am Rand und ruhige Wohnstrassen pragen das Bild.",
+      "Die Weststadt umfasst den Bereich zwischen Mühlburger Tor und Yorckstraße. Hochschulen, Architektur aus mehreren Epochen, der Botanische Garten am Rand und ruhige Wohnstraßen pragen das Bild.",
     hue: 5,
     coordinates: [49.0091, 8.3825],
     characterTags: ["Hochschulen", "Wohnen", "Klassizismus"],
@@ -89,7 +89,7 @@ export const districts: District[] = [
     shortDesc:
       "Historischer Markgrafen-Vorort mit Karlsburg, Altstadt und dem Turmberg über der Stadt.",
     longDesc:
-      "Durlach ist Karlsruhes älteste Stadt - gegründet vor Karlsruhe selbst, war es bis 1715 Residenz der Markgrafen von Baden. Karlsburg, Altstadt, Pfinzgaumuseum, Mehlwaage und die Turmberg-Bahn machen Durlach zum touristischen Highlight ausserhalb des Zentrums.",
+      "Durlach ist Karlsruhes älteste Stadt - gegründet vor Karlsruhe selbst, war es bis 1715 Residenz der Markgrafen von Baden. Karlsburg, Altstadt, Pfinzgaumuseum, Mehlwaage und der Turmberg machen Durlach zum touristischen Highlight außerhalb des Zentrums.",
     hue: 1,
     coordinates: [48.9989, 8.4747],
     characterTags: ["Historisch", "Markgrafen", "Aussicht"],
@@ -101,7 +101,7 @@ export const districts: District[] = [
     shortDesc:
       "KIT-Campus-Nähe, Wohnviertel mit Studierenden-Anteil und Nähe zu Schloss Gottesaue.",
     longDesc:
-      "Die Oststadt ist Karlsruhes Wissenschaftsbezirk. Der KIT-Campus Süd liegt direkt am Rand, Schloss Gottesaue beherbergt die Hochschule für Musik. Das Viertel ist ruhig, durchgruent und akademisch geprägt.",
+      "Die Oststadt ist Karlsruhes Wissenschaftsbezirk. Der KIT-Campus Süd liegt direkt am Rand, Schloss Gottesaue beherbergt die Hochschule für Musik. Das Viertel ist ruhig, durchgrünt und akademisch geprägt.",
     hue: 3,
     coordinates: [49.0094, 8.4244],
     characterTags: ["KIT", "Studierende", "Wissenschaft"],
@@ -111,7 +111,7 @@ export const districts: District[] = [
     imageKey: "district:rueppurr",
     name: "Rüppurr",
     shortDesc:
-      "Süd-Wohnbezirk mit Villen, Gartenstadt-Charakter und ruhigen Strassen.",
+      "Süd-Wohnbezirk mit Villen, Gartenstadt-Charakter und ruhigen Straßen.",
     longDesc:
       "Rüppurr ist ein wohlhabender Süd-Wohnbezirk mit Gartenstadt-Charakter. Villen, gepflegte Gärten und gute Anbindung an Stadtmitte und Albtal.",
     hue: 4,
@@ -123,9 +123,9 @@ export const districts: District[] = [
     imageKey: "district:daxlanden",
     name: "Daxlanden",
     shortDesc:
-      "Suedwestlich am Rheinhafen, mit Industriekultur und Naturschutzgebiet Burgau.",
+      "Südwestlich am Rheinhafen, mit Industriekultur und Naturschutzgebiet Burgau.",
     longDesc:
-      "Daxlanden liegt am Rhein und beherbergt einen Teil des Karlsruher Rheinhafens - eines der groessten Binnenhaefen Deutschlands. Das Naturschutzgebiet Burgau bietet Naherholung am Wasser.",
+      "Daxlanden liegt am Rhein und beherbergt einen Teil des Karlsruher Rheinhafens - eines der größten Binnenhäfen Deutschlands. Das Naturschutzgebiet Burgau bietet Naherholung am Wasser.",
     hue: 5,
     coordinates: [49.0019, 8.3192],
     characterTags: ["Rhein", "Industrie", "Natur"],
@@ -149,7 +149,7 @@ export const districts: District[] = [
     shortDesc:
       "Hardtwald-Nähe, Bundesbauten und ruhiges Wohnen im Norden.",
     longDesc:
-      "Die Nordstadt grenzt an den Hardtwald als groesstes Naherholungsgebiet der Stadt. Bundesgerichtshof, Generalbundesanwaltschaft und Wohnquartiere prägen den Bezirk.",
+      "Die Nordstadt grenzt an den Hardtwald als größtes Naherholungsgebiet der Stadt. Bundesgerichtshof, Generalbundesanwaltschaft und Wohnquartiere prägen den Bezirk.",
     hue: 3,
     coordinates: [49.0250, 8.4022],
     characterTags: ["Wald", "Recht", "Ruhig"],
@@ -159,9 +159,9 @@ export const districts: District[] = [
     imageKey: "district:waldstadt",
     name: "Waldstadt",
     shortDesc:
-      "Plattenbauten der 1950er, mitten im Wald gelegen. Grünes Wohnen mit ueberraschendem Flair.",
+      "Plattenbauten der 1950er, mitten im Wald gelegen. Grünes Wohnen mit überraschendem Flair.",
     longDesc:
-      "Die Waldstadt entstand in den 1950er Jahren als Plattenbau-Viertel mitten im Hardtwald. Trotz der Architektur einer der gruensten Bezirke Karlsruhes mit hohem Wohnwert.",
+      "Die Waldstadt entstand in den 1950er Jahren als Plattenbau-Viertel mitten im Hardtwald. Trotz der Architektur einer der grünsten Bezirke Karlsruhes mit hohem Wohnwert.",
     hue: 4,
     coordinates: [49.0353, 8.4392],
     characterTags: ["Wald", "Architektur", "Grün"],
@@ -171,12 +171,12 @@ export const districts: District[] = [
     imageKey: "district:neureut",
     name: "Neureut",
     shortDesc:
-      "Groesster Stadtteil flaechenmaessig, dörflich nordöstlich gelegen.",
+      "Größter Stadtteil flächenmäßig, dörflich nordöstlich gelegen.",
     longDesc:
-      "Neureut wurde erst 1975 eingemeindet und ist flaechenmaessig der groesste Stadtteil. Doerflicher Charakter, gute Landwirtschaft, das Heimatmuseum und Nähe zum Hardtwald.",
+      "Neureut wurde erst 1975 eingemeindet und ist flächenmäßig der größte Stadtteil. Dörflicher Charakter, gute Landwirtschaft, das Heimatmuseum und Nähe zum Hardtwald.",
     hue: 5,
     coordinates: [49.0567, 8.3925],
-    characterTags: ["Doerflich", "Landwirtschaft", "Ruhig"],
+    characterTags: ["Dörflich", "Landwirtschaft", "Ruhig"],
   },
 ];
 

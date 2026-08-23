@@ -19,6 +19,9 @@ export interface CityEvent {
   /** Tatsaechliche Event-Daten (nicht das Hotel-Buchungsfenster) für Event-Schema. */
   eventStart?: string;
   eventEnd?: string;
+  /** Redaktioneller Guide zum Event, falls vorhanden - interne Verlinkung. */
+  guideUrl?: string;
+  guideLabel?: string;
 }
 
 export const events: CityEvent[] = [
@@ -78,6 +81,8 @@ export const events: CityEvent[] = [
     limit: 12,
     eventStart: "2026-11-23",
     eventEnd: "2026-12-23",
+    guideUrl: "/weihnachtsmarkt-karlsruhe/",
+    guideLabel: "Weihnachtsmarkt Karlsruhe: Termine, Plätze und Öffnungszeiten",
   },
   {
     slug: "art-karlsruhe",

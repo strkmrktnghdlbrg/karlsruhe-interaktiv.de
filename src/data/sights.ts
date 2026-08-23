@@ -2,7 +2,7 @@ export type Sight = {
   slug: string;
   name: string;
   district: string;
-  type: "Wahrzeichen" | "Museum" | "Kirche" | "Park" | "Markt" | "Modern" | "Aussicht";
+  type: "Wahrzeichen" | "Museum" | "Kirche" | "Park" | "Markt" | "Modern" | "Aussicht" | "Freizeit" | "Shopping";
   priceFrom: number | null;
   shortDesc: string;
   longDesc: string;
@@ -63,7 +63,7 @@ export const sights: Sight[] = [
     imageHue: 3,
     categories: ["kunst-medien", "museen", "tech-innovation"],
     coordinates: [49.0017, 8.3853],
-    openingHours: "Mi 10:00-18:00, Do-So 11:00-18:00",
+    openingHours: "Mi-Fr 10:00-18:00, Sa-So 11:00-18:00",
     websiteUrl: "https://zkm.de",
   },
   {
@@ -271,9 +271,9 @@ export const sights: Sight[] = [
     type: "Aussicht",
     priceFrom: null,
     shortDesc:
-      "Karlsruhes Hausberg mit dem ältesten Aussichtsturm Deutschlands und der historischen Turmbergbahn-Standseilbahn.",
+      "Karlsruhes Hausberg mit dem ältesten Aussichtsturm Deutschlands. Die Turmbergbahn wird derzeit neu gebaut, der Aufstieg führt über die Treppe.",
     longDesc:
-      "Der Turmberg ist Karlsruhes klassischer Aussichtspunkt. Der quadratische Bergfried der ehemaligen Burg ist der älteste Aussichtsturm Deutschlands. Erreichbar zu Fuss oder mit der historischen Turmbergbahn - Deutschlands ältester noch betriebener Standseilbahn (1888). Bei klarer Sicht reicht der Blick bis zum Pfälzerwald.",
+      "Der Turmberg ist Karlsruhes klassischer Aussichtspunkt. Der quadratische Bergfried der ehemaligen Burg ist der älteste Aussichtsturm Deutschlands. Bei klarer Sicht reicht der Blick bis zum Pfälzerwald. Wichtig für die Planung: Die Turmbergbahn von 1888 ist seit März 2026 außer Betrieb und wird barrierefrei neu gebaut, die Wiederinbetriebnahme ist für Ende 2027 geplant. Bis dahin führt der Weg nach oben über die Turmbergtreppe (Stand 23.08.2026, Quelle VBK).",
     imageHue: 1,
     categories: ["wahrzeichen", "familie", "parks"],
     coordinates: [48.9947, 8.5083],
@@ -420,6 +420,38 @@ export const sights: Sight[] = [
     imageHue: 1,
     categories: ["historische-architektur", "wahrzeichen"],
     coordinates: [49.0181, 8.3303],
+  },
+  {
+    slug: "europabad",
+    name: "Europabad Karlsruhe",
+    district: "suedweststadt",
+    type: "Freizeit",
+    priceFrom: 16,
+    shortDesc:
+      "Karlsruhes großes Erlebnis- und Familienbad: acht Rutschen, 32 Grad warmes Erlebnisbecken, Außenbereich und karelisches Saunadorf.",
+    longDesc:
+      "Das Europabad Karlsruhe ist das Erlebnisbad der Stadt, direkt neben der Europahalle in der Südweststadt. Acht Rutschen von der Kinderbahn bis zum 14-Meter-Freifall, ein 32 Grad warmes Erlebnisbecken mit Strömungskanal und Goldgrotte, ein Sportbecken sowie eine mehrteilige Saunalandschaft mit Excalibur-Sauna, Kalevala Sauna und karelischem Saunadorf.",
+    imageHue: 4,
+    categories: ["familie"],
+    coordinates: [48.9946, 8.3719],
+    openingHours: "Mo-Sa 10:00-23:00, So 10:00-21:00",
+    websiteUrl: "https://www.ka-europabad.de",
+  },
+  {
+    slug: "ettlinger-tor",
+    name: "Ettlinger Tor",
+    district: "innenstadt-west",
+    type: "Shopping",
+    priceFrom: null,
+    shortDesc:
+      "Größtes Einkaufszentrum der Karlsruher Innenstadt mit rund 130 Geschäften, dazu Platz und Verkehrsknoten am Südrand der City.",
+    longDesc:
+      "Das Ettlinger Tor bezeichnet in Karlsruhe dreierlei: den historischen südlichen Stadtausgang Richtung Ettlingen, den heutigen Platz an der Kriegsstraße und das dortige Einkaufszentrum mit rund 130 Fachgeschäften auf etwa 37.000 Quadratmetern. Unter dem Platz liegt einer der wichtigsten Umsteigeknoten der Karlsruher Kombilösung.",
+    imageHue: 2,
+    categories: ["shopping"],
+    coordinates: [49.0055, 8.4029],
+    openingHours: "Center Mo-Sa 10:00-20:00",
+    websiteUrl: "https://www.ettlinger-tor.de",
   },
 ];
 

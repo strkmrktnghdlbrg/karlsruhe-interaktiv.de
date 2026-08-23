@@ -14,6 +14,7 @@ import { districtsEn } from "../../../i18n/en/districts";
 import { getCategory } from "../../../data/categories";
 import { categoriesEn } from "../../../i18n/en/categories";
 import { getGygPlacement } from "../../../data/gyg";
+import { getSightGuideEn } from "../../../i18n/en/sight-guides";
 import { city } from "../../../data/city";
 import { t, tf } from "../../../i18n/ui";
 import { homeUrl, indexUrl, detailUrl } from "../../../i18n/config";
@@ -46,7 +47,7 @@ const nearby = sightsByDistrict(sight.district)
   }));
 
 /* FAQ built strictly from existing data - no invented facts */
-const faqs = [
+const baseFaqs = [
   ...(district
     ? [{ q: `Which district is ${en.name} in?`, a: `${en.name} is located in ${districtName}. ${districtEn?.shortDesc ?? ""}`.trim() }]
     : []),
@@ -60,6 +61,23 @@ const faqs = [
     ? [{ q: `When is ${en.name} open?`, a: `According to the operator: ${en.openingHours} (as of July 2026). The official website is binding.` }]
     : []),
 ];
+
+/**
+ * Ausfuehrlicher englischer Guide, falls vorhanden. Ersetzt dann longDesc und
+ * liefert Fakten, Kapitel, FAQ und Quellen - siehe i18n/en/sight-guides.ts.
+ */
+const guide = getSightGuideEn(sight.slug);
+const faqs = guide?.faqs?.length ? [...guide.faqs, ...baseFaqs.slice(0, district ? 1 : 0)] : baseFaqs;
+
+const faqSchema = faqs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+} : null;
 
 const schema = {
   "@context": "https://schema.org",
@@ -108,7 +126,7 @@ const schema = {
       ]} />
 
       <div class="stage-prose mt-6">
-        <p>{en.longDesc}</p>
+        <p>{guide ? guide.intro : en.longDesc}</p>
       </div>
 
       <div class="flex flex-wrap gap-2 mt-6 mb-4">
@@ -120,6 +138,47 @@ const schema = {
           return cat ? <a href={detailUrl("categories", catEn?.slug ?? cat.slug, locale)} class="pill">{catEn?.name ?? cat.name}</a> : null;
         })}
       </div>
+
+      {guide?.facts && guide.facts.length > 0 && (
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          {guide.facts.map((table) => (
+            <section class="p-6 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+              <h2 class="text-lg font-semibold mb-2" style="color: var(--color-text);">{table.title}</h2>
+              {table.note && (
+                <p class="text-sm mb-4 leading-relaxed" style="color: var(--color-text-muted);">{table.note}</p>
+              )}
+              <dl class="text-sm">
+                {table.rows.map((row) => (
+                  <div class="flex flex-wrap justify-between gap-x-4 gap-y-1 py-2 border-b last:border-0" style="border-color: var(--color-border);">
+                    <dt style="color: var(--color-text-body);">{row.label}</dt>
+                    <dd class="font-medium text-right" style="color: var(--color-text);">{row.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          ))}
+        </div>
+      )}
+
+      {guide?.sections && guide.sections.length > 0 && (
+        <div class="mt-12" style="max-width: 70ch;">
+          {guide.sections.map((section) => (
+            <section class="mb-10">
+              <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-3" style="color: var(--color-text);">{section.heading}</h2>
+              <div class="stage-prose">
+                {section.body.split("\n\n").map((para) => <p>{para}</p>)}
+              </div>
+              {section.bullets && section.bullets.length > 0 && (
+                <ul class="mt-4 space-y-2 text-base leading-relaxed" style="color: var(--color-text-body);">
+                  {section.bullets.map((b) => (
+                    <li class="pl-4 border-l-2" style="border-color: var(--color-border);">{b}</li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          ))}
+        </div>
+      )}
     </div>
 
     {nearby.length > 0 && (
@@ -162,9 +221,27 @@ const schema = {
         </section>
       )}
 
+      {guide?.sources && guide.sources.length > 0 && (
+        <section class="my-12 pt-8 border-t" style="border-color: var(--color-border); max-width: 70ch;">
+          <h2 class="text-lg font-semibold mb-2" style="color: var(--color-text);">Sources</h2>
+          <p class="text-sm mb-3 leading-relaxed" style="color: var(--color-text-muted);">
+            Prices and opening hours change. We state where the information comes from and when we checked it. The operator's own information is always binding.
+          </p>
+          <ul class="text-sm space-y-1">
+            {guide.sources.map((s) => (
+              <li>
+                <a href={s.url} rel="nofollow noopener" target="_blank" class="link-accent">{s.label}</a>
+                <span style="color: var(--color-text-muted);"> &middot; retrieved {s.retrieved}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       <RelatedItems district={sight.district} excludeSlug={sight.slug} type="sights" locale={locale} />
     </div>
 
     <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline></script>
+    {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline></script>}
   </article>
 </BaseLayout>

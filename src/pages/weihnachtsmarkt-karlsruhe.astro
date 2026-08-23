@@ -1,0 +1,355 @@
+---
+/**
+ * Saison-Money-Page: Weihnachtsmarkt / Christkindlesmarkt Karlsruhe.
+ *
+ * Bewusst eine eigene Top-Level-URL statt einer Sehenswuerdigkeit: Die Query
+ * lautet "weihnachtsmarkt karlsruhe", der Markt ist kein dauerhafter Ort.
+ * Der Traffic faellt praktisch komplett auf November und Dezember, deshalb
+ * muss die Seite lange vor der Saison stehen und reifen.
+ *
+ * PFLEGE: Termine, Zeiten und die Programmpunkte gelten fuer die Saison 2026.
+ * Vor jeder neuen Saison gegen die offizielle Quelle pruefen und die
+ * Konstanten unten aktualisieren - sonst steht hier im November Falsches.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import StageHero from "../components/StageHero.astro";
+import ActionDock from "../components/ActionDock.astro";
+import Stay22NearbyHotels from "../components/Stay22NearbyHotels.astro";
+import GetYourGuideWidget from "../components/GetYourGuideWidget.astro";
+import { getGygPlacement } from "../data/gyg";
+import { city } from "../data/city";
+
+const saison = {
+  jahr: 2026,
+  start: "2026-11-23",
+  ende: "2026-12-23",
+  startLabel: "23. November 2026",
+  endeLabel: "23. Dezember 2026",
+};
+
+/* Eisbahn laeuft ueber den Markt hinaus bis in den Januar. */
+const winterzeit = {
+  start: "2026-11-23",
+  ende: "2027-01-24",
+  startLabel: "23. November 2026",
+  endeLabel: "24. Januar 2027",
+};
+
+const title = `Weihnachtsmarkt Karlsruhe ${saison.jahr}: Christkindlesmarkt, Termine und Öffnungszeiten`;
+const description = `Der Karlsruher Christkindlesmarkt ${saison.jahr} läuft vom ${saison.startLabel} bis ${saison.endeLabel} auf Marktplatz, Friedrichsplatz und Kirchplatz St. Stephan. Öffnungszeiten, die drei Plätze, Riesenrad, Eisbahn, Anfahrt und Hotels.`;
+
+const plaetze = [
+  {
+    name: "Marktplatz: Lichtweihnacht",
+    text:
+      "Der Marktplatz rund um die Pyramide ist der glanzvolle Teil. Hier stehen das Riesenrad und die Glühweinpyramide, und hier fliegt mehrmals täglich der fliegende Weihnachtsmann über die Köpfe der Besucher. Dazu kommt das Stapelhaus mit Terrasse, von der aus man den Platz von oben sieht.",
+  },
+  {
+    name: "Friedrichsplatz: Waldweihnacht",
+    text:
+      "Der Friedrichsplatz ist der gemütliche Gegenpol: geschmückte Giebelhäuschen zwischen den Bäumen, kulinarische Spezialitäten aus aller Welt, Kunsthandwerk und die Kulturhütte mit wechselndem Programm. Zum Sitzen gibt es die Karls-Ruhe-Plätzles.",
+  },
+  {
+    name: "Kirchplatz St. Stephan: Kinderland",
+    text:
+      "Am Kirchplatz St. Stephan liegt das Kinderland, der Bereich für Familien mit kleineren Kindern. Er liegt zwischen den beiden großen Plätzen, sodass sich alle drei Standorte in einem Rundgang zu Fuß verbinden lassen.",
+  },
+];
+
+const faqs = [
+  {
+    q: `Wann ist der Weihnachtsmarkt in Karlsruhe ${saison.jahr}?`,
+    a: `Der Karlsruher Christkindlesmarkt läuft vom ${saison.startLabel} bis zum ${saison.endeLabel}. Er endet damit am Tag vor Heiligabend.`,
+  },
+  {
+    q: "Welche Öffnungszeiten hat der Christkindlesmarkt Karlsruhe?",
+    a: "Sonntag bis Donnerstag von 11:00 bis 21:00 Uhr, freitags und samstags von 11:00 bis 22:00 Uhr.",
+  },
+  {
+    q: "Wo findet der Weihnachtsmarkt in Karlsruhe statt?",
+    a: "An drei Orten in der Innenstadt: auf dem Marktplatz als Lichtweihnacht, auf dem Friedrichsplatz als Waldweihnacht und am Kirchplatz St. Stephan mit dem Kinderland. Alle drei liegen wenige Gehminuten auseinander.",
+  },
+  {
+    q: "Kostet der Christkindlesmarkt Eintritt?",
+    a: "Nein, der Eintritt ist frei. Bezahlt wird nur, was man verzehrt oder nutzt, etwa die Fahrt im Riesenrad.",
+  },
+  {
+    q: "Wann fliegt der fliegende Weihnachtsmann?",
+    a: "Täglich um 17:00 und um 19:30 Uhr über dem Marktplatz. Er gehört zusammen mit dem Riesenrad zu den Programmpunkten, für die Besucher gezielt anreisen.",
+  },
+  {
+    q: "Gibt es in Karlsruhe eine Eisbahn im Winter?",
+    a: `Ja, die Stadtwerke WINTERZEIT auf dem Schlossplatz vor dem Barockschloss. Sie läuft vom ${winterzeit.startLabel} bis ${winterzeit.endeLabel} und damit deutlich länger als der Christkindlesmarkt. Neben der Eisfläche gibt es eine Stockschießen-Anlage und ein Winterdorf, Schlittschuhe können vor Ort ausgeliehen werden.`,
+  },
+  {
+    q: "Wie kommt man zum Karlsruher Weihnachtsmarkt?",
+    a: "Am einfachsten mit Stadtbahn oder Straßenbahn bis Marktplatz oder Ettlinger Tor, beide Haltestellen liegen unmittelbar an den Marktflächen. Wer mit dem Auto kommt, nutzt die Tiefgarage Marktplatz, das Parkhaus Ettlinger Tor oder die Tiefgarage Schlossplatz.",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const eventLd = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: `Karlsruher Christkindlesmarkt ${saison.jahr}`,
+  description: `Weihnachtsmarkt in Karlsruhe auf Marktplatz, Friedrichsplatz und Kirchplatz St. Stephan, ${saison.startLabel} bis ${saison.endeLabel}.`,
+  startDate: saison.start,
+  endDate: saison.ende,
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  location: {
+    "@type": "Place",
+    name: "Marktplatz Karlsruhe",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Marktplatz",
+      addressLocality: city.name,
+      postalCode: "76133",
+      addressCountry: city.countryCode,
+    },
+    geo: { "@type": "GeoCoordinates", latitude: 49.0093, longitude: 8.4046 },
+  },
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "EUR",
+    availability: "https://schema.org/InStock",
+    url: `${city.domain}/weihnachtsmarkt-karlsruhe/`,
+  },
+  organizer: { "@type": "Organization", name: "KME Karlsruhe Marketing und Event GmbH", url: "https://karlsruhe-event.de/" },
+  isAccessibleForFree: true,
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <article>
+    <StageHero
+      badge={`Saison ${saison.jahr}`}
+      title={`Weihnachtsmarkt Karlsruhe ${saison.jahr}`}
+      lead={`Der Christkindlesmarkt läuft vom ${saison.startLabel} bis ${saison.endeLabel} auf drei Plätzen der Innenstadt. Eintritt frei.`}
+      fallbackHue={1}
+      minHeight="440px"
+    />
+
+    <ActionDock
+      info={{
+        line: `${saison.startLabel} bis ${saison.endeLabel}`,
+        sub: "So bis Do 11:00-21:00 Uhr · Fr und Sa 11:00-22:00 Uhr · Eintritt frei",
+      }}
+      secondary={{ label: "Offizielle Seite", href: "https://www.karlsruhe-erleben.de/weihnachtsstadt/christkindlesmarkt", rel: "nofollow noopener", target: "_blank" }}
+      primary={{ label: "Hotels in der Nähe", href: "#hotels-in-der-naehe" }}
+    />
+
+    <div class="container-page py-10">
+      <Breadcrumbs items={[
+        { label: "Start", href: "/" },
+        { label: "Events", href: "/events/" },
+        { label: `Weihnachtsmarkt ${saison.jahr}` },
+      ]} />
+
+      <div class="stage-prose mt-6" style="max-width: 70ch;">
+        <p>
+          Der Karlsruher Christkindlesmarkt ist der größte Weihnachtsmarkt der Fächerstadt und verteilt sich auf drei
+          Plätze im Zentrum, die alle zu Fuß verbunden sind. Er hat zwei Gesichter: die Lichtweihnacht auf dem Marktplatz
+          mit Riesenrad und Glühweinpyramide, und die ruhigere Waldweihnacht auf dem Friedrichsplatz zwischen
+          geschmückten Giebelhäuschen. Dazu kommt das Kinderland am Kirchplatz St. Stephan.
+        </p>
+        <p>
+          {saison.jahr} öffnet der Markt am {saison.startLabel} und schließt am {saison.endeLabel}, dem Tag vor
+          Heiligabend. Der Eintritt ist frei. Diese Seite fasst Termine, Öffnungszeiten, die drei Plätze, die Eisbahn
+          auf dem Schlossplatz sowie Anfahrt und Übernachtung zusammen.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <section class="p-6 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+          <h2 class="text-lg font-semibold mb-4" style="color: var(--color-text);">Termine und Öffnungszeiten {saison.jahr}</h2>
+          <dl class="text-sm">
+            <div class="flex flex-wrap justify-between gap-x-4 gap-y-1 py-2 border-b" style="border-color: var(--color-border);">
+              <dt style="color: var(--color-text-body);">Beginn</dt>
+              <dd class="font-medium text-right" style="color: var(--color-text);">{saison.startLabel}</dd>
+            </div>
+            <div class="flex flex-wrap justify-between gap-x-4 gap-y-1 py-2 border-b" style="border-color: var(--color-border);">
+              <dt style="color: var(--color-text-body);">Letzter Tag</dt>
+              <dd class="font-medium text-right" style="color: var(--color-text);">{saison.endeLabel}</dd>
+            </div>
+            <div class="flex flex-wrap justify-between gap-x-4 gap-y-1 py-2 border-b" style="border-color: var(--color-border);">
+              <dt style="color: var(--color-text-body);">Sonntag bis Donnerstag</dt>
+              <dd class="font-medium text-right" style="color: var(--color-text);">11:00 bis 21:00 Uhr</dd>
+            </div>
+            <div class="flex flex-wrap justify-between gap-x-4 gap-y-1 py-2 border-b" style="border-color: var(--color-border);">
+              <dt style="color: var(--color-text-body);">Freitag und Samstag</dt>
+              <dd class="font-medium text-right" style="color: var(--color-text);">11:00 bis 22:00 Uhr</dd>
+            </div>
+            <div class="flex flex-wrap justify-between gap-x-4 gap-y-1 py-2 border-b" style="border-color: var(--color-border);">
+              <dt style="color: var(--color-text-body);">Eintritt</dt>
+              <dd class="font-medium text-right" style="color: var(--color-text);">frei</dd>
+            </div>
+            <div class="flex flex-wrap justify-between gap-x-4 gap-y-1 py-2" style="border-color: var(--color-border);">
+              <dt style="color: var(--color-text-body);">Fliegender Weihnachtsmann</dt>
+              <dd class="font-medium text-right" style="color: var(--color-text);">täglich 17:00 und 19:30 Uhr</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="p-6 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+          <h2 class="text-lg font-semibold mb-2" style="color: var(--color-text);">Stadtwerke WINTERZEIT auf dem Schlossplatz</h2>
+          <p class="text-sm mb-4 leading-relaxed" style="color: var(--color-text-muted);">
+            Die Eisbahn vor dem Barockschloss läuft länger als der Markt und ist der zweite Grund, im Winter nach
+            Karlsruhe zu fahren.
+          </p>
+          <dl class="text-sm">
+            <div class="flex flex-wrap justify-between gap-x-4 gap-y-1 py-2 border-b" style="border-color: var(--color-border);">
+              <dt style="color: var(--color-text-body);">Zeitraum</dt>
+              <dd class="font-medium text-right" style="color: var(--color-text);">{winterzeit.startLabel} bis {winterzeit.endeLabel}</dd>
+            </div>
+            <div class="flex flex-wrap justify-between gap-x-4 gap-y-1 py-2 border-b" style="border-color: var(--color-border);">
+              <dt style="color: var(--color-text-body);">Ort</dt>
+              <dd class="font-medium text-right" style="color: var(--color-text);">Schlossplatz</dd>
+            </div>
+            <div class="flex flex-wrap justify-between gap-x-4 gap-y-1 py-2 border-b" style="border-color: var(--color-border);">
+              <dt style="color: var(--color-text-body);">Eisbahn geöffnet</dt>
+              <dd class="font-medium text-right" style="color: var(--color-text);">täglich 10:00 bis 22:00 Uhr</dd>
+            </div>
+            <div class="flex flex-wrap justify-between gap-x-4 gap-y-1 py-2" style="border-color: var(--color-border);">
+              <dt style="color: var(--color-text-body);">Vor Ort</dt>
+              <dd class="font-medium text-right" style="color: var(--color-text);">Schlittschuhverleih, Stockschießen, Winterdorf</dd>
+            </div>
+          </dl>
+        </section>
+      </div>
+
+      <div class="mt-12" style="max-width: 70ch;">
+        <section class="mb-10">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-3" style="color: var(--color-text);">Die drei Plätze</h2>
+          <div class="stage-prose">
+            <p>
+              Anders als in vielen Städten ist der Karlsruher Weihnachtsmarkt kein einzelner Platz, sondern ein
+              Rundgang. Wer alle drei Bereiche sehen will, läuft vom Marktplatz über St. Stephan zum Friedrichsplatz,
+              insgesamt keine zehn Minuten.
+            </p>
+          </div>
+          {plaetze.map((p) => (
+            <div class="mt-6 p-5 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+              <h3 class="text-lg font-semibold mb-2" style="color: var(--color-text);">{p.name}</h3>
+              <p class="text-base leading-relaxed" style="color: var(--color-text-body);">{p.text}</p>
+            </div>
+          ))}
+        </section>
+
+        <section class="mb-10">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-3" style="color: var(--color-text);">Anfahrt und Parken</h2>
+          <div class="stage-prose">
+            <p>
+              Die Innenstadt ist während der Marktwochen voll, die Anreise mit Bahn und Straßenbahn ist deutlich
+              entspannter. Die Haltestellen Marktplatz und Ettlinger Tor liegen unter beziehungsweise unmittelbar an
+              den Marktflächen, sodass man aus der Bahn direkt in den Markt läuft. Vom Hauptbahnhof sind es wenige
+              Minuten.
+            </p>
+            <p>
+              Wer doch mit dem Auto kommt, findet die nächsten Stellplätze in der Tiefgarage Marktplatz, im Parkhaus
+              Ettlinger Tor und in der Tiefgarage Schlossplatz. An den Adventssamstagen sind diese Häuser regelmäßig
+              früh belegt, das städtische Parkleitsystem zeigt die Belegung in Echtzeit.
+            </p>
+          </div>
+          <p class="mt-4 text-sm">
+            <a href="/parken-in-karlsruhe/" class="link-accent">Alle Parkhäuser in Karlsruhe mit Tarifen &rarr;</a>
+          </p>
+        </section>
+
+        <section class="mb-10">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-3" style="color: var(--color-text);">Weihnachtsmarkt mit Übernachtung</h2>
+          <div class="stage-prose">
+            <p>
+              Der Christkindlesmarkt zieht Besucher aus dem gesamten Umland und aus dem Elsass an. Wer von weiter weg
+              anreist, verbindet den Marktbesuch meist mit einer Übernachtung in der Innenstadt, weil sich von dort
+              alle drei Plätze, die Eisbahn und das Schloss zu Fuß erreichen lassen. Die Adventswochenenden sind die
+              stärksten Hotelnächte des Karlsruher Winters, entsprechend früh sollte gebucht werden.
+            </p>
+          </div>
+          <p class="mt-4 text-sm">
+            <a href="/hotels-karlsruhe-christkindlesmarkt/" class="link-accent">Hotels mit Preisen für die Adventswochenenden &rarr;</a>
+          </p>
+        </section>
+
+        <section class="mb-10">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-3" style="color: var(--color-text);">Was sich in Karlsruhe damit verbinden lässt</h2>
+          <div class="stage-prose">
+            <p>
+              Der Markt liegt mitten im historischen Zentrum, deshalb lohnt sich ein Tagesprogramm drumherum. Das
+              Karlsruher Schloss mit dem Badischen Landesmuseum steht direkt hinter der Eisbahn, das ZKM ist mit der
+              Bahn in wenigen Minuten erreichbar, und das Ettlinger Tor Center deckt den Rest der Geschenkeliste ab.
+            </p>
+          </div>
+          <ul class="mt-4 space-y-2 text-base leading-relaxed" style="color: var(--color-text-body);">
+            <li class="pl-4 border-l-2" style="border-color: var(--color-border);">
+              <a href="/sehenswuerdigkeiten/karlsruher-schloss/" class="link-accent">Karlsruher Schloss</a> direkt am Schlossplatz, wo die Eisbahn steht
+            </li>
+            <li class="pl-4 border-l-2" style="border-color: var(--color-border);">
+              <a href="/sehenswuerdigkeiten/zkm/" class="link-accent">ZKM Zentrum für Kunst und Medien</a>, freitags ab 14 Uhr ohne Eintritt
+            </li>
+            <li class="pl-4 border-l-2" style="border-color: var(--color-border);">
+              <a href="/sehenswuerdigkeiten/ettlinger-tor/" class="link-accent">Ettlinger Tor</a>, direkt an der südlichen Marktkante
+            </li>
+            <li class="pl-4 border-l-2" style="border-color: var(--color-border);">
+              <a href="/sehenswuerdigkeiten/" class="link-accent">Alle Sehenswürdigkeiten in Karlsruhe</a>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <GetYourGuideWidget placement={getGygPlacement("event:christkindlesmarkt")} />
+
+      <div id="hotels-in-der-naehe">
+        <Stay22NearbyHotels lat={49.0093} lng={8.4046} near="dem Christkindlesmarkt" radius={1500} limit={4} />
+      </div>
+
+      <section class="py-12" style="max-width: 70ch;">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2" style="color: var(--color-text);">Häufige Fragen</h2>
+        <div class="stage-qa">
+          {faqs.map((f, i) => (
+            <details open={i === 0}>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section class="my-12 pt-8 border-t" style="border-color: var(--color-border); max-width: 70ch;">
+        <h2 class="text-lg font-semibold mb-2" style="color: var(--color-text);">Quellen</h2>
+        <p class="text-sm mb-3 leading-relaxed" style="color: var(--color-text-muted);">
+          Termine und Zeiten für die Saison {saison.jahr}. Programmpunkte können sich kurzfristig ändern, verbindlich
+          sind die Angaben des Veranstalters.
+        </p>
+        <ul class="text-sm space-y-1">
+          <li>
+            <a href="https://www.karlsruhe-erleben.de/weihnachtsstadt/christkindlesmarkt" rel="nofollow noopener" target="_blank" class="link-accent">Karlsruher Christkindlesmarkt, karlsruhe-erleben.de</a>
+            <span style="color: var(--color-text-muted);"> &middot; abgerufen am 23.08.2026</span>
+          </li>
+          <li>
+            <a href="https://www.karlsruhe.de/kultur-freizeit/maerkte/christkindlesmarkt" rel="nofollow noopener" target="_blank" class="link-accent">Der Karlsruher Christkindlesmarkt, Stadt Karlsruhe</a>
+            <span style="color: var(--color-text-muted);"> &middot; abgerufen am 23.08.2026</span>
+          </li>
+          <li>
+            <a href="https://www.stadtwerke-winterzeit.de/" rel="nofollow noopener" target="_blank" class="link-accent">Stadtwerke WINTERZEIT</a>
+            <span style="color: var(--color-text-muted);"> &middot; abgerufen am 23.08.2026</span>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <script type="application/ld+json" set:html={JSON.stringify(eventLd)} is:inline></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqLd)} is:inline></script>
+  </article>
+</BaseLayout>

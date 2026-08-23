@@ -101,6 +101,11 @@ const eventSchema = event.eventStart
         <span class="pill">Abreise: {checkoutFmt}</span>
         <span class="pill">{nights} {nights === 1 ? "Nacht" : "Nächte"}</span>
       </div>
+      {event.guideUrl && (
+        <p class="mt-4 text-sm">
+          <a href={event.guideUrl} class="link-accent">{event.guideLabel ?? "Zum Event-Guide"} &rarr;</a>
+        </p>
+      )}
     </div>
 
     {!upcoming && (

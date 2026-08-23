@@ -48,7 +48,7 @@ export const guides: Guide[] = [
     shortDesc:
       "Faecherstadt-Klassiker an drei Tagen: Schloss, ZKM, Turmberg-Durlach, KIT-Atmosphäre und badische Küche.",
     lead:
-      "Drei Tage genügen, um Karlsruhe wirklich kennenzulernen. Wir verbinden die ikonische Fächer-Architektur rund um Schloss und Pyramide mit dem weltweit einzigartigen ZKM, dem historischen Durlach mit Turmberg-Bahn und der Karlsruher Tech-Atmosphäre im KIT-Umfeld. Eingebaut: badische Brauhaus-Klassiker, Stern-Restaurant Sein und ein Spaziergang im Hardtwald.",
+      "Drei Tage genügen, um Karlsruhe wirklich kennenzulernen. Wir verbinden die ikonische Fächer-Architektur rund um Schloss und Pyramide mit dem weltweit einzigartigen ZKM, dem historischen Durlach mit Turmberg und der Karlsruher Tech-Atmosphäre im KIT-Umfeld. Eingebaut: badische Brauhaus-Klassiker, Stern-Restaurant Sein und ein Spaziergang im Hardtwald.",
     duration: 3,
     audience: "Erstbesucher",
     bestSeason: "April bis Oktober - Schlosslichtspiele im August/September als Bonus",
@@ -174,7 +174,7 @@ export const guides: Guide[] = [
         number: 3,
         title: "Tag 3 - Durlach, Turmberg und Hardtwald",
         intro:
-          "Der dritte Tag führt aus dem Zentrum hinaus. Vormittags Durlach mit Karlsburg und Turmbergbahn, am Nachmittag der Hardtwald als grüne Lunge der Stadt.",
+          "Der dritte Tag führt aus dem Zentrum hinaus. Vormittags Durlach mit Karlsburg und Turmberg, am Nachmittag der Hardtwald als grüne Lunge der Stadt.",
         slots: [
           {
             time: "9:30 - 11:00",
@@ -190,7 +190,7 @@ export const guides: Guide[] = [
             type: "morgens",
             title: "Turmberg mit Standseilbahn",
             description:
-              "Karlsruhes Hausberg mit dem ältesten Aussichtsturm Deutschlands. Hochfahrt mit der historischen Turmbergbahn (Deutschlands älteste Standseilbahn von 1888).",
+              "Karlsruhes Hausberg mit dem ältesten Aussichtsturm Deutschlands. Die Turmbergbahn wird bis Ende 2027 neu gebaut, hinauf geht es über die Turmbergtreppe.",
             sightSlug: "turmberg",
             tip: "Bei klarer Sicht reicht der Blick bis zum Pfälzerwald.",
           },
@@ -226,9 +226,9 @@ export const guides: Guide[] = [
     slug: "karlsruhe-mit-kindern",
     title: "Karlsruhe mit Kindern",
     shortDesc:
-      "Familien-Tag in Karlsruhe: Zoo, Naturkundemuseum, Turmbergbahn und Schlossgarten - alles kurze Wege.",
+      "Familien-Tag in Karlsruhe: Zoo, Naturkundemuseum, Turmberg und Schlossgarten - alles kurze Wege.",
     lead:
-      "Karlsruhe ist eine überraschend familienfreundliche Stadt. Zoo direkt am Hauptbahnhof, Naturkundemuseum mit lebenden Tieren, Turmbergbahn für Eisenbahn-Fans und gemütliche Brauhaus-Küche. Ein Tag reicht, um die Familien-Highlights zu schaffen.",
+      "Karlsruhe ist eine überraschend familienfreundliche Stadt. Zoo direkt am Hauptbahnhof, Naturkundemuseum mit lebenden Tieren, Turmberg mit Aussicht und gemütliche Brauhaus-Küche. Ein Tag reicht, um die Familien-Highlights zu schaffen.",
     duration: 1,
     audience: "Familien",
     bestSeason: "April bis Oktober",
@@ -269,7 +269,7 @@ export const guides: Guide[] = [
             type: "nachmittag",
             title: "Turmberg mit Standseilbahn",
             description:
-              "Mit der historischen Turmbergbahn (Deutschlands älteste Standseilbahn) hochfahren, oben den ältesten Aussichtsturm Deutschlands besteigen. Eisenbahn + Aussicht = Kinder-Highlight.",
+              "Über die Turmbergtreppe hinauf und oben den ältesten Aussichtsturm Deutschlands besteigen. Die Turmbergbahn ist bis zum Neubau außer Betrieb.",
             sightSlug: "turmberg",
             tip: "Mit der S1/S11 nach Durlach Turmberg, dann zur Talstation laufen.",
           },

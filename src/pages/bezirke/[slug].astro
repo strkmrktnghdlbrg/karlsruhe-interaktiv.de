@@ -13,6 +13,8 @@ import { sightsByDistrict } from "../../data/sights";
 import { topHotelsByDistrict } from "../../data/hotels";
 import { restaurantsByDistrict } from "../../data/restaurants";
 import { getGygPlacement } from "../../data/gyg";
+import { getDistrictHub } from "../../data/district-hubs";
+import { stadtteile, streetsByStadtteilNum } from "../../data/strassen";
 import { districtsEn } from "../../i18n/en/districts";
 import { detailUrl } from "../../i18n/config";
 
@@ -32,9 +34,29 @@ const alternateUrls = {
   de: `/bezirke/${district.slug}/`,
   en: detailUrl("districts", districtsEn[district.slug].slug, "en"),
 };
+
+/* Redaktioneller Hub, falls fuer diesen Bezirk geschrieben. */
+const hub = getDistrictHub(district.slug);
+
+/**
+ * Strassen aus dem amtlichen Bestand. Der Bezirks-Slug entspricht dem
+ * Stadtteil-Slug des Strassenverzeichnisses, wo beide existieren.
+ */
+const stadtteil = stadtteile.find((t) => t.slug === district.slug);
+const strassen = stadtteil ? streetsByStadtteilNum(stadtteil.num) : [];
+
+const faqSchema = hub?.faqs?.length ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: hub.faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+} : null;
 ---
 
-<BaseLayout title={district.name} description={district.shortDesc} alternateUrls={alternateUrls}>
+<BaseLayout title={hub ? `${district.name}: Stadtteil-Guide für Karlsruhe` : district.name} description={district.shortDesc} alternateUrls={alternateUrls}>
   <StageHero
     imgKey={district.imageKey ?? `district:${district.slug}`}
     badge={`Bezirk · ${district.characterTags.slice(0, 2).join(" · ")}`}
@@ -56,12 +78,53 @@ const alternateUrls = {
   <div class="container-page py-10">
     <Breadcrumbs items={[{label: "Start", href: "/"}, {label: "Bezirke", href: "/bezirke/"}, {label: district.name}]} />
 
-    <div class="stage-prose mt-6 mb-4">
-      <p>{district.longDesc}</p>
+    <div class="stage-prose mt-6 mb-4" style="max-width: 70ch;">
+      <p>{hub ? hub.intro : district.longDesc}</p>
     </div>
     <div class="flex flex-wrap gap-2 mb-6">
       {district.characterTags.map((t) => <span class="pill">{t}</span>)}
     </div>
+
+    {hub?.facts && hub.facts.length > 0 && (
+      <div class="mb-10 grid gap-6 md:grid-cols-2">
+        {hub.facts.map((table) => (
+          <section class="p-6 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+            <h2 class="text-lg font-semibold mb-2" style="color: var(--color-text);">{table.title}</h2>
+            {table.note && (
+              <p class="text-sm mb-4 leading-relaxed" style="color: var(--color-text-muted);">{table.note}</p>
+            )}
+            <dl class="text-sm">
+              {table.rows.map((row) => (
+                <div class="flex flex-wrap justify-between gap-x-4 gap-y-1 py-2 border-b last:border-0" style="border-color: var(--color-border);">
+                  <dt style="color: var(--color-text-body);">{row.label}</dt>
+                  <dd class="font-medium text-right" style="color: var(--color-text);">{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        ))}
+      </div>
+    )}
+
+    {hub?.sections && hub.sections.length > 0 && (
+      <div class="mb-12" style="max-width: 70ch;">
+        {hub.sections.map((section) => (
+          <section class="mb-10">
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-3" style="color: var(--color-text);">{section.heading}</h2>
+            <div class="stage-prose">
+              {section.body.split("\n\n").map((para) => <p>{para}</p>)}
+            </div>
+            {section.bullets && section.bullets.length > 0 && (
+              <ul class="mt-4 space-y-2 text-base leading-relaxed" style="color: var(--color-text-body);">
+                {section.bullets.map((b) => (
+                  <li class="pl-4 border-l-2" style="border-color: var(--color-border);">{b}</li>
+                ))}
+              </ul>
+            )}
+          </section>
+        ))}
+      </div>
+    )}
 
     {sightItems.length > 0 && (
       <section class="section">
@@ -96,6 +159,52 @@ const alternateUrls = {
       </section>
     )}
 
+    {hub && strassen.length > 0 && (
+      <section class="section border-t" style="border-color: var(--color-border);">
+        <h2 class="text-3xl font-bold tracking-tight mb-2" style="color: var(--color-text);">Straßen in {district.name}</h2>
+        <p class="text-base mb-6" style="color: var(--color-text-muted); max-width: 70ch;">
+          {strassen.length} Straßen liegen ganz oder teilweise in {district.name}. Zu jeder steht im Straßenverzeichnis,
+          woher ihr Name kommt.
+        </p>
+        <div class="flex flex-wrap gap-2 mb-6">
+          {strassen.slice(0, 40).map((st) => (
+            <a href={`/strassenverzeichnis/${st.slug}/`} class="pill">{st.name}</a>
+          ))}
+        </div>
+        <a href={`/strassenverzeichnis/stadtteil/${district.slug}/`} class="link-accent text-sm">
+          Alle {strassen.length} Straßen in {district.name} &rarr;
+        </a>
+      </section>
+    )}
+
+    {hub?.faqs && hub.faqs.length > 0 && (
+      <section class="section border-t" style="border-color: var(--color-border); max-width: 70ch;">
+        <h2 class="text-3xl font-bold tracking-tight mb-4" style="color: var(--color-text);">Häufige Fragen zu {district.name}</h2>
+        <div class="stage-qa">
+          {hub.faqs.map((f, i) => (
+            <details open={i === 0}>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {hub?.sources && hub.sources.length > 0 && (
+      <section class="section border-t" style="border-color: var(--color-border); max-width: 70ch;">
+        <h2 class="text-lg font-semibold mb-3" style="color: var(--color-text);">Quellen</h2>
+        <ul class="text-sm space-y-1">
+          {hub.sources.map((q) => (
+            <li>
+              <a href={q.url} rel="nofollow noopener" target="_blank" class="link-accent">{q.label}</a>
+              <span style="color: var(--color-text-muted);"> &middot; abgerufen am {q.retrieved}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
     <GetYourGuideWidget placement={getGygPlacement(`district:${district.slug}`)} />
 
     <Stay22NearbyHotels
@@ -106,4 +215,6 @@ const alternateUrls = {
       limit={4}
     />
   </div>
+
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline></script>}
 </BaseLayout>

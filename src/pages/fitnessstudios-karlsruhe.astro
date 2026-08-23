@@ -1,0 +1,276 @@
+---
+/**
+ * Vergleichs-Money-Page: Fitnessstudios in Karlsruhe.
+ *
+ * Loest den wiederhergestellten WordPress-Beitrag unter derselben URL ab
+ * (branchen.ts, Slug dort ausgeklammert). Der alte Text war Werbetext mit
+ * unbelegten Auszeichnungs-Claims; die SERP verlangt einen Vergleich.
+ *
+ * REDAKTIONSREGEL zu Preisen: Ketten kalkulieren je Standort, Laufzeit und
+ * Aktion. Wir nennen ausschliesslich offen veroeffentlichte Listenpreise mit
+ * Datum und Quelle. Wo der Anbieter keinen Preis veroeffentlicht, steht das
+ * so da - keine geschaetzten Zahlen, keine Testsieger-Claims (§ 5a UWG).
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { city } from "../data/city";
+
+const title = "Fitnessstudios in Karlsruhe: Ketten, Standorte und Preise im Vergleich";
+const description =
+  "Fitnessstudios in Karlsruhe im Vergleich: Discount-Ketten, Premium-Anlagen, Boutique- und Frauenstudios mit Standorten in der Stadt, Ausstattung und veröffentlichten Preisen.";
+
+type Studio = {
+  name: string;
+  kategorie: "Discount" | "Premium" | "Regional" | "Spezialisiert";
+  standorte: string;
+  merkmal: string;
+  preis: string;
+  preisQuelle?: string;
+  url: string;
+};
+
+const studios: Studio[] = [
+  {
+    name: "FitX",
+    kategorie: "Discount",
+    standorte: "Karlsruhe-Oststadt, Heinrich-Wittmann-Straße 23",
+    merkmal: "24/7-Zugang, Kursprogramm im Beitrag enthalten, keine Sauna",
+    preis: "29,00 EUR im Monat, einmalig 29,00 EUR Anmeldegebühr, 12 Monate Mindestlaufzeit",
+    preisQuelle: "fitx.de, abgerufen am 23.08.2026",
+    url: "https://www.fitx.de/fitnessstudios/karlsruhe-oststadt",
+  },
+  {
+    name: "clever fit",
+    kategorie: "Discount",
+    standorte: "mehrere Franchise-Standorte in Karlsruhe und Umland",
+    merkmal: "Franchise-System, Ausstattung und Zusatzleistungen je Standort unterschiedlich",
+    preis: "kein bundesweiter Listenpreis veröffentlicht, jeder Standort kalkuliert eigenständig",
+    url: "https://www.clever-fit.com/",
+  },
+  {
+    name: "Pfitzenmeier",
+    kategorie: "Premium",
+    standorte: "Rudolf-Freytag-Straße 6, 76189 Karlsruhe",
+    merkmal: "Große Anlage mit Schwimmbecken, Saunalandschaft und breitem Kursprogramm, Verbundnutzung weiterer Standorte",
+    preis: "kein offener Listenpreis, Tarife nach Laufzeit und Leistungsumfang auf Anfrage",
+    url: "https://www.pfitzenmeier.de/karlsruhe/",
+  },
+  {
+    name: "VeniceBeach",
+    kategorie: "Premium",
+    standorte: "Rüppurrer Straße 1, Südstadt",
+    merkmal: "Zentrale Lage nahe Hauptbahnhof, Kursprogramm und Wellnessbereich",
+    preis: "kein offener Listenpreis, Tarife auf Anfrage",
+    url: "https://www.venicebeach-fitness.de/clubs/venicebeach/karlsruhe/",
+  },
+  {
+    name: "Fit-in",
+    kategorie: "Regional",
+    standorte: "mehrere Standorte im Stadtgebiet, unter anderem Innenstadt und Durlach",
+    merkmal: "Karlsruher Kette, Mitgliedschaft gilt an allen Standorten der Gruppe",
+    preis: "kein offener Listenpreis, Tarife auf Anfrage",
+    url: "https://www.fit-in.de/",
+  },
+  {
+    name: "Sportprinz",
+    kategorie: "Regional",
+    standorte: "zwei Standorte, im Westen und im Süden der Stadt",
+    merkmal: "Regionaler Anbieter mit Fokus auf Gerätetraining und Kurse",
+    preis: "kein offener Listenpreis, Tarife auf Anfrage",
+    url: "https://www.sportprinz.de/",
+  },
+  {
+    name: "Jonny M. Club",
+    kategorie: "Spezialisiert",
+    standorte: "Europaplatz, Innenstadt",
+    merkmal: "Zentral gelegen, getrennter Frauenbereich neben dem Unisex-Bereich",
+    preis: "kein offener Listenpreis, Tarife auf Anfrage",
+    url: "https://www.jonnym.de/",
+  },
+  {
+    name: "Kieser Training",
+    kategorie: "Spezialisiert",
+    standorte: "Karlsruhe",
+    merkmal: "Reines Krafttraining an Maschinen, kein Kursprogramm, kein Wellnessbereich",
+    preis: "kein offener Listenpreis, Tarife auf Anfrage",
+    url: "https://www.kieser-training.de/",
+  },
+  {
+    name: "Mrs.Sporty",
+    kategorie: "Spezialisiert",
+    standorte: "Karlsruhe",
+    merkmal: "Reines Frauenstudio, Zirkeltraining in festen Zeitfenstern",
+    preis: "kein offener Listenpreis, Tarife auf Anfrage",
+    url: "https://www.mrssporty.de/",
+  },
+];
+
+const kategorien = [
+  { key: "Discount", titel: "Discount-Ketten", lead: "Günstiger Grundbeitrag, große Trainingsfläche, wenig Betreuung und meist kein Wellnessbereich." },
+  { key: "Premium", titel: "Premium-Anlagen", lead: "Höherer Beitrag, dafür Schwimmbad oder Sauna, dichtes Kursprogramm und mehr Betreuung." },
+  { key: "Regional", titel: "Karlsruher Ketten", lead: "Lokale Anbieter mit mehreren Standorten im Stadtgebiet, Mitgliedschaft meist standortübergreifend." },
+  { key: "Spezialisiert", titel: "Spezialisierte Studios", lead: "Ein klarer Schwerpunkt statt Vollsortiment: reines Krafttraining, Frauenstudio oder Zirkeltraining." },
+] as const;
+
+const faqs = [
+  {
+    q: "Was kostet ein Fitnessstudio in Karlsruhe?",
+    a: "Bei den Discount-Ketten liegt der veröffentlichte Grundbeitrag im Bereich um 30 Euro im Monat, bei FitX zum Beispiel 29,00 EUR monatlich zuzüglich 29,00 EUR einmaliger Anmeldegebühr bei 12 Monaten Mindestlaufzeit. Premium-Anlagen mit Schwimmbad und Sauna liegen deutlich darüber, veröffentlichen ihre Tarife aber nicht offen, sondern nennen sie erst auf Anfrage.",
+  },
+  {
+    q: "Welches Fitnessstudio in Karlsruhe hat ein Schwimmbad?",
+    a: "Unter den Karlsruher Studios ist Pfitzenmeier die Anlage mit Schwimmbecken und großem Wellnessbereich. Wer nur schwimmen will, fährt allerdings günstiger ins Fächerbad oder ins Europabad.",
+  },
+  {
+    q: "Gibt es in Karlsruhe ein Fitnessstudio nur für Frauen?",
+    a: "Ja. Mrs.Sporty ist ein reines Frauenstudio mit Zirkeltraining, der Jonny M. Club am Europaplatz führt neben dem Unisex-Bereich einen getrennten Frauenbereich.",
+  },
+  {
+    q: "Welches Studio ist rund um die Uhr geöffnet?",
+    a: "FitX in der Oststadt wirbt mit 24/7-Zugang. Bei allen anderen Anbietern in Karlsruhe gelten reguläre Öffnungszeiten, die je Standort abweichen.",
+  },
+  {
+    q: "Worauf sollte man beim Vertrag achten?",
+    a: "Auf drei Punkte: die Mindestlaufzeit, die Anmelde- oder Servicegebühr, die häufig zusätzlich anfällt, und die Kündigungsfrist. Der Monatsbeitrag allein sagt wenig aus, entscheidend sind die Gesamtkosten über die Mindestlaufzeit.",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const itemListLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: `Fitnessstudios in ${city.name}`,
+  itemListElement: studios.map((s, i) => ({ "@type": "ListItem", position: i + 1, name: s.name })),
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="container-page py-12">
+    <Breadcrumbs items={[
+      { label: "Start", href: "/" },
+      { label: "Branchenbuch", href: "/branchenbuch/" },
+      { label: "Fitnessstudios" },
+    ]} />
+
+    <header class="mb-10">
+      <p class="eyebrow mb-3">{studios.length} Anbieter im Vergleich</p>
+      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">Fitnessstudios in Karlsruhe</h1>
+      <div class="stage-prose" style="max-width: 70ch;">
+        <p>
+          Der Karlsruher Fitnessmarkt teilt sich in vier Gruppen: die bundesweiten Discount-Ketten mit niedrigem
+          Grundbeitrag, die Premium-Anlagen mit Schwimmbad und Sauna, die lokalen Karlsruher Ketten mit mehreren
+          Standorten im Stadtgebiet und die spezialisierten Studios, die bewusst nur eine Sache anbieten.
+        </p>
+        <p>
+          Diese Übersicht stellt sie gegenüber: Standort in Karlsruhe, was das Studio ausmacht und was es kostet,
+          soweit der Anbieter einen Preis veröffentlicht. Das ist der ehrliche Teil dieser Seite: Die meisten Ketten
+          kalkulieren je Standort und Laufzeit und nennen ihre Tarife erst im Studio. Wo das so ist, steht es hier,
+          statt eine Zahl zu erfinden.
+        </p>
+      </div>
+    </header>
+
+    <section class="mb-14">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-4" style="color: var(--color-text);">Alle Studios auf einen Blick</h2>
+      <div style="overflow-x: auto;">
+        <table class="w-full text-sm" style="border-collapse: collapse; min-width: 640px;">
+          <thead>
+            <tr style="border-bottom: 1px solid var(--color-border);">
+              <th class="text-left py-3 pr-4 font-semibold" style="color: var(--color-text);">Studio</th>
+              <th class="text-left py-3 pr-4 font-semibold" style="color: var(--color-text);">Typ</th>
+              <th class="text-left py-3 pr-4 font-semibold" style="color: var(--color-text);">Standort in Karlsruhe</th>
+              <th class="text-left py-3 font-semibold" style="color: var(--color-text);">Veröffentlichter Preis</th>
+            </tr>
+          </thead>
+          <tbody>
+            {studios.map((s) => (
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td class="py-3 pr-4 font-medium align-top" style="color: var(--color-text);">
+                  <a href={s.url} rel="nofollow noopener" target="_blank" class="link-accent">{s.name}</a>
+                </td>
+                <td class="py-3 pr-4 align-top" style="color: var(--color-text-body);">{s.kategorie}</td>
+                <td class="py-3 pr-4 align-top" style="color: var(--color-text-body);">{s.standorte}</td>
+                <td class="py-3 align-top" style="color: var(--color-text-body);">
+                  {s.preis}
+                  {s.preisQuelle && <span class="block text-xs mt-1" style="color: var(--color-text-muted);">Quelle: {s.preisQuelle}</span>}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm mt-4" style="color: var(--color-text-muted);">
+        Standorte und Ausstattung nach Angaben der Anbieter. Preise ändern sich häufig und gelten oft nur für
+        bestimmte Laufzeiten oder Aktionszeiträume, verbindlich ist immer das Angebot des Studios.
+      </p>
+    </section>
+
+    {kategorien.map((k) => {
+      const items = studios.filter((s) => s.kategorie === k.key);
+      return items.length > 0 ? (
+        <section class="mb-12">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2" style="color: var(--color-text);">{k.titel}</h2>
+          <p class="text-base mb-6" style="color: var(--color-text-muted); max-width: 70ch;">{k.lead}</p>
+          <div class="space-y-4">
+            {items.map((s) => (
+              <article class="p-5 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card);">
+                <h3 class="text-lg font-semibold mb-2" style="color: var(--color-text);">{s.name}</h3>
+                <p class="text-base leading-relaxed mb-2" style="color: var(--color-text-body);">{s.merkmal}</p>
+                <p class="text-sm mb-1" style="color: var(--color-text-muted);">Standort: {s.standorte}</p>
+                <p class="text-sm mb-3" style="color: var(--color-text-muted);">Preis: {s.preis}</p>
+                <a href={s.url} rel="nofollow noopener" target="_blank" class="link-accent text-sm">Zur Website des Anbieters &rarr;</a>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null;
+    })}
+
+    <section class="mb-14 p-6 border" style="background: var(--color-surface); border-color: var(--color-border); border-radius: var(--radius-card); max-width: 70ch;">
+      <h2 class="text-xl font-semibold mb-3" style="color: var(--color-text);">Was den Beitrag am Ende ausmacht</h2>
+      <p class="text-base leading-relaxed mb-3" style="color: var(--color-text-body);">
+        Der beworbene Monatsbeitrag ist selten der Betrag, der abgebucht wird. Dazu kommen je nach Anbieter eine
+        einmalige Anmeldegebühr, eine jährliche Service- oder Trainingsplanpauschale und Zuschläge für Sauna, Kurse
+        oder Getränke. Sinnvoll vergleichbar wird es erst, wenn man die Gesamtkosten über die Mindestlaufzeit rechnet.
+      </p>
+      <p class="text-base leading-relaxed" style="color: var(--color-text-body);">
+        Bei FitX etwa ergeben 29,00 EUR im Monat plus 29,00 EUR Anmeldegebühr über zwölf Monate 377,00 EUR. Wer bei
+        einer Premium-Anlage anfragt, sollte nach genau dieser Zahl fragen, nicht nach dem Monatsbeitrag.
+      </p>
+    </section>
+
+    <section class="py-8" style="max-width: 70ch;">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2" style="color: var(--color-text);">Häufige Fragen</h2>
+      <div class="stage-qa">
+        {faqs.map((f, i) => (
+          <details open={i === 0}>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="my-12 pt-8 border-t" style="border-color: var(--color-border); max-width: 70ch;">
+      <h2 class="text-lg font-semibold mb-3" style="color: var(--color-text);">Verwandte Seiten</h2>
+      <ul class="text-sm space-y-1">
+        <li><a href="/erlebnisbaeder-karlsruhe/" class="link-accent">Erlebnisbäder und Schwimmbäder in Karlsruhe</a></li>
+        <li><a href="/physiotherapeuten-karlsruhe/" class="link-accent">Physiotherapeuten in Karlsruhe</a></li>
+        <li><a href="/ernahrungsberater-karlsruhe/" class="link-accent">Ernährungsberater in Karlsruhe</a></li>
+        <li><a href="/branchenbuch/" class="link-accent">Branchenbuch Karlsruhe</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(itemListLd)} is:inline></script>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} is:inline></script>
+</BaseLayout>

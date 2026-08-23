@@ -4,8 +4,18 @@ import Breadcrumbs from "../components/Breadcrumbs.astro";
 import { branchen, getBranche } from "../data/branchen";
 import { city } from "../data/city";
 
+/**
+ * /fitnessstudios-karlsruhe/ wird seit dem Vergleichs-Umbau von der statischen
+ * Seite src/pages/fitnessstudios-karlsruhe.astro bedient. Der Slug muss hier
+ * raus, sonst erzeugen beide Routen denselben Pfad.
+ */
 export function getStaticPaths() {
-  return branchen.map((b) => ({ params: { branche: b.slug } }));
+  // Inline, nicht als Modul-Konstante: Astro zieht getStaticPaths aus dem
+  // Frontmatter-Scope heraus, Konstanten von aussen sind hier nicht sichtbar.
+  const eigeneSeiten = new Set(["fitnessstudios-karlsruhe"]);
+  return branchen
+    .filter((b) => !eigeneSeiten.has(b.slug))
+    .map((b) => ({ params: { branche: b.slug } }));
 }
 
 const { branche } = Astro.params;

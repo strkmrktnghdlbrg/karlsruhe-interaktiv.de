@@ -40,7 +40,7 @@ export const ui = {
   "footer.techHub": { de: "Tech-Hub", en: "Tech hub" },
   "footer.homeAria": { de: "Zur Startseite", en: "Back to home" },
   "footer.brandDesc": {
-    de: "Karlsruhe interaktiv. Faecherstadt, KIT, ZKM und Bundesverfassungsgericht. Sehenswürdigkeiten, Hotels, Bezirke, Tech-News auf einem Portal.",
+    de: "Karlsruhe interaktiv. Fächerstadt, KIT, ZKM und Bundesverfassungsgericht. Sehenswürdigkeiten, Hotels, Bezirke, Tech-News auf einem Portal.",
     en: "Karlsruhe interactive. Fan-shaped city, KIT, ZKM and the Federal Constitutional Court. Attractions, hotels, districts and tech news on one portal.",
   },
 
@@ -49,10 +49,10 @@ export const ui = {
   "header.mobileNav": { de: "Mobile Navigation", en: "Mobile navigation" },
 
   // Home
-  "home.eyebrow": { de: "Stadtportal · Faecherstadt · Tech-Hub", en: "City guide · Fan-shaped city · Tech hub" },
+  "home.eyebrow": { de: "Stadtportal · Fächerstadt · Tech-Hub", en: "City guide · Fan-shaped city · Tech hub" },
   "home.heroTitle": { de: "Karlsruhe interaktiv.", en: "Karlsruhe interactive." },
   "home.heroTagline": {
-    de: "Schloss, ZKM, KIT, Bundesverfassungsgericht und Turmberg. Das Stadtportal für die Faecherstadt - Sehenswürdigkeiten, Hotels, Bezirke und Tech-News.",
+    de: "Schloss, ZKM, KIT, Bundesverfassungsgericht und Turmberg. Das Stadtportal für die Fächerstadt - Sehenswürdigkeiten, Hotels, Bezirke und Tech-News.",
     en: "Palace, ZKM, KIT, the Federal Constitutional Court and the Turmberg. The city guide for Karlsruhe - attractions, hotels, districts and tech news.",
   },
   "home.ctaSights": { de: "Sehenswürdigkeiten entdecken", en: "Discover attractions" },
@@ -82,7 +82,7 @@ export const ui = {
   "sights.entries": { de: "{n} Einträge", en: "{n} entries" },
   "sights.heading": { de: "Sehenswürdigkeiten in Karlsruhe", en: "Attractions in Karlsruhe" },
   "sights.intro": {
-    de: "Vom barocken Schloss bis zum weltweit einzigartigen ZKM, vom Turmberg in Durlach bis zum Bundesverfassungsgericht - alle ikonischen Orte der Faecherstadt.",
+    de: "Vom barocken Schloss bis zum weltweit einzigartigen ZKM, vom Turmberg in Durlach bis zum Bundesverfassungsgericht - alle ikonischen Orte der Fächerstadt.",
     en: "From the baroque palace to the globally unique ZKM, from the Turmberg in Durlach to the Federal Constitutional Court - all the iconic places of Karlsruhe.",
   },
   "hotels.count": { de: "{n} Häuser", en: "{n} properties" },
@@ -120,7 +120,7 @@ export const ui = {
   "categories.count": { de: "{n} Themen", en: "{n} topics" },
   "categories.heading": { de: "Karlsruhe nach Kategorien", en: "Karlsruhe by category" },
   "categories.intro": {
-    de: "Karlsruhe quer gelesen: Tech & Innovation als USP der Faecherstadt, Kunst & Medien rund ums ZKM, Recht rund ums Bundesverfassungsgericht.",
+    de: "Karlsruhe quer gelesen: Tech & Innovation als USP der Fächerstadt, Kunst & Medien rund ums ZKM, Recht rund ums Bundesverfassungsgericht.",
     en: "Karlsruhe across the board: tech & innovation as the city's USP, art & media around the ZKM, law around the Federal Constitutional Court.",
   },
 
@@ -419,13 +419,13 @@ export const ui = {
   // Tech hub page
   "tech.metaTitle": { de: "Tech-Hub Karlsruhe", en: "Karlsruhe Tech Hub" },
   "tech.metaDescription": {
-    de: "Karlsruhe ist eines der wichtigsten Tech-Cluster Europas: KIT, FZI, CyberForum, ZKM und Fraunhofer. Der Tech-Hub der Faecherstadt.",
+    de: "Karlsruhe ist eines der wichtigsten Tech-Cluster Europas: KIT, FZI, CyberForum, ZKM und Fraunhofer. Der Tech-Hub der Fächerstadt.",
     en: "Karlsruhe is one of Europe's most important tech clusters: KIT, FZI, CyberForum, ZKM and Fraunhofer. The tech hub of the fan-shaped city.",
   },
   "tech.breadcrumb": { de: "Tech-Hub", en: "Tech Hub" },
   "tech.eyebrow": { de: "Karlsruhes USP", en: "Karlsruhe's USP" },
   "tech.heroLead": {
-    de: "Karlsruhe ist nicht nur Faecherstadt und Residenz des Rechts - es ist eines der dichtesten Tech-Cluster Europas. KIT, FZI, CyberForum, ZKM und Fraunhofer machen die Stadt zum Innovations-Magnet.",
+    de: "Karlsruhe ist nicht nur Fächerstadt und Residenz des Rechts - es ist eines der dichtesten Tech-Cluster Europas. KIT, FZI, CyberForum, ZKM und Fraunhofer machen die Stadt zum Innovations-Magnet.",
     en: "Karlsruhe is not only a fan-shaped city and the seat of law - it is one of Europe's densest tech clusters. KIT, FZI, CyberForum, ZKM and Fraunhofer make the city a magnet for innovation.",
   },
   "tech.institutionsHeading": { de: "Institutionen & Cluster", en: "Institutions & clusters" },
