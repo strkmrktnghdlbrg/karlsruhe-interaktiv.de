@@ -44,6 +44,35 @@ const schema = {
  * noindex. Siehe die Notiz in src/data/restaurants.ts.
  */
 const unverified = isUnverifiedRestaurant(restaurant.slug);
+/**
+ * Suchtitel statt blossem Namen.
+ *
+ * Belegt durch GSC (90 Tage, Stand 23.08.2026): /restaurants/hanami/ stand auf
+ * Position 10 mit 396 Impressionen und NULL Klicks. Der Titel lautete schlicht
+ * "Hanami" - gegen Maps, TripAdvisor und die Hausseite gewinnt das nichts. Die
+ * echten Suchanfragen lauten "hanami karlsruhe" und "hanami restaurant
+ * karlsruhe", beides stand nirgends im Titel.
+ *
+ * cuisine ist teils Adjektiv (Badisch), teils Gattung (Bistro, Cafe). Deshalb
+ * die Zuordnung statt blinder Verkettung - "Bistro Restaurant" waere Unsinn.
+ */
+const GATTUNG: Record<string, string> = {
+  Badisch: "Badisches Restaurant",
+  Italienisch: "Italienisches Restaurant",
+  Japanisch: "Japanisches Restaurant",
+  Vietnamesisch: "Vietnamesisches Restaurant",
+  Thai: "Thailändisches Restaurant",
+  "Türkisch": "Türkisches Restaurant",
+  Mediterran: "Mediterranes Restaurant",
+  Vegetarisch: "Vegetarisches Restaurant",
+  Modern: "Restaurant",
+  Levante: "Levante-Restaurant",
+  Burger: "Burger-Restaurant",
+  Bistro: "Bistro",
+  Cafe: "Café",
+};
+const gattung = GATTUNG[restaurant.cuisine] ?? "Restaurant";
+const seoTitle = `${restaurant.name} - ${gattung} in ${city.name}`;
 ---
 
 {unverified ? (
@@ -58,7 +87,7 @@ const unverified = isUnverifiedRestaurant(restaurant.slug);
   </BaseLayout>
 ) : (
 
-<BaseLayout title={restaurant.name} description={restaurant.shortDesc} alternateUrls={{ de: detailUrl("restaurants", restaurant.slug, "de"), en: detailUrl("restaurants", restaurantsEn[restaurant.slug].slug, "en") }}>
+<BaseLayout title={seoTitle} description={restaurant.shortDesc} alternateUrls={{ de: detailUrl("restaurants", restaurant.slug, "de"), en: detailUrl("restaurants", restaurantsEn[restaurant.slug].slug, "en") }}>
   <article>
     <StageHero
       imgKey={stageKey}

@@ -36,9 +36,15 @@ const schema = {
   priceRange: `EUR ${hotel.priceFrom}+`,
   address: { "@type": "PostalAddress", addressLocality: city.name, addressCountry: city.countryCode },
 };
+/**
+ * Suchtitel statt blossem Namen - dieselbe Begruendung wie bei den Restaurants
+ * (GSC 23.08.2026: gute Positionen, praktisch keine Klicks). Hotelnamen werden
+ * fast immer zusammen mit der Stadt gesucht.
+ */
+const seoTitle = `${hotel.name} - ${hotel.stars}-Sterne-Hotel in ${city.name}`;
 ---
 
-<BaseLayout title={hotel.name} description={hotel.shortDesc} alternateUrls={{ de: detailUrl("hotels", hotel.slug, "de"), en: detailUrl("hotels", hotelsEn[hotel.slug].slug, "en") }}>
+<BaseLayout title={seoTitle} description={hotel.shortDesc} alternateUrls={{ de: detailUrl("hotels", hotel.slug, "de"), en: detailUrl("hotels", hotelsEn[hotel.slug].slug, "en") }}>
   <article>
     <StageHero
       imgKey={stageKey}

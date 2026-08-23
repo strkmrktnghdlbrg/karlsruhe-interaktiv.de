@@ -18,7 +18,7 @@ export const restaurants: Restaurant[] = [
   // === BADISCH ===
   {
     slug: "oberlaender-weinstube",
-    name: "Oberlaender Weinstube",
+    name: "Oberländer Weinstube",
     district: "innenstadt-west",
     cuisine: "Badisch",
     priceLevel: "€€€",
@@ -26,7 +26,7 @@ export const restaurants: Restaurant[] = [
     shortDesc:
       "Karlsruhes legendäre Top-Badisch-Adresse seit 1824. Klassische badische Küche auf hohem Niveau.",
     longDesc:
-      "Die Oberlaender Weinstube an der Akademiestrasse ist eine Karlsruher Institution seit 1824. Klassische badische Küche, badische Weine, Innenhof-Garten im Sommer. Gilt als beste Badisch-Adresse der Stadt.",
+      "Die Oberländer Weinstube an der Akademiestraße ist eine Karlsruher Institution seit 1824. Klassische badische Küche, badische Weine, Innenhof-Garten im Sommer. Gilt als beste Badisch-Adresse der Stadt.",
     imageHue: 1,
     openingHours: "Di-Sa 12:00-14:30 + 18:00-23:00",
     websiteUrl: "https://www.oberlaender-weinstube.de",
@@ -40,7 +40,7 @@ export const restaurants: Restaurant[] = [
     priceLevel: "€€",
     categories: ["familie"],
     shortDesc:
-      "Brauhaus mit eigener Brauerei im Herzen Karlsruhes. Badische Klassiker und Hausgebraeu.",
+      "Brauhaus mit eigener Brauerei im Herzen Karlsruhes. Badische Klassiker und Hausgebräu.",
     longDesc:
       "Das Badisch Brauhaus ist Karlsruhes klassisches Brauhaus mit eigener Brauerei direkt am Stephanienbrunnen. Badische Spezialitäten, Schäufele, Maultaschen, dazu hausgebrautes Pils und Hefeweizen. Beliebt bei Einheimischen und Besuchern.",
     imageHue: 2,
@@ -50,15 +50,15 @@ export const restaurants: Restaurant[] = [
   },
   {
     slug: "vogelbraeu",
-    name: "Vogelbraeu",
+    name: "Vogelbräu",
     district: "innenstadt-west",
     cuisine: "Badisch",
     priceLevel: "€€",
     categories: ["familie"],
     shortDesc:
-      "Brauhaus in der Kapellenstrasse mit hauseigenem Bier und solider badisch-deutscher Küche.",
+      "Brauhaus in der Kapellenstraße mit hauseigenem Bier und solider badisch-deutscher Küche.",
     longDesc:
-      "Das Vogelbraeu in der Kapellenstrasse ist Karlsruhes zweitwichtigstes Brauhaus. Eigene Hausbrauerei, klassische Brauhaus-Karte mit Schweinshaxe, Spätzle, Maultaschen. Groesse Aussenterrasse im Sommer.",
+      "Das Vogelbräu in der Kapellenstraße ist Karlsruhes zweitwichtigstes Brauhaus. Eigene Hausbrauerei, klassische Brauhaus-Karte mit Schweinshaxe, Spätzle, Maultaschen. Größe Außenterrasse im Sommer.",
     imageHue: 3,
     openingHours: "Mo-So 11:00-0:00",
     websiteUrl: "https://www.vogelbraeu.de",
@@ -66,7 +66,7 @@ export const restaurants: Restaurant[] = [
   },
   {
     slug: "brauhaus-kuehler-krug",
-    name: "Brauhaus Kuehler Krug",
+    name: "Brauhaus Kühler Krug",
     district: "innenstadt-ost",
     cuisine: "Badisch",
     priceLevel: "€€",
@@ -74,7 +74,7 @@ export const restaurants: Restaurant[] = [
     shortDesc:
       "Brauhaus im Stadtgarten mit Biergarten unter alten Bäumen. Sommer-Klassiker für Karlsruher.",
     longDesc:
-      "Das Brauhaus Kuehler Krug liegt mitten im Stadtgarten direkt am Hauptbahnhof. Im Sommer einer der schönsten Biergärten der Stadt unter alten Kastanien. Klassische badische Wirtshauskueche, hauseigenes Bier.",
+      "Das Brauhaus Kühler Krug liegt mitten im Stadtgarten direkt am Hauptbahnhof. Im Sommer einer der schönsten Biergärten der Stadt unter alten Kastanien. Klassische badische Wirtshausküche, hauseigenes Bier.",
     imageHue: 4,
     openingHours: "Mo-So 11:00-23:00",
     // websiteUrl entfernt 2026-08-03: https://www.kuehler-krug.de loest nicht auf (Domain existiert nicht).
@@ -93,7 +93,7 @@ export const restaurants: Restaurant[] = [
     shortDesc:
       "Karlsruhes erstes Stern-Restaurant. Modern-kreative Küche, Tasting-Menüs, klare Architektur.",
     longDesc:
-      "Das Sein ist Karlsruhes erstes mit einem Michelin-Stern ausgezeichnetes Restaurant. Modern-kreative Küche, ausschliesslich Tasting-Menüs, intime Atmosphäre mit klarer Architektur. Reservierung Wochen im Voraus empfohlen.",
+      "Das Sein ist Karlsruhes erstes mit einem Michelin-Stern ausgezeichnetes Restaurant. Modern-kreative Küche, ausschließlich Tasting-Menüs, intime Atmosphäre mit klarer Architektur. Reservierung Wochen im Voraus empfohlen.",
     imageHue: 5,
     openingHours: "Mi-Sa ab 19:00",
     websiteUrl: "https://www.restaurant-sein.de",
@@ -141,7 +141,7 @@ export const restaurants: Restaurant[] = [
     shortDesc:
       "Modern-saisonale Küche im ehemaligen Kesselhaus des alten Schlachthofs. Industriechic-Ambiente.",
     longDesc:
-      "Das Kesselhaus liegt im sanierten alten Schlachthof-Areal der Südstadt. Modern-saisonale Küche, Industriechic-Architektur mit Sichtbeton und Stahltraegern. Beliebt bei jungen Karlsruher Genusssuchenden.",
+      "Das Kesselhaus liegt im sanierten alten Schlachthof-Areal der Südstadt. Modern-saisonale Küche, Industriechic-Architektur mit Sichtbeton und Stahlträgern. Beliebt bei jungen Karlsruher Genusssuchenden.",
     imageHue: 3,
     openingHours: "Di-Sa 18:00-23:00",
     websiteUrl: "https://www.kesselhaus-karlsruhe.de",
@@ -174,7 +174,7 @@ export const restaurants: Restaurant[] = [
     shortDesc:
       "Anspruchsvolle italienische Küche mit saisonalem Schwerpunkt. Kleine Karte, sehr gute Weinauswahl.",
     longDesc:
-      "Die La Forchetta liegt in der Suedweststadt und bietet anspruchsvolle italienische Küche jenseits der Standard-Italo-Karte. Kleine Karte mit saisonalem Fokus, sehr gute italienische Weinauswahl, schöne Atmosphäre.",
+      "Die La Forchetta liegt in der Südweststadt und bietet anspruchsvolle italienische Küche jenseits der Standard-Italo-Karte. Kleine Karte mit saisonalem Fokus, sehr gute italienische Weinauswahl, schöne Atmosphäre.",
     imageHue: 4,
     openingHours: "Di-Sa 18:00-23:00",
     reservation: true,
@@ -202,9 +202,9 @@ export const restaurants: Restaurant[] = [
     priceLevel: "€€",
     categories: [],
     shortDesc:
-      "Familiengefuehrter Italiener in der Südstadt mit grosser Karte und entspannter Atmosphäre.",
+      "Familiengeführter Italiener in der Südstadt mit großer Karte und entspannter Atmosphäre.",
     longDesc:
-      "Das Tre Sorelle ist ein klassischer suedstaedtischer Italiener mit grosser Speisekarte, freundlicher Bedienung und entspannter Atmosphäre. Beliebt bei Stammgaesten aus dem Viertel.",
+      "Das Tre Sorelle ist ein klassischer südstädtischer Italiener mit großer Speisekarte, freundlicher Bedienung und entspannter Atmosphäre. Beliebt bei Stammgästen aus dem Viertel.",
     imageHue: 2,
     openingHours: "Mo-So 12:00-23:00",
     reservation: true,
@@ -234,9 +234,9 @@ export const restaurants: Restaurant[] = [
     priceLevel: "€€",
     categories: ["familie"],
     shortDesc:
-      "Lebendiges Sushi-Restaurant mit Foerderband und grosser Karte. Beliebt für Mittag und Familien.",
+      "Lebendiges Sushi-Restaurant mit Förderband und großer Karte. Beliebt für Mittag und Familien.",
     longDesc:
-      "Das Hanami ist Karlsruhes lebendigstes Sushi-Restaurant. Sushi-Foerderband, grosse Karte mit japanischen und asiatischen Klassikern, faire Preise. Beliebt für Mittagessen und Familien.",
+      "Das Hanami ist Karlsruhes lebendigstes Sushi-Restaurant. Sushi-Förderband, große Karte mit japanischen und asiatischen Klassikern, faire Preise. Beliebt für Mittagessen und Familien.",
     imageHue: 4,
     openingHours: "Mo-So 11:30-22:30",
     reservation: false,
@@ -251,7 +251,7 @@ export const restaurants: Restaurant[] = [
     shortDesc:
       "Authentisch vietnamesisch in der Südstadt. Pho-Bo und Banh-Mi als Karlsruher Geheimtipps.",
     longDesc:
-      "Das Pho Sai Gon ist Karlsruhes authentischste Pho-Adresse. Vietnamesische Familienkueche, kräftige Brühen, frische Kräuter. Klein, einfach, aber kulinarisch top.",
+      "Das Pho Sai Gon ist Karlsruhes authentischste Pho-Adresse. Vietnamesische Familienküche, kräftige Brühen, frische Kräuter. Klein, einfach, aber kulinarisch top.",
     imageHue: 5,
     openingHours: "Di-So 12:00-22:00",
     reservation: false,
@@ -264,9 +264,9 @@ export const restaurants: Restaurant[] = [
     priceLevel: "€",
     categories: [],
     shortDesc:
-      "Authentisch thailaendisches Streetfood mitten in der Innenstadt. Schnell, gut, gunstig.",
+      "Authentisch thailändisches Streetfood mitten in der Innenstadt. Schnell, gut, gunstig.",
     longDesc:
-      "Das Thai-Express bietet authentisches thailaendisches Streetfood-Essen. Wokgerichte, Curries, Suppen, schnell zubereitet und gunstig. Beliebte Mittagspause-Adresse.",
+      "Das Thai-Express bietet authentisches thailändisches Streetfood-Essen. Wokgerichte, Curries, Suppen, schnell zubereitet und gunstig. Beliebte Mittagspause-Adresse.",
     imageHue: 1,
     openingHours: "Mo-Sa 11:00-21:00",
     reservation: false,
@@ -283,7 +283,7 @@ export const restaurants: Restaurant[] = [
     shortDesc:
       "Mediterran-türkische Küche mit Mezze-Platten und gegrilltem Fisch. Lebendige Atmosphäre.",
     longDesc:
-      "Das Mezzo Mezzo bietet mediterran-tuerkische Küche mit grossartigen Mezze-Platten, gegrilltem Fisch und Lamm. Lebendige Atmosphäre, beliebt für Gruppen.",
+      "Das Mezzo Mezzo bietet mediterran-türkische Küche mit großartigen Mezze-Platten, gegrilltem Fisch und Lamm. Lebendige Atmosphäre, beliebt für Gruppen.",
     imageHue: 2,
     openingHours: "Di-So 18:00-23:00",
     reservation: true,
@@ -313,7 +313,7 @@ export const restaurants: Restaurant[] = [
     shortDesc:
       "Authentisch syrisch-libanesische Küche mit Hummus, Falafel und Lamm-Klassikern.",
     longDesc:
-      "Das Bashar bietet authentische syrisch-libanesische Küche: hausgemachter Hummus, Falafel, gegrilltes Lamm, frische Salate. Familiengefuehrt, freundliche Atmosphäre.",
+      "Das Bashar bietet authentische syrisch-libanesische Küche: hausgemachter Hummus, Falafel, gegrilltes Lamm, frische Salate. Familiengeführt, freundliche Atmosphäre.",
     imageHue: 4,
     openingHours: "Mo-So 12:00-22:00",
     reservation: false,
@@ -345,7 +345,7 @@ export const restaurants: Restaurant[] = [
     shortDesc:
       "Die XXL-Pizza-Kette in der Karlsruher Innenstadt. Familienfreundlich und gunstig.",
     longDesc:
-      "Die L'Osteria Karlsruhe steht für die mit 30 cm Durchmesser ueberdimensionierten Pizzen und solide italienische Pasta. Familienfreundlich, beliebt für Gruppen.",
+      "Die L'Osteria Karlsruhe steht für die mit 30 cm Durchmesser überdimensionierten Pizzen und solide italienische Pasta. Familienfreundlich, beliebt für Gruppen.",
     imageHue: 1,
     openingHours: "Mo-So 11:30-23:00",
     reservation: true,
@@ -407,7 +407,7 @@ export const restaurants: Restaurant[] = [
     shortDesc:
       "Vegetarisch-veganes Restaurant mit wechselnder Karte und saisonalen Zutaten.",
     longDesc:
-      "Die Goldene Krone ist Karlsruhes Pionier-Adresse für vegetarisch-vegane Küche. Wechselnde Karte, saisonale Zutaten, regional und bio-orientiert. Beliebt bei jungen Suedstaedtern.",
+      "Die Goldene Krone ist Karlsruhes Pionier-Adresse für vegetarisch-vegane Küche. Wechselnde Karte, saisonale Zutaten, regional und bio-orientiert. Beliebt bei jungen Südstädtern.",
     imageHue: 5,
     openingHours: "Di-So 12:00-22:00",
     reservation: true,
@@ -422,7 +422,7 @@ export const restaurants: Restaurant[] = [
     shortDesc:
       "Suppen-Lokal in der Innenstadt. Täglich wechselnde Suppen, Curries, Eintöpfe.",
     longDesc:
-      "Das Suppdiwupp ist Karlsruhes Suppen-Klassiker. Täglich wechselnde Suppen, Curries und Eintöpfe, gegen den Strich der grossen Restaurant-Küche. Schnell, gut, vegan-vegetarisch-freundlich.",
+      "Das Suppdiwupp ist Karlsruhes Suppen-Klassiker. Täglich wechselnde Suppen, Curries und Eintöpfe, gegen den Strich der großen Restaurant-Küche. Schnell, gut, vegan-vegetarisch-freundlich.",
     imageHue: 1,
     openingHours: "Mo-Sa 11:00-15:00",
     reservation: false,
@@ -454,7 +454,7 @@ export const restaurants: Restaurant[] = [
     shortDesc:
       "Modernes Restaurant im Hotel Der Blaue Reiter. Saisonale Küche, sehr gute Weinauswahl.",
     longDesc:
-      "Das Klauprecht 1 im Hotel Der Blaue Reiter ist Durlachs gehobene Adresse. Modern-saisonale Küche, sehr gute Weinauswahl mit Schwerpunkt auf badischen und elsaessischen Weinen, ruhige Atmosphäre.",
+      "Das Klauprecht 1 im Hotel Der Blaue Reiter ist Durlachs gehobene Adresse. Modern-saisonale Küche, sehr gute Weinauswahl mit Schwerpunkt auf badischen und elsässischen Weinen, ruhige Atmosphäre.",
     imageHue: 3,
     openingHours: "Mi-Sa 18:00-22:30",
     reservation: true,
@@ -465,7 +465,7 @@ export const restaurants: Restaurant[] = [
  * Zurueckgezogener Eintrag (Pruefung 2026-08-03).
  *
  * "Klauprecht 1" meint das Cafe Klauprecht - das liegt aber in der
- * Klauprechtstrasse 41 in der **Suedweststadt**, nicht in Durlach. Der
+ * Klauprechtstrasse 41 in der **Südweststadt**, nicht in Durlach. Der
  * Eintrag traegt einen so nicht existierenden Namen und den falschen
  * Stadtteil; nur beides zu korrigieren wuerde die uebrigen, unbelegten
  * Angaben an einen echten, benannten Betrieb heften.
@@ -494,7 +494,7 @@ export const unverifiedRestaurantSlugs = new Set<string>([
 export const isUnverifiedRestaurant = (slug: string) =>
   unverifiedRestaurantSlugs.has(slug);
 
-/** Alles, was oeffentlich gelistet werden darf. Listen nutzen ausschliesslich das. */
+/** Alles, was oeffentlich gelistet werden darf. Listen nutzen ausschließlich das. */
 export const publishedRestaurants = restaurants.filter(
   (r) => !isUnverifiedRestaurant(r.slug),
 );

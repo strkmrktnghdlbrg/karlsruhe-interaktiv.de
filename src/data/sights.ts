@@ -25,9 +25,9 @@ export const sights: Sight[] = [
     type: "Wahrzeichen",
     priceFrom: null,
     shortDesc:
-      "Barockes Residenzschloss der Markgrafen von Baden. Geometrisches Zentrum der Faecherstadt und Wahrzeichen Karlsruhes.",
+      "Barockes Residenzschloss der Markgrafen von Baden. Geometrisches Zentrum der Fächerstadt und Wahrzeichen Karlsruhes.",
     longDesc:
-      "Das Karlsruher Schloss wurde ab 1715 von Markgraf Karl Wilhelm als Residenz und geometrisches Zentrum der neuen Faecherstadt erbaut. Vom 42 m hohen Schlossturm strahlen die 32 Strassen und Alleen radial nach Süden ab. Heute beherbergt das Schloss das Badische Landesmuseum mit umfangreichen archäologischen und kulturhistorischen Sammlungen.",
+      "Das Karlsruher Schloss wurde ab 1715 von Markgraf Karl Wilhelm als Residenz und geometrisches Zentrum der neuen Fächerstadt erbaut. Vom 42 m hohen Schlossturm strahlen die 32 Straßen und Alleen radial nach Süden ab. Heute beherbergt das Schloss das Badische Landesmuseum mit umfangreichen archäologischen und kulturhistorischen Sammlungen.",
     imageHue: 1,
     categories: ["wahrzeichen", "historische-architektur", "museen"],
     coordinates: [49.0139, 8.4044],
@@ -42,7 +42,7 @@ export const sights: Sight[] = [
     type: "Park",
     priceFrom: null,
     shortDesc:
-      "Englischer Landschaftspark hinter dem Schloss mit Botanischem Garten und über 100 Jahre alten Baumbestaenden.",
+      "Englischer Landschaftspark hinter dem Schloss mit Botanischem Garten und über 100 Jahre alten Baumbeständen.",
     longDesc:
       "Der Schlossgarten ist die grüne Lunge der Karlsruher Innenstadt. Früher Hofgarten, heute öffentlicher englischer Landschaftspark mit altem Baumbestand, Wasserspielen und dem angrenzenden Botanischen Garten. Direkt am Schloss gelegen.",
     imageHue: 4,
@@ -74,9 +74,9 @@ export const sights: Sight[] = [
     type: "Museum",
     priceFrom: 8,
     shortDesc:
-      "Eine der ältesten und bedeutendsten Gemaeldegalerien Deutschlands. Cranach, Gruenewald, Rembrandt, Caspar David Friedrich.",
+      "Eine der ältesten und bedeutendsten Gemäldegalerien Deutschlands. Cranach, Grünewald, Rembrandt, Caspar David Friedrich.",
     longDesc:
-      "Die Staatliche Kunsthalle Karlsruhe besitzt eine der bedeutendsten Sammlungen alter Meister in Deutschland. Cranach, Hans Baldung Grien, Matthias Gruenewald mit dem berühmten Isenheimer-Altar-Tafelbild, Rembrandt, Rubens und eine umfangreiche Sammlung deutscher Romantik mit Caspar David Friedrich.",
+      "Die Staatliche Kunsthalle Karlsruhe besitzt eine der bedeutendsten Sammlungen alter Meister in Deutschland. Cranach, Hans Baldung Grien, Matthias Grünewald mit dem berühmten Isenheimer-Altar-Tafelbild, Rembrandt, Rubens und eine umfangreiche Sammlung deutscher Romantik mit Caspar David Friedrich.",
     imageHue: 2,
     categories: ["museen", "kunst-medien"],
     coordinates: [49.0125, 8.4014],
@@ -91,9 +91,9 @@ export const sights: Sight[] = [
     type: "Markt",
     priceFrom: null,
     shortDesc:
-      "Roetlich-sandsteinerne Pyramide als Grabmal des Stadtgruenders Karl Wilhelm. Klassizistisches Herz der Stadt.",
+      "Rötlich-sandsteinerne Pyramide als Grabmal des Stadtgründers Karl Wilhelm. Klassizistisches Herz der Stadt.",
     longDesc:
-      "Der Marktplatz ist das klassizistische Herz Karlsruhes, entworfen von Friedrich Weinbrenner ab 1804. Die rote Sandsteinpyramide aus dem Jahr 1825 ist das Grabmal des Stadtgruenders Markgraf Karl Wilhelm und Karlsruhes wohl ungewoehnlichstes Wahrzeichen. Umgeben von der Evangelischen Stadtkirche, dem Rathaus und der Katholischen Stadtkirche St. Stephan.",
+      "Der Marktplatz ist das klassizistische Herz Karlsruhes, entworfen von Friedrich Weinbrenner ab 1804. Die rote Sandsteinpyramide aus dem Jahr 1825 ist das Grabmal des Stadtgründers Markgraf Karl Wilhelm und Karlsruhes wohl ungewöhnlichstes Wahrzeichen. Umgeben von der Evangelischen Stadtkirche, dem Rathaus und der Katholischen Stadtkirche St. Stephan.",
     imageHue: 1,
     categories: ["wahrzeichen", "historische-architektur"],
     coordinates: [49.0093, 8.4046],
@@ -108,7 +108,7 @@ export const sights: Sight[] = [
     shortDesc:
       "Klassizistische Rotunde von Friedrich Weinbrenner, an das Pantheon in Rom angelehnt.",
     longDesc:
-      "St. Stephan ist die katholische Hauptkirche Karlsruhes, 1808-1814 von Friedrich Weinbrenner als grosse klassizistische Rotunde nach dem Vorbild des Pantheon in Rom errichtet. Im Krieg stark beschädigt und in vereinfachter Form wieder aufgebaut.",
+      "St. Stephan ist die katholische Hauptkirche Karlsruhes, 1808-1814 von Friedrich Weinbrenner als große klassizistische Rotunde nach dem Vorbild des Pantheon in Rom errichtet. Im Krieg stark beschädigt und in vereinfachter Form wieder aufgebaut.",
     imageHue: 2,
     categories: ["historische-architektur"],
     coordinates: [49.0089, 8.4079],
@@ -121,9 +121,9 @@ export const sights: Sight[] = [
     type: "Kirche",
     priceFrom: null,
     shortDesc:
-      "Klassizistische Hauptkirche von Friedrich Weinbrenner am Marktplatz. Saeulenhalle nach antikem Vorbild.",
+      "Klassizistische Hauptkirche von Friedrich Weinbrenner am Marktplatz. Säulenhalle nach antikem Vorbild.",
     longDesc:
-      "Die Evangelische Stadtkirche am Marktplatz wurde 1816 von Friedrich Weinbrenner errichtet und ist eines der wichtigsten klassizistischen Bauwerke Karlsruhes. Saeulenhalle nach antikem Vorbild, im Inneren schlicht-klassizistisch gehalten.",
+      "Die Evangelische Stadtkirche am Marktplatz wurde 1816 von Friedrich Weinbrenner errichtet und ist eines der wichtigsten klassizistischen Bauwerke Karlsruhes. Säulenhalle nach antikem Vorbild, im Inneren schlicht-klassizistisch gehalten.",
     imageHue: 3,
     categories: ["historische-architektur"],
     coordinates: [49.0093, 8.4034],
@@ -136,9 +136,9 @@ export const sights: Sight[] = [
     type: "Park",
     priceFrom: null,
     shortDesc:
-      "Historischer Botanischer Garten neben dem Schloss mit Gewaechshaus-Anlage und tropischen Pflanzen.",
+      "Historischer Botanischer Garten neben dem Schloss mit Gewächshaus-Anlage und tropischen Pflanzen.",
     longDesc:
-      "Der Botanische Garten Karlsruhe liegt direkt neben dem Schloss und gehört zum Landesbetrieb Vermögen und Bau. Drei historische Gewächshäuser zeigen tropische Pflanzen, Kakteen und exotische Gehölze. Der Aussenbereich mit Springbrunnen und Buchsbaumornamenten ist gratis zugänglich.",
+      "Der Botanische Garten Karlsruhe liegt direkt neben dem Schloss und gehört zum Landesbetrieb Vermögen und Bau. Drei historische Gewächshäuser zeigen tropische Pflanzen, Kakteen und exotische Gehölze. Der Außenbereich mit Springbrunnen und Buchsbaumornamenten ist gratis zugänglich.",
     imageHue: 4,
     categories: ["parks", "familie"],
     coordinates: [49.0142, 8.4014],
@@ -154,7 +154,7 @@ export const sights: Sight[] = [
     type: "Museum",
     priceFrom: 6,
     shortDesc:
-      "Eines der groessten Naturkundemuseen Deutschlands. Vivarium mit lebenden Tieren, Dinosaurier-Skelette, Mineraliensaal.",
+      "Eines der größten Naturkundemuseen Deutschlands. Vivarium mit lebenden Tieren, Dinosaurier-Skelette, Mineraliensaal.",
     longDesc:
       "Das Staatliche Museum für Naturkunde Karlsruhe gehört zu den bedeutendsten naturkundlichen Museen Deutschlands. Hightlight ist das Vivarium mit lebenden Reptilien, Amphibien und Fischen mitten im Museum. Zoologische und geologische Sammlungen, Saurier-Skelette und eine Mineraliensammlung machen den Besuch zum Familien-Erlebnis.",
     imageHue: 5,
@@ -220,9 +220,9 @@ export const sights: Sight[] = [
     type: "Wahrzeichen",
     priceFrom: null,
     shortDesc:
-      "Hueter des Grundgesetzes. Markanter Modernebau am Schlossplatz, von aussen frei zugänglich.",
+      "Hüter des Grundgesetzes. Markanter Modernebau am Schlossplatz, von außen frei zugänglich.",
     longDesc:
-      "Das Bundesverfassungsgericht ist Hueter des Grundgesetzes und Symbol der Karlsruher Identität als Residenz des Rechts. Der schlichte Modernebau wurde 1969 nach Plänen von Paul Baumgarten direkt am Schlossplatz errichtet. Verhandlungen sind öffentlich, Anmeldung erforderlich.",
+      "Das Bundesverfassungsgericht ist Hüter des Grundgesetzes und Symbol der Karlsruher Identität als Residenz des Rechts. Der schlichte Modernebau wurde 1969 nach Plänen von Paul Baumgarten direkt am Schlossplatz errichtet. Verhandlungen sind öffentlich, Anmeldung erforderlich.",
     imageHue: 2,
     categories: ["recht", "wahrzeichen", "historische-architektur"],
     coordinates: [49.0117, 8.4031],
@@ -237,9 +237,9 @@ export const sights: Sight[] = [
     type: "Modern",
     priceFrom: null,
     shortDesc:
-      "Karlsruher Institut für Technologie - eine der grossen Technischen Universitäten Europas, ca. 25.000 Studierende.",
+      "Karlsruher Institut für Technologie - eine der großen Technischen Universitäten Europas, ca. 25.000 Studierende.",
     longDesc:
-      "Der Campus Süd des KIT, ehemals Universität Karlsruhe (TH), ist eines der traditionsreichsten Technik-Universitaetsgelaende Europas. Heute Teil der Helmholtz-Gemeinschaft als kombinierte Universität + Forschungszentrum. Historische Bauten wie das Audimax und die Mathematische Bibliothek lohnen einen Spaziergang.",
+      "Der Campus Süd des KIT, ehemals Universität Karlsruhe (TH), ist eines der traditionsreichsten Technik-Universitätsgelände Europas. Heute Teil der Helmholtz-Gemeinschaft als kombinierte Universität + Forschungszentrum. Historische Bauten wie das Audimax und die Mathematische Bibliothek lohnen einen Spaziergang.",
     imageHue: 3,
     categories: ["wissenschaft", "tech-innovation"],
     coordinates: [49.0117, 8.4172],
@@ -255,7 +255,7 @@ export const sights: Sight[] = [
     shortDesc:
       "Renaissance-Schloss aus dem 16. Jahrhundert. Heute Hochschule für Musik mit öffentlichen Konzerten.",
     longDesc:
-      "Schloss Gottesaue wurde 1588 als Lustschloss der Markgrafen erbaut, im Krieg zerstört und in den 1980er Jahren originalgetreu wieder aufgebaut. Heute Sitz der Hochschule für Musik Karlsruhe. Regelmaessige Konzerte und Tag der offenen Tür.",
+      "Schloss Gottesaue wurde 1588 als Lustschloss der Markgrafen erbaut, im Krieg zerstört und in den 1980er Jahren originalgetreu wieder aufgebaut. Heute Sitz der Hochschule für Musik Karlsruhe. Regelmäßige Konzerte und Tag der offenen Tür.",
     imageHue: 5,
     categories: ["historische-architektur", "kunst-medien"],
     coordinates: [49.0078, 8.4231],
@@ -286,7 +286,7 @@ export const sights: Sight[] = [
     type: "Wahrzeichen",
     priceFrom: null,
     shortDesc:
-      "Markgraefliches Vor-Schloss aus dem 16. Jahrhundert. Heute Pfinzgaumuseum und Karpatendeutsches Museum.",
+      "Markgräfliches Vor-Schloss aus dem 16. Jahrhundert. Heute Pfinzgaumuseum und Karpatendeutsches Museum.",
     longDesc:
       "Die Karlsburg war bis zur Gründung Karlsruhes Residenz der Markgrafen von Baden. Renaissance-Bau aus dem 16. Jahrhundert mit barocker Ueberformung. Heute beherbergt sie das Pfinzgaumuseum zur Stadtgeschichte Durlachs.",
     imageHue: 2,
@@ -303,7 +303,7 @@ export const sights: Sight[] = [
     shortDesc:
       "Stadtgeschichtliches Museum in der Karlsburg. Markgrafen-Geschichte, Stadt vor 1715, Industriegeschichte.",
     longDesc:
-      "Das Pfinzgaumuseum dokumentiert die Geschichte Durlachs als markgraefliche Residenzstadt vor der Gründung Karlsruhes, die Eingemeindung 1938 und die Industriegeschichte der Pfinzaue. Eintritt kostenlos.",
+      "Das Pfinzgaumuseum dokumentiert die Geschichte Durlachs als markgräfliche Residenzstadt vor der Gründung Karlsruhes, die Eingemeindung 1938 und die Industriegeschichte der Pfinzaue. Eintritt kostenlos.",
     imageHue: 4,
     categories: ["museen", "historische-architektur"],
     coordinates: [48.9989, 8.4731],
@@ -316,7 +316,7 @@ export const sights: Sight[] = [
     type: "Wahrzeichen",
     priceFrom: null,
     shortDesc:
-      "Mittelalterliches Eichgebaeude am Saumarkt. Eines der ältesten erhaltenen Bauten Durlachs.",
+      "Mittelalterliches Eichgebäude am Saumarkt. Eines der ältesten erhaltenen Bauten Durlachs.",
     longDesc:
       "Die Mehlwaage am Saumarkt diente seit dem 14. Jahrhundert als amtliche Eichstelle für Getreide- und Mehlhandel. Eines der wenigen mittelalterlichen Gebäude, die in Durlach erhalten geblieben sind.",
     imageHue: 5,
@@ -350,7 +350,7 @@ export const sights: Sight[] = [
     shortDesc:
       "Konzerthalle unter dem alten Schlachthof. Indie-Rock, Metal, Hip-Hop. Karlsruhes wichtigster Club für Live-Musik.",
     longDesc:
-      "Das Substage ist Karlsruhes wichtigste Live-Halle für Indie-Rock, Metal, Hip-Hop und alternative Musik. Untergebracht in den ehemaligen Kuehlraeumen des Schlachthofs, gilt als einer der atmosphaerischsten Konzert-Spots im Südwesten.",
+      "Das Substage ist Karlsruhes wichtigste Live-Halle für Indie-Rock, Metal, Hip-Hop und alternative Musik. Untergebracht in den ehemaligen Kühlräumen des Schlachthofs, gilt als einer der atmosphärischsten Konzert-Spots im Südwesten.",
     imageHue: 4,
     categories: ["nightlife"],
     coordinates: [48.9967, 8.4189],
@@ -366,9 +366,9 @@ export const sights: Sight[] = [
     type: "Park",
     priceFrom: null,
     shortDesc:
-      "Grosses Waldgebiet nördlich der Stadt mit Wanderwegen, Wildgehegen und Picknick-Plätzen.",
+      "Großes Waldgebiet nördlich der Stadt mit Wanderwegen, Wildgehegen und Picknick-Plätzen.",
     longDesc:
-      "Der Hardtwald ist Karlsruhes wichtigstes Naherholungsgebiet - ein zusammenhaengender Kiefernwald, der sich nördlich der Stadt bis Eggenstein-Leopoldshafen erstreckt. Wanderwege, Wildgehege, Trimm-dich-Pfade und im Sommer beliebte Picknick-Plätze.",
+      "Der Hardtwald ist Karlsruhes wichtigstes Naherholungsgebiet - ein zusammenhängender Kiefernwald, der sich nördlich der Stadt bis Eggenstein-Leopoldshafen erstreckt. Wanderwege, Wildgehege, Trimm-dich-Pfade und im Sommer beliebte Picknick-Plätze.",
     imageHue: 4,
     categories: ["parks", "familie"],
     coordinates: [49.0322, 8.4144],
@@ -399,7 +399,7 @@ export const sights: Sight[] = [
     shortDesc:
       "Privatmuseum zur Verkehrsgeschichte Karlsruhes. Trambahn, Eisenbahn, Modellbahn, Karl-Drais-Laufrad.",
     longDesc:
-      "Das Verkehrsmuseum Karlsruhe ist ein Privatmuseum zur Verkehrsgeschichte mit Schwerpunkt auf der Karlsruher Strassenbahn, dem stadtbekannten Karlsruher Modell (Tram-Bahn-Hybrid) und Karl Drais, dem Erfinder des Laufrads - geboren in Karlsruhe.",
+      "Das Verkehrsmuseum Karlsruhe ist ein Privatmuseum zur Verkehrsgeschichte mit Schwerpunkt auf der Karlsruher Straßenbahn, dem stadtbekannten Karlsruher Modell (Tram-Bahn-Hybrid) und Karl Drais, dem Erfinder des Laufrads - geboren in Karlsruhe.",
     imageHue: 5,
     categories: ["museen", "familie"],
     coordinates: [48.9967, 8.4144],
@@ -414,9 +414,9 @@ export const sights: Sight[] = [
     type: "Modern",
     priceFrom: null,
     shortDesc:
-      "Einer der groessten Binnenhaefen Deutschlands. Industriekultur, Hafenrundfahrten, Karlsruher Land-Art-Spots.",
+      "Einer der größten Binnenhäfen Deutschlands. Industriekultur, Hafenrundfahrten, Karlsruher Land-Art-Spots.",
     longDesc:
-      "Der Karlsruher Rheinhafen ist einer der bedeutendsten Binnenhaefen Deutschlands. Hafenrundfahrten, Industriekultur-Spaziergänge und beliebte Foto-Spots an der Hafenanlage. Im Sommer Treffpunkt für Urban-Photography und Hafen-Festivals.",
+      "Der Karlsruher Rheinhafen ist einer der bedeutendsten Binnenhäfen Deutschlands. Hafenrundfahrten, Industriekultur-Spaziergänge und beliebte Foto-Spots an der Hafenanlage. Im Sommer Treffpunkt für Urban-Photography und Hafen-Festivals.",
     imageHue: 1,
     categories: ["historische-architektur", "wahrzeichen"],
     coordinates: [49.0181, 8.3303],
