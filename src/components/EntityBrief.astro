@@ -29,6 +29,8 @@ interface Props {
   /** Begriffe, deren Ueberschriften zuerst als Sprungmarke erscheinen. */
   priority?: RegExp;
   maxJumps?: number;
+  /** Ab wie vielen Sprungmarken der Block sich lohnt (Default 2). */
+  minJumps?: number;
 }
 const {
   facts = [],
@@ -36,6 +38,7 @@ const {
   jumpLabel = "Direkt zu",
   priority = /preis|kosten|ticket|eintritt|öffnungszeit|offnungszeit|fahrplan|fahrzeit|anfahrt|parken|führung|fuhrung|hours|price|ticket|getting there/i,
   maxJumps = 5,
+  minJumps = 2,
   excludeText,
 } = Astro.props as Props;
 
@@ -53,8 +56,9 @@ const ranked = [
   ...h2.filter((h) => !priority.test(h.text)),
 ];
 const jumps = ranked.slice(0, maxJumps);
+const showJumps = jumps.length >= minJumps;
 const visibleFacts = facts.filter((f) => f.value);
-const show = visibleFacts.length > 0 || jumps.length >= 2;
+const show = visibleFacts.length > 0 || showJumps;
 ---
 
 {show && (
@@ -78,7 +82,7 @@ const show = visibleFacts.length > 0 || jumps.length >= 2;
         ))}
       </dl>
     )}
-    {jumps.length >= 2 && (
+    {showJumps && (
       <nav class="entity-brief-jump" aria-label={jumpLabel}>
         <span class="entity-brief-jump-label">{jumpLabel}</span>
         <ul>
