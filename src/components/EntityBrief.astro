@@ -1,0 +1,177 @@
+---
+/**
+ * EntityBrief - Centerpiece Annotation fuer Entitaetsseiten (Visual Semantics).
+ *
+ * Sitzt direkt unter h1 + Lead und beantwortet, was die Query wissen will,
+ * bevor Fliesstext beginnt: harte Fakten aus der Datenschicht plus
+ * Sprungmarken auf die Abschnitte, die die Kernfragen beantworten.
+ *
+ * Es werden ausschliesslich vorhandene Daten dargestellt - nichts geschaetzt,
+ * nichts praezisiert. Faellt ein Feld weg, faellt die Zeile weg.
+ */
+interface Fact {
+  label: string;
+  value: string;
+  href?: string;
+  external?: boolean;
+}
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+interface Props {
+  facts?: Fact[];
+  headings?: Heading[];
+  jumpLabel?: string;
+  /** Ueberschrift, die nicht als Sprungmarke auftaucht (meist der Titel). */
+  excludeText?: string;
+  /** Begriffe, deren Ueberschriften zuerst als Sprungmarke erscheinen. */
+  priority?: RegExp;
+  maxJumps?: number;
+}
+const {
+  facts = [],
+  headings = [],
+  jumpLabel = "Direkt zu",
+  priority = /preis|kosten|ticket|eintritt|öffnungszeit|offnungszeit|fahrplan|fahrzeit|anfahrt|parken|führung|fuhrung|hours|price|ticket|getting there/i,
+  maxJumps = 5,
+  excludeText,
+} = Astro.props as Props;
+
+const norm = (v: string) => v.trim().toLowerCase();
+
+const h2 = headings.filter(
+  (h) =>
+    h.depth === 2 &&
+    h.text?.trim() &&
+    h.slug &&
+    (!excludeText || norm(h.text) !== norm(excludeText)),
+);
+const ranked = [
+  ...h2.filter((h) => priority.test(h.text)),
+  ...h2.filter((h) => !priority.test(h.text)),
+];
+const jumps = ranked.slice(0, maxJumps);
+const visibleFacts = facts.filter((f) => f.value);
+const show = visibleFacts.length > 0 || jumps.length >= 2;
+---
+
+{show && (
+  <div class="entity-brief" data-centerpiece>
+    {visibleFacts.length > 0 && (
+      <dl class="entity-brief-facts">
+        {visibleFacts.map((f) => (
+          <div class="entity-brief-fact">
+            <dt>{f.label}</dt>
+            <dd>
+              {f.href ? (
+                <a
+                  href={f.href}
+                  {...(f.external ? { target: "_blank", rel: "nofollow noopener" } : {})}
+                >{f.value}</a>
+              ) : (
+                f.value
+              )}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    )}
+    {jumps.length >= 2 && (
+      <nav class="entity-brief-jump" aria-label={jumpLabel}>
+        <span class="entity-brief-jump-label">{jumpLabel}</span>
+        <ul>
+          {jumps.map((h) => (
+            <li><a href={`#${h.slug}`}>{h.text}</a></li>
+          ))}
+        </ul>
+      </nav>
+    )}
+  </div>
+)}
+
+<style is:global>
+  /* Centerpiece: kompakte Faktenzeile + Sprungmarken, direkt unter der h1.
+     Die Farben laufen ueber Fallback-Ketten, damit die Komponente in beiden
+     Token-Familien der Portale funktioniert (helles "porcelain/plum"-Set und
+     dunkles "surface/border/text"-Set). */
+  .entity-brief {
+    --eb-line: var(--color-lavender-ash, var(--color-border, rgba(127, 127, 140, 0.35)));
+    --eb-bg: var(--color-porcelain-mist, var(--color-surface, transparent));
+    --eb-label: var(--color-slate-steel, var(--color-text-muted, var(--color-text-subtle, currentColor)));
+    --eb-value: var(--color-deep-plum, var(--color-text, currentColor));
+    --eb-link: var(--color-accent, currentColor);
+    border: 1px solid var(--eb-line);
+    border-radius: 0.875rem;
+    background: var(--eb-bg);
+    padding: 0.875rem 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .entity-brief-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.625rem 1rem;
+    margin: 0;
+  }
+  .entity-brief-fact dt {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--eb-label);
+    margin: 0 0 0.125rem;
+  }
+  .entity-brief-fact dd {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--eb-value);
+  }
+  .entity-brief-fact dd a {
+    color: var(--eb-link);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  /* Trennlinie nur, wenn ueber den Sprungmarken tatsaechlich Fakten stehen. */
+  .entity-brief-facts + .entity-brief-jump {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--eb-line);
+  }
+  .entity-brief-jump-label {
+    display: block;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--eb-label);
+    margin-bottom: 0.375rem;
+  }
+  .entity-brief-jump ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .entity-brief-jump li a {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    border-radius: 999px;
+    background: var(--color-canvas-white, var(--color-surface-2, rgba(127, 127, 140, 0.12)));
+    border: 1px solid var(--eb-line);
+    font-size: 0.8125rem;
+    line-height: 1.3;
+    color: var(--eb-value);
+    text-decoration: none;
+  }
+  .entity-brief-jump li a:hover {
+    border-color: var(--eb-link);
+    color: var(--eb-link);
+  }
+  @media (min-width: 640px) {
+    .entity-brief { padding: 1rem 1.25rem; }
+    .entity-brief-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+</style>

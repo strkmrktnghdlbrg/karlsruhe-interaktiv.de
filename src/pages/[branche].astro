@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import { branchen, getBranche } from "../data/branchen";
 import { city } from "../data/city";
+import EntityBrief from "../components/EntityBrief.astro";
 
 /**
  * /fitnessstudios-karlsruhe/ wird seit dem Vergleichs-Umbau von der statischen
@@ -36,7 +37,46 @@ const obfuscateEmails = (html: string) =>
       '$1<span aria-hidden="true">(at)</span><span class="sr-only">@</span>$2'
     );
 
-const bodyHtml = obfuscateEmails(item.bodyHtml);
+let bodyHtml = obfuscateEmails(item.bodyHtml);
+
+/**
+ * Visual Semantics: Die Seiten beantworten eine Local-Service-Query
+ * ("steuerberater karlsruhe"). Das Soll-Layout ist eine Anbieterliste, im
+ * Bestand steht sie als Fliesstext mit H2 je Anbieter ("1. Andrea Kubek").
+ *
+ * Hier werden die H2 mit Ankern versehen und als Sprungliste ueber den Text
+ * gesetzt. Es entsteht keine neue Aussage - nur eine navigierbare Struktur.
+ */
+const slugifyHeading = (text: string) =>
+  text
+    .toLowerCase()
+    .replace(/&[a-z]+;/g, " ")
+    .replace(/[äÄ]/g, "ae")
+    .replace(/[öÖ]/g, "oe")
+    .replace(/[üÜ]/g, "ue")
+    .replace(/ß/g, "ss")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 60);
+
+const briefHeadings: { depth: number; slug: string; text: string }[] = [];
+const seenAnchors = new Set<string>();
+bodyHtml = bodyHtml.replace(/<h2(\s[^>]*)?>([\s\S]*?)<\/h2>/gi, (match, attrs = "", inner) => {
+  const text = String(inner).replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+  if (!text) return match;
+  let anchor = slugifyHeading(text) || `abschnitt-${briefHeadings.length + 1}`;
+  while (seenAnchors.has(anchor)) anchor = `${anchor}-2`;
+  seenAnchors.add(anchor);
+  briefHeadings.push({ depth: 2, slug: anchor, text });
+  if (/\sid=/.test(String(attrs))) return match;
+  return `<h2${attrs ?? ""} id="${anchor}">${inner}</h2>`;
+});
+
+// Bestenliste erkannt, wenn die erste Ueberschrift nummeriert ist.
+const isRanking = briefHeadings.some((h) => /^\d+\.\s/.test(h.text));
+const briefJumps = isRanking
+  ? briefHeadings.filter((h) => /^\d+\.\s/.test(h.text))
+  : briefHeadings;
 
 // Vorschlaege fuer interne Verlinkung (andere Branchen, alphabetisch nahe)
 const others = branchen.filter((b) => b.slug !== item.slug);
@@ -61,10 +101,16 @@ const schema = {
       { label: item.label },
     ]} />
 
-    <header class="mb-10 max-w-3xl">
+    <header class="mb-8 max-w-3xl">
       <p class="eyebrow mb-3">Branchenbuch &middot; {city.name}</p>
-      <h1 class="text-4xl sm:text-6xl font-medium tracking-tight mb-4" style="color: var(--color-text);">{item.title}</h1>
-      <p class="text-lg leading-relaxed" style="color: var(--color-text-body);">{item.description}</p>
+      <h1 class="text-[1.75rem] sm:text-5xl font-medium tracking-tight mb-3" style="color: var(--color-text);">{item.title}</h1>
+      <p class="branche-lede" style="color: var(--color-text-body);">{item.description}</p>
+      <EntityBrief
+        headings={briefJumps}
+        jumpLabel={isRanking ? "Anbieter auf dieser Seite" : "Direkt zu"}
+        maxJumps={isRanking ? 10 : 5}
+        excludeText={item.title}
+      />
     </header>
 
     <div class="branchen-prose max-w-3xl" set:html={bodyHtml} />
@@ -90,6 +136,20 @@ const schema = {
 </BaseLayout>
 
 <style>
+  /* Die description ist ein Rohabzug des Textanfangs - auf Mobile gekuerzt,
+     der volle Text steht direkt darunter. */
+  .branche-lede {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  @media (min-width: 640px) {
+    .branche-lede { font-size: 1.0625rem; line-height: 1.6; -webkit-line-clamp: 3; }
+  }
   .branchen-prose :global(h2) {
     font-size: 1.6rem;
     line-height: 1.25;
