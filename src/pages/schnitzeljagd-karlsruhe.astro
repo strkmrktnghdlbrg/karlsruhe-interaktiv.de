@@ -27,6 +27,98 @@ const faqs = [
   },
 ];
 
+const stationsLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Orte für eine Schnitzeljagd in Karlsruhe",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Karlsruher Schloss",
+      "description": "Mittelpunkt des Fächers - schon die Zahl der Strahlen taugt als erste Aufgabe.",
+      "url": "https://www.karlsruhe-interaktiv.de/sehenswuerdigkeiten/karlsruher-schloss/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Marktplatz-Pyramide",
+      "description": "Sandsteinpyramide über der Gruft des Stadtgründers, das Wahrzeichen der Stadt.",
+      "url": "https://www.karlsruhe-interaktiv.de/sehenswuerdigkeiten/marktplatz-pyramide/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Stadtkirche",
+      "description": "Klassizistischer Säulenportikus direkt am Marktplatz - Säulen zählen genügt als Aufgabe.",
+      "url": "https://www.karlsruhe-interaktiv.de/sehenswuerdigkeiten/stadtkirche/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Stephanskirche",
+      "description": "Kuppelbau nach römischem Vorbild, wenige Minuten vom Marktplatz entfernt.",
+      "url": "https://www.karlsruhe-interaktiv.de/sehenswuerdigkeiten/stephanskirche/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "Bundesverfassungsgericht",
+      "description": "Gläserner Bau am Schlossplatz - der Ort, für den Karlsruhe bundesweit bekannt ist.",
+      "url": "https://www.karlsruhe-interaktiv.de/sehenswuerdigkeiten/bundesverfassungsgericht/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "name": "Karlsburg Durlach",
+      "description": "Renaissanceschloss in der Durlacher Altstadt, Ausgangspunkt für eine eigene Runde.",
+      "url": "https://www.karlsruhe-interaktiv.de/sehenswuerdigkeiten/karlsburg/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "name": "Turmberg",
+      "description": "Turmbergbahn und Aussichtsturm - ein Endpunkt, der die Runde von selbst krönt.",
+      "url": "https://www.karlsruhe-interaktiv.de/sehenswuerdigkeiten/turmberg/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "name": "Durlach",
+      "description": "Enge Gassen und alte Hausinschriften, deutlich ruhiger als die Fußgängerzone.",
+      "url": "https://www.karlsruhe-interaktiv.de/bezirke/durlach/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "name": "Schlossgarten",
+      "description": "Eingefasste Parkfläche hinter dem Schloss, autofrei und mit Schlossgartenbahn.",
+      "url": "https://www.karlsruhe-interaktiv.de/sehenswuerdigkeiten/schlossgarten/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "name": "Stadtgarten",
+      "description": "Parkanlage mit Zoo, Wegen und Wasserflächen - Stationen ohne Straßenquerung.",
+      "url": "https://www.karlsruhe-interaktiv.de/sehenswuerdigkeiten/stadtgarten/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "name": "Botanischer Garten",
+      "description": "Gewächshäuser und Beete direkt neben dem Schlossgarten, gut bei Regen.",
+      "url": "https://www.karlsruhe-interaktiv.de/sehenswuerdigkeiten/botanischer-garten/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 12,
+      "name": "ZKM",
+      "description": "Alte Munitionsfabrik als Medienmuseum - Industriearchitektur mit vielen Details.",
+      "url": "https://www.karlsruhe-interaktiv.de/sehenswuerdigkeiten/zkm/"
+    }
+  ]
+};
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -39,10 +131,11 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Schnitzeljagd Karlsruhe: die besten Orte für Rätseltouren"
+  title="Schnitzeljagd Karlsruhe: die besten Orte"
   description="Schnitzeljagd in Karlsruhe: die schönsten Orte für Rätselstationen im Fächer und in Durlach, Ideen für Kindergeburtstag, Teamevent und JGA - dazu eine fertige Tour ohne App und ohne Termin."
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline />
+  <script type="application/ld+json" set:html={JSON.stringify(stationsLd)} is:inline />
 
   <section class="hero-faecher border-b" style="border-color: var(--color-border);">
     <div class="container-page py-16 sm:py-24">
@@ -52,7 +145,7 @@ const faqSchema = {
         <span style="color: var(--color-accent);">Schnitzeljagd</span> Karlsruhe
       </h1>
       <p class="text-lg sm:text-xl max-w-2xl leading-relaxed" style="color: var(--color-text-body);">
-        Hinweise suchen, Rätsel knacken und dabei durch den Fächer laufen: Hier findest du die besten Orte für eine Schnitzeljagd in Karlsruhe, Ideen für Kindergeburtstag, Teamevent und JGA - und eine fertige Tour für alle, die nicht selbst planen wollen.
+        Die dichteste Strecke liegt im Fächer zwischen Schloss, Marktplatz-Pyramide und Stadtkirche. Ruhiger wird es in Durlach rund um Karlsburg und Turmberg, mit Kindern in Schlossgarten, Stadtgarten und Botanischem Garten.
       </p>
     </div>
   </section>
@@ -60,11 +153,25 @@ const faqSchema = {
   <article class="container-page section">
     <div class="max-w-3xl mx-auto">
       <div class="legal-prose">
-        <p>
-          Karlsruhe ist für eine Schnitzeljagd fast ideal gebaut. Der Fächergrundriss sorgt dafür, dass alle Straßen auf einen Punkt zulaufen - das Schloss. Wer sich verläuft, findet also fast automatisch zurück, und die Wege zwischen zwei Stationen bleiben kurz. Dazu kommen Pyramide, Denkmäler und Inschriften, an denen sich Aufgaben festmachen lassen.
+        <p class="answer-block">
+          Acht bis zehn Stationen ergeben zwei bis drei Stunden Spielzeit. Selbst geplant kostet die Runde nur Zeit und etwas Material; eine fertige Rätseltour fürs Smartphone wird einmalig für die ganze Gruppe abgerechnet statt pro Person. Ab etwa sechs Jahren geht die Jagd auf, solange die Aufgaben aufs Suchen und Beobachten setzen.
         </p>
+      </div>
+
+<div class="vs-stations" data-vs-stations>
+  <p class="vs-stations-kicker">Stationen in Karlsruhe</p>
+  <div class="vs-filter" role="group" aria-label="Stationen filtern">
+    <button type="button" class="vs-chip is-active" data-tag="alle" aria-pressed="true">Alle</button><button type="button" class="vs-chip" data-tag="zentral" aria-pressed="false">Zentral</button><button type="button" class="vs-chip" data-tag="kinder" aria-pressed="false">Mit Kindern</button><button type="button" class="vs-chip" data-tag="ruhig" aria-pressed="false">Abseits</button>
+  </div>
+  <ul class="vs-grid">
+    <li class="vs-card" data-tags="zentral"><p class="vs-card-area">Innenstadt</p><h3 class="vs-card-name"><a href="/sehenswuerdigkeiten/karlsruher-schloss/">Karlsruher Schloss</a></h3><p class="vs-card-task">Mittelpunkt des Fächers - schon die Zahl der Strahlen taugt als erste Aufgabe.</p></li><li class="vs-card" data-tags="zentral"><p class="vs-card-area">Innenstadt</p><h3 class="vs-card-name"><a href="/sehenswuerdigkeiten/marktplatz-pyramide/">Marktplatz-Pyramide</a></h3><p class="vs-card-task">Sandsteinpyramide über der Gruft des Stadtgründers, das Wahrzeichen der Stadt.</p></li><li class="vs-card" data-tags="zentral"><p class="vs-card-area">Innenstadt</p><h3 class="vs-card-name"><a href="/sehenswuerdigkeiten/stadtkirche/">Stadtkirche</a></h3><p class="vs-card-task">Klassizistischer Säulenportikus direkt am Marktplatz - Säulen zählen genügt als Aufgabe.</p></li><li class="vs-card" data-tags="zentral"><p class="vs-card-area">Innenstadt</p><h3 class="vs-card-name"><a href="/sehenswuerdigkeiten/stephanskirche/">Stephanskirche</a></h3><p class="vs-card-task">Kuppelbau nach römischem Vorbild, wenige Minuten vom Marktplatz entfernt.</p></li><li class="vs-card" data-tags="zentral"><p class="vs-card-area">Innenstadt</p><h3 class="vs-card-name"><a href="/sehenswuerdigkeiten/bundesverfassungsgericht/">Bundesverfassungsgericht</a></h3><p class="vs-card-task">Gläserner Bau am Schlossplatz - der Ort, für den Karlsruhe bundesweit bekannt ist.</p></li><li class="vs-card" data-tags="ruhig"><p class="vs-card-area">Durlach</p><h3 class="vs-card-name"><a href="/sehenswuerdigkeiten/karlsburg/">Karlsburg Durlach</a></h3><p class="vs-card-task">Renaissanceschloss in der Durlacher Altstadt, Ausgangspunkt für eine eigene Runde.</p></li><li class="vs-card" data-tags="ruhig"><p class="vs-card-area">Durlach</p><h3 class="vs-card-name"><a href="/sehenswuerdigkeiten/turmberg/">Turmberg</a></h3><p class="vs-card-task">Turmbergbahn und Aussichtsturm - ein Endpunkt, der die Runde von selbst krönt.</p></li><li class="vs-card" data-tags="ruhig"><p class="vs-card-area">Durlach</p><h3 class="vs-card-name"><a href="/bezirke/durlach/">Durlach</a></h3><p class="vs-card-task">Enge Gassen und alte Hausinschriften, deutlich ruhiger als die Fußgängerzone.</p></li><li class="vs-card" data-tags="kinder"><p class="vs-card-area">Innenstadt</p><h3 class="vs-card-name"><a href="/sehenswuerdigkeiten/schlossgarten/">Schlossgarten</a></h3><p class="vs-card-task">Eingefasste Parkfläche hinter dem Schloss, autofrei und mit Schlossgartenbahn.</p></li><li class="vs-card" data-tags="kinder"><p class="vs-card-area">Südstadt</p><h3 class="vs-card-name"><a href="/sehenswuerdigkeiten/stadtgarten/">Stadtgarten</a></h3><p class="vs-card-task">Parkanlage mit Zoo, Wegen und Wasserflächen - Stationen ohne Straßenquerung.</p></li><li class="vs-card" data-tags="kinder ruhig"><p class="vs-card-area">Innenstadt</p><h3 class="vs-card-name"><a href="/sehenswuerdigkeiten/botanischer-garten/">Botanischer Garten</a></h3><p class="vs-card-task">Gewächshäuser und Beete direkt neben dem Schlossgarten, gut bei Regen.</p></li><li class="vs-card" data-tags="ruhig"><p class="vs-card-area">Südweststadt</p><h3 class="vs-card-name"><a href="/sehenswuerdigkeiten/zkm/">ZKM</a></h3><p class="vs-card-task">Alte Munitionsfabrik als Medienmuseum - Industriearchitektur mit vielen Details.</p></li>
+  </ul>
+  <p class="vs-empty" hidden>Kein Ort mit diesem Filter.</p>
+</div>
+
+      <div class="legal-prose">
         <p>
-          Zwei Wege führen zum Ziel: Ihr stellt die Jagd selbst zusammen, oder ihr nehmt eine fertige Rätseltour, bei der Route und Aufgaben schon stehen. Beides beschreiben wir hier.
+          Gute Stationen haben ein Detail, an dem sich eine Frage festmachen lässt: eine Jahreszahl, eine Figur, eine Inschrift, eine ungewöhnliche Form. Der Fächergrundriss hilft dabei: Alle Straßen laufen auf das Schloss zu, wer sich verläuft, findet fast automatisch zurück.
         </p>
       </div>
 
@@ -100,31 +207,6 @@ const faqSchema = {
         </p>
         <p>
           In der Praxis mischen sich beide Formen, und die meisten Touren, die heute in Karlsruhe gespielt werden, sind Rätseltouren mit festen Stationen. Wie so eine Tour konkret abläuft, steht in unserem Beitrag zur <a href="/stadtrallye-karlsruhe/" class="link-accent">selbstgeführten Stadtrallye Karlsruhe</a>.
-        </p>
-
-        <h2>Die besten Orte für eine Schnitzeljagd in Karlsruhe</h2>
-        <p>
-          Gute Stationen haben ein Detail, an dem sich eine Frage aufhängen lässt: eine Jahreszahl, eine Figur, eine Inschrift, eine ungewöhnliche Form. Diese Orte liefern davon reichlich.
-        </p>
-
-        <h3>Der Fächer rund um das Schloss</h3>
-        <p>
-          Das <a href="/sehenswuerdigkeiten/karlsruher-schloss/" class="link-accent">Karlsruher Schloss</a> ist der natürliche Mittelpunkt jeder Tour: Von hier laufen die Strahlen des Fächers los, und schon die Frage nach ihrer Anzahl taugt als Aufgabe. Nur ein paar Minuten entfernt stehen die <a href="/sehenswuerdigkeiten/marktplatz-pyramide/" class="link-accent">Marktplatz-Pyramide</a>, die <a href="/sehenswuerdigkeiten/stadtkirche/" class="link-accent">Stadtkirche</a> und die <a href="/sehenswuerdigkeiten/stephanskirche/" class="link-accent">Stephanskirche</a> - vier markante Punkte auf wenigen hundert Metern.
-        </p>
-
-        <h3>Durlach als eigene Runde</h3>
-        <p>
-          Wer die Innenstadt schon kennt, verlegt die Jagd nach <a href="/bezirke/durlach/" class="link-accent">Durlach</a>. Die Altstadt dort hat enge Gassen, alte Hausinschriften und mit der <a href="/sehenswuerdigkeiten/karlsburg/" class="link-accent">Karlsburg</a> sowie dem <a href="/sehenswuerdigkeiten/turmberg/" class="link-accent">Turmberg</a> zwei starke Endpunkte. Die Turmbergbahn als letzte Station macht sich als Abschluss besonders gut.
-        </p>
-
-        <h3>Parks für Touren mit Kindern</h3>
-        <p>
-          Mit jüngeren Kindern ist eine Runde im Grünen entspannter als zwischen Verkehr und Fußgängerzone. Der <a href="/sehenswuerdigkeiten/schlossgarten/" class="link-accent">Schlossgarten</a>, der <a href="/sehenswuerdigkeiten/stadtgarten/" class="link-accent">Stadtgarten</a> und der <a href="/sehenswuerdigkeiten/botanischer-garten/" class="link-accent">Botanische Garten</a> bieten Wege, Bäume und genug Versteckmöglichkeiten für Hinweise - ohne dass ihr eine Straße queren müsst.
-        </p>
-
-        <h3>Für Gruppen, die etwas Ausgefalleneres suchen</h3>
-        <p>
-          Rund um <a href="/sehenswuerdigkeiten/zkm/" class="link-accent">ZKM</a> und <a href="/sehenswuerdigkeiten/schloss-gottesaue/" class="link-accent">Schloss Gottesaue</a> liegen Industriearchitektur und Grünflächen nah beieinander. Wer die Runde weiter ziehen möchte, findet in unseren <a href="/bezirke/" class="link-accent">Karlsruher Stadtteilen</a> weitere Gegenden, die sich als Spielfeld eignen.
         </p>
 
         <h2>Schnitzeljagd für Kindergeburtstage</h2>
@@ -182,8 +264,55 @@ const faqSchema = {
     </div>
   </article>
 </BaseLayout>
+<script>
+  (function () {
+    document.querySelectorAll("[data-vs-stations]").forEach(function (box) {
+      var chips = box.querySelectorAll(".vs-chip");
+      var cards = box.querySelectorAll(".vs-card");
+      var empty = box.querySelector(".vs-empty");
+      chips.forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          var tag = chip.getAttribute("data-tag");
+          chips.forEach(function (c) {
+            var on = c === chip;
+            c.classList.toggle("is-active", on);
+            c.setAttribute("aria-pressed", on ? "true" : "false");
+          });
+          var shown = 0;
+          cards.forEach(function (card) {
+            var hit = tag === "alle" || tag === "all" ||
+              (" " + card.getAttribute("data-tags") + " ").indexOf(" " + tag + " ") > -1;
+            card.hidden = !hit;
+            if (hit) shown++;
+          });
+          if (empty) empty.hidden = shown > 0;
+        });
+      });
+    });
+  })();
+</script>
 
 <style>
+  .vs-stations{margin:20px 0 32px}
+  .vs-stations-kicker{font-size:12px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--color-accent);margin:0 0 10px}
+  .vs-filter{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+  .vs-chip{font:inherit;font-size:14px;font-weight:600;line-height:1;padding:9px 14px;border-radius:999px;
+    border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-body);cursor:pointer;transition:.15s ease}
+  .vs-chip:hover{border-color:var(--color-accent);color:var(--color-accent)}
+  .vs-chip.is-active{background:var(--color-accent);border-color:var(--color-accent);color:#fff}
+  .vs-grid{list-style:none !important;margin:0;padding:0 !important;display:grid;gap:12px;grid-template-columns:1fr}
+  .vs-grid>li{list-style:none !important;padding-left:0 !important;margin:0 !important}
+  .vs-grid>li::marker{content:"" !important}
+  .vs-grid>li::before{content:none !important}
+  .vs-card{border:1px solid var(--color-border);border-left:3px solid var(--color-accent);border-radius:12px;padding:14px 16px;background:var(--color-surface-elevated);margin:0}
+  .vs-card-area{font-size:12px !important;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--color-text-body);margin:0 0 4px !important;line-height:1.3 !important}
+  .vs-card-name{font-size:17px !important;font-weight:700;line-height:1.25 !important;margin:0 0 6px !important;color:var(--color-text)}
+  .vs-card-name a{color:inherit;text-decoration:underline;text-underline-offset:3px;border:0 !important}
+  .vs-card-task{font-size:14.5px !important;line-height:1.5 !important;color:var(--color-text-body);margin:0 !important}
+  .vs-empty{font-size:14px;color:var(--color-text-body);margin:12px 0 0}
+  @media(min-width:640px){.vs-grid{grid-template-columns:1fr 1fr}}
+
+  .answer-block { font-size: 1.05rem; }
   /* === Produkt-Karte: Dark-Theme === */
   .product-card {
     background: var(--color-surface-elevated);
